@@ -1,0 +1,33 @@
+<?php
+    sleep(1);
+?>
+{
+    "success" : true,
+    "message" : "Data lookup successful.",
+    "errors" : [],
+    "data" : {
+        "fields" : [
+          {
+            "fldMstrId" : "21",
+            "name" : "page_code",
+            "label" : "Page",
+            "fieldClass" : "submit-on-change",
+            "type" : "select2",
+            "data" : [
+              {
+                "value" : "CLAIM_FORM",
+                "label" : "Claim Form"
+              },
+              {
+                "value" : "CONF_PAGE",
+                "label" : "Confirmation Page"
+              },
+              {
+                "value" : "PDF_CERT",
+                "label" : "PDF Certificate"
+              }
+            ]
+          }
+        ]
+    }
+}

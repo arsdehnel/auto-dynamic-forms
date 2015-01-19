@@ -1,0 +1,3 @@
+{{#each data}}
+    <input type="checkbox" name="{{../name}}" id="{{../name}}" value="{{this.value}}" {{optionSelected value ../currentValue}}>{{this.label}}
+{{/each}}

@@ -1,0 +1,26 @@
+<?php
+    sleep(1);
+?>
+{
+    "success" : true,
+    "message" : "Data lookup successful.",
+    "errors" : [],
+    "data" : {
+        "records" : [
+          {
+            "MODULE_LABEL" : "Field #1 from new page ajax",
+            "PRCS_MSTR_ID" : 13,
+            "LABEL_TEXT" : "CORE",
+            "STATUS_CODE" : "I",
+            "comments" : "Yay comments"
+          }
+        ],
+        "actions" : [
+            {
+                "href" : "#",
+                "label" : "Save",
+                "type" : "save"
+            }
+        ]
+    }
+}

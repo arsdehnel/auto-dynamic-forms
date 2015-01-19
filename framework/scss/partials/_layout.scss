@@ -5,18 +5,18 @@ body{
     padding: 0;
     margin: 0;
     height: 100%;
-    background-image: radial-gradient(farthest-corner at 50% 140% , #ffffff 0%, $primary_color 100%);
-    background-attachment: fixed;
+    @include body-bg( $primary_color, rgba( white, .1 ) );
     &.environment-qa {
-        // background: linear-gradient( 45deg, $primar 0%, $primar 80%, #00ff00 100% );
-        background: radial-gradient(circle at 100% 50%, transparent 20%, rgba(0,255,0,.8) 21%, rgba(0,255,0,.8) 34%, transparent 35%, transparent),
-                    radial-gradient(circle at 0% 50%, transparent 20%, rgba(0,255,0,.8) 21%, rgba(0,255,0,.8) 34%, transparent 35%, transparent) 0 -50px;
-        background-color: slategray;
-        background-size: 75px 100px;
-        // box-shadow: 0 0 0 30px #00ff00;
+        @include body-bg( $primary_color, $qa-indicator-color );
     }
     font-size: 14px;
     font-family: 'Lato';
+    &.dialog-open {
+        &> header *,
+        &> main * {
+            filter: blur(1px);
+        }
+    }
 }
 .content{
     margin: 4px 20px;

@@ -4,14 +4,13 @@
 
 .select2-option-value,
 .select2-option-label{
-	display: inline-block;
+	display: block;
 	vertical-align: top;
 }
-.select2-option-value{
-	width: 30%;
-}
-.select2-option-label{
-	width: 70%;
+
+.select2-option-label {
+    padding-left: 30px;
+    text-indent: -15px;
 }
 
 .select2-container {

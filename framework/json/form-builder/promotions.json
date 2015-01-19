@@ -1,0 +1,67 @@
+<?php
+    sleep(1);
+?>
+{
+    "success" : true,
+    "message" : "Data lookup successful.",
+    "errors" : [],
+    "data" : {
+        "fields" : [
+          {
+            "fldMstrId" : "20",
+            "name" : "promotion_id",
+            "label" : "Promotion",
+            "type" : "select2",
+            "dataAttributes" : [
+                {
+                    "name" : "js-trigger",
+                    "value" : "field-lkup-on-change"
+                },
+                {
+                    "name" : "field-lkup-target",
+                    "value" : "page_code"
+                },
+                {
+                    "name" : "adf-ajax-data-fields",
+                    "value" : "application"
+                },
+                {
+                    "name" : "field-lkup-url",
+                    "value" : "../json/form-builder/pages.json"
+                }
+            ],
+            "data" : [
+              {
+                "value" : "3117",
+                "label" : "Nissan 10 Sales Growth Program"
+              },
+              {
+                "value" : "7619",
+                "label" : "Career Builders"
+              }
+            ]
+          },
+          {
+            "fldMstrId" : "21",
+            "name" : "page_code",
+            "label" : "Page",
+            "fieldClass" : "submit-on-change",
+            "type" : "select2",
+            "data" : [
+              {
+                "value" : "CLAIM_FORM",
+                "label" : "Claim Form"
+              },
+              {
+                "value" : "CONF_PAGE",
+                "label" : "Confirmation Page"
+              },
+              {
+                "value" : "PDF_CERT",
+                "label" : "PDF Certificate"
+              }
+            ]
+          }
+        ]
+    }
+}

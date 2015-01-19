@@ -23,7 +23,8 @@
     // CUSTOM
     &.btn-save,
     &.btn-query,
-    &.btn-run{
+    &.btn-run,
+    &.btn-add{
         @include button( #070 );
     }
 }

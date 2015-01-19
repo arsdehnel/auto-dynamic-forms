@@ -1,0 +1,24 @@
+<?php
+    $header_text = 'App Nav';
+    $main_classes[] = 'layout-grid';
+    include('../_header.php');
+?>
+<div
+    class="row adf-onload-ajax"
+    data-onload-ajax-url="../json/app-nav/promotions.json"
+    data-onload-ajax-url-qa2="http://acuraadminqa.biworldwide.com/acuraadmin/v2/service/common/get-fields.action?pageCode=PROCESS_MASTER_FILTERS"
+    data-onload-ajax-url-qa="http://pedersoz-dv.bius.bi.corp:7001/acuraadmin/v2/service/common/get-fields.action?pageCode=PROCESS_MASTER_FILTERS"
+    data-result-type="form"
+    data-onload-ajax-target-id="app-nav-filter"
+    >
+    <div class="layout-grid-3"></div>
+    <fieldset class="layout-grid-6">
+        <legend>Find Your App Nav Items</legend>
+        <form action="../json/app-nav/grid.json" class="form-horizontal submit-on-change" method="post" id="app-nav-filter" data-target-id="app-nav-grid" data-result-type="grid"></form>
+    </fieldset>
+    <div class="layout-grid-3"></div>
+</div>
+<div id="app-nav-grid" data-record-save-url="../json/app-nav/save.json" data-table-id="web_appl_nav_control"></div>
+<?php
+    include('../_footer.php');
+?>

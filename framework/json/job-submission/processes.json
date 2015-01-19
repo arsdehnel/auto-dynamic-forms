@@ -1,0 +1,217 @@
+<?php
+	sleep(1);
+?>
+{
+    "success" : true,
+    "message" : "Data lookup successful.",
+    "errors" : [],
+    "data" : {
+        "fields" : [
+          {
+            "name" : "id",
+            "label" : "ID",
+            "fieldPriority" : "6",
+            "type" : "readonly"
+          },
+          {
+            "name" : "prcs_name",
+            "label" : "Process",
+            "tooltip" : "This is the actual name of the process in the database",
+            "fieldPriority" : "1",
+            "type" : "select2"
+          },
+          {
+            "name" : "read_order",
+            "label" : "Read Order",
+            "tooltip" : "Just used for controlling what order the jobs show up in this screen.",
+            "fieldPriority" : "2",
+            "type" : "number"
+          },
+          {
+            "name" : "status_code",
+            "label" : "Status Code",
+            "tooltip" : "Indicates whether this data type should be calculated right now or not.  Depending on the program the inactivation of this might cause the existing data to be removed whereas other programs might just leave that data as it is and simply will stop updating it.",
+            "fieldPriority" : "1",
+            "type" : "select",
+            "data" : [
+              {
+                "value" : "A",
+                "label" : "Active"
+              },
+              {
+                "value" : "I",
+                "label" : "Inactive"
+              }
+            ]
+          },
+          {
+            "name" : "comments",
+            "label" : "Comments",
+            "tooltip" : "Just for reference by you and other team members, this will not be used in any programming or display on the web.",
+            "fieldPriority" : "9",
+            "type" : "textarea"
+          },
+{
+        "fldMstrId": 2,
+        "detailId": 24,
+        "name": "ACTIONS",
+        "type": "ACTIONS",
+        "label": null,
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": "auto-admin-cell-actions",
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 100,
+        "requiredInd": "N",
+        "fieldPriority": 1,
+        "data": [],
+        "actions": [
+          {
+            "tooltipText": null,
+            "label": "Save",
+            "actionType": "save",
+            "wrapClass": null,
+            "actionClass": null,
+            "url": "#",
+            "pageDetailId": 20,
+            "fieldPageDetailId": 24
+          },
+          {
+            "tooltipText": null,
+            "label": "Run",
+            "actionType": "run",
+            "wrapClass": null,
+            "actionClass": null,
+            "url": "#",
+            "pageDetailId": 20,
+            "fieldPageDetailId": 24
+          }
+        ],
+        "dataAttributes": []
+      }
+        ],
+        "records" : [
+          {
+            "id" : 13,
+            "prcs_name" : "VIN_DTL",
+            "read_order" : "13",
+            "data_type" : "PMA_AWD_CALC_05",
+            "calc_operator" : "SUM"
+          },
+          {
+            "id" : 14,
+            "prcs_name" : "DATA_DTL",
+            "read_order" : 14,
+            "data_type" : "PMA_AWD_CALC_05",
+            "calc_operator" : "DIVIDE"
+          },
+          {
+            "id" : 15,
+            "prcs_name" : "DATA_DTL",
+            "read_order" : "15",
+            "data_type" : "SA_ATTNMT_AWD_05",
+            "calc_operator" : "DIVIDE"
+          },
+          {
+            "id" : 16,
+            "prcs_name" : "DATA_DTL",
+            "read_order" : "16",
+            "data_type" : "PMA_AWD_CALC_05",
+            "calc_operator" : "DIVIDE"
+          },
+          {
+            "id" : 17,
+            "prcs_name" : "DATA_DTL",
+            "read_order" : "17",
+            "data_type" : "PMA_AWD_CALC_05",
+            "calc_operator" : "DIVIDE"
+          },
+          {
+            "id" : 18,
+            "prcs_name" : "DATA_DTL",
+            "read_order" : "18",
+            "data_type" : "PMA_AWD_CALC_05",
+            "calc_operator" : "DIVIDE"
+          },
+          {
+            "id" : 19,
+            "prcs_name" : "DATA_DTL",
+            "read_order" : "19",
+            "data_type" : "PMA_AWD_CALC_05",
+            "calc_operator" : "DIVIDE"
+          }
+
+        ],
+        "gridActions" : [
+        	{
+    			"href" : "#",
+    			"itemClass" : "adf-grid-record-add",
+    			"label" : "Add 1 Record",
+    	        "dataAttributes" : [
+    	            {
+    	                "name" : "record-count",
+    	                "value" : "1"
+    	            }
+    	        ]
+    		},
+        	{
+    			"href" : "#",
+    			"itemClass" : "adf-grid-record-add",
+    			"label" : "Add 2 Records",
+    	        "dataAttributes" : [
+    	            {
+    	                "name" : "record-count",
+    	                "value" : "2"
+    	            }
+    	        ]
+    		},
+        	{
+    			"href" : "#",
+    			"itemClass" : "adf-grid-record-add",
+    			"label" : "Add 3 Records",
+    	        "dataAttributes" : [
+    	            {
+    	                "name" : "record-count",
+    	                "value" : "3"
+    	            }
+    	        ]
+    		},
+        	{
+    			"href" : "#",
+    			"itemClass" : "adf-grid-record-add",
+    			"label" : "Add 4 Records",
+    	        "dataAttributes" : [
+    	            {
+    	                "name" : "record-count",
+    	                "value" : "4"
+    	            }
+    	        ]
+    		},
+        	{
+    			"href" : "#",
+    			"itemClass" : "adf-grid-record-add",
+    			"label" : "Add 5 Records",
+    	        "dataAttributes" : [
+    	            {
+    	                "name" : "record-count",
+    	                "value" : "5"
+    	            }
+    	        ]
+    		},
+        	{
+    			"href" : "#",
+    			"itemClass" : "adf-grid-record-add",
+    			"label" : "Add 10 Records",
+    	        "dataAttributes" : [
+    	            {
+    	                "name" : "record-count",
+    	                "value" : "10"
+    	            }
+    	        ]
+    		}
+    	]
+    }
+}

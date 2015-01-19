@@ -27,7 +27,7 @@
     @media (min-width: 1800px) { @content; }
   }
   @else if $point == colBreakpoint9 {
-    @media (min-width: 2000px) { @content; }
+    @media (min-width: 6000px) { @content; }
   }
 }
 
@@ -110,4 +110,11 @@
     border-style: solid;
     border-color: transparent transparent transparent currentColor;
   }
+}
+
+@mixin body-bg( $base-color, $swirl-color ){
+    background: radial-gradient(circle at 100% 50%, transparent 20%, $swirl-color 21%, $swirl-color 34%, transparent 35%, transparent),
+                radial-gradient(circle at 0% 50%, transparent 20%, $swirl-color 21%, $swirl-color 34%, transparent 35%, transparent) 0 -50px;
+    background-color: $base-color;
+    background-size: 75px 100px;
 }

@@ -1,0 +1,13 @@
+<div class="adf-grid-overlay-editor">
+	<div class="display-value adf-grid-filter-value">
+		{{{currentValue}}}
+	</div>
+	<div class="overlay-editor"
+        {{#each dataAttributes}}
+            data-{{name}}="{{value}}"
+        {{/each}}
+        >
+		<div id="grid-overlay-editor--{{name}}" class="overlay-editor-grid-target"></div>
+		<button type="button" class="btn close icon icon-done">done</button>
+	</div>
+</div>

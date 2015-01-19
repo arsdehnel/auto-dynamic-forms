@@ -1,0 +1,41 @@
+<?php
+    sleep(1);
+?>
+{
+    "success" : true,
+    "message" : "Data lookup successful.",
+    "errors" : [],
+    "data" : {
+        "fields" : [
+          {
+            "name" : "promotion_id",
+            "label" : "Promotion",
+            "type" : "select2",
+            "dataAttributes" : [
+                {
+                    "name" : "js-trigger",
+                    "value" : "field-lkup-on-change"
+                },
+                {
+                    "name" : "field-lkup-url",
+                    "value" : "../json/form-builder/promotions.json"
+                },
+                {
+                    "name" : "field-lkup-child-fields",
+                    "value" : "page_code"
+                }
+            ],
+            "data" : [
+              {
+                "value" : "3117",
+                "label" : "Nissan 10 Sales Growth Program"
+              },
+              {
+                "value" : "7619",
+                "label" : "Career Builders"
+              }
+            ]
+          }
+        ]
+    }
+}

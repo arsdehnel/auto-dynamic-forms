@@ -1,0 +1,397 @@
+{
+  "authenticated": true,
+  "success": true,
+  "message": null,
+  "data": {
+    "fields": [
+      {
+        "fldMstrId": 70,
+        "detailId": 68,
+        "name": "EML_DIST_MSTR_ID",
+        "type": "READONLY",
+        "label": "Email Dist Mstr ID",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 12,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 4,
+        "detailId": 72,
+        "name": "PRCS_MSTR_ID",
+        "type": "READONLY",
+        "label": "Process Master",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 12,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": [
+          {
+            "name": "data-adf-init-field-ind",
+            "value": "Y"
+          }
+        ]
+      },
+      {
+        "fldMstrId": 71,
+        "detailId": 69,
+        "name": "MSG_TYPE",
+        "type": "SELECT2",
+        "label": "Message Type",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 12,
+        "requiredInd": "N",
+        "fieldPriority": 1,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 72,
+        "detailId": 70,
+        "name": "FROM_PAX_ID",
+        "type": "NUMBER",
+        "label": "From Participant",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 12,
+        "requiredInd": "N",
+        "fieldPriority": 1,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 73,
+        "detailId": 71,
+        "name": "SUBJECT",
+        "type": "TEXT",
+        "label": "Subject",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 12,
+        "requiredInd": "N",
+        "fieldPriority": 1,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 9,
+        "detailId": 65,
+        "name": "STATUS_CODE",
+        "type": "SELECT",
+        "label": "Status Code",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 1,
+        "requiredInd": "Y",
+        "fieldPriority": 1,
+        "data": [
+          {
+            "detailId": 65,
+            "groupLabel": null,
+            "value": "A",
+            "label": "Active",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 65,
+            "groupLabel": null,
+            "value": "I",
+            "label": "Inactive",
+            "selectedInd": "N"
+          }
+        ],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 129,
+        "detailId": 657,
+        "name": "RECIPIENTS",
+        "type": "SELECT2",
+        "label": "Recipients",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 1,
+        "requiredInd": "Y",
+        "fieldPriority": 1,
+        "data": [
+          {
+            "detailId": 65,
+            "groupLabel": null,
+            "value": "A",
+            "label": "Active",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 65,
+            "groupLabel": null,
+            "value": "I",
+            "label": "Inactive",
+            "selectedInd": "N"
+          }
+        ],
+        "actions": [],
+        "dataAttributes": [
+          {
+            "name": "select2-multiple",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "fldMstrId": 10,
+        "detailId": 66,
+        "name": "COMMENTS",
+        "type": "TEXTAREA",
+        "label": "Comments",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 4000,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 11,
+        "detailId": 61,
+        "name": "DATE_CREATED",
+        "type": "READONLY",
+        "label": "Date Created",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 1,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 12,
+        "detailId": 62,
+        "name": "CREATED_BY",
+        "type": "READONLY",
+        "label": "Created By",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 1,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 13,
+        "detailId": 63,
+        "name": "DATE_MODIFIED",
+        "type": "READONLY",
+        "label": "Date Modified",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 1,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 14,
+        "detailId": 64,
+        "name": "MODIFIED_BY",
+        "type": "READONLY",
+        "label": "Modified By",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 1,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 2,
+        "detailId": 75,
+        "name": "ACTIONS",
+        "type": "ACTIONS",
+        "label": "Actions",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": "auto-admin-cell-actions",
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 100,
+        "requiredInd": "N",
+        "fieldPriority": 1,
+        "data": [],
+        "actions": [
+          {
+            "tooltipText": null,
+            "label": "Save",
+            "type": "save",
+            "wrapClass": null,
+            "actionClass": null,
+            "url": "#",
+            "pageDetailId": 67,
+            "fieldPageDetailId": 75,
+            "dataAttributes": []
+          }
+        ],
+        "dataAttributes": []
+      }
+    ],
+    "records": [
+      {
+        "id": 1000,
+        "EML_DIST_MSTR_ID": 1000,
+        "PRCS_MSTR_ID": 5454,
+        "MSG_TYPE": "SUCCESS",
+        "FROM_PAX_ID": 97463,
+        "SUBJECT": "Dealer Work Load Success",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "11-25-2014 09:55:31",
+        "CREATED_BY": "DEHNEL",
+        "DATE_MODIFIED": "11-26-2014 12:37:24",
+        "MODIFIED_BY": "PEDERSOZ",
+        "recipients": [
+          {
+            "id": 1000,
+            "EML_DIST_DTL_ID": 1000,
+            "EML_DIST_MSTR_ID": 1000,
+            "PARTICIPANT_ID": 97463,
+            "STATUS_CODE": "A",
+            "DATE_CREATED": "11-25-2014 10:00:55",
+            "CREATED_BY": "DEHNEL",
+            "DATE_MODIFIED": "11-26-2014 12:37:24",
+            "MODIFIED_BY": "PEDERSOZ"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "tooltipText": null,
+        "label": "Add 1 Record",
+        "type": "grid-action",
+        "wrapClass": null,
+        "actionClass": null,
+        "url": "#",
+        "pageDetailId": 73,
+        "fieldPageDetailId": 0,
+        "dataAttributes": [
+          {
+            "name": "action-type",
+            "value": "grid-record-add",
+            "pageDetailId": 73
+          },
+          {
+            "name": "record-count",
+            "value": "1",
+            "pageDetailId": 73
+          }
+        ]
+      },
+      {
+        "tooltipText": null,
+        "label": "Add 5 Records",
+        "type": "grid-action",
+        "wrapClass": null,
+        "actionClass": null,
+        "url": "#",
+        "pageDetailId": 74,
+        "fieldPageDetailId": 0,
+        "dataAttributes": [
+          {
+            "name": "action-type",
+            "value": "grid-record-add",
+            "pageDetailId": 74
+          },
+          {
+            "name": "record-count",
+            "value": "5",
+            "pageDetailId": 74
+          }
+        ]
+      }
+    ]
+  },
+  "errors": null,
+  "hasMessage": true
+}

@@ -1,0 +1,41 @@
+<?php
+    sleep(1);
+?>
+{
+    "success" : true,
+    "message" : "Data lookup successful.",
+    "errors" : [],
+    "data" : {
+        "fields" : [
+          {
+            "name" : "promotion_id",
+            "label" : "Promotion",
+            "type" : "select2",
+            "data" : [
+              {
+                "value" : "3117",
+                "label" : "Nissan 10 Sales Growth Program"
+              },
+              {
+                "value" : "7619",
+                "label" : "Career Builders"
+              }
+            ]
+          },
+          {
+            "name" : "actions",
+            "label" : "",
+            "wrapClass" : "adf-cell-actions",
+            "type" : "actions",
+            "data" : [
+                {
+                    "href" : "#",
+                    "type" : "query",
+                    "label" : "Lookup",
+                    "actionClass" : "submit-parent-form-ajax"
+                }
+            ]
+          }
+        ]
+    }
+}

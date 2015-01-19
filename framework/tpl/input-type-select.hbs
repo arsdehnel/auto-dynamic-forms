@@ -1,5 +1,6 @@
-<select name="{{name}}" class="auto-admin-grid-filter-value">
+<select name="{{name}}" class="adf-grid-filter-value">
+    <option>Please Select</option>
     {{#each data}}
-		<option value="{{this.value}}" {{optionSelected value ../currentValue}}>{{this.label}}</option>
+		<option value="{{this.value}}" {{optionSelected this.value ../currentValue}}>{{this.label}}</option>
     {{/each}}
 </select>

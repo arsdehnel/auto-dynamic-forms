@@ -1,26 +1,52 @@
 dialog {
-    top: 5em;
+    display: none;
+    // TODO: remove this when FF supports dialog natively
+    .dialog-open & {
+        display: block;
+    }
+    position: fixed;
+    top: 2em;
+    right: auto;
+    bottom: 2em;
+    left: 50%;
+    transform: translate3d(-50%,0,0);
     min-width: 30em;
+    min-height: 30em;
 	padding: 0;
 	border: 0;
-	border-radius: 2px;
-	box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.8);
+    background: white;
+    .dialog-header,
+    .dialog-footer {
+        padding: .5em;
+    }
 	.dialog-header{
-		padding: .5em;
+        position: relative;
 		border-bottom: 1px solid #666;
-		border-radius: 2px 2px 0 0;
 		font-size: 18px;
 		font-weight: 700;
 		background: #eee;
+        .dialog-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 40px;
+            border: 0;
+            background: black;
+            color: white;
+            cursor: pointer;
+        }
 	}
 	.dialog-body{
 		padding: .5em;
 		min-height: 10em;
 	}
 	.dialog-footer{
-		padding: .5em;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
 		border-top: 1px solid #666;
-		border-radius: 0 0 2px 2px;
 		background: #eee;
 		text-align: right;
 	}
@@ -31,5 +57,5 @@ dialog::backdrop {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.2);
 }

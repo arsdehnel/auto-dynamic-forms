@@ -1,0 +1,46 @@
+<?php
+	sleep(1);
+?>
+{
+    "success" : true,
+    "message" : "Data lookup successful.",
+    "errors" : [],
+    "data" : {
+        "fields" : [
+          {
+            "fldMstrId" : "1",
+            "name" : "application",
+            "label" : "Application",
+            "type" : "select2",
+            "dataAttributes" : [
+                {
+                    "name" : "js-trigger",
+                    "value" : "field-lkup-on-change"
+                },
+                {
+                    "name" : "field-lkup-target",
+                    "value" : "promotion_id"
+                },
+                {
+                    "name" : "field-lkup-url",
+                    "value" : "../json/form-builder/promotions.json"
+                },
+                {
+                    "name" : "field-lkup-child-fields",
+                    "value" : "page_code"
+                }
+            ],
+            "data" : [
+                {
+                    "value" : "CORE",
+                    "label" : "Core System"
+                },
+                {
+                    "value" : "N10",
+                    "label" : "Nissan 10"
+                }
+            ]
+          }
+        ]
+    }
+}

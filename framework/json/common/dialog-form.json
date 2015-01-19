@@ -1,0 +1,100 @@
+<?php
+    sleep(1);
+?>
+{
+    "success" : true,
+    "message" : "Data lookup successful.",
+    "errors" : [],
+    "data" : {
+        "fields" : [
+          {
+            "name" : "page_dtl_id",
+            "label" : "ID",
+            "tooltip" : "This is just the eml_dist_mstr_id and is mostly here just for reference",
+            "fieldPriority" : "9",
+            "type" : "READONLY"
+          },
+          {
+            "name" : "LABEL_TEXT",
+            "label" : "Label",
+            "tooltip" : "The label for this field in whatever context we're displaying it.",
+            "fieldPriority" : "1",
+            "type" : "TEXT"
+          },
+          {
+            "fldMstrId" : "21",
+            "name" : "field_type",
+            "label" : "Field Type",
+            "fieldClass" : "submit-on-change",
+            "type" : "select2",
+            "data" : [
+              {
+                "value" : "CLAIM_FORM",
+                "label" : "Claim Form"
+              },
+              {
+                "value" : "CONF_PAGE",
+                "label" : "Confirmation Page"
+              },
+              {
+                "value" : "PDF_CERT",
+                "label" : "PDF Certificate"
+              }
+            ]
+          },
+          {
+            "name" : "TOOLTIP_TEXT",
+            "label" : "Tooltip",
+            "tooltip" : "Make sure (with your TA) that your usage of the dynamic forms are actually expecting tooltips.",
+            "fieldPriority" : "1",
+            "type" : "TEXTAREA"
+          },
+          {
+            "name" : "READ_ORDER",
+            "label" : "Read Order",
+            "fieldPriority" : "1",
+            "type" : "NUMBER"
+          },
+          {
+            "name" : "status_code",
+            "label" : "Status Code",
+            "fieldPriority" : "1",
+            "type" : "SELECT",
+            "data" : [
+              {
+                "value" : "A",
+                "label" : "Active"
+              },
+              {
+                "value" : "I",
+                "label" : "Inactive"
+              }
+            ]
+          },
+          {
+            "name" : "comments",
+            "label" : "Comments",
+            "tooltip" : "Just for reference by you and other team members, this will not be used in any programming or display on the web.",
+            "fieldPriority" : "9",
+            "type" : "TEXTAREA"
+          }
+        ],
+        "records" : [
+          {
+            "MODULE_LABEL" : "Field #1",
+            "ID" : 13,
+            "PRCS_MSTR_ID" : 13,
+            "LABEL_TEXT" : "CORE",
+            "STATUS_CODE" : "I",
+            "comments" : "Yay comments"
+          }
+        ],
+        "actions" : [
+            {
+                "href" : "#",
+                "label" : "Save",
+                "type" : "save"
+            }
+        ]
+    }
+}

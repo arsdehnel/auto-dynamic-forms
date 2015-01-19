@@ -1,0 +1,41 @@
+<?php
+	sleep(1);
+?>
+{
+    "success" : true,
+    "message" : "Data lookup successful.",
+    "errors" : [],
+    "data" : {
+        "fields" : [
+            {
+                "name" : "application",
+                "label" : "Application",
+                "type" : "select2",
+                "data" : [
+                    {
+                        "value" : "CORE",
+                        "label" : "Core System"
+                    },
+                    {
+                        "value" : "N10",
+                        "label" : "Nissan 10"
+                    }
+                ]
+            },
+            {
+                "name" : "actions",
+                "label" : "",
+                "wrapClass" : "adf-cell-actions",
+                "type" : "actions",
+                "actions" : [
+                    {
+                        "href" : "#",
+                        "type" : "query",
+                        "label" : "Lookup",
+                        "actionClass" : "submit-parent-form-ajax"
+                    }
+                ]
+            }
+        ]
+    }
+}

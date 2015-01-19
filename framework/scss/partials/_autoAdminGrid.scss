@@ -1,7 +1,11 @@
-.auto-admin-grid-wrapper{
+.adf-grid-wrapper{
 	position: relative;
+    padding-top: 1px;
+    .loading & {
+        opacity: .25;
+    }
 }
-.auto-admin-grid{
+.adf-grid{
   margin: 0 auto;
   width: calc( 100% - 2em );
   border-collapse: collapse;
@@ -81,17 +85,7 @@
       position: relative;
       line-height: 2em;
       white-space: nowrap;
-      .auto-admin-filter-trigger{
-        font-family: 'FontAwesome';
-        font-style: normal;
-        font-weight: normal;
-      }
-      .auto-admin-filter-data{
-        @include dropdown();
-        top: 100%;
-        right: 0;
-      }
-      .auto-admin-grid-header-cell-triggers{
+      .adf-grid-header-cell-triggers{
         position: absolute;
         right: .5em;
       }
@@ -148,7 +142,7 @@
       }
     }
   }
-  .auto-admin-cell-actions{
+  .adf-cell-actions{
     white-space: nowrap;
     font-size: 0;
     position: relative;
@@ -169,7 +163,7 @@
             }
         }
     }
-    .auto-admin-grid-row-messages{
+    .adf-grid-row-messages{
       position: absolute;
       top: 0;
       right: 0;
@@ -202,12 +196,15 @@
 
 // for the header cell filters
 .grid-header-filter.dropdown-wrapper{
-	position: absolute;
-	margin: 0;
+    position: absolute;
+    margin: 0;
     top: 0;
-	right: 0;
-	bottom: 0;
-    width: 2em;
+    bottom: 0;
+    width: 100%;
+    .dropdown-toggle-caret{
+        position: absolute;
+        right: .5em;
+    }
     .dropdown-label{
     	display: none;
     }
@@ -222,7 +219,7 @@
 }
 
 // for the "grid level" drop downs that show to the top right of the grid
-.auto-admin-grid-wrapper > .dropdown-wrapper{
+.adf-grid-wrapper > .dropdown-wrapper{
 	position: relative;
     margin-right: 1em;
 	float: right;
@@ -230,7 +227,7 @@
 }
 
 // for the overlays
-.auto-admin-grid-overlay-editor {
+.adf-grid-overlay-editor {
     position: relative;
     .display-value{
     	z-index: 0;
@@ -242,8 +239,8 @@
 	    top: 100%;
 	    z-index: $zindex-overlay;
 	    background: white;
-	    width: 800px;
-	    left: calc( 50% - 400px );
+	    width: 90vw;
+	    left: -45vw;
 	    padding: 1em;
 	    border-radius: 4px;
 	    box-shadow: 0 12px 12px 2px #666;
@@ -264,7 +261,7 @@
 }
 
 // tooltip
-.auto-admin-grid thead{
+.adf-grid thead{
     .icon-tooltip{
         position: absolute;
         top: 0;

@@ -1,1 +1,8 @@
-  <span>{{currentValue}}</span> <input type="hidden" name="{{name}}" value="{{currentValue}}" class="auto-admin-grid-filter-value">
+  <span
+    {{#each dataAttributes}}
+        data-{{name}}="{{value}}"
+    {{/each}}
+    >
+    <span>{{currentValue}}</span>
+    <input type="hidden" name="{{name}}" value="{{currentValue}}" class="adf-grid-filter-value">
+  </span>

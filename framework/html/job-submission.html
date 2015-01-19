@@ -3,21 +3,21 @@
     $main_classes[] = 'layout-grid';
     include('../_header.php');
 ?>
-	<div class="row auto-admin-onload-ajax" data-onload-ajax-url="../json/job-submission-groups.json" data-result-type="form" data-onload-ajax-target-id="job-submission">
+	<div class="row adf-onload-ajax" data-onload-ajax-url="../json/job-submission/groups.json" data-result-type="form" data-onload-ajax-target-id="job-submission">
         <div class="layout-grid-3"></div>
         <fieldset class="layout-grid-6">
             <legend>Find Your Job</legend>
-            <form action="../json/job-submission-processes.json" class="form-horizontal" method="post" id="job-submission" data-target-id="job-submission-grid" data-result-type="grid"></form>
+            <form action="../json/job-submission/processes.json" class="form-horizontal" method="post" id="job-submission" data-target-id="job-submission-grid" data-result-type="grid"></form>
         </fieldset>
         <div class="layout-grid-3"></div>
     </div>
   <div id="job-submission-grid" class="hide"></div>
   <!--
-    TODO breadcrumbs back to grid listing from run panels
-    TODO whole page covered by spinner while job is running
-    TODO handle results via ajax
-    TODO adjust button styles
-    TODO style select2 template "tooltip"
+    TODO: breadcrumbs back to grid listing from run panels
+    TODO: whole page covered by spinner while job is running
+    TODO: handle results via ajax
+    TODO: adjust button styles
+    TODO: style select2 template "tooltip"
 -->
 
 <?php

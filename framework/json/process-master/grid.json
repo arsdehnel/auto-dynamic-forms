@@ -1,280 +1,1327 @@
-<?php
-	sleep(1);
-?>
 {
-    "success" : true,
-    "message" : "Data lookup successful.",
-    "errors" : [],
-    "data" : {
-        "fields" : [
+  "authenticated": true,
+  "success": true,
+  "message": null,
+  "data": {
+    "fields": [
+      {
+        "fldMstrId": 4,
+        "detailId": 4,
+        "name": "PRCS_MSTR_ID",
+        "type": "READONLY",
+        "label": "ID",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 12,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 1,
+        "detailId": 5,
+        "name": "APPLICATION",
+        "type": "SELECT2",
+        "label": "Application",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 100,
+        "requiredInd": "N",
+        "fieldPriority": 1,
+        "data": [
           {
-            "name" : "id",
-            "label" : "ID",
-            "tooltip" : "This is just the eml_dist_mstr_id and is mostly here just for reference",
-            "columnSelectPriority" : "9",
-            "type" : "readonly"
+            "detailId": 5,
+            "groupLabel": null,
+            "value": "ADMIN_FORMS",
+            "label": "Admin Forms",
+            "selectedInd": "N"
           },
           {
-            "name" : "application",
-            "label" : "Application",
-            "tooltip" : "From your TA, the part of the system that the process falls into.",
-            "columnSelectPriority" : "1",
-            "type" : "select2",
-            "data" : [
-              {
-                "value" : "CORE",
-                "label" : "Core"
-              },
-              {
-                "value" : "N10",
-                "label" : "Nissan 10"
-              },
-              {
-                "value" : "TOE",
-                "label" : "Total Ownership Experience"
-              }
-            ]
+            "detailId": 5,
+            "groupLabel": null,
+            "value": "VIN_APPL",
+            "label": "FlexCash / VIN Application",
+            "selectedInd": "N"
           },
           {
-            "name" : "prcs_code",
-            "label" : "Process",
-            "tooltip" : "This is a technicsl-team-defined code that represents the process in the database.",
-            "columnSelectPriority" : "1",
-            "type" : "select2",
-            "data" : [
-              {
-                "value" : "N10.BATCH_RPTNG_CTRL"
-              },
-              {
-                "value" : "N10.MOVE_TO_WEB"
-              },
-              {
-                "value" : "N10.VIN_ACCUM"
-              }
-            ]
+            "detailId": 5,
+            "groupLabel": null,
+            "value": "OBJ",
+            "label": "Objective Programs",
+            "selectedInd": "N"
           },
           {
-            "name" : "msg_type",
-            "label" : "Message Type",
-            "tooltip" : "Sometimes processes can have different distributions for ERROR or SUCCESS messages but sometimes it's also just COMPLETE or some (very limited) processes have several different message types.  If you're not sure then check with your TA.",
-            "columnSelectPriority" : "1",
-            "type" : "select2",
-            "data" : [
-              {
-                "value" : "ERROR"
-              },
-              {
-                "value" : "SUCCESS"
-              },
-              {
-                "value" : "COMPLETE"
-              },
-              {
-                "value" : "CORE"
-              },
-              {
-                "value" : "TOE"
-              }
-            ]
+            "detailId": 5,
+            "groupLabel": null,
+            "value": "REPORT_BUILDER",
+            "label": "Report Builder",
+            "selectedInd": "N"
           },
           {
-            "name" : "from_addr",
-            "label" : "From Address",
-            "columnSelectPriority" : "1",
-            "type" : "email"
-          },
-          {
-            "name" : "subject",
-            "label" : "Subject",
-            "columnSelectPriority" : "1",
-            "type" : "text"
-          },
-          {
-            "name" : "recipients",
-            "label" : "Recipients",
-            "columnSelectPriority" : "1",
-            "type" : "select2",
-            "multiple" : true,
-            "data" : [
-              {
-                "value" : "123",
-                "label" : "Adam Dehnel"
-              },
-              {
-                "value" : "456",
-                "label" : "Karen Lahn"
-              },
-              {
-                "value" : "789",
-                "label" : "Matt Golden"
-              }
-            ]
-          },
-          {
-            "name" : "status_code",
-            "label" : "Status Code",
-            "columnSelectPriority" : "1",
-            "type" : "select",
-            "data" : [
-              {
-                "value" : "A",
-                "label" : "Active"
-              },
-              {
-                "value" : "I",
-                "label" : "Inactive"
-              }
-            ]
-          },
-          {
-            "name" : "comments",
-            "label" : "Comments",
-            "tooltip" : "Just for reference by you and other team members, this will not be used in any programming or display on the web.",
-            "columnSelectPriority" : "9",
-            "type" : "textarea"
-          },
-          {
-            "name" : "actions",
-            "label" : "Actions",
-            "wrapClass" : "auto-admin-cell-actions",
-            "tooltip" : "This is the name of what we're actually doing (summing, dividing, multiplying, etc.) once we have all the values and we've determined we need to do this data type for this period and whatnot.",
-            "columnSelectPriority" : "0",
-            "type" : "actions",
-            "data" : [
-              {
-                "href" : "#",
-                "type" : "save",
-                "label" : "Save"
-              }
-            ]
+            "detailId": 5,
+            "groupLabel": null,
+            "value": "SPIN",
+            "label": "Spins",
+            "selectedInd": "N"
           }
         ],
-        "records" : [
-          {
-            "id" : 13,
-            "application" : "CORE",
-            "prcs_name" : "N10.MOVE_TO_WEB",
-            "msg_type" : "SUCCESS",
-            "from_addr" : "adam.dehnel@biworldwide.com",
-            "subject" : "The move to web worked",
-            "status_code" : "I",
-            "recipients" : [
-            	"123",
-            	"456"
-            ],
-            "comments" : "Yay comments"
-          },
-          {
-            "id" : 14,
-            "prcs_code" : "DATA_DTL",
-            "data_sce" : "RECOG_RPTNG_DATA",
-            "data_type" : "PMA_AWD_CALC_05",
-            "calc_operator" : "DIVIDE"
-          },
-          {
-            "id" : 15,
-            "prcs_code" : "DATA_DTL",
-            "data_sce" : "CMN_DATA_SCE",
-            "data_type" : "SA_ATTNMT_AWD_05",
-            "calc_operator" : "DIVIDE"
-          },
-          {
-            "id" : 16,
-            "prcs_code" : "DATA_DTL",
-            "data_sce" : "CMN_DATA_SCE",
-            "data_type" : "PMA_AWD_CALC_05",
-            "calc_operator" : "DIVIDE"
-          },
-          {
-            "id" : 17,
-            "prcs_code" : "DATA_DTL",
-            "data_sce" : "CMN_DATA_SCE",
-            "data_type" : "PMA_AWD_CALC_05",
-            "calc_operator" : "DIVIDE"
-          },
-          {
-            "id" : 18,
-            "prcs_code" : "DATA_DTL",
-            "data_sce" : "CMN_DATA_SCE",
-            "data_type" : "PMA_AWD_CALC_05",
-            "calc_operator" : "DIVIDE"
-          },
-          {
-            "id" : 19,
-            "prcs_code" : "DATA_DTL",
-            "data_sce" : "CMN_DATA_SCE",
-            "data_type" : "PMA_AWD_CALC_05",
-            "calc_operator" : "DIVIDE"
-          }
-
-        ],
-        "gridActions" : [
-        	{
-    			"href" : "#",
-    			"itemClass" : "auto-admin-grid-record-add",
-    			"label" : "Add 1 Record",
-    	        "dataAttributes" : [
-    	            {
-    	                "name" : "record-count",
-    	                "value" : "1"
-    	            }
-    	        ]
-    		},
-        	{
-    			"href" : "#",
-    			"itemClass" : "auto-admin-grid-record-add",
-    			"label" : "Add 2 Records",
-    	        "dataAttributes" : [
-    	            {
-    	                "name" : "record-count",
-    	                "value" : "2"
-    	            }
-    	        ]
-    		},
-        	{
-    			"href" : "#",
-    			"itemClass" : "auto-admin-grid-record-add",
-    			"label" : "Add 3 Records",
-    	        "dataAttributes" : [
-    	            {
-    	                "name" : "record-count",
-    	                "value" : "3"
-    	            }
-    	        ]
-    		},
-        	{
-    			"href" : "#",
-    			"itemClass" : "auto-admin-grid-record-add",
-    			"label" : "Add 4 Records",
-    	        "dataAttributes" : [
-    	            {
-    	                "name" : "record-count",
-    	                "value" : "4"
-    	            }
-    	        ]
-    		},
-        	{
-    			"href" : "#",
-    			"itemClass" : "auto-admin-grid-record-add",
-    			"label" : "Add 5 Records",
-    	        "dataAttributes" : [
-    	            {
-    	                "name" : "record-count",
-    	                "value" : "5"
-    	            }
-    	        ]
-    		},
-        	{
-    			"href" : "#",
-    			"itemClass" : "auto-admin-grid-record-add",
-    			"label" : "Add 10 Records",
-    	        "dataAttributes" : [
-    	            {
-    	                "name" : "record-count",
-    	                "value" : "10"
-    	            }
-    	        ]
-    		}
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 5,
+        "detailId": 6,
+        "name": "PRCS_NAME",
+        "type": "TEXT",
+        "label": "Process Name",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 30,
+        "requiredInd": "Y",
+        "fieldPriority": 1,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 6,
+        "detailId": 7,
+        "name": "PRCS_DESC",
+        "type": "TEXT",
+        "label": "Process Desc",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 100,
+        "requiredInd": "Y",
+        "fieldPriority": 1,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 17,
+        "detailId": 8,
+        "name": "OBJECT_NAME",
+        "type": "TEXT",
+        "label": "Object Name",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 60,
+        "requiredInd": "Y",
+        "fieldPriority": 1,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "name" : "email_dist",
+        "label" : "Email Distributions",
+        "tooltip" : "This is a fancy-ass thing to allow users to enter all the details of their emails right here.",
+        "fieldPriority" : "1",
+        "type" : "grid_overlay",
+        "dataAttributes" : [
+            {
+                "name" : "onload-ajax-url",
+                "value" : "../json/process-master/email-dist-grid.json"
+            },
+            {
+                "name" : "adf-ajax-data-fields",
+                "value" : "prcs_mstr_id"
+            },
+            {
+                "name" : "record-save-url",
+                "value" : "../json/process-master/email-dist-save.json"
+            },
+            {
+                "name" : "result-type",
+                "value" : "grid"
+            },
+            {
+                "name" : "onload-ajax-target-id",
+                "value" : "grid-overlay-editor--email_dist"
+            }
         ]
-    }
+      },
+      {
+        "name" : "return_code_dtl",
+        "label" : "Return Codes",
+        "tooltip" : "Yay return codes!",
+        "fieldPriority" : "1",
+        "type" : "grid_overlay",
+        "dataAttributes" : [
+            {
+                "name" : "onload-ajax-url",
+                "value" : "../json/process-master/return-code-dtl-grid.json"
+            },
+            {
+                "name" : "adf-ajax-data-fields",
+                "value" : "prcs_mstr_id"
+            },
+            {
+                "name" : "record-save-url",
+                "value" : "../json/process-master/email-dist-save.json"
+            },
+            {
+                "name" : "result-type",
+                "value" : "grid"
+            },
+            {
+                "name" : "onload-ajax-target-id",
+                "value" : "grid-overlay-editor--return_code_dtl"
+            }
+        ]
+      },
+      {
+        "fldMstrId": 15,
+        "detailId": 9,
+        "name": "JS_ACCESS_CTRL_MSTR_ID",
+        "type": "SELECT2",
+        "label": "JS Access Ctrl",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 12,
+        "requiredInd": "N",
+        "fieldPriority": 1,
+        "data": [
+          {
+            "detailId": 9,
+            "groupLabel": "ABLV_EXCPN",
+            "value": "111",
+            "label": "Ability to Edit an Exception",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "ABLV_EXCPN",
+            "value": "112",
+            "label": "Ability to Maintain Comments",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "ABLV_EXCPN",
+            "value": "113",
+            "label": "Ability to Make Decisions",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "ABLV_EXCPN",
+            "value": "110",
+            "label": "Ability to Post Comment",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "CORE",
+            "value": "135",
+            "label": "AFS DP-DM-GM",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "CORE",
+            "value": "130",
+            "label": "Acura DP-DM-GM",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "CORE",
+            "value": "132",
+            "label": "Acura F&I Mgr",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "CORE",
+            "value": "121",
+            "label": "All Participants",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "CORE",
+            "value": "127",
+            "label": "BI Admin Team",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "CORE",
+            "value": "133",
+            "label": "F&I Mgr",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "CORE",
+            "value": "136",
+            "label": "HFS DP-DM-GM",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "CORE",
+            "value": "131",
+            "label": "Honda DP-DM-GM",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "CORE",
+            "value": "109",
+            "label": "NON_SR",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "CORE",
+            "value": "129",
+            "label": "Non Dlr Mgmt/SRs/F&Is",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "CORE",
+            "value": "107",
+            "label": "SR_ONLY",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "CORE",
+            "value": "108",
+            "label": "WS_SPLR",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "PGM_ADM",
+            "value": "128",
+            "label": "TSGA Access for Zone Portal / Pgm Adm tool",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "RPTNG",
+            "value": "114",
+            "label": "Corporate / Supplier User Reporting Entry Point Control",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "RPTNG",
+            "value": "117",
+            "label": "Dealer Level User Access Control",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "RPTNG",
+            "value": "116",
+            "label": "District User Reporting Entry Level Control",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "RPTNG",
+            "value": "122",
+            "label": "SR Access Controls",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "RPTNG",
+            "value": "115",
+            "label": "Zone User Reporting Entry Level Control",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "WEB_ACCESS",
+            "value": "138",
+            "label": "Allowed Users for PowerSports",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "WEB_ACCESS",
+            "value": "123",
+            "label": "Allowed Users for the APC",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "WEB_ACCESS",
+            "value": "125",
+            "label": "HPC Access Control",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "WEB_ACCESS",
+            "value": "124",
+            "label": "SMS Registration Override",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 9,
+            "groupLabel": "WEB_ACCESS",
+            "value": "137",
+            "label": "iN_OAuth",
+            "selectedInd": "N"
+          }
+        ],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 8,
+        "detailId": 10,
+        "name": "JS_GRP_CD",
+        "type": "SELECT2",
+        "label": "JS Group",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 30,
+        "requiredInd": "Y",
+        "fieldPriority": 1,
+        "data": [
+          {
+            "detailId": 10,
+            "groupLabel": null,
+            "value": "CMN_RPTNG",
+            "label": "Common Reporting",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 10,
+            "groupLabel": null,
+            "value": "CORE",
+            "label": "Core",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 10,
+            "groupLabel": null,
+            "value": "DATA_LOAD",
+            "label": "Data Loads",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 10,
+            "groupLabel": null,
+            "value": "MIGRATE",
+            "label": "Data Migration",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 10,
+            "groupLabel": null,
+            "value": "DC",
+            "label": "Debit Card",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 10,
+            "groupLabel": null,
+            "value": "XTRACT",
+            "label": "File Extracts",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 10,
+            "groupLabel": null,
+            "value": "OBJ",
+            "label": "Objective",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 10,
+            "groupLabel": null,
+            "value": "PAX",
+            "label": "Participant",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 10,
+            "groupLabel": null,
+            "value": "SPIN",
+            "label": "SpinPlay",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 10,
+            "groupLabel": null,
+            "value": "VIN_APPL",
+            "label": "VIN Application",
+            "selectedInd": "N"
+          }
+        ],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 16,
+        "detailId": 11,
+        "name": "JS_READ_ORDER",
+        "type": "NUMBER",
+        "label": "JS Read Order",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 12,
+        "requiredInd": "N",
+        "fieldPriority": 1,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 9,
+        "detailId": 12,
+        "name": "STATUS_CODE",
+        "type": "SELECT",
+        "label": "Status Code",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 1,
+        "requiredInd": "Y",
+        "fieldPriority": 1,
+        "data": [
+          {
+            "detailId": 12,
+            "groupLabel": null,
+            "value": "A",
+            "label": "Active",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 12,
+            "groupLabel": null,
+            "value": "I",
+            "label": "Inactive",
+            "selectedInd": "N"
+          }
+        ],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 10,
+        "detailId": 13,
+        "name": "COMMENTS",
+        "type": "TEXTAREA",
+        "label": "Comments",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 4000,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 11,
+        "detailId": 14,
+        "name": "DATE_CREATED",
+        "type": "READONLY",
+        "label": "Date Created",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 1,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 12,
+        "detailId": 15,
+        "name": "CREATED_BY",
+        "type": "READONLY",
+        "label": "Created By",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 1,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 13,
+        "detailId": 16,
+        "name": "DATE_MODIFIED",
+        "type": "READONLY",
+        "label": "Date Modified",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 1,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 14,
+        "detailId": 17,
+        "name": "MODIFIED_BY",
+        "type": "READONLY",
+        "label": "Modified By",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 1,
+        "requiredInd": "N",
+        "fieldPriority": 9,
+        "data": [],
+        "actions": [],
+        "dataAttributes": []
+      },
+      {
+        "fldMstrId": 2,
+        "detailId": 24,
+        "name": "ACTIONS",
+        "type": "ACTIONS",
+        "label": null,
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": "auto-admin-cell-actions",
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 100,
+        "requiredInd": "N",
+        "fieldPriority": 1,
+        "data": [],
+        "actions": [
+          {
+            "tooltipText": null,
+            "label": "Save",
+            "actionType": "save",
+            "wrapClass": null,
+            "actionClass": null,
+            "url": "#",
+            "pageDetailId": 20,
+            "fieldPageDetailId": 24
+          }
+        ],
+        "dataAttributes": []
+      }
+    ],
+    "records": [
+      {
+        "id": 5293,
+        "PRCS_MSTR_ID": 5293,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_CLMS_APVL_VD_UPD",
+        "PRCS_DESC": "PKG_ABLV_APPL_BATCH",
+        "EMAIL_DIST" : "SOMETHING!",
+        "OBJECT_NAME": "PRC_CLMS_APVL_VD_UPD",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5316,
+        "PRCS_MSTR_ID": 5316,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_SMRY_RPT_LKUP",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_WEB",
+        "OBJECT_NAME": "PRC_SMRY_RPT_LKUP",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5301,
+        "PRCS_MSTR_ID": 5301,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_BATCH_RPTNG_CTRL",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_BATCH",
+        "OBJECT_NAME": "PRC_BATCH_RPTNG_CTRL",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5292,
+        "PRCS_MSTR_ID": 5292,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_BDGT_RLLVR_UPD",
+        "PRCS_DESC": "PKG_ABLV_APPL_BATCH",
+        "OBJECT_NAME": "PRC_BDGT_RLLVR_UPD",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5310,
+        "PRCS_MSTR_ID": 5310,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_PD_SMRY_DTL_INS",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_BATCH",
+        "OBJECT_NAME": "PRC_PD_SMRY_DTL_INS",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5319,
+        "PRCS_MSTR_ID": 5319,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_APPL_EXC_VIN_DTL_INS",
+        "PRCS_DESC": "PKG_ABLV_APPL_WEB",
+        "OBJECT_NAME": "PRC_APPL_EXC_VIN_DTL_INS",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5290,
+        "PRCS_MSTR_ID": 5290,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_AHFC_RPLY_PRCS",
+        "PRCS_DESC": "PKG_ABLV_APPL_BATCH",
+        "OBJECT_NAME": "PRC_AHFC_RPLY_PRCS",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:31",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5307,
+        "PRCS_MSTR_ID": 5307,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_MDL_GRP_CD_DTL_INS",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_BATCH",
+        "OBJECT_NAME": "PRC_MDL_GRP_CD_DTL_INS",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5309,
+        "PRCS_MSTR_ID": 5309,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_NON_BDGT_MSTR_INS",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_BATCH",
+        "OBJECT_NAME": "PRC_NON_BDGT_MSTR_INS",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5326,
+        "PRCS_MSTR_ID": 5326,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_VIN_DTL_INS_UPD",
+        "PRCS_DESC": "PKG_ABLV_APPL_WEB",
+        "OBJECT_NAME": "PRC_VIN_DTL_INS_UPD",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5300,
+        "PRCS_MSTR_ID": 5300,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_RTS_VIN_DTL_UPD",
+        "PRCS_DESC": "PKG_ABLV_APPL_BATCH",
+        "OBJECT_NAME": "PRC_RTS_VIN_DTL_UPD",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5291,
+        "PRCS_MSTR_ID": 5291,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_BDGT_INS_UPD",
+        "PRCS_DESC": "PKG_ABLV_APPL_BATCH",
+        "OBJECT_NAME": "PRC_BDGT_INS_UPD",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:31",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5321,
+        "PRCS_MSTR_ID": 5321,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_BTN_LKUP",
+        "PRCS_DESC": "PKG_ABLV_APPL_WEB",
+        "OBJECT_NAME": "PRC_BTN_LKUP",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5294,
+        "PRCS_MSTR_ID": 5294,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_CUST_OFR_XTRACT",
+        "PRCS_DESC": "PKG_ABLV_APPL_BATCH",
+        "OBJECT_NAME": "PRC_CUST_OFR_XTRACT",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5306,
+        "PRCS_MSTR_ID": 5306,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_ELIG_VIN_WORK_INS",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_BATCH",
+        "OBJECT_NAME": "PRC_ELIG_VIN_WORK_INS",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5328,
+        "PRCS_MSTR_ID": 5328,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_VIN_LKUP",
+        "PRCS_DESC": "PKG_ABLV_APPL_WEB",
+        "OBJECT_NAME": "PRC_VIN_LKUP",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5322,
+        "PRCS_MSTR_ID": 5322,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_CLM_STS_UPD",
+        "PRCS_DESC": "PKG_ABLV_APPL_WEB",
+        "OBJECT_NAME": "PRC_CLM_STS_UPD",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5304,
+        "PRCS_MSTR_ID": 5304,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_CUST_VEH_DTL_INS",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_BATCH",
+        "OBJECT_NAME": "PRC_CUST_VEH_DTL_INS",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5312,
+        "PRCS_MSTR_ID": 5312,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_WSLE_ROLLUP",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_BATCH",
+        "OBJECT_NAME": "PRC_WSLE_ROLLUP",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5295,
+        "PRCS_MSTR_ID": 5295,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_DATA_ANLYSIS_XTRCT",
+        "PRCS_DESC": "PKG_ABLV_APPL_BATCH",
+        "OBJECT_NAME": "PRC_DATA_ANLYSIS_XTRCT",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5297,
+        "PRCS_MSTR_ID": 5297,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_OBJ_PGM_BDGT_INS_UPD",
+        "PRCS_DESC": "PKG_ABLV_APPL_BATCH",
+        "OBJECT_NAME": "PRC_OBJ_PGM_BDGT_INS_UPD",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5299,
+        "PRCS_MSTR_ID": 5299,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_PND_VIN_DTL_XTRCT",
+        "PRCS_DESC": "PKG_ABLV_APPL_BATCH",
+        "OBJECT_NAME": "PRC_PND_VIN_DTL_XTRCT",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5298,
+        "PRCS_MSTR_ID": 5298,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_PND_VIN_DTL_UPD",
+        "PRCS_DESC": "PKG_ABLV_APPL_BATCH",
+        "OBJECT_NAME": "PRC_PND_VIN_DTL_UPD",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5329,
+        "PRCS_MSTR_ID": 5329,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_WEB_SVC_CLM_LKUP",
+        "PRCS_DESC": "PKG_ABLV_APPL_WEB",
+        "OBJECT_NAME": "PRC_WEB_SVC_CLM_LKUP",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "10-06-2014 12:08:28",
+        "MODIFIED_BY": "PEDERSOZ",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5327,
+        "PRCS_MSTR_ID": 5327,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_VIN_ELIG_CHK",
+        "PRCS_DESC": "PKG_ABLV_APPL_WEB",
+        "OBJECT_NAME": "PRC_VIN_ELIG_CHK",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5311,
+        "PRCS_MSTR_ID": 5311,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_STS_CD_DTL_INS",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_BATCH",
+        "OBJECT_NAME": "PRC_STS_CD_DTL_INS",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5308,
+        "PRCS_MSTR_ID": 5308,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_MOVE_RPT_TO_WEB",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_BATCH",
+        "OBJECT_NAME": "PRC_MOVE_RPT_TO_WEB",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5296,
+        "PRCS_MSTR_ID": 5296,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_LEASE_APPL_AMT_CONF_UPD",
+        "PRCS_DESC": "PKG_ABLV_APPL_BATCH",
+        "OBJECT_NAME": "PRC_LEASE_APPL_AMT_CONF_UPD",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5303,
+        "PRCS_MSTR_ID": 5303,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_CLM_AMT_DTL_INS",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_BATCH",
+        "OBJECT_NAME": "PRC_CLM_AMT_DTL_INS",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5314,
+        "PRCS_MSTR_ID": 5314,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_RPT_DATA_LKUP",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_WEB",
+        "OBJECT_NAME": "PRC_RPT_DATA_LKUP",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5318,
+        "PRCS_MSTR_ID": 5318,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_APPL_AMT_LKUP",
+        "PRCS_DESC": "PKG_ABLV_APPL_WEB",
+        "OBJECT_NAME": "PRC_APPL_AMT_LKUP",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5323,
+        "PRCS_MSTR_ID": 5323,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_DYN_CLM_FLD_LKUP",
+        "PRCS_DESC": "PKG_ABLV_APPL_WEB",
+        "OBJECT_NAME": "PRC_DYN_CLM_FLD_LKUP",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5317,
+        "PRCS_MSTR_ID": 5317,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "FNC_INC_RULE_DTL_CHK",
+        "PRCS_DESC": "PKG_ABLV_APPL_WEB",
+        "OBJECT_NAME": "FNC_INC_RULE_DTL_CHK",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5315,
+        "PRCS_MSTR_ID": 5315,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_SMRY_RPT_DTL_LKUP",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_WEB",
+        "OBJECT_NAME": "PRC_SMRY_RPT_DTL_LKUP",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5313,
+        "PRCS_MSTR_ID": 5313,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_MDL_GRP_SMRY_LKUP",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_WEB",
+        "OBJECT_NAME": "PRC_MDL_GRP_SMRY_LKUP",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5305,
+        "PRCS_MSTR_ID": 5305,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_ELIG_VIN_CNT_DTL_INS",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_BATCH",
+        "OBJECT_NAME": "PRC_ELIG_VIN_CNT_DTL_INS",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5320,
+        "PRCS_MSTR_ID": 5320,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_AWD_AMT_LKUP_CHK",
+        "PRCS_DESC": "PKG_ABLV_APPL_WEB",
+        "OBJECT_NAME": "PRC_AWD_AMT_LKUP_CHK",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5302,
+        "PRCS_MSTR_ID": 5302,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_BUDGET_MSTR_INS",
+        "PRCS_DESC": "PKG_ABLV_APPL_RPTNG_BATCH",
+        "OBJECT_NAME": "PRC_BUDGET_MSTR_INS",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5325,
+        "PRCS_MSTR_ID": 5325,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_OPN_CUST_CLM_LKUP",
+        "PRCS_DESC": "PKG_ABLV_APPL_WEB",
+        "OBJECT_NAME": "PRC_OPN_CUST_CLM_LKUP",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:32",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "09-29-2014 14:42:32",
+        "MODIFIED_BY": "DEHNEL",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      },
+      {
+        "id": 5289,
+        "PRCS_MSTR_ID": 5289,
+        "APPLICATION": "VIN_APPL",
+        "PRCS_NAME": "PRC_AHFC_RPLY_LOAD",
+        "PRCS_DESC": "PKG_ABLV_APPL_BATCH",
+        "OBJECT_NAME": "PRC_AHFC_RPLY_LOAD",
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "09-10-2014 08:55:31",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INSRT",
+        "DATE_MODIFIED": "10-08-2014 09:37:32",
+        "MODIFIED_BY": "PEDERSOZ",
+        "RETURN_CODE_DTL": "0 return codes setup",
+        "EML_DIST_DTL": "0 email messages setup with 0 total recipients"
+      }
+    ],
+    "actions": [
+      {
+        "tooltipText": null,
+        "label": "Add 1 Record",
+        "type": "grid-action",
+        "wrapClass": null,
+        "actionClass": null,
+        "url": "#",
+        "pageDetailId": 21,
+        "fieldPageDetailId": 0
+      },
+      {
+        "tooltipText": null,
+        "label": "Add 5 Records",
+        "type": "grid-action",
+        "wrapClass": null,
+        "actionClass": null,
+        "url": "#",
+        "pageDetailId": 22,
+        "fieldPageDetailId": 0
+      },
+      {
+        "tooltipText": null,
+        "label": "Add X Records",
+        "type": "grid-action",
+        "wrapClass": null,
+        "actionClass": null,
+        "url": "#",
+        "pageDetailId": 23,
+        "fieldPageDetailId": 0
+      }
+    ]
+  },
+  "errors": null,
+  "hasMessage": true
 }
