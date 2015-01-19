@@ -1,0 +1,285 @@
+.auto-admin-grid-wrapper{
+	position: relative;
+}
+.auto-admin-grid{
+  margin: 0 auto;
+  width: calc( 100% - 2em );
+  border-collapse: collapse;
+  th,
+  td{
+    position: relative;
+    text-align: center;
+    padding: 4px 0;
+    text-align: center;
+    padding: 5px 3px;
+    border-left: 1px solid #eee;
+    &:first-child{
+        border-left: 0;
+    }
+
+    @for $i from 2 through 9{
+        &[data-column-select-priority="#{$i}"]{
+            display: none;
+        }
+    }
+
+    @include breakpoint( colBreakpoint2 ){
+      &[data-column-select-priority="2"]{
+        display: table-cell;
+      }
+    }
+    @include breakpoint( colBreakpoint3 ){
+      &[data-column-select-priority="3"]{
+        display: table-cell;
+      }
+    }
+    @include breakpoint( colBreakpoint4 ){
+      &[data-column-select-priority="4"]{
+        display: table-cell;
+      }
+    }
+    @include breakpoint( colBreakpoint5 ){
+      &[data-column-select-priority="5"]{
+        display: table-cell;
+      }
+    }
+    @include breakpoint( colBreakpoint6 ){
+      &[data-column-select-priority="6"]{
+        display: table-cell;
+      }
+    }
+    @include breakpoint( colBreakpoint7 ){
+      &[data-column-select-priority="7"]{
+        display: table-cell;
+      }
+    }
+    @include breakpoint( colBreakpoint8 ){
+      &[data-column-select-priority="8"]{
+        display: table-cell;
+      }
+    }
+    @include breakpoint( colBreakpoint9 ){
+      &[data-column-select-priority="9"]{
+        display: table-cell;
+      }
+    }
+  }
+  thead{
+    th{
+      font-size: 1em;
+      border: solid #999;
+      border-width: 0 1px 1px 0;
+      padding: 0 .5em;
+      &.has-tooltip {
+        padding-left: 2.5em;
+      }
+      &.has-filter {
+        padding-right: 2.5em;
+      }
+      background: $primary_color;
+      color: white;
+      position: relative;
+      line-height: 2em;
+      white-space: nowrap;
+      .auto-admin-filter-trigger{
+        font-family: 'FontAwesome';
+        font-style: normal;
+        font-weight: normal;
+      }
+      .auto-admin-filter-data{
+        @include dropdown();
+        top: 100%;
+        right: 0;
+      }
+      .auto-admin-grid-header-cell-triggers{
+        position: absolute;
+        right: .5em;
+      }
+    }
+  }
+  tbody{
+    .current:nth-child(odd) td{
+      background: #e5e5e5;
+    }
+    .current:nth-child(even) td{
+      background: #f7f7f7;
+    }
+    .added:nth-child(odd) td{
+        background: $body-bg-color-added;
+    }
+    .added:nth-child(even) td{
+        background: $body-bg-color-added;
+    }
+    .updated:nth-child(odd) td{
+        background: $body-bg-color-updated;
+    }
+    .updated:nth-child(even) td{
+        background: $body-bg-color-updated;
+    }
+    .error:nth-child(odd) td{
+        background: $body-bg-color-error;
+    }
+    .error:nth-child(even) td{
+        background: $body-bg-color-error;
+    }
+    .current{
+      .action-save,
+      .action-revert{
+        display: none;
+      }
+    }
+    .processing{
+      .action{
+        display: none;
+      }
+    }
+    .added{
+      *[data-header-id="id"] span{
+        display: none;
+      }
+      .action-revert,
+      .action-clone{
+        display: none;
+      }
+    }
+    .updated{
+      .action-clone{
+        display: none;
+      }
+    }
+  }
+  .auto-admin-cell-actions{
+    white-space: nowrap;
+    font-size: 0;
+    position: relative;
+    @include breakpoint( mama-bear ){
+        .btn {
+            padding: 0 1em;
+            border: 0;
+            svg{
+                top: .25em;
+                left: .25em;
+                height: 1.5em;
+            }
+            span {
+                display: none;
+            }
+            &:hover{
+                border: 0;
+            }
+        }
+    }
+    .auto-admin-grid-row-messages{
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 100%;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 3px;
+      color: black;
+      overflow: hidden;
+      &.success{
+        border: 1px solid $body-bg-color-success;
+        background: $body-bg-color-success;
+      }
+      &.error{
+        border: 1px solid $body-bg-color-error;
+        background: $body-bg-color-error;
+      }
+      &.info{
+        border: 1px solid $body-bg-color-info;
+        background: $body-bg-color-info;
+      }
+      &.warning{
+        border: 1px solid $body-bg-color-warning;
+        background: $body-bg-color-warning;
+      }
+    }
+  }
+}
+
+// for the header cell filters
+.grid-header-filter.dropdown-wrapper{
+	position: absolute;
+	margin: 0;
+    top: 0;
+	right: 0;
+	bottom: 0;
+    width: 2em;
+    .dropdown-label{
+    	display: none;
+    }
+	.dropdown-toggle{
+		padding: 0;
+        background: rgba( 255, 255, 255, .1 );
+		color: white;
+	}
+    .dropdown-menu{
+        top: 1em;
+    }
+}
+
+// for the "grid level" drop downs that show to the top right of the grid
+.auto-admin-grid-wrapper > .dropdown-wrapper{
+	position: relative;
+    margin-right: 1em;
+	float: right;
+    background: tint( $primary_color, 40% );
+}
+
+// for the overlays
+.auto-admin-grid-overlay-editor {
+    position: relative;
+    .display-value{
+    	z-index: 0;
+    	position: relative;
+    }
+    .overlay-editor {
+		display: none;
+	    position: absolute;
+	    top: 100%;
+	    z-index: $zindex-overlay;
+	    background: white;
+	    width: 800px;
+	    left: calc( 50% - 400px );
+	    padding: 1em;
+	    border-radius: 4px;
+	    box-shadow: 0 12px 12px 2px #666;
+	}
+	&.open{
+		.display-value {
+			z-index: $zindex-overlay;
+		    background: #ddd;
+		    border-radius: 4px 4px 0 0;
+		    margin: 0 1em;
+		    border: 1px solid #999;
+		    border-bottom-width: 0;
+		}
+		.overlay-editor{
+			display: block;
+		}
+	}
+}
+
+// tooltip
+.auto-admin-grid thead{
+    .icon-tooltip{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 2em;
+        background: rgba( 255, 255, 255, .1 );
+        &:before{
+            content: "\f059";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+    }
+}

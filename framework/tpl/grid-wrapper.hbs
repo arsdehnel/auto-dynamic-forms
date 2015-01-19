@@ -1,0 +1,19 @@
+<div class="auto-admin-grid-wrapper">
+    {{{colSelect}}}
+	<table class="auto-admin-grid" data-column-lkup-url="json/columns.json">
+		<thead>
+			<tr>
+            {{#each headers}}
+                {{{html}}}
+            {{/each}}
+            </tr>
+		</thead>
+		<tbody>
+            {{#each records}}
+                {{{html}}}
+            {{/each}}
+		</tbody>
+	</table>
+	<form action="json/file-upload.json" method="POST" enctype="multipart/form-data"></form>
+	<div class="upload-drop-zone"></div>
+</div>

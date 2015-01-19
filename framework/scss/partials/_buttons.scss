@@ -1,0 +1,29 @@
+.btn{
+    text-transform: uppercase;
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 100;
+    padding: 0 1em 0 2em;
+    text-decoration: none;
+    margin: 0 .25em;
+    position: relative;
+    line-height: 2em;
+    min-height: 2em;
+    @include button( $primary-color );
+    svg{
+        position: absolute;
+        top: .5em;
+        left: .5em;
+        height: 1em;
+        fill: currentColor;
+    }
+
+
+    // CUSTOM
+    &.btn-save,
+    &.btn-query,
+    &.btn-run{
+        @include button( #070 );
+    }
+}

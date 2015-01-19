@@ -1,0 +1,37 @@
+<?php
+
+    $header_text = 'Process Master';
+
+    $main_classes[] = 'layout-grid';
+
+    include('../_header.php');
+
+?>
+
+<div class="row">
+
+    <div class="layout-grid-3"></div>
+
+    <fieldset class="layout-grid-6 adf-region" data-adf-region-type="form" id="process-master-filters" data-adf-ajax-onload="true" data-adf-ajax-url="../json/process-master/filters.json">
+
+        <legend>Find Your Process Master</legend>
+
+        <form action="#" class="form-horizontal submit-on-change" method="post" data-target-id="process-master-grid"></form>
+
+    </fieldset>
+
+    <div class="layout-grid-3"></div>
+
+</div>
+
+
+
+<div class="adf-region" data-adf-region-type="grid" id="process-master-grid" data-adf-ajax-url="../json/process-master/grid.json"></div>
+
+
+
+<?php
+
+    include('../_footer.php');
+
+?>
