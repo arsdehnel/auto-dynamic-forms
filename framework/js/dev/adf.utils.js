@@ -3,13 +3,52 @@ ADF.utils = {
         return string.charAt(0).toUpperCase() + string.slice(1);
     },
     camelize: function( string ) {
-        return string.replace(/[_.-](\w|$)/g, function (_,x) {
+        return string.toLowerCase().replace(/[_.-](\w|$)/g, function (_,x) {
             return x.toUpperCase();
         });
     },
     spin: function( targetObj ) {
         targetObj.removeClass('hide').html('').addClass('loading').spin();
-    }
+    },
+    message: function() {
+
+        // var args = Array.slice(arguments);
+        var args = Array.prototype.slice.call(arguments);
+
+        // remove first argument
+        var level = args.shift();
+
+        // add a prefix item to the logs just to try and be clear where it came from
+        args.unshift('[ADF]');
+
+        if( _.indexOf(ADF.messages.displayLevels,level) >= 0 ){
+
+            // TODO: extend this to present errors as modals
+            // TODO: allow console command to change alert levels
+            console[level](args);
+
+        }
+
+//      // make sure our history log is ready
+//          autoAdmin.log.history = autoAdmin.log.history || [];   // store logs to an array for reference
+
+//          // output it if this browser supports that
+//          if(window.console){
+//          console.log( arguments );
+//          }
+
+//          // add a datestamp
+//          args.push(Date.now());
+
+//          // put it into our history log with the datestamp added
+//          autoAdmin.log.history.push(args);
+
+    },
+
+    printObject: function(obj){
+        return JSON.stringify(obj,null,'\t').replace(/\n/g,'<br>').replace(/\t/g,'&nbsp;&nbsp;&nbsp;');
+    },
+
 }
 
 
@@ -103,35 +142,5 @@ ADF.utils = {
 //     },
 
 
-//     printObject: function(obj){
-//   		return JSON.stringify(obj,null,'\t').replace(/\n/g,'<br>').replace(/\t/g,'&nbsp;&nbsp;&nbsp;');
-// 	},
-
-// 	log: function(){
-
-// 		// convert to a true array
-// 		var args = Array.prototype.slice.call(arguments);
-
-// 		// pull off the level from the beginning
-//   		var msgLevel = args.shift();
-
-// 		// add something indicating it's from the autoAdmin
-// 		args.unshift( "::autoAdmin::");
-
-// 		// make sure our history log is ready
-//   		autoAdmin.log.history = autoAdmin.log.history || [];   // store logs to an array for reference
-
-//   		// output it if this browser supports that
-//   		if(window.console){
-//     		console.log( arguments );
-//   		}
-
-//   		// add a datestamp
-//   		args.push(Date.now());
-
-//   		// put it into our history log with the datestamp added
-//   		autoAdmin.log.history.push(args);
-
-// 	}
 
 // }

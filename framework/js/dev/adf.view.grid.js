@@ -1,19 +1,45 @@
-// 'use strict';
-// window.autoAdmin = window.autoAdmin || {};
+ADF.GridView = Backbone.Marionette.CompositeView.extend({
+    // TODO: finish grid lookup
+    // TODO: column picker
+    // TODO: add record action
+    // TODO: grid-row actions
+    // TODO: grid-row messaging
+    // TODO: overlay triggering
+    // TODO: overlay template adjusted to handle array of data with format/delimiter from data-supl-info attribute
+
+    className: 'adf-grid',
+    tagName: 'table',
+    childView: ADF.RecordView,
+    childViewContainer: "tbody",
+    template: ADF.templates.gridTable,
+    initialize: function( options ) {
+        ADF.utils.message('log','GridView Initialized', options );
+        var gridView = this;
+        gridView.$el.html(gridView.template({}));
+
+        gridView.headersView = new ADF.HeadersView({
+            el: gridView.$el.find('thead')[0],
+            gridView: gridView,
+            collection: options.region.fieldsCollection
+        });
+
+        gridView.columnSelect = new ADF.ColumnSelectView({
+            el: gridView.$el.find('.adf-grid-actions')[0],
+            gridView: gridView,
+            collection: options.region.fieldsCollection
+        })
+
+    },
+    render: function() {
+        var gridView = this;
+        // this._super();
+        // gridView.headersView.setElement(gridView.$el.find('thead'));
+        gridView.headersView.render();
+        gridView.columnSelect.render();
+    }
+});
 
 // autoAdmin.GridView = autoAdmin.PageView.extend({
-
-//     className: "auto-admin-grid",
-
-//     el: ".auto-admin-grid",
-
-//     initialize: function(opts){
-//         var that = this;
-
-//         console.log('[autoAdmin] GridView initialized', opts);
-
-//         this.ajax( opts );
-//     },
 
 //     render: function( opts ){
 
@@ -67,53 +93,6 @@
 //                 select2Obj : $(this)
 //             })
 //         })
-
-//     },
-
-//     renderColumnSelector: function( columns ) {
-
-//         var dropdownObj = {primaryOptions: columns};
-
-//         dropdownObj.footerOptions = [
-//             {
-//                 href : "#",
-//                 itemClass : "auto-admin-grid-column-group",
-//                 label : "All Columns",
-//                 dataAttributes : [
-//                     {
-//                         "name" : "column-select-type",
-//                         "value" : "all"
-//                     }
-//                 ]
-//             },
-//             {
-//                 href : "#",
-//                 itemClass : "auto-admin-grid-column-group",
-//                 label : "Minimum Columns",
-//                 dataAttributes : [
-//                     {
-//                         "name" : "column-select-type",
-//                         "value" : "min"
-//                     }
-//                 ]
-//             },
-//             {
-//                 href : "#",
-//                 itemClass : "auto-admin-grid-column-group",
-//                 label : "Default Columns",
-//                 dataAttributes : [
-//                     {
-//                         "name" : "column-select-type",
-//                         "value" : "dflt"
-//                     }
-//                 ]
-//             }
-//         ];
-
-//         dropdownObj.wrapClass = "column-selector";
-//         dropdownObj.buttonLabel = "Select Columns";
-
-//         return autoAdmin.templates.dropdownMenu( dropdownObj );
 
 //     },
 
@@ -224,14 +203,5 @@
 //         }
 
 //     },
-
-//     ajax: function( opts ) {
-//         var that = this;
-//         var ajaxObj = {};
-//         $.extend(ajaxObj,opts,{caller:that});
-
-//         new autoAdmin.AjaxView(ajaxObj);
-
-//     }
 
 // });

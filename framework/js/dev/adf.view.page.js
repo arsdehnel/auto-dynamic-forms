@@ -21,13 +21,6 @@
 //         "click .load-on-click"                         : "loadOnClickAjax",
 //         "click .submit-parent-form-ajax"               : "submitParentFormAjax",
 
-//         // GENERAL UI
-//         "click .dropdown-wrapper .dropdown-toggle"     : "dropdownToggle",
-
-//         // GRID
-//         "click .auto-admin-grid-column-group"          : "columnSelect",
-//         "change .column-selector .dropdown-menu input" : "columnSelect"
-
 //         // TODO apply filters action
 //     },
 
@@ -126,93 +119,5 @@
 //         pageView.submitAjax( ajaxObj );
 
 //     },
-
-//     dropdownToggle: function(e) {
-
-//         if( e.target ){
-
-//             e.preventDefault();
-//             var $target = $(e.target);
-
-//         }else{      // we're just going to assume it's a jQuery object then
-
-//             var $target = e;
-
-//         }
-
-//         $target.closest('.dropdown-wrapper').find('.dropdown-menu').toggleClass('hide');
-
-//     },
-
-//     columnSelect: function(e) {
-
-//         e.preventDefault();
-
-//         var pageView = this;
-
-//         var $target = $(e.target);
-
-//         var groupType = $target.attr('data-column-select-type')
-
-//           // autoAdmin.grid.columnSelect( $(e.target), $(this).attr('data-column-select-type') );
-
-//         if( !groupType ){
-
-//             var id = $target.val();
-//             var cells = $('#'+id+", .auto-admin-grid td[data-header-id="+id+"]");
-
-//             if( $target.is(':checked') ){
-//                 cells.show();
-//             }else{
-//                 cells.hide();
-//             }
-
-//         }else{
-
-//             switch( groupType ){
-
-//                 case "all":
-//                     $target.closest('.dropdown-wrapper').find('.dropdown-menu :input').not(':checked').trigger('click');
-//                     break;
-
-//                 case "min":
-//                     $target.closest('.dropdown-wrapper').find('.dropdown-menu :input').each(function(){
-//                         var inputObj = $(this);
-//                         var priority = parseInt( $('#'+inputObj.val()).attr('data-column-select-priority'), 10 );
-//                         if( ( inputObj.is(':checked') && priority > 1 ) || ( inputObj.is(':not(:checked)') && priority <= 1 ) ){
-//                             inputObj.trigger('click');
-//                         }
-//                     })
-//                     break;
-
-//                 case "dflt":
-//                     var dropdownMenu = $target.closest('.dropdown-wrapper').find('.dropdown-menu');
-//                     $('.auto-admin-grid th, .auto-admin-grid td').css("display", "");
-//                     $('.auto-admin-grid th').each(function(){
-
-//                         var inputObj = dropdownMenu.find(':input[value='+$(this).attr('id')+']');
-
-//                         //check the visibility of this header which is now based on the media queries
-//                         if( $(this).css('display') === 'table-cell' && inputObj.is(':not(:checked)') ){
-
-//                             inputObj.trigger('click');
-
-//                         }else if( $(this).css('display') === 'none' && inputObj.is(':checked') ){
-
-//                             inputObj.trigger('click');
-
-//                         }
-
-//                     })
-//                     break;
-
-//             }
-
-//             pageView.dropdownToggle( $target.closest('.dropdown-wrapper').find('.dropdown-toggle') );
-
-//         }
-
-//     }
-
 
 // });

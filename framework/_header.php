@@ -68,5 +68,5 @@
             </ul>
         </nav><!-- #nav-main.nav-main -->
     </header>
-    <main id="main" class="content">
+    <main id="main" class="content layout-grid">
         <h1 class="page-title"><?php echo $header_text; ?></h1>

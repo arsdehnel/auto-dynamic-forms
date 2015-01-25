@@ -1,18 +1,19 @@
 ADF.FormRegion = ADF.Region.extend({
+    // TODO: handle being in a dialog
+    // TODO: field dependency lookup
+
     initialize: function( options ) {
+        ADF.utils.message('log','FormRegion Initialized', options);
 
         var formRegion = this;
-
-        console.log('[ADF] FormRegion Initialized', options);
 
         formRegion.formView = new ADF.FormView({
             el:formRegion.$el.find('form')[0],
             collection: new ADF.FieldsCollection(),
             childView: ADF.FieldView
-        })
+        });
 
-        ADF.Region.prototype.initialize.call(formRegion, options);
-
+        this._super( options );
     },
 
     ajaxSuccessHandler: function( xhrJson ) {
@@ -23,7 +24,10 @@ ADF.FormRegion = ADF.Region.extend({
 
             if( xhrJson.data.hasOwnProperty('fields') ){
 
-                formView.collection.add(xhrJson.data.fields);
+                formView.collection.reset(xhrJson.data.fields);
+
+                // TODO: add select2 renderer as part of the auto-rendering of the Marionette view
+
                 // manually call render for some reason
                 // thought that Marionette handled this for us but it wasn't firing so this had to be added
                 formView.render();

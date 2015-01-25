@@ -55,13 +55,24 @@ module.exports = function(grunt) {
         concat: {
             dev: {
                 src: [
+                    'js/dev/adf.config.js',
+                    'js/dev/adf.utils.js',
                     'js/dev/adf.app.js',
                     'js/dev/adf.region.js',
                     'js/dev/adf.region.*.js',
-                    'js/dev/adf.view.*.js',
                     'js/dev/adf.model.*.js',
                     'js/dev/adf.collection.*.js',
-                    'js/dev/adf.utils.js',
+                    'js/dev/adf.view.dropdown-menu.js',
+                    'js/dev/adf.view.cell.js',
+                    'js/dev/adf.view.column-select-item.js',
+                    'js/dev/adf.view.column-select.js',
+                    'js/dev/adf.view.field.js',
+                    'js/dev/adf.view.form.js',
+                    'js/dev/adf.view.grid.js',
+                    'js/dev/adf.view.header.js',
+                    'js/dev/adf.view.headers.js',
+                    'js/dev/adf.view.page.js',
+                    'js/dev/adf.view.record.js',
                     'js/dev/common.js'
                 ],
                 dest: basePath+'js/adf.min.js',
@@ -71,6 +82,7 @@ module.exports = function(grunt) {
                     'js/lib/jquery-*.min.js',
                     'js/lib/underscore.js',
                     'js/lib/backbone.js',
+                    'js/lib/backbone.super.js',
                     'js/lib/backbone.wreqr.js',
                     'js/lib/backbone.babysitter.js',
                     'js/lib/backbone.marionette.js',
@@ -100,8 +112,7 @@ module.exports = function(grunt) {
         sass: {
             dist: {
                 options: {
-                    style: 'compressed',
-                    require: "sass-globbing"
+                    style: 'compressed'
                 },
                 files: {
                     'grunt-work/compiled.css': 'scss/main.scss'

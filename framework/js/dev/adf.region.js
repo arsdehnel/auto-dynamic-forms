@@ -1,41 +1,46 @@
 ADF.Region = Marionette.Region.extend({
+    // TODO: create new region for an overlay
+    // TODO: overlay region optionally can get data from caller region
+
     initialize: function(options){
-        console.log('[ADF] Region Initialized',options);
-        this.adfData = options.adfData;
-        if( this.adfData.adfAjaxOnload ){
-            this.ajax({
-                url: this.adfData.adfAjaxUrl
-            });
+        ADF.utils.message('log','Region Initialized',options);
+        // TODO: this really shouldn't be in the region object, probably part of the view that we've associated with it...
+        if( this.options.adfAjaxOnload ){
+            this.ajax();
         }
     },
     ajax: function( options ){
         var region = this;
-        console.log('[ADF] Ajax Call',options);
+        var settings = _.extend({}, options);
+
+        ADF.utils.message('log','Ajax Call',options,settings);
+
         $.ajax({
-            url: options.url,
-            type: ( options.method ? options.method : "GET" ),
-            data: options.data,
+            url: ( settings.url ? settings.url : region.options.adfAjaxUrl ),
+            type: ( settings.method ? settings.method : "GET" ),
+            data: settings.data,
             dataType: "json",
             beforeSend: function(){
+                // TODO: resolve issue with this emptying out the target element
                 // ADF.utils.spin(region.$el);
             },
             complete: function( jqXHR, textStatus ){
 
                 if( jqXHR.status === 200 ){
 
-                    console.log('[ADF] AJAX message: '+jqXHR.responseJSON.message);
+                    ADF.utils.message('log','AJAX message: '+jqXHR.responseJSON.message);
 
                     // this is custom depending on the calling region's type so we send it back
                     region.ajaxSuccessHandler(jqXHR.responseJSON);
 
                 }else if( jqXHR.status === 404 ){
 
-                    alert("Page Not Found\n\nThe ajax calls is being made to a page ("+options.url+") that could not be found. Probably going to need to get a TA involved to see what is going on here.");
+                    ADF.utils.message('error',"Page Not Found\n\nThe ajax calls is being made to a page ("+settings.url+") that could not be found. Probably going to need to get a TA involved to see what is going on here.");
 
                 }else{
 
                     alert(textStatus+'! Probably going to need to get a TA involved.');
-                    console.log('options',options);
+                    console.log('settings',settings);
                     console.log(jqXHR);
                     target.html(jqXHR.responseText);
 

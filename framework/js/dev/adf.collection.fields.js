@@ -2,7 +2,7 @@ ADF.FieldsCollection = Backbone.Collection.extend({
 
     model: ADF.FieldModel,
 
-    initialize: function( opts ){
+    initialize: function( models, options ){
 
         var that = this;
 

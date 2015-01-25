@@ -1,0 +1,10 @@
+{
+    "browser": true,
+    "devel": true,
+    "undef": true,
+    "unused": "vars",
+    "plusplus": false,
+    "quotmark": true,
+    "laxbreak": true,
+    "shadow": true
+}

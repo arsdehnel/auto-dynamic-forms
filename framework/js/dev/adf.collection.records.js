@@ -2,9 +2,11 @@ ADF.RecordsCollection = Backbone.Collection.extend({
 
     model: ADF.RecordModel,
 
-    initialize: function( opts ){
+    initialize: function( models, options ){
 
-        var that = this;
+        var recordsCollection = this;
+
+        recordsCollection.regionName = options.regionName;
 
     }
 

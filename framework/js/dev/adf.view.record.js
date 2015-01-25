@@ -1,3 +1,35 @@
+ADF.RecordView = Backbone.Marionette.CompositeView.extend({
+    template: ADF.templates.gridRow,
+    tagName: 'tr',
+    childView: ADF.CellView,
+    // childViewContainer: 'tr',
+    initialize: function( options ) {
+        ADF.utils.message('log','RecordView Initialized', options );
+
+        // this.setElement(this.template(this.model.toJSON()));
+
+        this.collection = adf.findRegion({
+            attribute : 'regionName',
+            value : this.model.collection.regionName
+        }).fieldsCollection;
+
+    },
+    render: function() {
+        // TODO: figure out a way to properly use a template that actually as a <tr> in it
+        // <tr id="{{regionName}}--{{id}}" class="adf-record {{rowClass}}"></tr>
+        this.$el
+            .attr('id',this.model.get('regionName') + '--' + this.model.get('id'))
+            .addClass('adf-record '+this.model.get('rowClass'));
+        this._super();
+    }
+});
+
+// <tr id="{{tableId}}--{{id}}" class="adf-record {{rowClass}}">
+//     {{#each cells}}
+//         {{{html}}}
+//     {{/each}}
+// </tr>
+
 // 'use strict';
 // window.autoAdmin = window.autoAdmin || {};
 

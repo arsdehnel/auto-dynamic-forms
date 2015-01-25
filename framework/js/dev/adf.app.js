@@ -1,7 +1,8 @@
+// TODO: svg rendering
 var ADF = ADF||{};
 ADF.App = Marionette.Application.extend({
   initialize: function(options) {
-     console.log('[ADF] App Initialized', options);
+     ADF.utils.message('log','App Initialized', options);
   },
   initRegions: function(){
     var app = this;
@@ -14,14 +15,15 @@ ADF.App = Marionette.Application.extend({
         regionData.regionName = ADF.utils.camelize($(this).attr('id'));
 
         // create the region
-        regions[regionData.regionName] = new ADF[regionData.regionClass]({
-            el: regionData.elSelector,
-            adfData: regionData
-        });
+        regions[regionData.regionName] = new ADF[regionData.regionClass](_.extend({el: regionData.elSelector},regionData));
         app.addRegions(regions);
     })
-    console.log('[ADF] initRegions complete',app.getRegions());
-    app.trigger('regionsInitialized');
+  },
+  findRegion: function( filter ) {
+    var regions = this.getRegions();
+    return _.find(regions,function(region){
+      return region[filter.attribute] === filter.value || region.options[filter.attribute] === filter.value;
+    });
   }
 });
 
