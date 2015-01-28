@@ -1,3 +1,7 @@
+/*global
+ADF,
+_
+*/
 ADF.utils = {
     capitalize: function( string ) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -45,13 +49,36 @@ ADF.utils = {
 //          // put it into our history log with the datestamp added
 //          autoAdmin.log.history.push(args);
 
+// below is from handlebars
+
+  // var logger = {
+  //   methodMap: { 0: 'debug', 1: 'info', 2: 'warn', 3: 'error' },
+
+  //   // State enum
+  //   DEBUG: 0,
+  //   INFO: 1,
+  //   WARN: 2,
+  //   ERROR: 3,
+  //   level: 3,
+
+  //   // can be overridden in the host environment
+  //   log: function(level, obj) {
+  //     if (logger.level <= level) {
+  //       var method = logger.methodMap[level];
+  //       if (typeof console !== 'undefined' && console[method]) {
+  //         console[method].call(console, obj);
+  //       }
+  //     }
+  //   }
+  // };
+
     },
 
     printObject: function(obj){
         return JSON.stringify(obj,null,'\t').replace(/\n/g,'<br>').replace(/\t/g,'&nbsp;&nbsp;&nbsp;');
     },
 
-}
+};
 
 
 // window.autoAdmin = window.autoAdmin || {};
