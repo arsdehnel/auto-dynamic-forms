@@ -4,6 +4,7 @@ ADF.HeaderView = Backbone.Marionette.ItemView.extend({
     initialize: function( options ){
         ADF.utils.message('log','HeaderView Initialized', options);
         this.model.set('colIndex',this.model.collection.indexOf(this.model))
+        this.model.set('regionName',options.regionName);
     },
     render: function() {
         // TODO: use hbs template rather than all this silly JS

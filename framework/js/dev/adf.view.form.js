@@ -26,7 +26,7 @@ ADF.FormView = Marionette.CollectionView.extend({
 
         if( $(action).size() > 0 ){
 
-            ADF.utils.message('debug','Found something to load into');
+            ADF.utils.message('log','Found something to load into');
 
             region.ajax();
 

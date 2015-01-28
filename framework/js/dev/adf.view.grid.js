@@ -1,6 +1,5 @@
 ADF.GridView = Backbone.Marionette.CompositeView.extend({
     // TODO: finish grid lookup
-    // TODO: column picker
     // TODO: add record action
     // TODO: grid-row actions
     // TODO: grid-row messaging
@@ -15,27 +14,36 @@ ADF.GridView = Backbone.Marionette.CompositeView.extend({
     initialize: function( options ) {
         ADF.utils.message('log','GridView Initialized', options );
         var gridView = this;
+        gridView.regionName = options.regionName;
+        var region = adf._regionManager.get(gridView.regionName);
         gridView.$el.html(gridView.template({}));
 
         gridView.headersView = new ADF.HeadersView({
             el: gridView.$el.find('thead')[0],
-            gridView: gridView,
-            collection: options.region.fieldsCollection
+            collection: region.fieldsCollection,
+            regionName: gridView.regionName
         });
 
         gridView.columnSelect = new ADF.ColumnSelectView({
             el: gridView.$el.find('.adf-grid-actions')[0],
-            gridView: gridView,
-            collection: options.region.fieldsCollection
+            collection: region.fieldsCollection,
+            regionName: gridView.regionName
         })
 
     },
     render: function() {
         var gridView = this;
-        // this._super();
-        // gridView.headersView.setElement(gridView.$el.find('thead'));
         gridView.headersView.render();
         gridView.columnSelect.render();
+        var childContainer = this.$el.find(this.childViewContainer);
+        gridView.collection.each(function(model) {
+
+            // var childView = new gridView.childView({model:model});
+            var childView = new ADF.RecordView();
+            childContainer.before(childView.template(model.toJSON()))
+
+            console.log('yay for grid collection',childView.render());
+        })
     }
 });
 

@@ -3,6 +3,15 @@ var ADF = ADF||{};
 ADF.App = Marionette.Application.extend({
   initialize: function(options) {
      ADF.utils.message('log','App Initialized', options);
+     var adf = this;
+     adf.listenTo(adf,'regionsInitialized',function(){
+      // TODO: remove this bullshit
+        setTimeout(function(){
+            adf.showRegions()
+        },200)
+    });
+
+   // },1000);
   },
   initRegions: function(){
     var app = this;
@@ -17,6 +26,11 @@ ADF.App = Marionette.Application.extend({
         // create the region
         regions[regionData.regionName] = new ADF[regionData.regionClass](_.extend({el: regionData.elSelector},regionData));
         app.addRegions(regions);
+    },app.trigger('regionsInitialized'));
+  },
+  showRegions: function() {
+    _.each(this.getRegions(),function(region){
+      region.show();
     })
   },
   findRegion: function( filter ) {

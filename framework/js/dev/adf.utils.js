@@ -29,6 +29,8 @@ ADF.utils = {
 
         }
 
+        // TODO: log all messages into "level" specific arrays
+
 //      // make sure our history log is ready
 //          autoAdmin.log.history = autoAdmin.log.history || [];   // store logs to an array for reference
 

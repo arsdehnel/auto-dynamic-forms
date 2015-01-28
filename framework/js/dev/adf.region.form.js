@@ -4,6 +4,10 @@ ADF.FormRegion = ADF.Region.extend({
 
     initialize: function( options ) {
         ADF.utils.message('log','FormRegion Initialized', options);
+        this._super( options );
+    },
+
+    show: function() {
 
         var formRegion = this;
 
@@ -13,7 +17,8 @@ ADF.FormRegion = ADF.Region.extend({
             childView: ADF.FieldView
         });
 
-        this._super( options );
+        this._super();
+
     },
 
     ajaxSuccessHandler: function( xhrJson ) {

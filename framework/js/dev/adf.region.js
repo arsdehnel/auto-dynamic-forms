@@ -4,8 +4,11 @@ ADF.Region = Marionette.Region.extend({
 
     initialize: function(options){
         ADF.utils.message('log','Region Initialized',options);
+        this.adfAjaxOnload = ( options.adfAjaxOnload ? options.adfAjaxOnload : false );
+    },
+    show: function() {
         // TODO: this really shouldn't be in the region object, probably part of the view that we've associated with it...
-        if( this.options.adfAjaxOnload ){
+        if( this.adfAjaxOnload ){
             this.ajax();
         }
     },

@@ -1,7 +1,7 @@
 ADF.FieldModel = Backbone.Model.extend({
 
     initialize: function( data ){
-        console.log('[ADF] FieldModel Initialized', data);
+        ADF.utils.message('log','FieldModel Initialized', data);
 
         // do this step-by-step for clarity and maintainability (not to mention debuggability)
         var inputType = this.get('type');
@@ -10,7 +10,7 @@ ADF.FieldModel = Backbone.Model.extend({
         inputType = 'inputType'+inputType;
 
         this.set("inputField",ADF.templates[inputType](this.toJSON()));
-        this.set("regionName",this.collection.regionName);
+        // this.set("regionName",this.collection.regionName);
     }
 
 });

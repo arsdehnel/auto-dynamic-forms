@@ -1,8 +1,7 @@
 ADF.RecordModel = Backbone.Model.extend({
 
     initialize: function( data ){
-        console.log('[ADF] RecordModel Initialized', data);
-        this.set("regionName",this.collection.regionName);
+        ADF.utils.message('log','RecordModel Initialized', data);
     }
 
 });

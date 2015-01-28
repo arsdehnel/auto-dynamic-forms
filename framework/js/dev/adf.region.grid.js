@@ -1,20 +1,29 @@
 ADF.GridRegion = ADF.Region.extend({
     template: ADF.templates.gridWrapper,
     initialize: function( options ) {
-        ADF.utils.message('log','gridRegion Initialized', options);
+        ADF.utils.message('log','GridRegion Initialized', options);
 
         var gridRegion = this;
 
         gridRegion.$el.html(gridRegion.template());
         gridRegion.fieldsCollection = new ADF.FieldsCollection(null,{regionName:gridRegion.options.regionName});
 
+        this._super( options );
+
+    },
+
+    show: function() {
+
+        ADF.utils.message('log','gridRegion Shown');
+
+        var gridRegion = this;
         gridRegion.gridView = new ADF.GridView({
             el:gridRegion.$el.find('.adf-grid-wrapper')[0],
             collection: new ADF.RecordsCollection(null,{regionName:gridRegion.options.regionName}),
-            region: gridRegion
+            regionName: gridRegion.options.regionName
         })
 
-        this._super( options );
+        this._super();
 
     },
 

@@ -5,23 +5,26 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
     tagName: 'li',
     childView: ADF.ColumnSelectItemView,
     childViewContainer: '.dropdown-menu',
+    // childViewOptions : function () {
+    //     return { regionName: this.regionName };
+    // },
     events: {
         // TODO: this should go to the parent prototype
         "click .dropdown-wrapper .dropdown-toggle"     : "dropdownToggle",
         // TODO: create hierarchy of events somehow
-        "click .auto-admin-grid-column-group"          : "columnSelect",
+        "click .adf-grid-column-group"          : "columnSelect",
         "change .column-selector .dropdown-menu input" : "columnSelect"
     },
     // TODO: this model should go to the parent prototype but something wasn't working with that so it's on the list for later
     model: new ADF.DropdownMenuModel(),
     initialize: function( options ) {
         ADF.utils.message('log','ColumnSelectView Initialized', options );
-        this.model.set('parent',options.gridView.options.region.options.regionName);
+        this.regionName = options.regionName;
         this.model.set('buttonLabel','Column Select');
         this.model.set('wrapClass','column-selector');
         this.model.get('footerOptions').push({
             href : "#",
-            itemClass : "auto-admin-grid-column-group",
+            itemClass : "adf-grid-column-group",
             label : "All Columns",
             dataAttributes : [
                 {
@@ -32,7 +35,7 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
         });
         this.model.get('footerOptions').push({
             href : "#",
-            itemClass : "auto-admin-grid-column-group",
+            itemClass : "adf-grid-column-group",
             label : "Minimum Columns",
             dataAttributes : [
                 {
@@ -43,7 +46,7 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
         });
         this.model.get('footerOptions').push({
             href : "#",
-            itemClass : "auto-admin-grid-column-group",
+            itemClass : "adf-grid-column-group",
             label : "Default Columns",
             dataAttributes : [
                 {
@@ -67,12 +70,15 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
         this.collection.each(function(model){
 
             // TODO: move this to the model initializer
-            model.set('regionName',this.regionName);
-            console.debug(model.toJSON());
+            model.set('regionName',columnSelect.regionName);
+            console.debug('columnitem render',model.toJSON());
 
-            // TODO: check for actual visibility of this column
             if( model.get("fieldPriority") !== 0 ){
                 var childView = new columnSelect.childView;
+                var headerCell = $('#'+columnSelect.regionName+'--'+model.get("name"));
+                if( headerCell.css('display') === 'table-cell' ){
+                    model.set('checked',true);
+                }
                 childContainer.before(childView.template(model.toJSON()))
             }
 
@@ -101,14 +107,18 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
 
         e.preventDefault();
 
-        var pageView = this;
+        var colSelect = this;
         var $target = $(e.target);
         var groupType = $target.attr('data-column-select-type')
 
-        if( !groupType ){
+        console.log('columnselect triggered',$target,groupType,id);
+
+        if( typeof groupType == 'undefined' ){
 
             var id = $target.val();
-            var cells = $('#'+id+", .auto-admin-grid td[data-header-id="+id+"]");
+            var cells = $('#'+id+", .adf-grid td[data-header-id="+id+"]");
+
+            console.log('columnselect details',id,cells);
 
             if( $target.is(':checked') ){
                 cells.show();
@@ -136,8 +146,8 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
 
                 case "dflt":
                     var dropdownMenu = $target.closest('.dropdown-wrapper').find('.dropdown-menu');
-                    $('.auto-admin-grid th, .auto-admin-grid td').css("display", "");
-                    $('.auto-admin-grid th').each(function(){
+                    $('.adf-grid th, .adf-grid td').css("display", "");
+                    $('.adf-grid th').each(function(){
 
                         var inputObj = dropdownMenu.find(':input[value='+$(this).attr('id')+']');
 
@@ -157,7 +167,7 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
 
             }
 
-            pageView.dropdownToggle( $target.closest('.dropdown-wrapper').find('.dropdown-toggle') );
+            colSelect.dropdownToggle( $target.closest('.dropdown-wrapper').find('.dropdown-toggle') );
 
         }
 

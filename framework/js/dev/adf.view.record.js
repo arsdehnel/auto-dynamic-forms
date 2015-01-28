@@ -20,7 +20,8 @@ ADF.RecordView = Backbone.Marionette.CompositeView.extend({
         this.$el
             .attr('id',this.model.get('regionName') + '--' + this.model.get('id'))
             .addClass('adf-record '+this.model.get('rowClass'));
-        this._super();
+        // this._super();
+        return this._super();
     }
 });
 
