@@ -14,9 +14,6 @@ ADF.GridView = Backbone.Marionette.CompositeView.extend({
         return { regionName: this.regionName };
     },
     template: ADF.templates.gridTable,
-    events: {
-        'click .adf-record .btn'                : 'handleAction'
-    },
     initialize: function( options ) {
         ADF.utils.message('log','GridView Initialized', options );
         this.regionName = options.regionName;
@@ -52,11 +49,9 @@ ADF.GridView = Backbone.Marionette.CompositeView.extend({
             // var childView = new ADF.RecordView();
             // console.debug(childView.render());
             childContainer.append(childView.renderAsChild())
+            childView.setElement('#'+model.get('regionName') + '--' + model.get('id'));
+
         })
-    },
-    handleAction: function(e) {
-        e.preventDefault();
-        console.debug('yay');
     }
 
 });

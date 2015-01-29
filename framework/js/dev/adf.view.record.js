@@ -3,6 +3,9 @@ ADF.RecordView = Backbone.Marionette.CompositeView.extend({
     tagName: 'tr',
     className: 'adf-record',
     childView: ADF.CellView,
+    events: {
+        'click .btn'                : 'handleAction'
+    },
     initialize: function( options ) {
         ADF.utils.message('log','RecordView Initialized', options );
         this.region = adf._regionManager.get(options.regionName);
@@ -41,6 +44,10 @@ ADF.RecordView = Backbone.Marionette.CompositeView.extend({
         })
 
         return this.template($.extend({},this.model.toJSON(),{cells:cellsString}));
+    },
+    handleAction: function(e) {
+        e.preventDefault();
+        console.debug('yay');
     }
 });
 
