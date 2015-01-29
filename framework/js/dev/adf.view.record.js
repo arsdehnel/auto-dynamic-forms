@@ -1,51 +1,48 @@
 ADF.RecordView = Backbone.Marionette.CompositeView.extend({
     template: ADF.templates.gridRow,
     tagName: 'tr',
+    className: 'adf-record',
     childView: ADF.CellView,
-    // childViewContainer: 'tr',
     initialize: function( options ) {
         ADF.utils.message('log','RecordView Initialized', options );
-
-        // this.setElement(this.template(this.model.toJSON()));
-
-        this.collection = adf.findRegion({
-            attribute : 'regionName',
-            value : this.model.collection.regionName
-        }).fieldsCollection;
-
+        this.region = adf._regionManager.get(options.regionName);
+        this.regionName = this.region.options.regionName;
+        this.model.set("regionName",this.regionName);
+        this.collection = this.region.fieldsCollection;
     },
-    render: function() {
+    renderSelf: function() {
+        // this would be called when the record has changed and needs to be rerendered
+        // TODO: make this actually work for both rendering on initial load (as child) and as standalone record (on change)
+        this.render();
+    },
+    renderAsChild: function() {
         // TODO: figure out a way to properly use a template that actually as a <tr> in it
         // <tr id="{{regionName}}--{{id}}" class="adf-record {{rowClass}}"></tr>
-        this.$el
-            .attr('id',this.model.get('regionName') + '--' + this.model.get('id'))
-            .addClass('adf-record '+this.model.get('rowClass'));
-        // this._super();
-        return this._super();
+        // this.$el
+        //     .attr('id',this.model.get('regionName') + '--' + this.model.get('id'))
+        //     .addClass('adf-record '+this.model.get('rowClass'));
+
+        var cellsString = '';
+
+        // console.debug('recordModel',this.model.toJSON());
+
+        var recordView = this;
+
+        // put the children (the fields) into the drop down but above the divider
+        this.collection.each(function(model){
+
+            // TODO: move this to the model initializer
+            model.set('regionName',recordView.regionName);
+            model.set('currentValue',recordView.model.get(model.get('name')));
+            var childView = new recordView.childView({model:model});
+            // console.debug(childView.render());
+            cellsString += childView.render();
+
+        })
+
+        return this.template($.extend({},this.model.toJSON(),{cells:cellsString}));
     }
 });
-
-// <tr id="{{tableId}}--{{id}}" class="adf-record {{rowClass}}">
-//     {{#each cells}}
-//         {{{html}}}
-//     {{/each}}
-// </tr>
-
-// 'use strict';
-// window.autoAdmin = window.autoAdmin || {};
-
-// autoAdmin.RecordView = autoAdmin.PageView.extend({
-
-//     className: "auto-admin-record",
-
-//     el: ".auto-admin-record",
-
-//     initialize: function(opts){
-//         var that = this;
-
-//         console.log('[autoAdmin] RecordView initialized', opts);
-
-//     },
 
 //     events: {
 //         // ACTIONS

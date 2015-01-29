@@ -10,11 +10,17 @@ ADF.GridView = Backbone.Marionette.CompositeView.extend({
     tagName: 'table',
     childView: ADF.RecordView,
     childViewContainer: "tbody",
+    childViewOptions : function () {
+        return { regionName: this.regionName };
+    },
     template: ADF.templates.gridTable,
+    events: {
+        'click .adf-record .btn'                : 'handleAction'
+    },
     initialize: function( options ) {
         ADF.utils.message('log','GridView Initialized', options );
+        this.regionName = options.regionName;
         var gridView = this;
-        gridView.regionName = options.regionName;
         var region = adf._regionManager.get(gridView.regionName);
         gridView.$el.html(gridView.template({}));
 
@@ -38,13 +44,21 @@ ADF.GridView = Backbone.Marionette.CompositeView.extend({
         var childContainer = this.$el.find(this.childViewContainer);
         gridView.collection.each(function(model) {
 
-            // var childView = new gridView.childView({model:model});
-            var childView = new ADF.RecordView();
-            childContainer.before(childView.template(model.toJSON()))
+            // console.debug(gridView.childViewOptions());
 
-            console.log('yay for grid collection',childView.render());
+            // console.debug($.extend({},gridView.childViewOptions(),{model:model}));
+
+            var childView = new gridView.childView($.extend({},gridView.childViewOptions(),{model:model}));
+            // var childView = new ADF.RecordView();
+            // console.debug(childView.render());
+            childContainer.append(childView.renderAsChild())
         })
+    },
+    handleAction: function(e) {
+        e.preventDefault();
+        console.debug('yay');
     }
+
 });
 
 // autoAdmin.GridView = autoAdmin.PageView.extend({

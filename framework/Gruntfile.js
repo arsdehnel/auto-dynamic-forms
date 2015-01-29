@@ -68,11 +68,12 @@ module.exports = function(grunt) {
                     'js/dev/adf.view.column-select.js',
                     'js/dev/adf.view.field.js',
                     'js/dev/adf.view.form.js',
+                    // has to be before grid
+                    'js/dev/adf.view.record.js',
                     'js/dev/adf.view.grid.js',
                     'js/dev/adf.view.header.js',
                     'js/dev/adf.view.headers.js',
                     'js/dev/adf.view.page.js',
-                    'js/dev/adf.view.record.js',
                     'js/dev/common.js'
                 ],
                 dest: basePath+'js/adf.min.js',

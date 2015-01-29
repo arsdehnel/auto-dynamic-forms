@@ -9,8 +9,9 @@ ADF.FieldModel = Backbone.Model.extend({
         inputType = ADF.utils.capitalize(inputType);
         inputType = 'inputType'+inputType;
 
-        this.set("inputField",ADF.templates[inputType](this.toJSON()));
-        // this.set("regionName",this.collection.regionName);
+        // this.set("inputField",ADF.templates[inputType](this.toJSON()));
+        this.set("inputTemplate",ADF.templates[inputType]);
+
     }
 
 });

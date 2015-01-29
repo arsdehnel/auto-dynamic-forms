@@ -71,7 +71,6 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
 
             // TODO: move this to the model initializer
             model.set('regionName',columnSelect.regionName);
-            console.debug('columnitem render',model.toJSON());
 
             if( model.get("fieldPriority") !== 0 ){
                 var childView = new columnSelect.childView;

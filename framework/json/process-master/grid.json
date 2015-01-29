@@ -39,7 +39,7 @@
         "minLength": 1,
         "maxLength": 100,
         "requiredInd": "N",
-        "fieldPriority": 1,
+        "fieldPriority": 9,
         "data": [
           {
             "detailId": 5,
@@ -95,7 +95,7 @@
         "minLength": 0,
         "maxLength": 30,
         "requiredInd": "Y",
-        "fieldPriority": 1,
+        "fieldPriority": 9,
         "data": [],
         "actions": [],
         "dataAttributes": []
@@ -115,7 +115,7 @@
         "minLength": 0,
         "maxLength": 100,
         "requiredInd": "Y",
-        "fieldPriority": 1,
+        "fieldPriority": 9,
         "data": [],
         "actions": [],
         "dataAttributes": []
@@ -135,7 +135,7 @@
         "minLength": 1,
         "maxLength": 60,
         "requiredInd": "Y",
-        "fieldPriority": 1,
+        "fieldPriority": 9,
         "data": [],
         "actions": [],
         "dataAttributes": []
@@ -662,7 +662,7 @@
         "label": null,
         "tooltipText": null,
         "fieldClass": null,
-        "wrapClass": "auto-admin-cell-actions",
+        "wrapClass": "adf-cell-actions",
         "prefix": null,
         "suffix": null,
         "currentValue": null,
@@ -675,7 +675,7 @@
           {
             "tooltipText": null,
             "label": "Save",
-            "actionType": "save",
+            "type": "save",
             "wrapClass": null,
             "actionClass": null,
             "url": "#",
