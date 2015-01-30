@@ -1,6 +1,7 @@
 /*global
 ADF,
-_
+_,
+$
 */
 ADF.utils = {
     capitalize: function( string ) {
@@ -11,8 +12,31 @@ ADF.utils = {
             return x.toUpperCase();
         });
     },
-    spin: function( targetObj ) {
-        targetObj.removeClass('hide').html('').addClass('loading').spin();
+    spin: function( targetObj, opts ) {
+
+        var settings = {};
+        var defaults = {
+            emptyTarget : false
+        };
+
+        $.extend(settings, defaults, opts);
+
+        if( settings.stop ){
+
+            targetObj.removeClass('loading').find('.spinner').remove();
+
+        }else{
+
+            targetObj.removeClass('hide');
+
+            if( settings.emptyTarget ){
+                targetObj.empty();
+            }
+
+            targetObj.addClass('loading').spin();
+
+        }
+
     },
     message: function() {
 

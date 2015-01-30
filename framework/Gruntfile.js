@@ -1,4 +1,7 @@
-'use strict';
+/*global
+module,
+require
+*/
 module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
@@ -6,16 +9,29 @@ module.exports = function(grunt) {
     var client = grunt.option('client');
     var basePath;
 
+    if( !client ){
+        grunt.fail.fatal('no client set');
+    }
+
     switch( client ) {
 
-        case "acuraadmin":
+        case 'acuraadmin':
             basePath = '../GlassFishacuraperformance/acuraadmin/src/webroot/v2/';
             break;
-
-        case "client":
+        case 'acnmadmin':
+            basePath = '../GlassFishACNM/acnmadmin/src/webroot/v2/';
+            break;
+        case 'candiadmin':
+            basePath = '../GlassFishNissan/candiadmin/src/webroot/v2/';
+            break;
+        case 'client':
             basePath = '../client/';
             break;
 
+    }
+
+    if( !basePath ){
+        grunt.fail.fatal('no basePath set');
     }
 
     // Project configuration.
@@ -40,7 +56,7 @@ module.exports = function(grunt) {
         handlebars: {
             compile: {
                 options: {
-                    namespace: "ADF.templates",
+                    namespace: 'ADF.templates',
                     processName: function(filePath) {
                         var tmpltName = filePath.replace(/^.*[\\\/]/, '').replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
                             tmpltName = tmpltName.substr(0, tmpltName.lastIndexOf('.'));
@@ -48,7 +64,7 @@ module.exports = function(grunt) {
                     }
                 },
                 files: {
-                    'grunt-work/hbsTemplates.js': ["tpl/*.hbs"]
+                    'grunt-work/hbsTemplates.js': ['tpl/*.hbs']
                 }
             }
         },

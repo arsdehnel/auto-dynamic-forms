@@ -1,3 +1,9 @@
+/*global
+ADF,
+Marionette,
+$,
+adf
+*/
 ADF.FormView = Marionette.CollectionView.extend({
 
     initialize: function( options ) {
@@ -24,7 +30,7 @@ ADF.FormView = Marionette.CollectionView.extend({
             value : action
         });
 
-        if( $(action).size() > 0 ){
+        if( action.substring(0,1) === '#' && $(action).size() > 0 ){
 
             ADF.utils.message('log','Found something to load into');
 
@@ -100,7 +106,8 @@ ADF.FormView = Marionette.CollectionView.extend({
             // })
 
         }else{
-            ADF.utils.message('error','Trying to load ajax but destination element could not be found on the page');
+            $form.submit();
+            // ADF.utils.message('error','Trying to load ajax but destination element could not be found on the page');
         }
 
     }

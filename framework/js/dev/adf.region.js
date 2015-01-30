@@ -1,3 +1,9 @@
+/*global
+ADF,
+Marionette,
+_,
+$
+*/
 ADF.Region = Marionette.Region.extend({
     // TODO: create new region for an overlay
     // TODO: overlay region optionally can get data from caller region
@@ -20,12 +26,12 @@ ADF.Region = Marionette.Region.extend({
 
         $.ajax({
             url: ( settings.url ? settings.url : region.options.adfAjaxUrl ),
-            type: ( settings.method ? settings.method : "GET" ),
+            type: ( settings.method ? settings.method : 'GET' ),
             data: settings.data,
-            dataType: "json",
+            dataType: 'json',
             beforeSend: function(){
                 // TODO: resolve issue with this emptying out the target element
-                // ADF.utils.spin(region.$el);
+                ADF.utils.spin(region.$el);
             },
             complete: function( jqXHR, textStatus ){
 
@@ -34,22 +40,24 @@ ADF.Region = Marionette.Region.extend({
                     ADF.utils.message('log','AJAX message: '+jqXHR.responseJSON.message);
 
                     // this is custom depending on the calling region's type so we send it back
+                    ADF.utils.spin(region.$el, { stop: true } );
                     region.ajaxSuccessHandler(jqXHR.responseJSON);
+
 
                 }else if( jqXHR.status === 404 ){
 
-                    ADF.utils.message('error',"Page Not Found\n\nThe ajax calls is being made to a page ("+settings.url+") that could not be found. Probably going to need to get a TA involved to see what is going on here.");
+                    ADF.utils.message('error','<h1>Page Not Found.</h1><p>The ajax calls is being made to a page ('+settings.url+') that could not be found. Probably going to need to get a TA involved to see what is going on here.');
 
                 }else{
 
                     alert(textStatus+'! Probably going to need to get a TA involved.');
                     console.log('settings',settings);
                     console.log(jqXHR);
-                    target.html(jqXHR.responseText);
+                    region.$el.html(jqXHR.responseText);
 
                 }
 
             }
-        })
+        });
     }
 });
