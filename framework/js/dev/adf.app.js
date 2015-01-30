@@ -1,6 +1,9 @@
 // TODO: svg rendering
 var ADF = ADF||{};
 ADF.App = Marionette.Application.extend({
+  events: {
+    'overlayRemove'            : 'removeOverlay'
+  },
   initialize: function(options) {
      ADF.utils.message('log','App Initialized', options);
      var adf = this;
@@ -10,8 +13,6 @@ ADF.App = Marionette.Application.extend({
             adf.showRegions()
         },200)
     });
-
-   // },1000);
   },
   initRegions: function(){
     var app = this;
@@ -38,6 +39,9 @@ ADF.App = Marionette.Application.extend({
     return _.find(regions,function(region){
       return region[filter.attribute] === filter.value || region.options[filter.attribute] === filter.value;
     });
+  },
+  removeOverlay: function() {
+    $('.body-overlay').addClass('hide');
   }
 });
 

@@ -19,7 +19,8 @@
         <nav id="nav-footer" class="nav-footer">
         </nav><!-- #nav-footer.nav-footer -->
     </footer>
-    <div class="body-overlay hide"></div>
+    <div class="adf-grid-overlay-editor adf-region open" data-adf-region-type="grid" id="overlay-editor" data-adf-ajax-onload="true" data-adf-ajax-url="../json/process-master/grid.json"></div>
+    <div class="body-overlay"></div>
     <script src="<?php echo $client_path ?>js/plugins.min.js"></script>
     <script src="<?php echo $client_path ?>js/hbsTemplates.min.js"></script>
     <script src="<?php echo $client_path ?>js/adf.min.js"></script>

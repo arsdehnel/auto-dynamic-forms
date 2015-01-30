@@ -1,11 +1,20 @@
 ADF.GridRegion = ADF.Region.extend({
     template: ADF.templates.gridWrapper,
+    events: {
+        'click .overlay-close'          : 'closeOverlayEditor'
+    },
     initialize: function( options ) {
         ADF.utils.message('log','GridRegion Initialized', options);
 
         var gridRegion = this;
 
-        gridRegion.$el.html(gridRegion.template());
+        if( gridRegion.$el.hasClass('adf-grid-overlay-editor') ){
+            gridRegion.inOverlay = true;
+        }else{
+            gridRegion.inOverlay = false;
+        }
+
+        gridRegion.$el.html(gridRegion.template({inOverlay:gridRegion.inOverlay}));
         gridRegion.fieldsCollection = new ADF.FieldsCollection(null,{regionName:gridRegion.options.regionName});
 
         this._super( options );
@@ -63,6 +72,24 @@ ADF.GridRegion = ADF.Region.extend({
             }
 
         }
+
+    },
+
+    closeOverlayEditor: function(e) {
+
+        e.preventDefault();
+
+        console.log('this');
+
+        var gridRegion = this;
+
+        if( gridRegion.$el.find('.changed') > 0 ){
+            // TODO: make this a bit prettier
+            alert('found records that have been changed and not saved');
+        }
+
+        gridRegion.$el.empty().removeClass('open');
+        adf.trigger('overlayRemove');
 
     }
 

@@ -173,32 +173,6 @@
   float: right;
   background: #666666; }
 
-.adf-grid-overlay-editor {
-  position: relative; }
-  .adf-grid-overlay-editor .display-value {
-    z-index: 0;
-    position: relative; }
-  .adf-grid-overlay-editor .overlay-editor {
-    display: none;
-    position: absolute;
-    top: 100%;
-    z-index: 6000;
-    background: white;
-    width: 90vw;
-    left: -45vw;
-    padding: 1em;
-    border-radius: 4px;
-    box-shadow: 0 12px 12px 2px #666; }
-  .adf-grid-overlay-editor.open .display-value {
-    z-index: 6000;
-    background: #ddd;
-    border-radius: 4px 4px 0 0;
-    margin: 0 1em;
-    border: 1px solid #999;
-    border-bottom-width: 0; }
-  .adf-grid-overlay-editor.open .overlay-editor {
-    display: block; }
-
 .adf-grid thead .icon-tooltip {
   position: absolute;
   top: 0;
@@ -1356,3 +1330,29 @@ disabled look for disabled choices in the results dropdown
   text-decoration: line-through; }
 .to-do .ready-for-server {
   color: #ccc; }
+
+.adf-grid-overlay-editor {
+  display: none;
+  position: absolute;
+  top: 50%;
+  z-index: 6000;
+  background: white;
+  width: 90vw;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  padding: 1em;
+  box-shadow: 0 12px 12px 2px #666; }
+  .adf-grid-overlay-editor.open {
+    display: block; }
+  .adf-grid-overlay-editor .overlay-close {
+    position: absolute;
+    left: 100%;
+    bottom: 100%;
+    padding: 0 1em;
+    cursor: pointer;
+    -webkit-transform: translate3d(-50%, 50%, 0);
+            transform: translate3d(-50%, 50%, 0);
+    margin: 0; }
+    .adf-grid-overlay-editor .overlay-close span {
+      display: none; }
