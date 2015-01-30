@@ -143,3 +143,70 @@ ADF.FormView = Marionette.CollectionView.extend({
 //     },
 
 // });
+
+
+    // fieldLkup: function( e ) {
+
+    //     var formView = this;
+
+    //     e.preventDefault();
+
+    //     var $this = $(e.target);
+
+    //     var $parentRow = $this.closest('.form-row');
+    //     var targetId = $parentRow.data('field-lkup-target');
+    //     var $target = $('#'+targetId+'-field-wrap');
+    //     var ajaxObj = {};
+    //     var dataArr = [];
+    //     var childFields = adf.utils.parseCommaList( $parentRow.data('adf-ajax-child-fields') );
+    //     var dataFields = adf.utils.parseCommaList( $parentRow.data('adf-ajax-data-fields') );
+    //     if( dataFields.length === 0 ){
+    //         _.each(formView.fieldsColl.models, function(element, index, array){
+    //             dataFields.push(element.get('name'));
+    //         });
+    //     }
+
+
+    //     dataArr.push({
+    //         'name' : $parentRow.attr('data-field-master-id'),
+    //         'value' : $this.val()
+    //     });
+
+    //     // TODO:add code to optionally get more data from other fields based on data- attributes and put them into dataArr
+    //     dataFields.forEach(function(element, index, array){
+    //         // console.log('get data for element '+element)
+    //         dataArr.push({
+    //             'name' : $('#'+element+'-field-wrap').attr('data-field-master-id'),
+    //             'value' : $(':input[name='+element+']').val()
+    //         });
+    //     });
+
+    //     childFields.forEach(function(element, index, array){
+    //         // console.log('remove element '+element)
+    //         $('#'+element+'-field-wrap').remove();
+    //     });
+
+    //     if( $target.size() === 0 ){
+    //         // TODO:somehow also remove any prefix/suffix for this field upon load of the new stuff
+    //         // TODO:allow field to be dropped into the middle of a form rather than append to the form
+
+    //         // $parentRow.after(adf.templates.formField( {name:targetId} ));
+    //         // $target = $parentRow.next();
+    //         $target = $parentRow;
+    //     }else{
+    //         $target.remove();
+    //         $target = $parentRow;
+    //     }
+
+    //     ajaxObj.data = dataArr;
+    //     ajaxObj.url = $parentRow.data('field-lkup-url');
+    //     ajaxObj.method = 'POST';
+    //     ajaxObj.target = formView.$el;
+    //     ajaxObj.spinTarget = $target;
+    //     ajaxObj.formView = formView;
+    //     ajaxObj.resultType = 'fields';
+
+    //     // formView.pageView.submitAjax( ajaxObj );
+    //     formView.ajax( ajaxObj );
+
+    // },
