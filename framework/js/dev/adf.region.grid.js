@@ -1,3 +1,8 @@
+/*global
+ADF,
+_,
+adf
+*/
 ADF.GridRegion = ADF.Region.extend({
     template: ADF.templates.gridWrapper,
     events: {
@@ -30,7 +35,7 @@ ADF.GridRegion = ADF.Region.extend({
             el:gridRegion.$el.find('.adf-grid-wrapper')[0],
             collection: new ADF.RecordsCollection(null,{regionName:gridRegion.options.regionName}),
             regionName: gridRegion.options.regionName
-        })
+        });
 
         this._super();
 
@@ -66,9 +71,9 @@ ADF.GridRegion = ADF.Region.extend({
             if( xhrJson.hasOwnProperty('errors') ){
                 _.each(xhrJson.errors,function( element, index, array ){
                     alert(element);
-                })
+                });
             }else{
-                alert("Looks like the ajax response wasn't quite what was expected.  Probably need to get a TA involved to help figure it out.");
+                alert('Looks like the ajax response wasn\'t quite what was expected.  Probably need to get a TA involved to help figure it out.');
             }
 
         }
