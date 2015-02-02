@@ -11,6 +11,12 @@
                 "name" : "application",
                 "label" : "Application",
                 "type" : "select2",
+                "dataAttributes" : [
+                    {
+                        "name" : "adf-submit-on-change",
+                        "value" : "true"
+                    }
+                ],
                 "data" : [
                     {
                         "value" : "CORE",

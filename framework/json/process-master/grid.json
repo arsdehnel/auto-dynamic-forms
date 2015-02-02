@@ -141,31 +141,19 @@
         "dataAttributes": []
       },
       {
-        "name" : "email_dist",
+        "name" : "EML_DIST_DTL",
         "label" : "Email Distributions",
         "tooltip" : "This is a fancy-ass thing to allow users to enter all the details of their emails right here.",
         "fieldPriority" : "1",
         "type" : "grid_overlay",
         "dataAttributes" : [
             {
-                "name" : "onload-ajax-url",
+                "name" : "adf-ajax-url",
                 "value" : "../json/process-master/email-dist-grid.json"
             },
             {
                 "name" : "adf-ajax-data-fields",
                 "value" : "prcs_mstr_id"
-            },
-            {
-                "name" : "record-save-url",
-                "value" : "../json/process-master/email-dist-save.json"
-            },
-            {
-                "name" : "result-type",
-                "value" : "grid"
-            },
-            {
-                "name" : "onload-ajax-target-id",
-                "value" : "grid-overlay-editor--email_dist"
             }
         ]
       },
@@ -678,7 +666,7 @@
             "type": "save",
             "wrapClass": null,
             "actionClass": null,
-            "url": "#",
+            "url": "../json/process-master/save.json",
             "pageDetailId": 20,
             "fieldPageDetailId": 24
           }

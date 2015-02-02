@@ -1,0 +1,11 @@
+<?php
+    $templates = scandir( $_SERVER['DOCUMENT_ROOT'].'/framework/tpl/' );
+    $inputTypes = array();
+
+    foreach( $templates as $template ){
+        if( substr( $template, 0, 10 ) == 'input-type' ):
+            $inputTypes[] = $template;
+        endif;
+    }
+
+    echo json_encode($inputTypes);

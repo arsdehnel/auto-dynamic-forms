@@ -8,9 +8,9 @@
     "data" : {
         "fields" : [
           {
-            "fldMstrId": 4,
-            "name" : "promotion_id",
-            "label" : "Promotion",
+            "fldMstrId" : "21",
+            "name" : "page_code",
+            "label" : "Page",
             "type" : "select2",
             "dataAttributes" : [
                 {
@@ -19,21 +19,25 @@
                 },
                 {
                     "name" : "adf-dependent-field-lkup-url",
-                    "value" : "../json/client-form/secondary.json"
+                    "value" : "../json/client-form/tertiary.json"
                 },
                 {
                     "name" : "adf-dependent-field-lkup-child-fields",
-                    "value" : "page_code,field_type"
+                    "value" : "field_type"
                 }
             ],
             "data" : [
               {
-                "value" : "3117",
-                "label" : "Nissan 10 Sales Growth Program"
+                "value" : "CLAIM_FORM",
+                "label" : "Claim Form"
               },
               {
-                "value" : "7619",
-                "label" : "Career Builders"
+                "value" : "CONF_PAGE",
+                "label" : "Confirmation Page"
+              },
+              {
+                "value" : "PDF_CERT",
+                "label" : "PDF Certificate"
               }
             ]
           }

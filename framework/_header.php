@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $client_path ?>css/main.css">
     <script src="<?php echo $client_path ?>js/lib.min.js"></script>
 </head>
-<body class="auto-admin-page environment-qa">
+<body class="adf-app environment-qa">
     <?php include('svg/defs.svg'); ?>
     <header>
         <nav id="nav-header" class="nav-header">
@@ -60,13 +60,26 @@
                     <a href="#">Nav Item</a>
                 </li>
                 <li class="nav-item--1">
-                    <a href="#">Nav Item</a>
+                    <a href="#">Client Sites</a>
+                    <ul class="nav-level--2">
+                        <li class="nav-item--2">
+                            <a href="client-form.html">Client Form</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item--1">
-                    <a href="#">Nav Item</a>
+                    <a href="#">Framework</a>
+                    <ul class="nav-level--2">
+                        <li class="nav-item--2">
+                            <a href="input-types.html">Input Types</a>
+                        </li>
+                        <li class="nav-item--2">
+                            <a href="form-builder.html">Form Builder</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav><!-- #nav-main.nav-main -->
     </header>
-    <main id="main" class="content layout-grid">
+    <main id="main" class="content layout-grid adf-page">
         <h1 class="page-title"><?php echo $header_text; ?></h1>

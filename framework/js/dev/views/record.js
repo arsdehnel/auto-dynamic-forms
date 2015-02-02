@@ -4,11 +4,12 @@ ADF.RecordView = Backbone.Marionette.CompositeView.extend({
     className: 'adf-record',
     childView: ADF.CellView,
     events: {
-        'click .btn'                : 'handleAction'
+        'click .btn'                    : 'handleAction',
+        'click .adf-grid-overlay-value' : 'showOverlayEditor'
     },
     initialize: function( options ) {
         ADF.utils.message('log','RecordView Initialized', options );
-        this.region = adf._regionManager.get(options.regionName);
+        this.region = adf.page.getRegion(options.regionName);
         this.regionName = this.region.options.regionName;
         this.model.set("regionName",this.regionName);
         this.collection = this.region.fieldsCollection;
@@ -19,15 +20,8 @@ ADF.RecordView = Backbone.Marionette.CompositeView.extend({
         this.render();
     },
     renderAsChild: function() {
-        // TODO: figure out a way to properly use a template that actually as a <tr> in it
-        // <tr id="{{regionName}}--{{id}}" class="adf-record {{rowClass}}"></tr>
-        // this.$el
-        //     .attr('id',this.model.get('regionName') + '--' + this.model.get('id'))
-        //     .addClass('adf-record '+this.model.get('rowClass'));
 
         var cellsString = '';
-
-        // console.debug('recordModel',this.model.toJSON());
 
         var recordView = this;
 
@@ -47,8 +41,23 @@ ADF.RecordView = Backbone.Marionette.CompositeView.extend({
     },
     handleAction: function(e) {
         e.preventDefault();
-        console.debug('yay');
+        var $targetObj = $(e.target).closest('a');
+        var actionType = $targetObj.attr('data-action-type');
+        // TODO: experiment with making this dynamic
+        switch( actionType ){
+            case "save":
+                this.model.url = $targetObj.attr('href');
+                this.model.save();
+                break;
+            default:
+                ADF.utils.message('error','Unexpected record action ('+actionType+') triggered.',$targetObj);
+        }
+    },
+    showOverlayEditor: function(e) {
+        e.preventDefault();
+        adf.page.getRegion('overlayEditor').show( $(e.target) );
     }
+
 });
 
 //     events: {

@@ -274,7 +274,7 @@ this["ADF"]["templates"]["inputHelperSelect2Record"] = Handlebars.template({"1":
 
 this["ADF"]["templates"]["inputTypeActions"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "    <a\n    	href=\""
-    + escapeExpression(((helper = (helper = helpers.href || (depth0 != null ? depth0.href : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"href","hash":{},"data":data}) : helper)))
+    + escapeExpression(((helper = (helper = helpers.url || (depth0 != null ? depth0.url : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"url","hash":{},"data":data}) : helper)))
     + "\"\n    	class=\"btn btn-"
     + escapeExpression(((helper = (helper = helpers.type || (depth0 != null ? depth0.type : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"type","hash":{},"data":data}) : helper)))
     + " "
@@ -327,11 +327,16 @@ this["ADF"]["templates"]["inputTypeCheckbox"] = Handlebars.template({"compiler":
 
 
 
-this["ADF"]["templates"]["inputTypeCheckboxes"] = Handlebars.template({"1":function(depth0,helpers,partials,data,depths) {
+this["ADF"]["templates"]["inputTypeCheckboxes"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "        data-"
+    + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
+    + "=\""
+    + escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"value","hash":{},"data":data}) : helper)))
+    + "\"\n";
+},"3":function(depth0,helpers,partials,data,depths) {
   var lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
-  return "    <input type=\"checkbox\" name=\""
-    + escapeExpression(lambda((depths[1] != null ? depths[1].name : depths[1]), depth0))
-    + "\" id=\""
+  return "        <input type=\"checkbox\" name=\""
     + escapeExpression(lambda((depths[1] != null ? depths[1].name : depths[1]), depth0))
     + "\" value=\""
     + escapeExpression(lambda((depth0 != null ? depth0.value : depth0), depth0))
@@ -341,11 +346,18 @@ this["ADF"]["templates"]["inputTypeCheckboxes"] = Handlebars.template({"1":funct
     + escapeExpression(lambda((depth0 != null ? depth0.label : depth0), depth0))
     + "\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data,depths) {
-  var stack1;
-  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.data : depth0), {"name":"each","hash":{},"fn":this.program(1, data, depths),"inverse":this.noop,"data":data});
-  if (stack1 != null) { return stack1; }
-  else { return ''; }
-  },"useData":true,"useDepths":true});
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div\n    class=\"adf-checkbox-wrapper "
+    + escapeExpression(((helper = (helper = helpers.fieldClass || (depth0 != null ? depth0.fieldClass : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"fieldClass","hash":{},"data":data}) : helper)))
+    + "\"\n    id=\""
+    + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
+    + "\"\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.dataAttributes : depth0), {"name":"each","hash":{},"fn":this.program(1, data, depths),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "    >\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.data : depth0), {"name":"each","hash":{},"fn":this.program(3, data, depths),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "</div>";
+},"useData":true,"useDepths":true});
 
 
 
@@ -362,7 +374,7 @@ this["ADF"]["templates"]["inputTypeEmail"] = Handlebars.template({"compiler":[6,
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
   return "<input type=\"email\" name=\""
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
-    + "\" class=\"form-input-field adf-grid-filter-value\" value=\""
+    + "\" value=\""
     + escapeExpression(((helper = (helper = helpers.currentValue || (depth0 != null ? depth0.currentValue : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"currentValue","hash":{},"data":data}) : helper)))
     + "\">";
 },"useData":true});
@@ -371,21 +383,19 @@ this["ADF"]["templates"]["inputTypeEmail"] = Handlebars.template({"compiler":[6,
 
 this["ADF"]["templates"]["inputTypeGridOverlay"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "            data-"
+  return "        data-"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "=\""
     + escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"value","hash":{},"data":data}) : helper)))
     + "\"\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div class=\"adf-grid-overlay-editor\">\n	<div class=\"display-value adf-grid-filter-value\">\n		";
-  stack1 = ((helper = (helper = helpers.currentValue || (depth0 != null ? depth0.currentValue : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"currentValue","hash":{},"data":data}) : helper));
-  if (stack1 != null) { buffer += stack1; }
-  buffer += "\n	</div>\n	<div class=\"overlay-editor\"\n";
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, buffer = "<div class=\"adf-grid-overlay-value\"\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.dataAttributes : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "        >\n		<div id=\"grid-overlay-editor--"
-    + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
-    + "\" class=\"overlay-editor-grid-target\"></div>\n		<button type=\"button\" class=\"btn close icon icon-done\">done</button>\n	</div>\n</div>";
+  buffer += "    >\n	";
+  stack1 = ((helper = (helper = helpers.currentValue || (depth0 != null ? depth0.currentValue : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"currentValue","hash":{},"data":data}) : helper));
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "\n</div>";
 },"useData":true});
 
 
@@ -394,7 +404,7 @@ this["ADF"]["templates"]["inputTypeNumber"] = Handlebars.template({"compiler":[6
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
   return "  <input type=\"number\" min=\"0\" max=\"9999\" name=\""
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
-    + "\" class=\"adf-grid-filter-value\" value=\""
+    + "\" value=\""
     + escapeExpression(((helper = (helper = helpers.currentValue || (depth0 != null ? depth0.currentValue : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"currentValue","hash":{},"data":data}) : helper)))
     + "\">\n";
 },"useData":true});
@@ -478,7 +488,7 @@ this["ADF"]["templates"]["inputTypeSelect2"] = Handlebars.template({"1":function
   var lambda=this.lambda, escapeExpression=this.escapeExpression;
   return escapeExpression(lambda((depth0 != null ? depth0.value : depth0), depth0));
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data,depths) {
-  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<select\n    class=\"select2 form-input-field adf-grid-filter-value "
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<select\n    class=\"select2 "
     + escapeExpression(((helper = (helper = helpers.fieldClass || (depth0 != null ? depth0.fieldClass : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"fieldClass","hash":{},"data":data}) : helper)))
     + "\"\n    name=\""
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))

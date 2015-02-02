@@ -18,7 +18,7 @@ ADF.GridView = Backbone.Marionette.CompositeView.extend({
         ADF.utils.message('log','GridView Initialized', options );
         this.regionName = options.regionName;
         var gridView = this;
-        var region = adf._regionManager.get(gridView.regionName);
+        var region = adf.page[gridView.regionName];
         gridView.$el.html(gridView.template({}));
 
         gridView.headersView = new ADF.HeadersView({

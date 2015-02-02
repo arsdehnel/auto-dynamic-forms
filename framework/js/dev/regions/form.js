@@ -1,6 +1,7 @@
 ADF.FormRegion = ADF.Region.extend({
     // TODO: handle being in a dialog
     // TODO: field dependency lookup
+    // TODO: preexisting data handled
 
     initialize: function( options ) {
         ADF.utils.message('log','FormRegion Initialized', options);

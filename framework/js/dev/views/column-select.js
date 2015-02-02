@@ -15,46 +15,53 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
         "click .adf-grid-column-group"          : "columnSelect",
         "change .column-selector .dropdown-menu input" : "columnSelect"
     },
-    // TODO: this model should go to the parent prototype but something wasn't working with that so it's on the list for later
-    model: new ADF.DropdownMenuModel(),
     initialize: function( options ) {
         ADF.utils.message('log','ColumnSelectView Initialized', options );
         this.regionName = options.regionName;
-        this.model.set('buttonLabel','Column Select');
-        this.model.set('wrapClass','column-selector');
-        this.model.get('footerOptions').push({
-            href : "#",
-            itemClass : "adf-grid-column-group",
-            label : "All Columns",
-            dataAttributes : [
+
+        // TODO: this model should go to the parent prototype but something wasn't working with that so it's on the list for later
+        // TODO: seems like this model shouldn't be created in the view since that's a bit backwards
+        // TODO: hide this when the user clicks off of it
+        this.model = new ADF.DropdownMenuModel({
+            buttonLabel : 'Column Select',
+            wrapClass : 'column-selector',
+            footerOptions : [
                 {
-                    "name" : "column-select-type",
-                    "value" : "all"
+                    href : "#",
+                    itemClass : "adf-grid-column-group",
+                    label : "All Columns",
+                    dataAttributes : [
+                        {
+                            "name" : "column-select-type",
+                            "value" : "all"
+                        }
+                    ]
+                },
+                {
+                    href : "#",
+                    itemClass : "adf-grid-column-group",
+                    label : "Minimum Columns",
+                    dataAttributes : [
+                        {
+                            "name" : "column-select-type",
+                            "value" : "min"
+                        }
+                    ]
+                },
+                {
+                    href : "#",
+                    itemClass : "adf-grid-column-group",
+                    label : "Default Columns",
+                    dataAttributes : [
+                        {
+                            "name" : "column-select-type",
+                            "value" : "dflt"
+                        }
+                    ]
                 }
             ]
         });
-        this.model.get('footerOptions').push({
-            href : "#",
-            itemClass : "adf-grid-column-group",
-            label : "Minimum Columns",
-            dataAttributes : [
-                {
-                    "name" : "column-select-type",
-                    "value" : "min"
-                }
-            ]
-        });
-        this.model.get('footerOptions').push({
-            href : "#",
-            itemClass : "adf-grid-column-group",
-            label : "Default Columns",
-            dataAttributes : [
-                {
-                    "name" : "column-select-type",
-                    "value" : "dflt"
-                }
-            ]
-        });
+
     },
     render: function() {
 

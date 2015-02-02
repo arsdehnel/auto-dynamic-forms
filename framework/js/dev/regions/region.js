@@ -10,11 +10,11 @@ ADF.Region = Marionette.Region.extend({
 
     initialize: function(options){
         ADF.utils.message('log','Region Initialized',options);
-        this.adfAjaxOnload = ( options.adfAjaxOnload ? options.adfAjaxOnload : false );
+        this.adfAjaxOnshow = ( options.adfAjaxOnshow ? options.adfAjaxOnshow : false );
     },
     show: function() {
         // TODO: this really shouldn't be in the region object, probably part of the view that we've associated with it...
-        if( this.adfAjaxOnload ){
+        if( this.adfAjaxOnshow ){
             this.ajax();
         }
     },
@@ -28,19 +28,18 @@ ADF.Region = Marionette.Region.extend({
             url: ( settings.url ? settings.url : region.options.adfAjaxUrl ),
             type: ( settings.method ? settings.method : 'GET' ),
             data: settings.data,
-            dataType: 'json',
             beforeSend: function(){
-                // TODO: resolve issue with this emptying out the target element
                 ADF.utils.spin(region.$el);
             },
             complete: function( jqXHR, textStatus ){
+
+                ADF.utils.spin(region.$el, { stop: true } );
 
                 if( jqXHR.status === 200 ){
 
                     ADF.utils.message('log','AJAX message: '+jqXHR.responseJSON.message);
 
                     // this is custom depending on the calling region's type so we send it back
-                    ADF.utils.spin(region.$el, { stop: true } );
                     region.ajaxSuccessHandler(jqXHR.responseJSON);
 
 

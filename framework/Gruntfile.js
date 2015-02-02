@@ -71,26 +71,36 @@ module.exports = function(grunt) {
         concat: {
             dev: {
                 src: [
-                    'js/dev/adf.config.js',
-                    'js/dev/adf.utils.js',
-                    'js/dev/adf.app.js',
-                    'js/dev/adf.region.js',
-                    'js/dev/adf.region.*.js',
-                    'js/dev/adf.model.*.js',
-                    'js/dev/adf.collection.*.js',
-                    'js/dev/adf.view.dropdown-menu.js',
-                    'js/dev/adf.view.cell.js',
-                    'js/dev/adf.view.column-select-item.js',
-                    'js/dev/adf.view.column-select.js',
-                    'js/dev/adf.view.field.js',
-                    'js/dev/adf.view.form.js',
-                    // has to be before grid
-                    'js/dev/adf.view.record.js',
-                    'js/dev/adf.view.grid.js',
-                    'js/dev/adf.view.header.js',
-                    'js/dev/adf.view.headers.js',
-                    'js/dev/adf.view.page.js',
-                    'js/dev/common.js'
+                    // core
+                    'js/dev/core/config.js',
+                    'js/dev/core/utils.js',
+                    'js/dev/core/app.js',
+                    'js/dev/core/page.js',
+                    // regions
+                    'js/dev/regions/region.js',
+                    'js/dev/regions/form.js',
+                    'js/dev/regions/grid.js',
+                    'js/dev/regions/overlay-grid.js',
+                    // models
+                    'js/dev/models/field.js',
+                    'js/dev/models/record.js',
+                    'js/dev/models/dropdown-menu.js',
+                    // collections
+                    'js/dev/collections/*.js',
+                    // views
+                    'js/dev/views/dropdown-menu.js',
+                    'js/dev/views/cell.js',
+                    'js/dev/views/column-select-item.js',
+                    'js/dev/views/column-select.js',
+                    'js/dev/views/field.js',
+                    'js/dev/views/form.js',
+                    'js/dev/views/record.js',                    // has to be before grid
+                    'js/dev/views/grid.js',
+                    'js/dev/views/header.js',
+                    'js/dev/views/headers.js',
+                    'js/dev/views/page.js',
+
+                    'js/dev/core/common.js'
                 ],
                 dest: basePath+'js/adf.min.js',
             },
@@ -151,7 +161,7 @@ module.exports = function(grunt) {
         },
         watch: {
             scriptsDev: {
-                files: ['js/dev/*.js'],
+                files: ['js/dev/**/*.js'],
                 tasks: ['scripts-dev']
             },
             scriptsLib: {

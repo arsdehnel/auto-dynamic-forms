@@ -14,13 +14,13 @@
         echo '</ul><!-- /.to-do';
     endif;
 ?>
-  </main>
+        <div class="adf-grid-overlay-editor adf-region" data-adf-ajax-onshow="true" data-adf-region-type="overlay-grid" id="overlay-editor"></div>
+        <div class="backdrop hide"></div>
+    </main>
     <footer>
         <nav id="nav-footer" class="nav-footer">
         </nav><!-- #nav-footer.nav-footer -->
     </footer>
-    <div class="adf-grid-overlay-editor adf-region open" data-adf-region-type="grid" id="overlay-editor" data-adf-ajax-onload="true" data-adf-ajax-url="../json/process-master/grid.json"></div>
-    <div class="body-overlay"></div>
     <script src="<?php echo $client_path ?>js/plugins.min.js"></script>
     <script src="<?php echo $client_path ?>js/hbsTemplates.min.js"></script>
     <script src="<?php echo $client_path ?>js/adf.min.js"></script>

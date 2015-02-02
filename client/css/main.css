@@ -1308,11 +1308,9 @@ disabled look for disabled choices in the results dropdown
   border-radius: 2px;
   background-size: 35px 20px, 100% 100%, 100% 100%; }
 
-.body-overlay {
+.backdrop {
   background: rgba(80, 80, 80, 0.76);
-  z-index: 5000; }
-
-.body-overlay, .page-spin {
+  z-index: 5000;
   position: fixed;
   top: 0;
   right: 0;
