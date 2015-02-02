@@ -12,20 +12,21 @@ ADF.FormView = Marionette.CollectionView.extend({
 
     events: {
         // select handlers
-        'change select[data-adf-submit-on-change=true]'                    : 'submitParentForm',
-        'change select[data-adf-dependent-field-lkup-on-change=true]'      : 'dependentFieldLkup',
+        'change select[data-adf-submit-on-change=true]'                     : 'submitParentForm',
+        'change select[data-adf-dependent-field-lkup-on-change=true]'       : 'dependentFieldLkup',
 
-        // same handlers as above but rearrange
-        // 'click *[data-adf-submit-on-change=true] :checkbox'                     : 'submitParentForm',
-        'click *[data-adf-dependent-field-lkup-on-change=true] :checkbox'       : 'dependentFieldLkup',
+        // button handlers
+        'click .btn-submit'                                                 : 'submitParentForm',
+        'click .btn-query'                                                  : 'submitParentForm',
 
         // form submission
-        'submit'                                                       : 'submitForm'
+        'submit'                                                            : 'submitForm'
     },
 
-    submitParentForm: function( event ) {
+    submitParentForm: function( e ) {
 
-        $(event.target).closest('form').submit();
+        e.preventDefault();
+        $(e.target).closest('form').submit();
 
     },
 
@@ -38,85 +39,90 @@ ADF.FormView = Marionette.CollectionView.extend({
             value : action
         });
 
-        if( action.substring(0,1) === '#' && $(action).size() > 0 ){
+        if( action.substring(0,1) === '#' ){
 
-            ADF.utils.message('log','Found something to load into');
-            e.preventDefault();
+            if( $(action).size() > 0 ){
 
-            region.ajax();
+                ADF.utils.message('log','Found something to load into');
+                e.preventDefault();
 
-            // $.ajax({
-            //     url: opts.url,
-            //     type: opts.method,
-            //     data: opts.data,
-            //     dataType: ( opts.resultType === "html" ? "html" : "json" ),
-            //     beforeSend: function(){
-            //         autoAdmin.utils.spin(opts.target);
-            //     },
-            //     complete: function( jqXHR, textStatus ){
+                region.ajax();
 
-            //         if( jqXHR.status === 200 ){
+                // $.ajax({
+                //     url: opts.url,
+                //     type: opts.method,
+                //     data: opts.data,
+                //     dataType: ( opts.resultType === "html" ? "html" : "json" ),
+                //     beforeSend: function(){
+                //         autoAdmin.utils.spin(opts.target);
+                //     },
+                //     complete: function( jqXHR, textStatus ){
 
-            //             if( opts.resultType === 'html' ){
+                //         if( jqXHR.status === 200 ){
 
-            //                 that.responseText = jqXHR.responseText;
+                //             if( opts.resultType === 'html' ){
 
-            //             }else{
+                //                 that.responseText = jqXHR.responseText;
 
-            //                 console.log('[autoAdmin] AJAX message: '+jqXHR.responseJSON.message);
+                //             }else{
 
-            //                 if( jqXHR.responseJSON.success === true ){
+                //                 console.log('[autoAdmin] AJAX message: '+jqXHR.responseJSON.message);
 
-            //                     if( jqXHR.responseJSON.data.hasOwnProperty('records') ){
+                //                 if( jqXHR.responseJSON.success === true ){
 
-            //                         that.recordsColl = new autoAdmin.RecordsCollection();
-            //                         that.recordsColl.add(jqXHR.responseJSON.data.records);
+                //                     if( jqXHR.responseJSON.data.hasOwnProperty('records') ){
 
-            //                     }
+                //                         that.recordsColl = new autoAdmin.RecordsCollection();
+                //                         that.recordsColl.add(jqXHR.responseJSON.data.records);
 
-            //                     if( jqXHR.responseJSON.data.hasOwnProperty('fields') ){
+                //                     }
 
-            //                         that.fieldsColl = new autoAdmin.FieldsCollection();
-            //                         that.fieldsColl.add(jqXHR.responseJSON.data.fields);
+                //                     if( jqXHR.responseJSON.data.hasOwnProperty('fields') ){
 
-            //                     }
+                //                         that.fieldsColl = new autoAdmin.FieldsCollection();
+                //                         that.fieldsColl.add(jqXHR.responseJSON.data.fields);
+
+                //                     }
 
 
-            //                 }else{
+                //                 }else{
 
-            //                     if( jqXHR.responseJSON.hasOwnProperty('errors') ){
-            //                         _.each(jqXHR.responseJSON.errors,function( element, index, array ){
-            //                             alert(element);
-            //                         })
-            //                     }else{
-            //                         alert("Looks like the ajax response wasn't quite what was expected from "+opts.url+".  Probably need to get a TA involved.");
-            //                     }
+                //                     if( jqXHR.responseJSON.hasOwnProperty('errors') ){
+                //                         _.each(jqXHR.responseJSON.errors,function( element, index, array ){
+                //                             alert(element);
+                //                         })
+                //                     }else{
+                //                         alert("Looks like the ajax response wasn't quite what was expected from "+opts.url+".  Probably need to get a TA involved.");
+                //                     }
 
-            //                 }
+                //                 }
 
-            //             }
+                //             }
 
-            //             that.trigger('ajaxLoaded');
+                //             that.trigger('ajaxLoaded');
 
-            //         }else if( jqXHR.status === 404 ){
+                //         }else if( jqXHR.status === 404 ){
 
-            //             alert("Page Not Found\n\nThe ajax calls is being made to a page ("+opts.url+") that could not be found. Probably going to need to get a TA involved to see what is going on here.");
+                //             alert("Page Not Found\n\nThe ajax calls is being made to a page ("+opts.url+") that could not be found. Probably going to need to get a TA involved to see what is going on here.");
 
-            //         }else{
+                //         }else{
 
-            //             alert(textStatus+'! Probably going to need to get a TA involved.');
-            //             console.log('opts',opts);
-            //             console.log(jqXHR);
-            //             target.html(jqXHR.responseText);
+                //             alert(textStatus+'! Probably going to need to get a TA involved.');
+                //             console.log('opts',opts);
+                //             console.log(jqXHR);
+                //             target.html(jqXHR.responseText);
 
-            //         }
+                //         }
 
-            //     }
-            // })
+                //     }
+                // })
 
+            }else{
+                ADF.utils.message('error','Trying to load ajax but destination element could not be found on the page');
+            }
         }else{
-            $form.submit();
-            // ADF.utils.message('error','Trying to load ajax but destination element could not be found on the page');
+            // TODO: just let the form submit
+            return true;
         }
 
     },
@@ -158,8 +164,6 @@ ADF.FormView = Marionette.CollectionView.extend({
             $target.remove();
             $target = $parentRow;
         }
-
-        // console.log(parentData,dataArr,childFields,$target);
 
         $.ajax({
             data: dataArr,
