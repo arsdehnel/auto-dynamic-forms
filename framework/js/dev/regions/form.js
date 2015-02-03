@@ -1,3 +1,7 @@
+/*global
+ADF,
+_
+*/
 ADF.FormRegion = ADF.Region.extend({
     // TODO: handle being in a dialog
     // TODO: field dependency lookup
@@ -17,6 +21,8 @@ ADF.FormRegion = ADF.Region.extend({
             collection: new ADF.FieldsCollection(),
             childView: ADF.FieldView
         });
+
+        formRegion.actionsCollection = new ADF.ActionsCollection(null,{regionName:formRegion.options.regionName});
 
         this._super();
 
@@ -45,9 +51,9 @@ ADF.FormRegion = ADF.Region.extend({
             if( xhrJson.hasOwnProperty('errors') ){
                 _.each(xhrJson.errors,function( element, index, array ){
                     alert(element);
-                })
+                });
             }else{
-                alert("Looks like the ajax response wasn't quite what was expected.  Probably need to get a TA involved to help figure it out.");
+                alert('Looks like the ajax response wasn\'t quite what was expected.  Probably need to get a TA involved to help figure it out.');
             }
 
         }

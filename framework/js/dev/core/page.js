@@ -1,5 +1,8 @@
 /*global
 ADF,
+Backbone,
+$,
+_
 */
 ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
     events: {
@@ -12,8 +15,8 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
         pageView.listenTo(pageView,'regionsInitialized',function(){
             // TODO: remove this bullshit
             setTimeout(function(){
-                pageView.showRegions()
-            },200)
+                pageView.showRegions();
+            },200);
         });
 
         pageView.initRegions();
@@ -40,7 +43,7 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
             if( !region.inert ){
                 region.show();
             }
-        })
+        });
     },
     findRegion: function( filter ) {
         var regions = this.getRegions();

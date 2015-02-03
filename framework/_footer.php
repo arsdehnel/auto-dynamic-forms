@@ -1,3 +1,4 @@
+<?php include('constants.php'); ?>
 <?php
     if( count( $todo ) > 0 ):
         $items_str = '';
@@ -21,8 +22,8 @@
         <nav id="nav-footer" class="nav-footer">
         </nav><!-- #nav-footer.nav-footer -->
     </footer>
-    <script src="<?php echo $client_path ?>js/plugins.min.js"></script>
-    <script src="<?php echo $client_path ?>js/hbsTemplates.min.js"></script>
-    <script src="<?php echo $client_path ?>js/adf.min.js"></script>
+    <script src="<?php echo CLIENT_PATH ?>js/plugins.min.js"></script>
+    <script src="<?php echo CLIENT_PATH ?>js/hbsTemplates.min.js"></script>
+    <script src="<?php echo CLIENT_PATH ?>js/adf.min.js"></script>
 </body>
 </html>

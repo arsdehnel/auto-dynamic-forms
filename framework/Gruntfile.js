@@ -7,7 +7,8 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     var client = grunt.option('client');
-    var basePath;
+    var filePath;
+    var relativePath;
 
     if( !client ){
         grunt.fail.fatal('no client set');
@@ -16,22 +17,26 @@ module.exports = function(grunt) {
     switch( client ) {
 
         case 'acuraadmin':
-            basePath = '../GlassFishacuraperformance/acuraadmin/src/webroot/v2/';
+            filePath = '/Users/dehnel/cvsroot/client/auto/GlassFishacuraperformance/acuraadmin/src/webroot/v2/';
+            relativePath = '../../acuraadmin-v2/';
             break;
         case 'acnmadmin':
-            basePath = '../GlassFishACNM/acnmadmin/src/webroot/v2/';
+            filePath = '/Users/dehnel/cvsroot/client/auto/GlassFishACNM/acnmadmin/src/webroot/v2/';
+            relativePath = '../../acnmadmin-v2/';
             break;
         case 'candiadmin':
-            basePath = '../GlassFishNissan/candiadmin/src/webroot/v2/';
+            filePath = '/Users/dehnel/cvsroot/client/auto/GlassFishNissan/candiadmin/src/webroot/v2/';
+            relativePath = '../../candiadmin-v2/';
             break;
         case 'client':
-            basePath = '../client/';
+            filePath = '../client/';
+            relativePath = '../client/';
             break;
 
     }
 
-    if( !basePath ){
-        grunt.fail.fatal('no basePath set');
+    if( !filePath ){
+        grunt.fail.fatal('no filePath set');
     }
 
     // Project configuration.
@@ -102,7 +107,7 @@ module.exports = function(grunt) {
 
                     'js/dev/core/common.js'
                 ],
-                dest: basePath+'js/adf.min.js',
+                dest: filePath+'js/adf.min.js',
             },
             lib: {
                 src: [
@@ -117,13 +122,13 @@ module.exports = function(grunt) {
                     'js/lib/select2.js',
                     'js/lib/spin.js'
                 ],
-                dest: basePath+'js/lib.min.js',
+                dest: filePath+'js/lib.min.js',
             },
             plugins: {
                 src: [
                     'js/plugins/*.js'
                 ],
-                dest: basePath+'js/plugins.min.js',
+                dest: filePath+'js/plugins.min.js',
             },
         },
         uglify: {
@@ -132,17 +137,19 @@ module.exports = function(grunt) {
             },
             templates: {
                 files: [
-                    {dest: basePath+'js/hbsTemplates.min.js', src: ['grunt-work/hbsTemplates.js']}
+                    {dest: filePath+'js/hbsTemplates.min.js', src: ['grunt-work/hbsTemplates.js']}
                 ]
             }
         },
         sass: {
             dist: {
                 options: {
-                    style: 'compressed'
+                    style: 'compressed',
+                    noCache: true
                 },
                 files: {
                     'grunt-work/compiled.css': 'scss/main.scss'
+                    // 'grunt-work/compiled.css' : ['scss/_variables.scss','scss/_mixins.scss','scss/partials/_layout.scss']
                 }
             }
         },
@@ -154,7 +161,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         src: 'grunt-work/compiled.css',
-                        dest: basePath+'css/main.css'
+                        dest: filePath+'css/main.css'
                     }
                 ]
             },
@@ -184,10 +191,17 @@ module.exports = function(grunt) {
                 files: ['svg/symbols/*.svg'],
                 tasks: ['svg']
             }
+        },
+        setPHPConstant: {
+            stage: {
+                constant    : 'CLIENT_PATH',
+                value       : relativePath,
+                file        : 'constants.php'
+            }
         }
     });
 
-    grunt.registerTask('default', ['copy','concat','sass:dist','handlebars','uglify:templates','autoprefixer','svgstore','watch']);
+    grunt.registerTask('default', ['copy','concat','sass:dist','handlebars','uglify:templates','autoprefixer','svgstore','setPHPConstant','watch']);
     grunt.registerTask('hbs', ['handlebars','uglify:templates']);
     grunt.registerTask('css', ['sass:dist','autoprefixer']);
     grunt.registerTask('svg', ['svgstore']);

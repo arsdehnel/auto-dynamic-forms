@@ -15,6 +15,7 @@
     "grunt-sass": "^0.17.0",
     "grunt-svgstore": "^0.3.0",
     "jshint": "^2.6.0",
-    "load-grunt-tasks": "^0.6.0"
+    "load-grunt-tasks": "^0.6.0",
+    "grunt-php-set-constant": "0.0.15"
   }
 }

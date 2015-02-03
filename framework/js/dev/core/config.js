@@ -1,6 +1,9 @@
+/*global
+ADF
+*/
 ADF.messages = {
     displayLevels: [
-        // 'log',
+        'log',
         'info',
         'debug',
         'warning',

@@ -1,14 +1,13 @@
-<?php
-    $client_path = '../../client/';
-?>
+<?php include('constants.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Auto Admin Forms 2.0</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $client_path ?>css/main.css">
-    <script src="<?php echo $client_path ?>js/lib.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo CLIENT_PATH ?>css/main.css">
+    <script src="<?php echo CLIENT_PATH ?>js/lib.min.js"></script>
 </head>
-<body class="adf-app environment-qa">
+<!-- <body class="adf-app environment-qa"> -->
+<body class="adf-app">
     <?php include('svg/defs.svg'); ?>
     <header>
         <nav id="nav-header" class="nav-header">
