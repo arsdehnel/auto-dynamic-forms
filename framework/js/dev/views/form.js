@@ -30,30 +30,29 @@ ADF.FormView = Marionette.CollectionView.extend({
 
     render: function() {
 
+        // the normal render
         var formView = this;
-        var region = adf.page[formView.options.regionName];
-        // var actionHTML = '';
-        console.log('beginning of formView render',region.actionsCollection);
-
         formView._super();
-        formView.$el.append(ADF.templates.formRow({
-            name: 'ACTIONS',
-            fldMstrId: 0
-        }));
 
-        var childContainer = formView.$el.find('#ACTIONS-field-wrap .form-input');
+        // rendering the "actions" for a given form
+        // start by getting the region since that is where the actions are kept
+        var region = adf.page[formView.options.regionName];
 
-        region.actionsCollection.each( function( action ) {
-        // _.each(region.actionsCollection.models, function( action ) {
+        // see if we have any actions because if we don't we can stop right away
+        if( region.actionsCollection.length > 0 ){
+            formView.$el.append(ADF.templates.formRow({
+                name: 'ACTIONS',
+                fldMstrId: 0
+            }));
 
-            console.log(action);
+            var childContainer = formView.$el.find('#ACTIONS-field-wrap .form-input');
 
-            var childView = new ADF.FormActionView({model:action});
-            childContainer.append(childView.render());
+            region.actionsCollection.each( function( action ) {
+                var childView = new ADF.FormActionView({model:action});
+                childContainer.append(childView.render());
+            });
 
-        });
-
-
+        }
 
     },
 
@@ -166,10 +165,11 @@ ADF.FormView = Marionette.CollectionView.extend({
         var formView = this;
         var dataArr = [];
         var $parentRow = $(e.target).closest('.form-row');
-        var $form = $parentRow.closest('form');
+        // var $form = $parentRow.closest('form');
         var parentData = $parentRow.data();
         var $target = $('#'+parentData.fieldLkupTarget+'-field-wrap');
         var childFields = parentData.adfDependentFieldLkupChildFields.split(',');
+        var region = adf.page[formView.options.regionName];
 
         e.preventDefault();
         ADF.utils.message('log','dependentFieldLkup',e);
@@ -181,12 +181,12 @@ ADF.FormView = Marionette.CollectionView.extend({
             });
         });
 
-        _.each(childFields,function(fieldId){
+        _.each(childFields,function( fieldName ){
             var modelToRemove = formView.collection.filter(function( model ){
-                return model.get('name') === fieldId;
+                return model.get('name') === fieldName;
             });
             formView.collection.remove(modelToRemove);
-            $('#'+fieldId+'-field-wrap').remove();
+            $('#'+fieldName+'-field-wrap').remove();
         });
 
         if( $target.size() === 0 ){
@@ -199,50 +199,55 @@ ADF.FormView = Marionette.CollectionView.extend({
             $target = $parentRow;
         }
 
-        $.ajax({
-            data: dataArr,
+        region.ajax({
+            data:dataArr,
             url: parentData.adfDependentFieldLkupUrl,
-            method: 'POST',
-            beforeSend: function() {
-                // TODO: spin target
-                ADF.utils.spin($form);
-            },
-            complete: function( jqXHR, textStatus ) {
-                ADF.utils.spin($form, { stop: true } );
-                if( jqXHR.status === 200 ){
-                    ADF.utils.message('debug','Dependent field lookup success',jqXHR);
-
-                        if( jqXHR.responseJSON.data.hasOwnProperty('fields') ){
-
-                        formView.collection.add(jqXHR.responseJSON.data.fields);
-
-                        // TODO: add select2 renderer as part of the auto-rendering of the Marionette view
-                        //         $form.find('.select2').each(function(){
-                        //             autoAdmin.utils.renderSelect2({
-                        //                 select2Obj : $(this)
-                        //             })
-                        //         })
-
-                        // manually call render for some reason
-                        // thought that Marionette handled this for us but it wasn't firing so this had to be added
-                        formView.render();
-
-                        }else{
-                            ADF.utils.message('error','Dependent field lookup did not return any fields',jqXHR);
-                        }
-
-                }else{
-                    ADF.utils.message('error','Dependent field lookup failed',jqXHR);
-                    if( jqXHR.responseJSON.hasOwnProperty('errors') ){
-                        _.each(jqXHR.responseJSON.errors,function( element, index, array ){
-                            alert(element);
-                        });
-                    }else{
-                        alert('Looks like the ajax response wasn\'t quite what was expected.  Probably need to get a TA involved to help figure it out.');
-                    }
-                }
-            }
+            emptyCollections:false
         });
+
+        // $.ajax({
+        //     data: dataArr,
+        //     url: parentData.adfDependentFieldLkupUrl,
+        //     type: 'POST',
+        //     beforeSend: function() {
+        //         ADF.utils.spin($form);
+        //     },
+        //     complete: function( jqXHR, textStatus ) {
+        //         ADF.utils.spin($form, { stop: true } );
+        //         if( jqXHR.status === 200 ){
+        //             ADF.utils.message('debug','Dependent field lookup success',jqXHR);
+
+        //                 if( jqXHR.responseJSON.data.hasOwnProperty('fields') ){
+
+        //                 formView.collection.add(jqXHR.responseJSON.data.fields);
+
+        //                 // TODO: add select2 renderer as part of the auto-rendering of the Marionette view
+        //                 //         $form.find('.select2').each(function(){
+        //                 //             autoAdmin.utils.renderSelect2({
+        //                 //                 select2Obj : $(this)
+        //                 //             })
+        //                 //         })
+
+        //                 // manually call render for some reason
+        //                 // thought that Marionette handled this for us but it wasn't firing so this had to be added
+        //                 formView.render();
+
+        //                 }else{
+        //                     ADF.utils.message('error','Dependent field lookup did not return any fields',jqXHR);
+        //                 }
+
+        //         }else{
+        //             ADF.utils.message('error','Dependent field lookup failed',jqXHR);
+        //             if( jqXHR.responseJSON.hasOwnProperty('errors') ){
+        //                 _.each(jqXHR.responseJSON.errors,function( element, index, array ){
+        //                     alert(element);
+        //                 });
+        //             }else{
+        //                 alert('Looks like the ajax response wasn\'t quite what was expected.  Probably need to get a TA involved to help figure it out.');
+        //             }
+        //         }
+        //     }
+        // });
 
     }
 });

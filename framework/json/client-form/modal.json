@@ -26,18 +26,25 @@
                 "label" : "PDF Certificate"
               }
             ]
-          }
-          ],
-          "actions" : [
+          },
             {
-                "label" : "Run",
-                "type" : "submit",
-                "url" : "#"
-            },
-            {
-                "label" : "Save & Run",
-                "type" : "modal-field-lkup",
-                "url" : "#"
+                "name" : "actions",
+                "label" : "",
+                "wrapClass" : "adf-cell-actions",
+                "type" : "actions",
+                "actions" : [
+                    {
+                        "href" : "#",
+                        "type" : "submit",
+                        "label" : "Lookup"
+                    },
+                    {
+                        "href" : "#",
+                        "type" : "field-lkup",
+                        "label" : "Save & Run"
+                    }
+
+                ]
             }
         ]
     }

@@ -40,7 +40,7 @@ ADF.Region = Marionette.Region.extend({
                     ADF.utils.message('log','AJAX message: '+jqXHR.responseJSON.message);
 
                     // this is custom depending on the calling region's type so we send it back
-                    region.ajaxSuccessHandler(jqXHR.responseJSON);
+                    region.ajaxSuccessHandler(jqXHR.responseJSON, settings);
 
 
                 }else if( jqXHR.status === 404 ){

@@ -31,7 +31,9 @@ ADF.FormRegion = ADF.Region.extend({
 
     },
 
-    ajaxSuccessHandler: function( xhrJson ) {
+    ajaxSuccessHandler: function( xhrJson, settings ) {
+
+        console.log(settings);
 
         var formRegion = this;
         var formView = formRegion.formView;
@@ -40,14 +42,24 @@ ADF.FormRegion = ADF.Region.extend({
 
             if( xhrJson.data.hasOwnProperty('actions') ){
 
-                formRegion.actionsCollection.reset(xhrJson.data.actions);
-                console.log('after ajax reset',formRegion.actionsCollection);
+                if( settings.emptyCollections === false ){
+                    console.log('dont empty actions');
+                    formRegion.actionsCollection.add(xhrJson.data.actions);
+                }else{
+                    console.log('empty actions');
+                    formRegion.actionsCollection.reset(xhrJson.data.actions);
+                }
 
             }
 
             if( xhrJson.data.hasOwnProperty('fields') ){
 
-                formView.collection.reset(xhrJson.data.fields);
+                if( settings.emptyCollections === false ){
+                    formView.collection.add(xhrJson.data.fields);
+                }else{
+                    formView.collection.reset(xhrJson.data.fields);
+                }
+
 
                 // TODO: add select2 renderer as part of the auto-rendering of the Marionette view
 
