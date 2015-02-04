@@ -1,14 +1,14 @@
 <a
     href="{{url}}"
-    class="btn btn-{{actionType}} {{actionClass}}"
-    data-action-type="{{actionType}}"
+    class="btn btn-{{type}} {{actionClass}}"
+    data-action-type="{{type}}"
     title="{{label}}"
     {{#each dataAttributes}}
         data-{{name}}="{{value}}"
     {{/each}}
 >
 <svg viewBox="0 0 32 32" class="icon">
-    <use xlink:href="#icon-{{actionType}}"></use>
+    <use xlink:href="#icon-{{type}}"></use>
 </svg>
 <span>
     {{{label}}}

@@ -2,12 +2,17 @@
 ADF,
 Marionette,
 $,
-adf
+adf,
+_
 */
 ADF.FormView = Marionette.CollectionView.extend({
 
+    childView: ADF.FieldView,
+
     initialize: function( options ) {
         ADF.utils.message('debug','FormView Initialized', options );
+        $.extend(this.options,options);
+        // this.options
     },
 
     events: {
@@ -21,6 +26,35 @@ ADF.FormView = Marionette.CollectionView.extend({
 
         // form submission
         'submit'                                                            : 'submitForm'
+    },
+
+    render: function() {
+
+        var formView = this;
+        var region = adf.page[formView.options.regionName];
+        // var actionHTML = '';
+        console.log('beginning of formView render',region.actionsCollection);
+
+        formView._super();
+        formView.$el.append(ADF.templates.formRow({
+            name: 'ACTIONS',
+            fldMstrId: 0
+        }));
+
+        var childContainer = formView.$el.find('#ACTIONS-field-wrap .form-input');
+
+        region.actionsCollection.each( function( action ) {
+        // _.each(region.actionsCollection.models, function( action ) {
+
+            console.log(action);
+
+            var childView = new ADF.FormActionView({model:action});
+            childContainer.append(childView.render());
+
+        });
+
+
+
     },
 
     submitParentForm: function( e ) {
@@ -145,7 +179,7 @@ ADF.FormView = Marionette.CollectionView.extend({
                 'name' : model.get('fldMstrId'),
                 'value' : model.get('currentValue')
             });
-        })
+        });
 
         _.each(childFields,function(fieldId){
             var modelToRemove = formView.collection.filter(function( model ){
@@ -200,15 +234,15 @@ ADF.FormView = Marionette.CollectionView.extend({
                 }else{
                     ADF.utils.message('error','Dependent field lookup failed',jqXHR);
                     if( jqXHR.responseJSON.hasOwnProperty('errors') ){
-                        _.each(xhrJson.errors,function( element, index, array ){
+                        _.each(jqXHR.responseJSON.errors,function( element, index, array ){
                             alert(element);
-                        })
+                        });
                     }else{
-                        alert("Looks like the ajax response wasn't quite what was expected.  Probably need to get a TA involved to help figure it out.");
+                        alert('Looks like the ajax response wasn\'t quite what was expected.  Probably need to get a TA involved to help figure it out.');
                     }
                 }
             }
-        })
+        });
 
     }
 });

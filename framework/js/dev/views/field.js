@@ -1,3 +1,8 @@
+/*global
+ADF,
+Backbone,
+$
+*/
 ADF.FieldView = Backbone.Marionette.ItemView.extend({
     template: ADF.templates.formRow,
     events: {

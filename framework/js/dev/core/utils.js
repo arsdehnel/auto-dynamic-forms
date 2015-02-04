@@ -4,6 +4,9 @@ _,
 $
 */
 ADF.utils = {
+    randomId: function() {
+        return Math.floor( Math.random() * 3789.4);
+    },
     capitalize: function( string ) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     },

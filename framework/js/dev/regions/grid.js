@@ -1,11 +1,11 @@
 /*global
 ADF,
-_,
-adf
+_
 */
 ADF.GridRegion = ADF.Region.extend({
     template: ADF.templates.gridWrapper,
     initialize: function( options ) {
+
         ADF.utils.message('log','GridRegion Initialized', options);
 
         var gridRegion = this;
@@ -18,6 +18,7 @@ ADF.GridRegion = ADF.Region.extend({
 
         gridRegion.$el.html(gridRegion.template({inOverlay:gridRegion.inOverlay}));
         gridRegion.fieldsCollection = new ADF.FieldsCollection(null,{regionName:gridRegion.options.regionName});
+        // gridRegion.actionsCollection = new ADF.ActionsCollection(null,{regionName:gridRegion.options.regionName});
 
         this._super( options );
 

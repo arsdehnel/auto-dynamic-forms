@@ -1,4 +1,10 @@
-ADF.RecordView = Backbone.Marionette.CompositeView.extend({
+/*global
+ADF,
+Marionette,
+adf,
+$
+*/
+ADF.RecordView = Marionette.CompositeView.extend({
     template: ADF.templates.gridRow,
     tagName: 'tr',
     className: 'adf-record',
@@ -11,7 +17,7 @@ ADF.RecordView = Backbone.Marionette.CompositeView.extend({
         ADF.utils.message('log','RecordView Initialized', options );
         this.region = adf.page.getRegion(options.regionName);
         this.regionName = this.region.options.regionName;
-        this.model.set("regionName",this.regionName);
+        this.model.set('regionName',this.regionName);
         this.collection = this.region.fieldsCollection;
     },
     renderSelf: function() {
@@ -35,7 +41,7 @@ ADF.RecordView = Backbone.Marionette.CompositeView.extend({
             // console.debug(childView.render());
             cellsString += childView.render();
 
-        })
+        });
 
         return this.template($.extend({},this.model.toJSON(),{cells:cellsString}));
     },
@@ -45,7 +51,7 @@ ADF.RecordView = Backbone.Marionette.CompositeView.extend({
         var actionType = $targetObj.attr('data-action-type');
         // TODO: experiment with making this dynamic
         switch( actionType ){
-            case "save":
+            case 'save':
                 this.model.url = $targetObj.attr('href');
                 this.model.save();
                 break;

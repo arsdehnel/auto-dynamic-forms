@@ -1,3 +1,7 @@
+/*global
+$,
+adf
+*/
 $(function(){
 
 	// $.event.props.push('dataTransfer');
@@ -14,23 +18,8 @@ $(function(){
   //       	autoAdmin.grid.hideOverlayEditor( $(this).closest('.auto-admin-grid-overlay-editor') );
   //       })
 
-  //   $('.select2').select2().each(function(){
-		// autoAdmin.render.renderSelect2({
-		// 	select2Obj : $(this)
-		// })
-  //   });
-
   //   $(':input').first().focus();
 
-    var options = {
-        something: "some value",
-        another: "#some-selector"
-    };
+    adf.start({});
 
-    adf.start(options);
-
-    // window.autoAdmin = window.autoAdmin || {};
-
-    // var autoAdminInit = new autoAdmin.PageView;
-
-})
+});

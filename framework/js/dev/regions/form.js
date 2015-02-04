@@ -4,7 +4,6 @@ _
 */
 ADF.FormRegion = ADF.Region.extend({
     // TODO: handle being in a dialog
-    // TODO: field dependency lookup
     // TODO: preexisting data handled
 
     initialize: function( options ) {
@@ -19,10 +18,14 @@ ADF.FormRegion = ADF.Region.extend({
         formRegion.formView = new ADF.FormView({
             el:formRegion.$el.find('form')[0],
             collection: new ADF.FieldsCollection(),
-            childView: ADF.FieldView
+            regionName: formRegion.options.regionName
         });
 
-        formRegion.actionsCollection = new ADF.ActionsCollection(null,{regionName:formRegion.options.regionName});
+        formRegion.actionsCollection = new ADF.ActionsCollection(null,{
+            regionName: formRegion.options.regionName,
+            model: ADF.ActionModel
+        });
+        console.log('after show initialization',formRegion.actionsCollection);
 
         this._super();
 
@@ -30,9 +33,17 @@ ADF.FormRegion = ADF.Region.extend({
 
     ajaxSuccessHandler: function( xhrJson ) {
 
-        var formView = this.formView;
+        var formRegion = this;
+        var formView = formRegion.formView;
 
         if( xhrJson.success === true ){
+
+            if( xhrJson.data.hasOwnProperty('actions') ){
+
+                formRegion.actionsCollection.reset(xhrJson.data.actions);
+                console.log('after ajax reset',formRegion.actionsCollection);
+
+            }
 
             if( xhrJson.data.hasOwnProperty('fields') ){
 

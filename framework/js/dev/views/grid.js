@@ -1,15 +1,18 @@
-ADF.GridView = Backbone.Marionette.CompositeView.extend({
-    // TODO: finish grid lookup
-    // TODO: add record action
-    // TODO: grid-row actions
+/*global
+ADF,
+Marionette,
+adf,
+$
+*/
+ADF.GridView = Marionette.CompositeView.extend({
+    // TODO: 'add record' action
     // TODO: grid-row messaging
-    // TODO: overlay triggering
     // TODO: overlay template adjusted to handle array of data with format/delimiter from data-supl-info attribute
 
     className: 'adf-grid',
     tagName: 'table',
     childView: ADF.RecordView,
-    childViewContainer: "tbody",
+    childViewContainer: 'tbody',
     childViewOptions : function () {
         return { regionName: this.regionName };
     },
@@ -31,7 +34,7 @@ ADF.GridView = Backbone.Marionette.CompositeView.extend({
             el: gridView.$el.find('.adf-grid-actions')[0],
             collection: region.fieldsCollection,
             regionName: gridView.regionName
-        })
+        });
 
     },
     render: function() {
@@ -41,17 +44,11 @@ ADF.GridView = Backbone.Marionette.CompositeView.extend({
         var childContainer = this.$el.find(this.childViewContainer);
         gridView.collection.each(function(model) {
 
-            // console.debug(gridView.childViewOptions());
-
-            // console.debug($.extend({},gridView.childViewOptions(),{model:model}));
-
             var childView = new gridView.childView($.extend({},gridView.childViewOptions(),{model:model}));
-            // var childView = new ADF.RecordView();
-            // console.debug(childView.render());
-            childContainer.append(childView.renderAsChild())
+            childContainer.append(childView.renderAsChild());
             childView.setElement('#'+model.get('regionName') + '--' + model.get('id'));
 
-        })
+        });
     }
 
 });
