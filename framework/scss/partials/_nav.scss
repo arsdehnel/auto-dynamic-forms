@@ -190,3 +190,15 @@
         }
     }
 }
+.nav-footer {
+    margin: 4px 20px;
+    text-align: right;
+}
+.nav-footer a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+}
+.nav-footer a:hover {
+    text-decoration: underline;
+}
