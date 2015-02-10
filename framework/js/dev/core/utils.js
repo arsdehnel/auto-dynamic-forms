@@ -16,6 +16,78 @@ ADF.utils = {
             return x.toUpperCase();
         });
     },
+    objPropToLower: function( object ) {
+
+        _.each(object,function(element, index, array){
+            // console.log(element);
+            if( index.toLowerCase() !== index ){
+                object[index.toLowerCase()] = element;
+                delete object[index];
+            }
+        });
+
+        return object;
+
+    },
+    select2: {
+        render: function() {
+
+            // TODO dynamically determine if user can clear selection
+            // TODO dynamically determine if user cna add new option
+
+            var settings = {
+                dropdownAutoWidth : true,
+                allowClear : true,
+                formatResult : ADF.utils.select2.template,
+                matcher: ADF.utils.select2.matcher
+            };
+
+            $.extend( settings, arguments[0] );
+
+            var select2Obj = settings.select2Obj;
+
+            delete settings.select2Obj;
+
+            select2Obj.select2(settings);
+
+            if( select2Obj.attr('readonly') === 'readonly' ){
+                select2Obj.select2('readonly',true);
+            }
+
+        },
+        matcher: function(term, text, option) {
+            return text.toUpperCase().indexOf(term.toUpperCase())>=0 || option.val().toUpperCase().indexOf(term.toUpperCase())>=0;
+        },
+        template: function( object, container, query ){
+
+            //make this into a jQ object so we can retrieve the data- attribute data
+            var optObj = $(object.element);
+            var entryObj = {
+                value: object.id,
+                tooltip: optObj.data('tooltip')
+            };
+
+            //have to do some manual stuff to "convert" this object that we get
+            //into a normal js object that can be used in hour handlebars template
+            //rather than just a plain old js-built template
+            if( object.id === object.text || object.text.length === 0 ){
+                entryObj.label = object.id;
+            }else{
+                entryObj.label = '<span class="select2-option-value">'+object.id+'</span><span class="select2-option-label">'+object.text+'</span>';
+            }
+            return ADF.templates.inputHelperSelect2Record( entryObj );
+
+        },
+        refresh: function() {
+
+            $('body .select2:input').not('.select2-offscreen').each(function(){
+                ADF.utils.select2.render({
+                    select2Obj : $(this)
+                });
+            });
+
+        }
+    },
     spin: function( targetObj, opts ) {
 
         var settings = {};
@@ -112,97 +184,3 @@ ADF.utils = {
     },
 
 };
-
-
-// window.autoAdmin = window.autoAdmin || {};
-
-// autoAdmin.utils = {
-
-
-
-//     spin: function( targetObj ){
-
-//     	targetObj.removeClass('hide').html('').addClass('loading').spin();
-
-//     },
-
-//     pageSpin: function(){
-
-//         this.pageOverlay({'show':true});
-//         $('.page-spin').removeClass('hide');
-//         this.pageSpinner = new Spinner({length: 60,width: 35, radius: 100}).spin(document.getElementById('page-spin'));
-
-//     },
-
-//     pageSpinStop: function(){
-
-//         this.pageOverlay({'show':false});
-//         $('.page-spin').addClass('hide');
-//         this.pageSpinner.stop();
-
-//     },
-
-//     pageOverlay: function( args ){
-
-//         if( args.show ){
-//             $('.body-overlay').removeClass('hide');
-//         }else{
-//             $('.body-overlay').addClass('hide');
-//         }
-
-//     },
-
-//     renderSelect2: function(){
-
-//         // TODO dynamically determine if user can clear selection
-//         // TODO dynamically determine if user cna add new option
-
-//         var settings = {
-//             "dropdownAutoWidth" : true,
-//             "allowClear" : true,
-//             "formatResult" : autoAdmin.utils.select2Template
-//         }
-
-//         $.extend( settings, arguments[0] );
-
-//         var select2Obj = settings.select2Obj;
-
-//         delete settings.select2Obj;
-
-//         select2Obj.select2(settings);
-
-//         if( select2Obj.attr('readonly') === "readonly" ){
-//             select2Obj.select2("readonly",true);
-//         }
-
-
-//     },
-
-//     select2Template: function( object, container, query ){
-
-//         //make this into a jQ object so we can retrieve the data- attribute data
-//         var optObj = $(object.element);
-
-//         //have to do some manual stuff to "convert" this object that we get
-//         //into a normal js object that can be used in hour handlebars template
-//         //rather than just a plain old js-built template
-//         if( object.id === object.text || object.text.length === 0 ){
-//             var entryObj = {
-//               "value" : object.id,
-//               "label" : object.id,
-//               "tooltip" : optObj.data('tooltip')
-//             }
-//         }else{
-//             var entryObj = {
-//               "value" : object.id,
-//               "label" : "<span class='select2-option-value'>"+object.id+"</span><span class='select2-option-label'>"+object.text+"</span>",
-//               "tooltip" : optObj.data('tooltip')
-//             }
-//         }
-//         return autoAdmin.templates.inputHelperSelect2Record( entryObj );
-
-//     },
-
-
-
-// }
