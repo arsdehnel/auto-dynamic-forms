@@ -1,7 +1,8 @@
 /*global
 ADF,
 _,
-$
+$,
+adf
 */
 ADF.utils = {
     randomId: function() {
@@ -52,11 +53,15 @@ ADF.utils = {
         // add a prefix item to the logs just to try and be clear where it came from
         args.unshift('[ADF]');
 
-        if( _.indexOf(ADF.messages.displayLevels,level) >= 0 ){
+        if( _.indexOf(ADF.config.get('messages').displayLevels,level) >= 0 ){
 
-            // TODO: extend this to present errors as modals
-            // TODO: allow console command to change alert levels
-            console[level](args);
+            // if( level.toLowerCase() === 'error' ){
+            if( level.toLowerCase() === 'debug' ){
+              adf.page.showBackdrop();
+            }else{
+              // TODO: extend this to present errors as modals
+              console[level](args);
+            }
 
         }
 
