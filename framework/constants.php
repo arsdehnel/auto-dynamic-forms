@@ -1,2 +1,2 @@
 <?php
-define('CLIENT_PATH','../../client/');
+define('CLIENT_PATH','../../acnmadmin-v2/');
