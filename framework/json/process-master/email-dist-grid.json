@@ -2,6 +2,7 @@
   "authenticated": true,
   "success": true,
   "message": null,
+  "methodName": null,
   "data": {
     "fields": [
       {
@@ -42,12 +43,7 @@
         "fieldPriority": 9,
         "data": [],
         "actions": [],
-        "dataAttributes": [
-          {
-            "name": "data-adf-init-field-ind",
-            "value": "Y"
-          }
-        ]
+        "dataAttributes": []
       },
       {
         "fldMstrId": 71,
@@ -65,7 +61,29 @@
         "maxLength": 12,
         "requiredInd": "N",
         "fieldPriority": 1,
-        "data": [],
+        "data": [
+          {
+            "detailId": 69,
+            "groupLabel": null,
+            "value": "COMPLETE",
+            "label": "Complete",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 69,
+            "groupLabel": null,
+            "value": "ERROR",
+            "label": "Error",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 69,
+            "groupLabel": null,
+            "value": "SUCCESS",
+            "label": "Success",
+            "selectedInd": "N"
+          }
+        ],
         "actions": [],
         "dataAttributes": []
       },
@@ -120,7 +138,7 @@
         "wrapClass": null,
         "prefix": null,
         "suffix": null,
-        "currentValue": null,
+        "currentValue": "A",
         "minLength": 1,
         "maxLength": 1,
         "requiredInd": "Y",
@@ -131,7 +149,7 @@
             "groupLabel": null,
             "value": "A",
             "label": "Active",
-            "selectedInd": "N"
+            "selectedInd": "Y"
           },
           {
             "detailId": 65,
@@ -143,46 +161,6 @@
         ],
         "actions": [],
         "dataAttributes": []
-      },
-      {
-        "fldMstrId": 129,
-        "detailId": 657,
-        "name": "RECIPIENTS",
-        "type": "SELECT2",
-        "label": "Recipients",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 1,
-        "maxLength": 1,
-        "requiredInd": "Y",
-        "fieldPriority": 1,
-        "data": [
-          {
-            "detailId": 65,
-            "groupLabel": null,
-            "value": "A",
-            "label": "Active",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 65,
-            "groupLabel": null,
-            "value": "I",
-            "label": "Inactive",
-            "selectedInd": "N"
-          }
-        ],
-        "actions": [],
-        "dataAttributes": [
-          {
-            "name": "select2-multiple",
-            "value": "true"
-          }
-        ]
       },
       {
         "fldMstrId": 10,
@@ -285,6 +263,593 @@
         "dataAttributes": []
       },
       {
+        "fldMstrId": 74,
+        "detailId": 77,
+        "name": "RECIPIENTS",
+        "type": "SELECT2",
+        "label": "Recipients",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 0,
+        "maxLength": 12,
+        "requiredInd": "N",
+        "fieldPriority": 1,
+        "data": [
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "511516",
+            "label": "40LNAME, 40FNAME",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97460",
+            "label": "ADAM, SANDY",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "109587",
+            "label": "ALAGAPPAN, VIJAYALAKSHMI",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "511531",
+            "label": "ARTHUR, CHRIS",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "544667",
+            "label": "AUSTIN, SANDY",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "546376",
+            "label": "BASETTI, MANJUSHA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495689",
+            "label": "BAUER, STEVE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97467",
+            "label": "BERGE, ADAM",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495690",
+            "label": "BONAS, MARK",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "547222",
+            "label": "BREWERS, ANMARIE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "433519",
+            "label": "CREWS, PATTY",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495624",
+            "label": "DAMERLA, ROJA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495688",
+            "label": "DANIELSB, BRYCE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97455",
+            "label": "DAVEY, BETH",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495693",
+            "label": "DAVIS, STEPHEN",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495686",
+            "label": "DECKMAN, CARIN",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97463",
+            "label": "DEHNEL, ADAM",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "545740",
+            "label": "DUNKIRK, STEPHANIE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97461",
+            "label": "EIKOS, DIANE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "511539",
+            "label": "EKVALL, NANCY",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495685",
+            "label": "FRANKM, MATT",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "113543",
+            "label": "GAJULA, SUDHAKAR",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "546375",
+            "label": "GEVING, KEITH",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "544947",
+            "label": "GOLDEN, MATT",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "544676",
+            "label": "HAHN, GRANT",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97456",
+            "label": "HANSELMAN, KARA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97454",
+            "label": "ISENSEE, AMANDA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495692",
+            "label": "JOHN, CHRISTHODAYAN",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "544948",
+            "label": "JONES, MELISSA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "524971",
+            "label": "KJOS, BENJAMIN",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97466",
+            "label": "KLISCH, JONNA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "524974",
+            "label": "KNOX, JESS",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97457",
+            "label": "KOELBL, ANGIE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97458",
+            "label": "LAFRENZ, JENNY",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495623",
+            "label": "LAHN, KAREN",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495687",
+            "label": "LARSENS, STACEY",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97470",
+            "label": "LASS, JANA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97464",
+            "label": "LASTNAME, FIRSTNAME",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495625",
+            "label": "LASTNAME, FIRSTNAME",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "544668",
+            "label": "LESLIE, MAXWELL",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "511538",
+            "label": "LEVIN, JANET",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "433520",
+            "label": "LEWIS, MIKE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "283493",
+            "label": "LIEGGI, BECKY",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "167006",
+            "label": "LINDSTRO, JOHN",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97462",
+            "label": "LINDSTROM, CONNIE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "167007",
+            "label": "LORENTZE, CLARICE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "511689",
+            "label": "MALTZEN, BRUCE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97465",
+            "label": "MCCABE, JOHN",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "433521",
+            "label": "MCKEEVER, JODY",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97459",
+            "label": "MUELLER, MEAD",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97473",
+            "label": "NAIK, PADMAJA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "545735",
+            "label": "OHANLON, SHANNON",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "545739",
+            "label": "OMMEN, KIM",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97471",
+            "label": "PALMER, HEIDI",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97472",
+            "label": "PAULS, JESSICA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "167004",
+            "label": "PAULSON, AMANDA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "511525",
+            "label": "PAULSON, MIKE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495674",
+            "label": "PEDERSON, ZACK",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495677",
+            "label": "RAJENDRAN, SHANKAR",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "544666",
+            "label": "SARLES, ANDREW",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "546373",
+            "label": "SAUFFERER, JOSEPH",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97474",
+            "label": "SCHAEFER, KAREN",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97468",
+            "label": "SCHWAGEL, LESLIE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "433522",
+            "label": "SIME, STEPHANIE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "511504",
+            "label": "SLNAME, FSNAME",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "97469",
+            "label": "SMITH, BOBBI JO",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "511529",
+            "label": "STRYKER, CYNTHIA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "167005",
+            "label": "TERZICH, LAWRENCE",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495673",
+            "label": "TEST, TEST",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495621",
+            "label": "TESTERSON, TESTY",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "511505",
+            "label": "TESTLLNAME, TESTTFNAME",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "544658",
+            "label": "ULRICH, RENÉ",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "546374",
+            "label": "VIDAS, DYLAN",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "546369",
+            "label": "WEILER, KRISTA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495607",
+            "label": "Wangler, Mark",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495691",
+            "label": "XIONG, SUSAN",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "113544",
+            "label": "YELCHURU, SARANYA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "495666",
+            "label": "YELCHURU, SARANYA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "524972",
+            "label": "ZEHNDER, TANYA",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 77,
+            "groupLabel": null,
+            "value": "544946",
+            "label": "ZICKERT, KYLE",
+            "selectedInd": "N"
+          }
+        ],
+        "actions": [],
+        "dataAttributes": [
+          {
+            "detailId": 77,
+            "name": "select2-multiple",
+            "value": "true"
+          }
+        ]
+      },
+      {
         "fldMstrId": 2,
         "detailId": 75,
         "name": "ACTIONS",
@@ -317,34 +882,7 @@
         "dataAttributes": []
       }
     ],
-    "records": [
-      {
-        "id": 1000,
-        "EML_DIST_MSTR_ID": 1000,
-        "PRCS_MSTR_ID": 5454,
-        "MSG_TYPE": "SUCCESS",
-        "FROM_PAX_ID": 97463,
-        "SUBJECT": "Dealer Work Load Success",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "11-25-2014 09:55:31",
-        "CREATED_BY": "DEHNEL",
-        "DATE_MODIFIED": "11-26-2014 12:37:24",
-        "MODIFIED_BY": "PEDERSOZ",
-        "recipients": [
-          {
-            "id": 1000,
-            "EML_DIST_DTL_ID": 1000,
-            "EML_DIST_MSTR_ID": 1000,
-            "PARTICIPANT_ID": 97463,
-            "STATUS_CODE": "A",
-            "DATE_CREATED": "11-25-2014 10:00:55",
-            "CREATED_BY": "DEHNEL",
-            "DATE_MODIFIED": "11-26-2014 12:37:24",
-            "MODIFIED_BY": "PEDERSOZ"
-          }
-        ]
-      }
-    ],
+    "records": [],
     "actions": [
       {
         "tooltipText": null,

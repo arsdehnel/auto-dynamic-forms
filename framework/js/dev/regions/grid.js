@@ -18,7 +18,10 @@ ADF.GridRegion = ADF.Region.extend({
 
         gridRegion.$el.html(gridRegion.template({inOverlay:gridRegion.inOverlay}));
         gridRegion.fieldsCollection = new ADF.FieldsCollection(null,{regionName:gridRegion.options.regionName});
-        // gridRegion.actionsCollection = new ADF.ActionsCollection(null,{regionName:gridRegion.options.regionName});
+        gridRegion.actionsCollection = new ADF.ActionsCollection(null,{
+            regionName: gridRegion.options.regionName,
+            model: ADF.ActionModel
+        });
 
         this._super( options );
 
