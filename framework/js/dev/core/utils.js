@@ -58,6 +58,7 @@ ADF.utils = {
             // if( level.toLowerCase() === 'error' ){
             if( level.toLowerCase() === 'debug' ){
               adf.page.showBackdrop();
+              adf.page.getRegion('modal').show( 'An error has occurred', ADF.utils.printObject( args ) );
             }else{
               // TODO: extend this to present errors as modals
               console[level](args);
