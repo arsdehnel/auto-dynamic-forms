@@ -20,13 +20,13 @@ ADF.Region = Marionette.Region.extend({
     },
     ajax: function( options ){
         var region = this;
-        var settings = _.extend({}, options);
+        var settings = _.extend({data:JSON.stringify(region.options.adfAjaxData)}, options);
 
         ADF.utils.message('log','Ajax Call',options,settings);
 
         $.ajax({
             url: ( settings.url ? settings.url : region.options.adfAjaxUrl ),
-            type: ( settings.method ? settings.method : 'GET' ),
+            type: ( settings.method ? settings.method : 'POST' ),
             data: settings.data,
             beforeSend: function(){
                 ADF.utils.spin(region.$el);

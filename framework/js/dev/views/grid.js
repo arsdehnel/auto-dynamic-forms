@@ -12,6 +12,7 @@ ADF.GridView = Marionette.CompositeView.extend({
     className: 'adf-grid',
     tagName: 'table',
     childView: ADF.RecordView,
+    childViewClass: ADF.RecordView,
     childViewContainer: 'tbody',
     childViewOptions : function () {
         return { regionName: this.regionName };
@@ -36,6 +37,8 @@ ADF.GridView = Marionette.CompositeView.extend({
             regionName: gridView.regionName
         });
 
+        this._super();
+
     },
     render: function() {
         var gridView = this;
@@ -44,16 +47,21 @@ ADF.GridView = Marionette.CompositeView.extend({
         var childContainer = this.$el.find(this.childViewContainer);
         // console.log(gridView.collection.length);
         childContainer.empty();
-        gridView.collection.each(function(model) {
+        gridView.collection.each(function(recordModel) {
 
-            var childView = new gridView.childView($.extend({},gridView.childViewOptions(),{model:model}));
+            // this works but we end up with the wrong rendering
+            // something about the record render() not returning 'this' is causing a problem
+            // TODO: make this work so we can take more advantage of Marionette
+            // gridView.addChild(recordModel, this.childView );
+
+            // and this works but then we are doing a bunch of stuff that it seems like Marionette should be doing for us
+            var childView = new gridView.childView($.extend({},gridView.childViewOptions(),{model:recordModel}));
             childContainer.append(childView.renderAsChild());
-            childView.setElement('#'+model.get('regionName') + '--' + model.get('id'));
+            childView.setElement('#'+recordModel.get('regionName') + '--' + recordModel.get('id'));
 
-            // TODO: seems like this should be done some other way
-            childView.assignElements();
+        },this);
 
-        });
+        // console.log(gridView.children);
     }
 
 });

@@ -176,28 +176,13 @@
         "dataAttributes": [
           {
             "detailId": 60,
-            "name": "onload-ajax-url",
+            "name": "adf-ajax-url",
             "value": "/acuraadmin/v2/service/process-master/emailGrid.action"
-          },
-          {
-            "detailId": 60,
-            "name": "result-type",
-            "value": "grid"
-          },
-          {
-            "detailId": 60,
-            "name": "onload-ajax-target-id",
-            "value": "grid-overlay-editor--email_dist"
           },
           {
             "detailId": 60,
             "name": "adf-ajax-data-fields",
             "value": "prcs_mstr_id"
-          },
-          {
-            "detailId": 60,
-            "name": "record-save-url",
-            "value": "/acuraadmin/v2/service/process-master/emailDistSave.action"
           }
         ]
       },
@@ -1476,7 +1461,7 @@
             "type": "save",
             "wrapClass": null,
             "actionClass": null,
-            "url": "service/process-master/save/action?prcsMstrId=",
+            "url": "service/process-master/save.action",
             "pageDetailId": 20,
             "fieldPageDetailId": 76,
             "dataAttributes": []
@@ -1493,11 +1478,12 @@
         "PRCS_NAME": "PRC_PARTS_INVCE_DATA_LOAD",
         "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_DATA_LOAD",
         "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_DATA_LOAD",
+        "JS_READ_ORDER": 3,
         "STATUS_CODE": "A",
         "DATE_CREATED": "02-03-2015 15:17:33",
         "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
+        "DATE_MODIFIED": "02-09-2015 08:52:29",
+        "MODIFIED_BY": "PEDERSOZ",
         "RETURN_CODE_DTL": "0 return codes setup",
         "EMAIL_DIST": "0 email messages setup with 0 total recipients"
       },

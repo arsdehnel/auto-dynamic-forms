@@ -1,8 +1,7 @@
 /*global
 ADF,
 _,
-$,
-adf
+$
 */
 ADF.utils = {
     randomId: function() {
@@ -128,13 +127,13 @@ ADF.utils = {
         if( _.indexOf(ADF.config.get('messages').displayLevels,level) >= 0 ){
 
             // if( level.toLowerCase() === 'error' ){
-            if( level.toLowerCase() === 'debug' ){
-              adf.page.showBackdrop();
-              adf.page.getRegion('modal').show( 'An error has occurred', ADF.utils.printObject( args ) );
-            }else{
+            // if( level.toLowerCase() === 'error' ){
+            //   adf.page.showBackdrop();
+            //   adf.page.getRegion('modal').show( 'An error has occurred', ADF.utils.printObject( args ) );
+            // }else{
               // TODO: extend this to present errors as modals
               console[level](args);
-            }
+            // }
 
         }
 

@@ -22,6 +22,7 @@ ADF.GridRegion = ADF.Region.extend({
 
         this._super( options );
 
+
     },
 
     show: function() {
@@ -54,6 +55,8 @@ ADF.GridRegion = ADF.Region.extend({
             if( xhrJson.data.hasOwnProperty('records') ){
 
                 gridRegion.gridView.collection.reset(xhrJson.data.records);
+
+                // console.log(gridRegion.gridView.children);
 
                 // console.log(gridRegion.gridView.collection.length);
 

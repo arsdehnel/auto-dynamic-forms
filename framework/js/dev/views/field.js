@@ -10,7 +10,7 @@ ADF.FieldView = Backbone.Marionette.ItemView.extend({
         'change'                        : 'valueChange'
     },
     initialize: function( options ) {
-        ADF.utils.message('debug','FieldView Initialized', options);
+        ADF.utils.message('log','FieldView Initialized', options);
         this.model.set('inputField',this.model.get('inputTemplate')(this.model.toJSON()));
     },
     render: function() {

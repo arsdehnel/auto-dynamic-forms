@@ -29,13 +29,19 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
         pageView.$el.find('.adf-region').each(function(){
             var region = $(this);
             var regionData = region.data();
-            regionData.regionClass = ADF.utils.capitalize(ADF.utils.camelize(regionData.adfRegionType))+'Region';
-            regionData.elSelector = '#'+$(this).attr('id');
-            regionData.regionName = ADF.utils.camelize($(this).attr('id'));
 
-            // create the region
-            regions[regionData.regionName] = new ADF[regionData.regionClass](_.extend({el: regionData.elSelector},regionData));
-            pageView.addRegions(regions);
+            // skip regions that maybe are malformed or missing the region type
+            if( regionData.adfRegionType ){
+
+                regionData.regionClass = ADF.utils.capitalize(ADF.utils.camelize(regionData.adfRegionType))+'Region';
+                regionData.elSelector = '#'+$(this).attr('id');
+                regionData.regionName = ADF.utils.camelize($(this).attr('id'));
+
+                // create the region
+                regions[regionData.regionName] = new ADF[regionData.regionClass](_.extend({el: regionData.elSelector},regionData));
+                pageView.addRegions(regions);
+
+            }
         },pageView.trigger('regionsInitialized'));
     },
     showRegions: function() {

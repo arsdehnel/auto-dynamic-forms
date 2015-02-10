@@ -10,7 +10,7 @@ ADF.FormView = Marionette.CollectionView.extend({
     childView: ADF.FieldView,
 
     initialize: function( options ) {
-        ADF.utils.message('debug','FormView Initialized', options );
+        ADF.utils.message('log','FormView Initialized', options );
         $.extend(this.options,options);
         // this.options
     },

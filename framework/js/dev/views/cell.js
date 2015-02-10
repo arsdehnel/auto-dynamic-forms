@@ -1,3 +1,7 @@
+/*global
+ADF,
+Backbone
+*/
 ADF.CellView = Backbone.Marionette.ItemView.extend({
     template: ADF.templates.gridCell,
     tagName: 'td',
@@ -5,7 +9,7 @@ ADF.CellView = Backbone.Marionette.ItemView.extend({
         ADF.utils.message('log','CellView Initialized', options);
         this.model.set('inputField',this.model.get('inputTemplate')(this.model.toJSON()));
         // this.setElement(this.template(this.model.toJSON()));
-        // <td data-column-select-priority="{{fieldPriority}}" data-header-id="{{name}}" class="{{wrapClass}}">
+        // <td data-column-select-priority='{{fieldPriority}}' data-header-id='{{name}}' class='{{wrapClass}}'>
     },
     render: function() {
         // this.$el
