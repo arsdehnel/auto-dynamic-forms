@@ -25,15 +25,12 @@ ADF.FormRegion = ADF.Region.extend({
             regionName: formRegion.options.regionName,
             model: ADF.ActionModel
         });
-        console.log('after show initialization',formRegion.actionsCollection);
 
         this._super();
 
     },
 
     ajaxSuccessHandler: function( xhrJson, settings ) {
-
-        console.log(settings);
 
         var formRegion = this;
         var formView = formRegion.formView;
@@ -43,10 +40,8 @@ ADF.FormRegion = ADF.Region.extend({
             if( xhrJson.data.hasOwnProperty('actions') ){
 
                 if( settings.emptyCollections === false ){
-                    console.log('dont empty actions');
                     formRegion.actionsCollection.add(xhrJson.data.actions);
                 }else{
-                    console.log('empty actions');
                     formRegion.actionsCollection.reset(xhrJson.data.actions);
                 }
 

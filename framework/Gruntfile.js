@@ -132,6 +132,12 @@ module.exports = function(grunt) {
                 ],
                 dest: filePath+'js/plugins.min.js',
             },
+            tests: {
+                src: [
+                    'testing/tests/**/*.js'
+                ],
+                dest: 'testing/tests.js'
+            }
         },
         uglify: {
             options: {
@@ -146,12 +152,10 @@ module.exports = function(grunt) {
         sass: {
             dist: {
                 options: {
-                    style: 'compressed',
-                    noCache: true
+                    style: 'compressed'
                 },
                 files: {
                     'grunt-work/compiled.css': 'scss/main.scss'
-                    // 'grunt-work/compiled.css' : ['scss/_variables.scss','scss/_mixins.scss','scss/partials/_layout.scss']
                 }
             }
         },
@@ -210,5 +214,6 @@ module.exports = function(grunt) {
     grunt.registerTask('scripts-dev', ['concat:dev']);
     grunt.registerTask('scripts-lib', ['concat:lib']);
     grunt.registerTask('scripts-plugins', ['concat:plugins']);
+    grunt.registerTask('scripts-tests', ['concat:tests']);
 
 };

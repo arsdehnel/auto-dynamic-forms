@@ -1,3 +1,8 @@
+/*global
+ADF,
+Backbone,
+$
+*/
 // TODO: get this prototype to work
 // ADF.ColumnSelectView = ADF.DropdownMenuView({
 ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
@@ -10,10 +15,10 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
     // },
     events: {
         // TODO: this should go to the parent prototype
-        "click .dropdown-wrapper .dropdown-toggle"     : "dropdownToggle",
+        'click .dropdown-wrapper .dropdown-toggle'     : 'dropdownToggle',
         // TODO: create hierarchy of events somehow
-        "click .adf-grid-column-group"          : "columnSelect",
-        "change .column-selector .dropdown-menu input" : "columnSelect"
+        'click .adf-grid-column-group'          : 'columnSelect',
+        'change .column-selector .dropdown-menu input' : 'columnSelect'
     },
     initialize: function( options ) {
         ADF.utils.message('log','ColumnSelectView Initialized', options );
@@ -27,35 +32,35 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
             wrapClass : 'column-selector',
             footerOptions : [
                 {
-                    href : "#",
-                    itemClass : "adf-grid-column-group",
-                    label : "All Columns",
+                    href : '#',
+                    itemClass : 'adf-grid-column-group',
+                    label : 'All Columns',
                     dataAttributes : [
                         {
-                            "name" : "column-select-type",
-                            "value" : "all"
+                            'name' : 'column-select-type',
+                            'value' : 'all'
                         }
                     ]
                 },
                 {
-                    href : "#",
-                    itemClass : "adf-grid-column-group",
-                    label : "Minimum Columns",
+                    href : '#',
+                    itemClass : 'adf-grid-column-group',
+                    label : 'Minimum Columns',
                     dataAttributes : [
                         {
-                            "name" : "column-select-type",
-                            "value" : "min"
+                            'name' : 'column-select-type',
+                            'value' : 'min'
                         }
                     ]
                 },
                 {
-                    href : "#",
-                    itemClass : "adf-grid-column-group",
-                    label : "Default Columns",
+                    href : '#',
+                    itemClass : 'adf-grid-column-group',
+                    label : 'Default Columns',
                     dataAttributes : [
                         {
-                            "name" : "column-select-type",
-                            "value" : "dflt"
+                            'name' : 'column-select-type',
+                            'value' : 'dflt'
                         }
                     ]
                 }
@@ -79,30 +84,32 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
             // TODO: move this to the model initializer
             model.set('regionName',columnSelect.regionName);
 
-            if( model.get("fieldPriority") !== 0 ){
-                var childView = new columnSelect.childView;
-                var headerCell = $('#'+columnSelect.regionName+'--'+model.get("name"));
+            if( model.get('fieldPriority') !== 0 ){
+                var childView = new columnSelect.childView();
+                var headerCell = $('#'+columnSelect.regionName+'--'+model.get('name'));
                 if( headerCell.css('display') === 'table-cell' ){
                     model.set('checked',true);
                 }
-                childContainer.before(childView.template(model.toJSON()))
+                childContainer.before(childView.template(model.toJSON()));
             }
 
-        })
+        });
 
         return this;
     },
     // TODO: move this to the prototype
     dropdownToggle: function( event ) {
 
+        var $target = {};
+
         if( event.target ){
 
             event.preventDefault();
-            var $target = $(event.target);
+            $target = $(event.target);
 
         }else{      // we're just going to assume it's a jQuery object then
 
-            var $target = event;
+            $target = event;
 
         }
 
@@ -115,14 +122,14 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
 
         var colSelect = this;
         var $target = $(e.target);
-        var groupType = $target.attr('data-column-select-type')
+        var groupType = $target.attr('data-column-select-type');
 
         console.log('columnselect triggered',$target,groupType,id);
 
         if( typeof groupType == 'undefined' ){
 
             var id = $target.val();
-            var cells = $('#'+id+", .adf-grid td[data-header-id="+id+"]");
+            var cells = $('#'+id+', .adf-grid td[data-header-id='+id+']');
 
             console.log('columnselect details',id,cells);
 
@@ -136,23 +143,23 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
 
             switch( groupType ){
 
-                case "all":
+                case 'all':
                     $target.closest('.dropdown-wrapper').find('.dropdown-menu :input').not(':checked').trigger('click');
                     break;
 
-                case "min":
+                case 'min':
                     $target.closest('.dropdown-wrapper').find('.dropdown-menu :input').each(function(){
                         var inputObj = $(this);
                         var priority = parseInt( $('#'+inputObj.val()).attr('data-column-select-priority'), 10 );
                         if( ( inputObj.is(':checked') && priority > 1 ) || ( inputObj.is(':not(:checked)') && priority <= 1 ) ){
                             inputObj.trigger('click');
                         }
-                    })
+                    });
                     break;
 
-                case "dflt":
+                case 'dflt':
                     var dropdownMenu = $target.closest('.dropdown-wrapper').find('.dropdown-menu');
-                    $('.adf-grid th, .adf-grid td').css("display", "");
+                    $('.adf-grid th, .adf-grid td').css('display', '');
                     $('.adf-grid th').each(function(){
 
                         var inputObj = dropdownMenu.find(':input[value='+$(this).attr('id')+']');
@@ -168,7 +175,7 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
 
                         }
 
-                    })
+                    });
                     break;
 
             }

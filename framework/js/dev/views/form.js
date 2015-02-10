@@ -34,7 +34,7 @@ ADF.FormView = Marionette.CollectionView.extend({
         var formView = this;
         formView._super();
 
-        // rendering the "actions" for a given form
+        // rendering the 'actions' for a given form
         // start by getting the region since that is where the actions are kept
         var region = adf.page[formView.options.regionName];
 
@@ -53,6 +53,8 @@ ADF.FormView = Marionette.CollectionView.extend({
             });
 
         }
+
+        ADF.utils.select2.refresh();
 
     },
 
@@ -79,13 +81,18 @@ ADF.FormView = Marionette.CollectionView.extend({
                 ADF.utils.message('log','Found something to load into');
                 e.preventDefault();
 
-                region.ajax();
+                console.log();
+
+                region.ajax({
+                    data: JSON.stringify($form.serializeObject()),
+                    method: 'POST'
+                });
 
                 // $.ajax({
                 //     url: opts.url,
                 //     type: opts.method,
                 //     data: opts.data,
-                //     dataType: ( opts.resultType === "html" ? "html" : "json" ),
+                //     dataType: ( opts.resultType === 'html' ? 'html' : 'json' ),
                 //     beforeSend: function(){
                 //         autoAdmin.utils.spin(opts.target);
                 //     },
@@ -125,7 +132,7 @@ ADF.FormView = Marionette.CollectionView.extend({
                 //                             alert(element);
                 //                         })
                 //                     }else{
-                //                         alert("Looks like the ajax response wasn't quite what was expected from "+opts.url+".  Probably need to get a TA involved.");
+                //                         alert('Looks like the ajax response wasn't quite what was expected from '+opts.url+'.  Probably need to get a TA involved.');
                 //                     }
 
                 //                 }
@@ -136,7 +143,7 @@ ADF.FormView = Marionette.CollectionView.extend({
 
                 //         }else if( jqXHR.status === 404 ){
 
-                //             alert("Page Not Found\n\nThe ajax calls is being made to a page ("+opts.url+") that could not be found. Probably going to need to get a TA involved to see what is going on here.");
+                //             alert('Page Not Found\n\nThe ajax calls is being made to a page ('+opts.url+') that could not be found. Probably going to need to get a TA involved to see what is going on here.');
 
                 //         }else{
 

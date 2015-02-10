@@ -181,12 +181,12 @@ ADF.ModulesView = Backbone.View.extend({
                     alert(textStatus+'! Probably going to need to get a TA involved.');
                     console.log('opts',opts);
                     console.log(jqXHR);
-                    target.html(jqXHR.responseText);
+                    // target.html(jqXHR.responseText);
 
                 }
 
             }
-        })
+        });
 
     },
 
@@ -223,6 +223,7 @@ ADF.ModulesView = Backbone.View.extend({
     dndTargetInit: function( opts ) {
 
         var modulesView = this;
+        var $target;
 
         if( opts.destroy ){
             // modulesView.$el.sortable('destroy');
@@ -234,7 +235,7 @@ ADF.ModulesView = Backbone.View.extend({
             console.log(e);
         }).bind('sortupdate', function(e,ui) {
 
-            var $target = $(e.target);
+            $target = $(e.target);
 
             var nextRecordId = parseInt( ui.item.next().attr('id'), 10 );
             var nextModel = modulesView.recordsColl.findWhere({id:nextRecordId});
@@ -252,7 +253,7 @@ ADF.ModulesView = Backbone.View.extend({
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(ui.item.find(':input').serializeObject()),
-                    dataType: "json",
+                    dataType: 'json',
                     beforeSend: function(){
                         ADF.utils.spin(modulesView.$el);
                     },
@@ -280,28 +281,28 @@ ADF.ModulesView = Backbone.View.extend({
                                 if( jqXHR.responseJSON.hasOwnProperty('errors') ){
                                     _.each(jqXHR.responseJSON.errors,function( element, index, array ){
                                         alert(element);
-                                    })
+                                    });
                                 }else{
-                                    alert("Looks like the ajax response wasn't quite what was expected from "+opts.url+".  Probably need to get a TA involved.");
+                                    alert('Looks like the ajax response wasn\'t quite what was expected from '+opts.url+'.  Probably need to get a TA involved.');
                                 }
 
                             }
 
                         }else if( jqXHR.status === 404 ){
 
-                            alert("Page Not Found\n\nThe ajax calls is being made to a page ("+opts.url+") that could not be found. Probably going to need to get a TA involved to see what is going on here.");
+                            alert('Page Not Found\n\nThe ajax calls is being made to a page ('+opts.url+') that could not be found. Probably going to need to get a TA involved to see what is going on here.');
 
                         }else{
 
                             alert(textStatus+'! Probably going to need to get a TA involved.');
                             console.log('opts',opts);
                             console.log(jqXHR);
-                            target.html(jqXHR.responseText);
+                            // target.html(jqXHR.responseText);
 
                         }
 
                     }
-                })
+                });
 
             // drag is happening within a list, just need to resort
             }else{
@@ -330,8 +331,8 @@ ADF.ModulesView = Backbone.View.extend({
                 }
                 modulesView.$el.empty();
                 _.each( modulesView.recordsColl, function( element, index, array ){
-                    modulesView.recordsColl.models[index].set("read_order",( index * 10 ) + 10);
-                })
+                    modulesView.recordsColl.models[index].set('read_order',( index * 10 ) + 10);
+                });
                 modulesView.renderModules();
 
             }
@@ -340,7 +341,7 @@ ADF.ModulesView = Backbone.View.extend({
             if( $(e.target).parent().hasClass('dnd-target') ){
                 $(e.target).css({
                     background: 'orange'
-                })
+                });
             }
         });
 

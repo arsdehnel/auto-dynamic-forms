@@ -3,7 +3,7 @@
 
 // autoAdmin.PageView = Backbone.View.extend({
 
-//     el: ".auto-admin-page",
+//     el: '.auto-admin-page',
 
 //     initialize: function(opts){
 //         var that = this;
@@ -17,9 +17,9 @@
 
 //     events: {
 //         // AJAX
-//         "change .submit-on-change"                     : "submitParentFormAjax",
-//         "click .load-on-click"                         : "loadOnClickAjax",
-//         "click .submit-parent-form-ajax"               : "submitParentFormAjax",
+//         'change .submit-on-change'                     : 'submitParentFormAjax',
+//         'click .load-on-click'                         : 'loadOnClickAjax',
+//         'click .submit-parent-form-ajax'               : 'submitParentFormAjax',
 
 //         // TODO apply filters action
 //     },
@@ -30,13 +30,13 @@
 //         this.ajaxViews = new Array();
 
 //         switch( ajaxObj.resultType ){
-//             case "form":
+//             case 'form':
 //                 that.ajaxViews.push(new autoAdmin.FormView(ajaxObj));
 //                 break;
-//             case "grid":
+//             case 'grid':
 //                 that.ajaxViews.push(new autoAdmin.GridView(ajaxObj));
 //                 break;
-//             case "html":
+//             case 'html':
 //                 that.ajaxViews.push(new autoAdmin.HtmlView(ajaxObj));
 //                 break;
 //             default:
@@ -58,13 +58,13 @@
 //             var target = triggerObj;
 //             var ajaxObj = {};
 
-//             if( triggerObj.attr('data-onload-ajax-target-id') != "" ){
+//             if( triggerObj.attr('data-onload-ajax-target-id') != '' ){
 //                 target = $('#'+triggerObj.attr('data-onload-ajax-target-id'));
 //             }
 
 //             ajaxObj.url = triggerObj.attr('data-onload-ajax-url');
-//             ajaxObj.method = "GET";
-//             ajaxObj.data = "";
+//             ajaxObj.method = 'GET';
+//             ajaxObj.data = '';
 //             ajaxObj.target = target;
 //             ajaxObj.resultType = triggerObj.attr('data-result-type');
 
@@ -111,8 +111,8 @@
 //         var ajaxObj = {};
 
 //         ajaxObj.url = linkObj.attr('href');
-//         ajaxObj.method = "get";
-//         ajaxObj.data = "";
+//         ajaxObj.method = 'get';
+//         ajaxObj.data = '';
 //         ajaxObj.target = $('#'+linkObj.attr('data-load-on-click-target-id'));
 //         ajaxObj.resultType = linkObj.attr('data-result-type');
 

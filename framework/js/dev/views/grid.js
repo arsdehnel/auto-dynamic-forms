@@ -42,11 +42,16 @@ ADF.GridView = Marionette.CompositeView.extend({
         gridView.headersView.render();
         gridView.columnSelect.render();
         var childContainer = this.$el.find(this.childViewContainer);
+        // console.log(gridView.collection.length);
+        childContainer.empty();
         gridView.collection.each(function(model) {
 
             var childView = new gridView.childView($.extend({},gridView.childViewOptions(),{model:model}));
             childContainer.append(childView.renderAsChild());
             childView.setElement('#'+model.get('regionName') + '--' + model.get('id'));
+
+            // TODO: seems like this should be done some other way
+            childView.assignElements();
 
         });
     }
@@ -70,16 +75,16 @@ ADF.GridView = Marionette.CompositeView.extend({
 //         // COLUMNS
 //         for ( var i = 0; i < fieldsArray.length; i++ ) {
 
-//             fieldsArray[i].set("colIndex",i);
-//             fieldsArray[i].set("gridRow",true);
+//             fieldsArray[i].set('colIndex',i);
+//             fieldsArray[i].set('gridRow',true);
 
 //             gridObj.headers[i] = { 'html' : autoAdmin.templates.gridHeaderCell( fieldsArray[i].toJSON() ) };
 
-//             if( fieldsArray[i].get("columnSelectPriority") != 0 ){
+//             if( fieldsArray[i].get('columnSelectPriority') != 0 ){
 
 //                 // TODO: set the checked attribute if this is going to be visible
 
-//                 gridObj.colSelectCols.push({'html' : autoAdmin.templates.dropdownSelectItem( $.extend( fieldsArray[i].toJSON(), {parent:"column-selector"} ) ) });
+//                 gridObj.colSelectCols.push({'html' : autoAdmin.templates.dropdownSelectItem( $.extend( fieldsArray[i].toJSON(), {parent:'column-selector'} ) ) });
 
 //             }
 
@@ -124,7 +129,7 @@ ADF.GridView = Marionette.CompositeView.extend({
 
 //             field = fieldsArray[i];
 
-//             fieldName = field.get("name");
+//             fieldName = field.get('name');
 
 //             if( fieldName === 'actions' ){
 //                 continue;
@@ -139,7 +144,7 @@ ADF.GridView = Marionette.CompositeView.extend({
 //                 var inputElement = $(this).find('td').eq(i).find(':input[name='+fieldName+']');
 
 //                 // BUG select2 values being accumulated into filters not working properly
-//                 val = ( inputElement.val() ? inputElement.val() : inputElement.select2("val") );
+//                 val = ( inputElement.val() ? inputElement.val() : inputElement.select2('val') );
 
 //                 if( val && val.length > 0 ){
 //                     values[val] = val;
@@ -149,7 +154,7 @@ ADF.GridView = Marionette.CompositeView.extend({
 
 //             //add these to the main columns array
 //             if( _.size(values) > 0 ){
-//                 field.set("currentValues",values);
+//                 field.set('currentValues',values);
 //             }
 
 //             // refresh the filter
@@ -161,15 +166,15 @@ ADF.GridView = Marionette.CompositeView.extend({
 
 //     refreshFilterOptions: function( $target, field ){
 
-//         var th = $target.find('thead tr th').eq(field.get("colIndex"));
+//         var th = $target.find('thead tr th').eq(field.get('colIndex'));
 //         var tmpltObj = {};
 //         var dropdownObj = {
-//             wrapClass : "grid-header-filter",
+//             wrapClass : 'grid-header-filter',
 //             footerOptions : [
 //                 {
-//                     href : "#",
-//                     itemClass : "grid-header-filter-clear",
-//                     label : "Clear Filters"
+//                     href : '#',
+//                     itemClass : 'grid-header-filter-clear',
+//                     label : 'Clear Filters'
 //                 }
 //             ]
 //         }
@@ -179,21 +184,21 @@ ADF.GridView = Marionette.CompositeView.extend({
 //         th.append( autoAdmin.templates.dropdownMenu( dropdownObj ) );
 
 //         //only attempt to do something if there are values in there
-//         if( _.size(field.get("currentValues")) > 0 ){
+//         if( _.size(field.get('currentValues')) > 0 ){
 
 //             th.addClass('has-filter').find('.icon-filter').removeClass('hide')
 
-//             for( var value in field.get("currentValues") ){
+//             for( var value in field.get('currentValues') ){
 
 //                 tmpltObj.name = value;
-//                 tmpltObj.parent = field.get("name");
+//                 tmpltObj.parent = field.get('name');
 //                 if( field.get('data') && field.get('data').length > 0 ){
 
 //                     for( var rec in field.get('data').data ){
 
-//                         if( field.get("data")[rec].value == value ){
+//                         if( field.get('data')[rec].value == value ){
 
-//                             tmpltObj.label = ( field.get("data")[rec].hasOwnProperty('label') ? field.get("data")[rec].label : field.get("data")[rec].value );
+//                             tmpltObj.label = ( field.get('data')[rec].hasOwnProperty('label') ? field.get('data')[rec].label : field.get('data')[rec].value );
 //                             break;
 
 //                         }
