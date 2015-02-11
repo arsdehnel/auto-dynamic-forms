@@ -43,7 +43,7 @@ ADF.GridRegion = ADF.Region.extend({
 
     },
 
-    ajaxSuccessHandler: function( xhrJson ) {
+    ajaxSuccessHandler: function( xhrJson, settings ) {
 
         var gridRegion = this;
 
@@ -52,6 +52,16 @@ ADF.GridRegion = ADF.Region.extend({
             if( xhrJson.data.hasOwnProperty('fields') ){
 
                 gridRegion.fieldsCollection.reset(xhrJson.data.fields);
+
+            }
+
+            if( xhrJson.data.hasOwnProperty('actions') ){
+
+                if( settings.emptyCollections === false ){
+                    gridRegion.actionsCollection.add(xhrJson.data.actions);
+                }else{
+                    gridRegion.actionsCollection.reset(xhrJson.data.actions);
+                }
 
             }
 

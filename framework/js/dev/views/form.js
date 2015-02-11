@@ -20,6 +20,10 @@ ADF.FormView = Marionette.CollectionView.extend({
         'change select[data-adf-submit-on-change=true]'                     : 'submitParentForm',
         'change select[data-adf-dependent-field-lkup-on-change=true]'       : 'dependentFieldLkup',
 
+        // same handlers as above but now in the event that the UI has the data- attributes on a parent "wrapper" element rather than right on the select
+        'change [data-adf-submit-on-change=true] select'                    : 'submitParentForm',
+        'change [data-adf-dependent-field-lkup-on-change=true] select'      : 'dependentFieldLkup',
+
         // button handlers
         'click .btn-submit'                                                 : 'submitParentForm',
         'click .btn-query'                                                  : 'submitParentForm',
@@ -170,22 +174,19 @@ ADF.FormView = Marionette.CollectionView.extend({
     dependentFieldLkup: function(e) {
 
         var formView = this;
-        var dataArr = [];
+        var dataObj = {};
         var $parentRow = $(e.target).closest('.form-row');
         // var $form = $parentRow.closest('form');
         var parentData = $parentRow.data();
         var $target = $('#'+parentData.fieldLkupTarget+'-field-wrap');
-        var childFields = parentData.adfDependentFieldLkupChildFields.split(',');
+        var childFields = parentData.adfDependentFieldLkupChildFields ? parentData.adfDependentFieldLkupChildFields.split(',') : null;
         var region = adf.page[formView.options.regionName];
 
         e.preventDefault();
         ADF.utils.message('log','dependentFieldLkup',e);
 
         formView.collection.each(function( model ) {
-            dataArr.push({
-                'name' : model.get('fldMstrId'),
-                'value' : model.get('currentValue')
-            });
+            dataObj[model.get('fldMstrId')] = model.get('currentValue');
         });
 
         _.each(childFields,function( fieldName ){
@@ -207,7 +208,7 @@ ADF.FormView = Marionette.CollectionView.extend({
         }
 
         region.ajax({
-            data:dataArr,
+            data: JSON.stringify(dataObj),
             url: parentData.adfDependentFieldLkupUrl,
             emptyCollections:false
         });

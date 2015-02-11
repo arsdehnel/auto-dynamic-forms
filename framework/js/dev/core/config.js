@@ -1,5 +1,6 @@
 /*global
-ADF
+ADF,
+_
 */
 ADF.config = {
     messages : {
@@ -24,14 +25,7 @@ ADF.config = {
                 'displayMethod' : 'messagesWindow',
                 'label' : 'Error'
             }
-        },
-        displayLevels: [
-            // 'log',
-            'info',
-            'debug',
-            'warning',
-            'error'
-        ]
+        }
     },
     set: function( itemName, value ){
         if( Object.prototype.toString.call( value ) === '[object Object]' ) {
@@ -48,7 +42,7 @@ ADF.config = {
             configItem = ADF.config[itemName];
         }else{
             configItem = localStorage.getItem(itemName);
-            if( Object.prototype.toString.call( JSON.parse( configItem ) ) === '[object Object]') {
+            if( _.isObject( configItem ) === '[object Object]') {
                 configItem = JSON.parse( configItem );
             }
         }

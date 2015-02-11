@@ -123,12 +123,15 @@
         border-color: $color;
         background: mix( white, $color, 50% );
         color: white;
+        &:hover {
+            cursor: pointer;
+            background: mix( white, $color, 20% );
+        }
         .content {
             background: $color;
         }
         .icon {
-            fill: white;
-            background: $color;
+            fill: $color;
             padding: 1px;
         }
 }

@@ -73,7 +73,13 @@
           }
         ],
         "actions": [],
-        "dataAttributes": []
+        "dataAttributes": [
+          {
+            "detailId": 1,
+            "name": "adf-submit-on-change",
+            "value": "true"
+          }
+        ]
       }
     ],
     "records": [],

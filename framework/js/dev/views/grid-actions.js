@@ -7,11 +7,11 @@ $
 ADF.GridActionsView = Backbone.Marionette.CompositeView.extend({
     template: ADF.templates.dropdownMenu,
     tagName: 'li',
-    childView: ADF.ColumnSelectItemView,
+    childView: ADF.GridActionView,
     childViewContainer: '.dropdown-menu',
-    // childViewOptions : function () {
-    //     return { regionName: this.regionName };
-    // },
+    childViewOptions : function () {
+        return { regionName: this.regionName };
+    },
     events: {
         // TODO: this should go to the parent prototype
         'click .dropdown-wrapper .dropdown-toggle'     : 'dropdownToggle',
@@ -28,42 +28,7 @@ ADF.GridActionsView = Backbone.Marionette.CompositeView.extend({
         // TODO: hide this when the user clicks off of it
         this.model = new ADF.DropdownMenuModel({
             buttonLabel : 'Actions',
-            wrapClass : 'grid-actions',
-            footerOptions : [
-                {
-                    href : '#',
-                    itemClass : 'adf-grid-column-group',
-                    label : 'All Columns',
-                    dataAttributes : [
-                        {
-                            'name' : 'column-select-type',
-                            'value' : 'all'
-                        }
-                    ]
-                },
-                {
-                    href : '#',
-                    itemClass : 'adf-grid-column-group',
-                    label : 'Minimum Columns',
-                    dataAttributes : [
-                        {
-                            'name' : 'column-select-type',
-                            'value' : 'min'
-                        }
-                    ]
-                },
-                {
-                    href : '#',
-                    itemClass : 'adf-grid-column-group',
-                    label : 'Default Columns',
-                    dataAttributes : [
-                        {
-                            'name' : 'column-select-type',
-                            'value' : 'dflt'
-                        }
-                    ]
-                }
-            ]
+            wrapClass : 'grid-actions'
         });
 
     },
@@ -72,7 +37,7 @@ ADF.GridActionsView = Backbone.Marionette.CompositeView.extend({
         // render the main bits
         this.$el.html(this.template(this.model.toJSON()));
 
-        var columnSelect = this;
+        var gridActions = this;
 
         // normally would do variables up top but this requires the html() to be created already
         var childContainer = this.$el.find(this.childViewContainer).find('.divider');
@@ -81,16 +46,12 @@ ADF.GridActionsView = Backbone.Marionette.CompositeView.extend({
         this.collection.each(function(model){
 
             // TODO: move this to the model initializer
-            model.set('regionName',columnSelect.regionName);
+            model.set('regionName',gridActions.regionName);
 
-            if( model.get('fieldPriority') !== 0 ){
-                var childView = new columnSelect.childView();
-                var headerCell = $('#'+columnSelect.regionName+'--'+model.get('name'));
-                if( headerCell.css('display') === 'table-cell' ){
-                    model.set('checked',true);
-                }
-                childContainer.before(childView.template(model.toJSON()));
-            }
+            var childView = new gridActions.childView({regionName:gridActions.regionName,model:model});
+            childContainer.before(childView.template(model.toJSON()));
+            console.log('#'+gridActions.regionName+'Action--'+model.get('id'));
+            childView.setElement('#'+gridActions.regionName+'Action--'+model.get('id'));
 
         });
 

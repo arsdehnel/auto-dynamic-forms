@@ -167,7 +167,7 @@
   .grid-header-filter.dropdown-wrapper .dropdown-menu {
     top: 1em; }
 
-.adf-grid-actions .dropdown-wrapper {
+.adf-grid-actions-wrapper .dropdown-wrapper {
   position: relative;
   margin-right: 1em;
   float: right;
@@ -1326,7 +1326,8 @@ disabled look for disabled choices in the results dropdown
 
 .adf-messages-window {
   position: fixed;
-  bottom: 0; }
+  bottom: 0;
+  z-index: 8000; }
   .adf-messages-window .messages-wrapper > div {
     display: inline-block; }
   .adf-messages-window .message {
@@ -1352,12 +1353,16 @@ disabled look for disabled choices in the results dropdown
   .adf-messages-window .label {
     min-width: 100px;
     position: relative; }
-    .adf-messages-window .label .message-remove {
+    .adf-messages-window .label .message-actions {
       position: absolute;
-      top: 2px;
-      right: 2px; }
-    .adf-messages-window .label .icon {
-      height: 1em;
+      top: 1px;
+      right: 1px;
+      text-align: right; }
+      .adf-messages-window .label .message-actions a {
+        display: inline-block; }
+      .adf-messages-window .label .message-actions .icon {
+        height: 1.2em; }
+    .adf-messages-window .label .message-remove {
       border-radius: 50%; }
   .adf-messages-window .content {
     display: none; }
@@ -1365,19 +1370,23 @@ disabled look for disabled choices in the results dropdown
     border-color: #cc0000;
     background: #e57f7f;
     color: white; }
+    .adf-messages-window .message-error:hover {
+      cursor: pointer;
+      background: #d63333; }
     .adf-messages-window .message-error .content {
       background: #cc0000; }
     .adf-messages-window .message-error .icon {
-      fill: white;
-      background: #cc0000;
+      fill: #cc0000;
       padding: 1px; }
   .adf-messages-window .message-debug {
     border-color: #336699;
     background: #99b2cc;
     color: white; }
+    .adf-messages-window .message-debug:hover {
+      cursor: pointer;
+      background: #5b84ad; }
     .adf-messages-window .message-debug .content {
       background: #336699; }
     .adf-messages-window .message-debug .icon {
-      fill: white;
-      background: #336699;
+      fill: #336699;
       padding: 1px; }

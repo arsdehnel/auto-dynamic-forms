@@ -32,7 +32,7 @@ ADF.GridView = Marionette.CompositeView.extend({
         });
 
         gridView.columnSelect = new ADF.ColumnSelectView({
-            el: gridView.$el.find('.adf-grid-actions')[0],
+            el: gridView.$el.find('.adf-grid-column-select')[0],
             collection: region.fieldsCollection,
             regionName: gridView.regionName
         });
@@ -50,6 +50,7 @@ ADF.GridView = Marionette.CompositeView.extend({
         var gridView = this;
         gridView.headersView.render();
         gridView.columnSelect.render();
+        gridView.gridActions.render();
         var childContainer = this.$el.find(this.childViewContainer);
         // console.log(gridView.collection.length);
         childContainer.empty();
@@ -66,6 +67,8 @@ ADF.GridView = Marionette.CompositeView.extend({
             childView.setElement('#'+recordModel.get('regionName') + '--' + recordModel.get('id'));
 
         },this);
+
+        ADF.utils.select2.refresh();
 
         // console.log(gridView.children);
     }

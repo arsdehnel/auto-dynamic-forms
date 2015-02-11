@@ -1,6 +1,7 @@
 .adf-messages-window {
     position: fixed;
     bottom: 0;
+    z-index: $zindex-messages-window;
     // TODO: remove this when the weird Marionette extra wrapper is gone from the .message
     .messages-wrapper > div {
         display: inline-block;
@@ -12,17 +13,19 @@
         font-weight: normal;
         border-style: solid;
         border-width: 1px 1px 0 0;
-        &:hover .content {
-            position: absolute;
-            bottom: 100%;
-            left: 0;
-            display: block;
-            width: 50vw;
-            max-height: 50vh;
-            min-height: 0;
-            margin: 0;
-            padding: 12px;
-            overflow: scroll;
+        &:hover {
+            .content {
+                position: absolute;
+                bottom: 100%;
+                left: 0;
+                display: block;
+                width: 50vw;
+                max-height: 50vh;
+                min-height: 0;
+                margin: 0;
+                padding: 12px;
+                overflow: scroll;
+            }
         }
         &.removed {
             display: none;
@@ -31,13 +34,19 @@
     .label {
         min-width: 100px;
         position: relative;
-        .message-remove {
+        .message-actions {
             position: absolute;
-            top: 2px;
-            right: 2px;
+            top: 1px;
+            right: 1px;
+            text-align: right;
+            a {
+                display: inline-block;
+            }
+            .icon {
+                height: 1.2em;
+            }
         }
-        .icon {
-            height: 1em;
+        .message-remove {
             border-radius: 50%;
         }
     }
@@ -45,17 +54,7 @@
         display: none;
     }
     .message-error {
-        border-color: $message-error;
-        background: mix( white, $message-error, 50% );
-        color: white;
-        .content {
-            background: $message-error;
-        }
-        .icon {
-            fill: white;
-            background: $message-error;
-            padding: 1px;
-        }
+        @include message-style( $message-error );
     }
     .message-debug {
         @include message-style( $message-debug );

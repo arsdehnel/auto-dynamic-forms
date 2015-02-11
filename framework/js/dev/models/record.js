@@ -9,19 +9,25 @@ ADF.RecordModel = Backbone.Model.extend({
         ADF.utils.message('log','RecordModel Initialized', attrs, opts);
         var recordModel = this;
 
+        // give the record an ID even if it is new (ie not from the database)
+        if( recordModel.isNew() ){
+            recordModel.set('id','a'+ADF.utils.randomId());
+            recordModel.set('rowClass','added');
+        }else{
+            recordModel.set('rowClass','current');
+        }
+
         // make sure all attributes are lowercase
         _.each(attrs,function(element, index, array){
             if( index.toLowerCase() !== index ){
                 recordModel.set(index.toLowerCase(),element);
                 recordModel.unset(index);
             }
-            if( typeof element == 'object' && Array.isArray(element) ){
+            if( _.isArray(element) ){
                 _.each(element, function( childElement, childIndex, childArray ){
                     ADF.utils.objPropToLower( childElement );
-            //         childArray[index] = adf.utils.objPropToLower( childElement );
                 });
                 recordModel.set(index.toLowerCase(), element );
-                // console.log(element);
             }
         });
 

@@ -3,7 +3,11 @@
     include('../_header.php');
 ?>
 <div class="row">
-    <fieldset class="layout-grid-6 adf-onload-ajax" data-onload-ajax-url="../json/form-builder/filters.json" data-result-type="form" data-onload-ajax-target-id="form-builder">
+    <fieldset
+        class="layout-grid-6 adf-region"
+        data-adf-region-type="modules"
+        id="form-builder-current-filters"
+        data-adf-ajax-url="../json/form-builder/current-filters.json">
         <legend>Your Form</legend>
         <form action="../json/form-builder/current.json" class="form-horizontal adf-form" method="post" id="form-builder" data-target-id="form-builder-current" data-result-type="modules"></form>
 		<div id="form-builder-current" class="dnd-wrapper dnd-target hide" data-record-save-url="../json/form-builder/save.json" data-record-new-url="../json/form-builder/new-page-dtl.json"></div>

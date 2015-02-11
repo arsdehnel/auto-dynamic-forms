@@ -1,6 +1,7 @@
 <a
     href="{{href}}"
     class="{{itemClass}}"
+    id="{{#if regionName}}{{regionName}}Action--{{/if}}{{id}}"
     {{#each dataAttributes}}
         data-{{name}}="{{value}}"
     {{/each}}

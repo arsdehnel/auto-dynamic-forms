@@ -100,6 +100,7 @@ module.exports = function(grunt) {
                     'js/dev/views/cell.js',
                     'js/dev/views/column-select-item.js',
                     'js/dev/views/column-select.js',
+                    'js/dev/views/grid-action.js',
                     'js/dev/views/grid-actions.js',
                     'js/dev/views/message.js',
                     'js/dev/views/messages-window.js',

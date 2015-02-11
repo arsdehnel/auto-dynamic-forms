@@ -177,7 +177,7 @@
           {
             "detailId": 60,
             "name": "adf-ajax-url",
-            "value": "/acuraadmin/v2/service/process-master/emailGrid.action"
+            "value": "../json/process-master/email-dist-grid.json"
           },
           {
             "detailId": 60,

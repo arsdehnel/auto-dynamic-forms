@@ -16,12 +16,19 @@ ADF.utils = {
             return x.toUpperCase();
         });
     },
+    isObject: function( obj ) {
+        return Object.prototype.toString.call( obj ) === '[object Object]';
+    },
     arrayToHTML: function( array, parentElement, childElement ) {
-        // TODO: handle an item of the array being an object
         var retElement = document.createElement(parentElement);
         _.each( array, function(item) {
             var child = document.createElement(childElement);
-            child.appendChild(document.createTextNode(item));
+            if( ADF.utils.isObject( item ) ){
+                // TODO: handle an item of the array being an object
+                child.appendChild(document.createTextNode(item));
+            }else{
+                child.appendChild(document.createTextNode(item));
+            }
             retElement.appendChild(child);
         });
         return retElement.innerHTML;
@@ -144,13 +151,12 @@ ADF.utils = {
                 case 'messagesWindow':
                     // TODO: handle errors somehow before the adf and adf.page are defined
                     // since we might have an error before the page loads up we'll do this for a bit to see if we can get into the messages window
-                    if( adf.page ){
+                    if( adf.page && adf.page.getRegion('messagesWindow') ){
                         adf.page.getRegion('messagesWindow').messagesWindowView.collection.add([
                             {
                                 level: level,
                                 label: levelObj.label,
-                                content: ADF.utils.arrayToHTML( args, 'ul', 'li' ),
-                                contentArray: args
+                                originalArguments: args
                             }
                         ]);
                         adf.page.getRegion('messagesWindow').show();

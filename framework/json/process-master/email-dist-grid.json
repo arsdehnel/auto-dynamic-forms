@@ -873,7 +873,7 @@
             "type": "save",
             "wrapClass": null,
             "actionClass": null,
-            "url": "#",
+            "url": "service/process-master/emailDistSave.action",
             "pageDetailId": 67,
             "fieldPageDetailId": 75,
             "dataAttributes": []

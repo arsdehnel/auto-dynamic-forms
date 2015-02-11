@@ -57,6 +57,10 @@ this["ADF"]["templates"]["dialogFormWrapper"] = Handlebars.template({"compiler":
 
 this["ADF"]["templates"]["dropdownLink"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return escapeExpression(((helper = (helper = helpers.regionName || (depth0 != null ? depth0.regionName : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"regionName","hash":{},"data":data}) : helper)))
+    + "Action--";
+},"3":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
   return "        data-"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "=\""
@@ -67,8 +71,12 @@ this["ADF"]["templates"]["dropdownLink"] = Handlebars.template({"1":function(dep
     + escapeExpression(((helper = (helper = helpers.href || (depth0 != null ? depth0.href : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"href","hash":{},"data":data}) : helper)))
     + "\"\n    class=\""
     + escapeExpression(((helper = (helper = helpers.itemClass || (depth0 != null ? depth0.itemClass : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"itemClass","hash":{},"data":data}) : helper)))
+    + "\"\n    id=\"";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.regionName : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += escapeExpression(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"id","hash":{},"data":data}) : helper)))
     + "\"\n";
-  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.dataAttributes : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.dataAttributes : depth0), {"name":"each","hash":{},"fn":this.program(3, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   buffer += ">";
   stack1 = ((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"label","hash":{},"data":data}) : helper));
@@ -110,7 +118,7 @@ this["ADF"]["templates"]["dropdownMenu"] = Handlebars.template({"1":function(dep
     + "</button>\n    	<button type=\"button\" class=\"dropdown-toggle-caret dropdown-toggle\">\n      		<span class=\"caret\">&#xf0d7;</span>\n    	</button>\n    	<ul class=\"dropdown-menu hide\">\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.primaryOptions : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  buffer += "      		<li class=\"divider\"></li>\n";
+  buffer += "  		    <li class=\"divider\"></li>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.footerOptions : depth0), {"name":"each","hash":{},"fn":this.program(3, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "    	</ul>\n  	</div>\n</div>";
@@ -240,7 +248,7 @@ this["ADF"]["templates"]["gridRow"] = Handlebars.template({"compiler":[6,">= 2.0
 
 
 this["ADF"]["templates"]["gridTable"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div class=\"adf-grid-actions\">\n</div>\n<table class=\"adf-grid\">\n    <thead>\n        <tr>\n        </tr>\n    </thead>\n    <tbody>\n    </tbody>\n</table>\n";
+  return "<div class=\"adf-grid-actions-wrapper\">\n    <div class=\"adf-grid-column-select\">\n    </div>\n    <div class=\"adf-grid-actions\">\n    </div>\n</div>\n<table class=\"adf-grid\">\n    <thead>\n        <tr>\n        </tr>\n    </thead>\n    <tbody>\n    </tbody>\n</table>\n";
   },"useData":true});
 
 
@@ -365,7 +373,7 @@ this["ADF"]["templates"]["inputTypeDate"] = Handlebars.template({"compiler":[6,"
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
   return "  <input type=\"date\" name=\""
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
-    + "\" class=\"adf-grid-filter-value\">\n";
+    + "\">\n";
 },"useData":true});
 
 
@@ -428,7 +436,7 @@ this["ADF"]["templates"]["inputTypeReadonly"] = Handlebars.template({"1":functio
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "\" value=\""
     + escapeExpression(((helper = (helper = helpers.currentValue || (depth0 != null ? depth0.currentValue : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"currentValue","hash":{},"data":data}) : helper)))
-    + "\" class=\"adf-grid-filter-value\">\n  </span>\n";
+    + "\">\n  </span>\n";
 },"useData":true});
 
 
@@ -445,7 +453,7 @@ this["ADF"]["templates"]["inputTypeSelect"] = Handlebars.template({"1":function(
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data,depths) {
   var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<select name=\""
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
-    + "\" class=\"adf-grid-filter-value\">\n    <option>Please Select</option>\n";
+    + "\">\n    <option>Please Select</option>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.data : depth0), {"name":"each","hash":{},"fn":this.program(1, data, depths),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</select>";
@@ -512,7 +520,7 @@ this["ADF"]["templates"]["inputTypeText"] = Handlebars.template({"compiler":[6,"
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
   return "<input type=\"text\" name=\""
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
-    + "\" class=\"form-input-field adf-grid-filter-value\" value=\""
+    + "\" class=\"form-input-field\" value=\""
     + escapeExpression(((helper = (helper = helpers.currentValue || (depth0 != null ? depth0.currentValue : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"currentValue","hash":{},"data":data}) : helper)))
     + "\">";
 },"useData":true});
@@ -523,7 +531,7 @@ this["ADF"]["templates"]["inputTypeTextarea"] = Handlebars.template({"compiler":
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
   return "  <textarea name=\""
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
-    + "\" class=\"adf-grid-filter-value\"></textarea>\n";
+    + "\"></textarea>\n";
 },"useData":true});
 
 
@@ -534,7 +542,7 @@ this["ADF"]["templates"]["message"] = Handlebars.template({"compiler":[6,">= 2.0
     + "\">\n    <header class=\"label\">\n        ";
   stack1 = ((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"label","hash":{},"data":data}) : helper));
   if (stack1 != null) { buffer += stack1; }
-  buffer += "\n        <a href=\"#\" class=\"message-remove\">\n            <svg viewBox=\"0 0 32 32\" class=\"icon\">\n                <use xlink:href=\"#icon-close\"></use>\n            </svg>\n        </a>\n    </header>\n    <div class=\"content\">";
+  buffer += "\n        <nav class=\"message-actions\">\n            <a href=\"#\" class=\"message-details\">\n                <svg viewBox=\"0 0 32 32\" class=\"icon\">\n                    <use xlink:href=\"#icon-bug\"></use>\n                </svg>\n            </a>\n            <a href=\"#\" class=\"message-remove\">\n                <svg viewBox=\"0 0 32 32\" class=\"icon\">\n                    <use xlink:href=\"#icon-close\"></use>\n                </svg>\n            </a>\n        </nav>\n    </header>\n    <div class=\"content\">";
   stack1 = ((helper = (helper = helpers.content || (depth0 != null ? depth0.content : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"content","hash":{},"data":data}) : helper));
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</div>\n</div>";

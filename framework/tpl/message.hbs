@@ -1,11 +1,18 @@
 <div class="message message-{{level}}">
     <header class="label">
         {{{label}}}
-        <a href="#" class="message-remove">
-            <svg viewBox="0 0 32 32" class="icon">
-                <use xlink:href="#icon-close"></use>
-            </svg>
-        </a>
+        <nav class="message-actions">
+            <a href="#" class="message-details">
+                <svg viewBox="0 0 32 32" class="icon">
+                    <use xlink:href="#icon-bug"></use>
+                </svg>
+            </a>
+            <a href="#" class="message-remove">
+                <svg viewBox="0 0 32 32" class="icon">
+                    <use xlink:href="#icon-close"></use>
+                </svg>
+            </a>
+        </nav>
     </header>
     <div class="content">{{{content}}}</div>
 </div>
