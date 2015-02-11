@@ -1,2 +1,2 @@
 <?php
-define('CLIENT_PATH','../../acuraadmin-v2/');
+define('CLIENT_PATH','../../client/');

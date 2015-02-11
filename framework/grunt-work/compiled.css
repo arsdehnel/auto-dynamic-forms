@@ -1323,3 +1323,40 @@ disabled look for disabled choices in the results dropdown
     margin: 0; }
     .adf-grid-overlay-editor .overlay-close span {
       display: none; }
+
+.adf-messages-window {
+  position: fixed;
+  bottom: 0; }
+  .adf-messages-window .message {
+    display: inline-block;
+    padding: 4px;
+    font-size: 12px;
+    font-weight: normal; }
+    .adf-messages-window .message:hover .content {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      display: block;
+      width: 50vw;
+      max-height: 50vh;
+      min-height: 0;
+      margin: 0;
+      padding: 12px;
+      overflow: scroll; }
+    .adf-messages-window .message.removed {
+      display: none; }
+  .adf-messages-window .label .icon {
+    height: 1em;
+    border-radius: 50%; }
+  .adf-messages-window .content {
+    display: none; }
+  .adf-messages-window .message-error {
+    border-color: #cc0000;
+    background: #e57f7f;
+    color: white; }
+    .adf-messages-window .message-error .content {
+      background: #cc0000; }
+    .adf-messages-window .message-error .icon {
+      fill: white;
+      background: #cc0000;
+      padding: 1px; }

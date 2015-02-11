@@ -70,7 +70,7 @@
     border: solid #999;
     border-width: 0 1px 1px 0;
     padding: 0 0.5em;
-    background: #009900;
+    background: #000000;
     color: white;
     position: relative;
     line-height: 2em;
@@ -171,7 +171,7 @@
   position: relative;
   margin-right: 1em;
   float: right;
-  background: #66c166; }
+  background: #666666; }
 
 .adf-grid thead .icon-tooltip {
   position: absolute;
@@ -201,13 +201,13 @@
   position: relative;
   line-height: 2em;
   min-height: 2em;
-  color: #33ad33;
-  border: 1px solid #33ad33;
+  color: #333333;
+  border: 1px solid #333333;
   transition: all 0.1s linear; }
   .btn:hover {
     color: white;
-    border: 1px solid #007a00;
-    background: #33ad33; }
+    border: 1px solid black;
+    background: #333333; }
   .btn svg {
     position: absolute;
     top: 0.5em;
@@ -226,7 +226,7 @@
 .content .page-title {
   margin: 0;
   padding: 0.25em;
-  background: rgba(0, 153, 0, 0.5); }
+  background: rgba(0, 0, 0, 0.5); }
 
 dialog {
   display: none;
@@ -287,8 +287,8 @@ dialog::backdrop {
   background: teal; }
 
 .dnd-item {
-  border: 1px solid #b2e0b2;
-  box-shadow: 2px 2px 6px #7fcc7f;
+  border: 1px solid #b2b2b2;
+  box-shadow: 2px 2px 6px #7f7f7f;
   position: relative; }
   .dnd-item.updated header {
     background: #bbf; }
@@ -302,7 +302,7 @@ dialog::backdrop {
     height: 2em;
     line-height: 2em;
     text-align: center;
-    background: #009900;
+    background: #000000;
     color: white;
     z-index: 20;
     cursor: move; }
@@ -311,8 +311,8 @@ dialog::backdrop {
     display: block;
     height: 2em;
     padding-left: 2.5em;
-    background: #99d699;
-    color: #009900;
+    background: #999999;
+    color: #000000;
     font-weight: 700;
     text-transform: uppercase; }
     .dnd-item header p {
@@ -400,7 +400,7 @@ dialog::backdrop {
       border-style: solid;
       border-color: transparent transparent transparent currentColor; }
   .dropdown-wrapper .dropdown-inner:hover {
-    color: #cceacc; }
+    color: #cccccc; }
 
 @font-face {
   font-family: 'FontAwesome';
@@ -415,7 +415,7 @@ dialog::backdrop {
   font-style: normal; }
 
 fieldset {
-  border: 1px solid #b2e0b2;
+  border: 1px solid #b2b2b2;
   position: relative;
   padding: 2em 0.5em 0.5em; }
   fieldset legend {
@@ -426,8 +426,8 @@ fieldset {
     width: calc( 100% + 1em);
     margin: 0 -0.5em;
     padding: 0.25em;
-    background: #99d699;
-    color: #009900;
+    background: #999999;
+    color: #000000;
     font-weight: 700;
     text-transform: uppercase; }
 
@@ -612,13 +612,13 @@ body {
   margin: 0;
   height: 100%;
   background: radial-gradient(circle at 100% 50%, transparent 20%, rgba(255, 255, 255, 0.1) 21%, rgba(255, 255, 255, 0.1) 34%, transparent 35%, transparent), radial-gradient(circle at 0% 50%, transparent 20%, rgba(255, 255, 255, 0.1) 21%, rgba(255, 255, 255, 0.1) 34%, transparent 35%, transparent) 0 -50px;
-  background-color: #009900;
+  background-color: #000000;
   background-size: 75px 100px;
   font-size: 14px;
   font-family: 'Lato'; }
   body.environment-qa {
-    background: radial-gradient(circle at 100% 50%, transparent 20%, magenta 21%, magenta 34%, transparent 35%, transparent), radial-gradient(circle at 0% 50%, transparent 20%, magenta 21%, magenta 34%, transparent 35%, transparent) 0 -50px;
-    background-color: #009900;
+    background: radial-gradient(circle at 100% 50%, transparent 20%, rgba(0, 255, 0, 0.8) 21%, rgba(0, 255, 0, 0.8) 34%, transparent 35%, transparent), radial-gradient(circle at 0% 50%, transparent 20%, rgba(0, 255, 0, 0.8) 21%, rgba(0, 255, 0, 0.8) 34%, transparent 35%, transparent) 0 -50px;
+    background-color: #000000;
     background-size: 75px 100px; }
   body.dialog-open > header *, body.dialog-open > main * {
     -webkit-filter: blur(1px);
@@ -660,7 +660,7 @@ body > svg {
     margin: 0.25em 0;
     padding: 0.5em 1em;
     overflow: hidden;
-    color: #009900;
+    color: #000000;
     text-transform: uppercase;
     text-decoration: none;
     text-overflow: ellipsis;
@@ -672,7 +672,7 @@ body > svg {
     position: absolute;
     display: block;
     font-family: "FontAwesome";
-    color: #7fcc7f;
+    color: #7f7f7f;
     font-size: 12px; }
   .nav-header li:hover.has-children:after {
     display: none; }
@@ -695,7 +695,7 @@ body > svg {
     position: absolute;
     opacity: 0;
     left: -9999px;
-    background: #19a319;
+    background: #191919;
     transition: 0.4s opacity linear; }
     .nav-header .nav-level--2 a, .nav-header .nav-level--3 a {
       color: white;
@@ -704,7 +704,7 @@ body > svg {
   .nav-header .nav-item--1, .nav-header .nav-item--2, .nav-header .nav-item--3 {
     transition: 0.1s all linear; }
     .nav-header .nav-item--1:hover, .nav-header .nav-item--2:hover, .nav-header .nav-item--3:hover {
-      background: #4cb74c; }
+      background: #4c4c4c; }
   .nav-header .nav-item--1 {
     position: relative;
     -webkit-flex: 1;
@@ -712,7 +712,7 @@ body > svg {
             flex: 1; }
     @media (max-width: 1200px) {
       .nav-header .nav-item--1 {
-        border-left: 1px dotted #009900; } }
+        border-left: 1px dotted #000000; } }
     .nav-header .nav-item--1.has-children:after {
       content: "\f0d7";
       left: 0;
@@ -766,15 +766,27 @@ body > svg {
       padding: 0 6px 2px 4px;
       display: block;
       transition: 0.2s all linear;
-      background: #4cb74c; }
+      background: #4c4c4c; }
       .nav-header .site-actions a:nth-child(2) {
         top: 50%; }
       .nav-header .site-actions a:hover {
-        background: #4cb74c;
+        background: #4c4c4c;
         color: white;
         right: 0; }
       .nav-header .site-actions a i {
         color: #ccc; }
+
+.nav-footer {
+  margin: 4px 20px;
+  text-align: right; }
+
+.nav-footer a {
+  display: inline-block;
+  color: white;
+  text-decoration: none; }
+
+.nav-footer a:hover {
+  text-decoration: underline; }
 
 .select2-container-multi .select2-choices {
   width: 200px; }
@@ -1006,7 +1018,7 @@ body > svg {
   .select2-results li:nth-child(even) {
     background: rgba(0, 0, 0, 0.05); }
   .select2-results li.select2-highlighted {
-    background: #009900;
+    background: #000000;
     color: #fff; }
 
 .select2-results li.select2-result-with-children > .select2-result-label {
@@ -1240,7 +1252,7 @@ disabled look for disabled choices in the results dropdown
   opacity: 0;
   padding: 0.5em;
   background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 8px 1px #009900;
+  box-shadow: 0 0 8px 1px #000000;
   border-radius: 2px;
   transition: 0.2s opacity linear;
   width: 200px;
@@ -1257,7 +1269,7 @@ disabled look for disabled choices in the results dropdown
   content: "\f059";
   display: inline-block; }
 .icon-tooltip:hover {
-  color: #7fcc7f;
+  color: #7f7f7f;
   cursor: help; }
   .icon-tooltip:hover .tooltip {
     display: block;
@@ -1309,7 +1321,7 @@ disabled look for disabled choices in the results dropdown
   background-size: 35px 20px, 100% 100%, 100% 100%; }
 
 .backdrop {
-  background: rgba(80, 185, 80, 0.76);
+  background: rgba(80, 80, 80, 0.76);
   z-index: 5000;
   position: fixed;
   top: 0;
@@ -1321,7 +1333,7 @@ disabled look for disabled choices in the results dropdown
   display: none !important; }
 
 .loading {
-  min-height: 10em; }
+  min-height: 6em; }
 
 .to-do .done {
   color: #ccc;
@@ -1354,3 +1366,40 @@ disabled look for disabled choices in the results dropdown
     margin: 0; }
     .adf-grid-overlay-editor .overlay-close span {
       display: none; }
+
+.adf-messages-window {
+  position: fixed;
+  bottom: 0; }
+  .adf-messages-window .message {
+    display: inline-block;
+    padding: 4px;
+    font-size: 12px;
+    font-weight: normal; }
+    .adf-messages-window .message:hover .content {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      display: block;
+      width: 50vw;
+      max-height: 50vh;
+      min-height: 0;
+      margin: 0;
+      padding: 12px;
+      overflow: scroll; }
+    .adf-messages-window .message.removed {
+      display: none; }
+  .adf-messages-window .label .icon {
+    height: 1em;
+    border-radius: 50%; }
+  .adf-messages-window .content {
+    display: none; }
+  .adf-messages-window .message-error {
+    border-color: #cc0000;
+    background: #e57f7f;
+    color: white; }
+    .adf-messages-window .message-error .content {
+      background: #cc0000; }
+    .adf-messages-window .message-error .icon {
+      fill: white;
+      background: #cc0000;
+      padding: 1px; }

@@ -3,6 +3,23 @@ ADF
 */
 ADF.config = {
     messages : {
+        levels : {
+            'log' : {
+                'displayMethod' : 'log'
+            },
+            'info' : {
+                'displayMethod' : 'log'
+            },
+            'debug' : {
+                'displayMethod' : 'log'
+            },
+            'warning' : {
+                'displayMethod' : 'log'
+            },
+            'error' : {
+                'displayMethod' : 'messagesWindow'
+            }
+        },
         displayLevels: [
             // 'log',
             'info',

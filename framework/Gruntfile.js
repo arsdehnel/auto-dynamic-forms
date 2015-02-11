@@ -86,11 +86,13 @@ module.exports = function(grunt) {
                     'js/dev/regions/form.js',
                     'js/dev/regions/grid.js',
                     'js/dev/regions/overlay-grid.js',
+                    'js/dev/regions/message-window.js',
                     // models
                     'js/dev/models/field.js',
                     'js/dev/models/record.js',
                     'js/dev/models/dropdown-menu.js',
                     'js/dev/models/action.js',
+                    'js/dev/models/message.js',
                     // collections
                     'js/dev/collections/*.js',
                     // views
@@ -98,6 +100,8 @@ module.exports = function(grunt) {
                     'js/dev/views/cell.js',
                     'js/dev/views/column-select-item.js',
                     'js/dev/views/column-select.js',
+                    'js/dev/views/message.js',
+                    'js/dev/views/message-window.js',
                     'js/dev/views/form-action.js',
                     'js/dev/views/field.js',
                     'js/dev/views/form.js',
@@ -174,7 +178,7 @@ module.exports = function(grunt) {
         },
         watch: {
             scriptsDev: {
-                files: ['js/dev/**/*.js','Gruntfile.js'],
+                files: ['js/dev/**/*.js'],
                 tasks: ['scripts-dev']
             },
             scriptsLib: {
@@ -196,6 +200,10 @@ module.exports = function(grunt) {
             svg: {
                 files: ['svg/symbols/*.svg'],
                 tasks: ['svg']
+            },
+            config: {
+                files: ['Gruntfile.js'],
+                tasks: ['default']
             }
         },
         setPHPConstant: {

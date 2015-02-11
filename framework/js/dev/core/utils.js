@@ -1,7 +1,8 @@
 /*global
 ADF,
 _,
-$
+$,
+adf
 */
 ADF.utils = {
     randomId: function() {
@@ -14,6 +15,15 @@ ADF.utils = {
         return string.toLowerCase().replace(/[_.-](\w|$)/g, function (_,x) {
             return x.toUpperCase();
         });
+    },
+    arrayToHTML: function( array, parentElement, childElement ) {
+        var retElement = document.createElement(parentElement);
+        _.each( array, function(item) {
+            var child = document.createElement(childElement);
+            child.appendChild(document.createTextNode(item));
+            retElement.appendChild(child);
+        });
+        return retElement.innerHTML;
     },
     objPropToLower: function( object ) {
 
@@ -115,66 +125,45 @@ ADF.utils = {
     },
     message: function() {
 
+        // TODO: log all messages into "level" specific arrays
+
         // var args = Array.slice(arguments);
         var args = Array.prototype.slice.call(arguments);
 
         // remove first argument
-        var level = args.shift();
+        var level = args.shift().toLowerCase();
 
-        // add a prefix item to the logs just to try and be clear where it came from
-        args.unshift('[ADF]');
+        if( ADF.config.get('messages').levels[level] ){
 
-        if( _.indexOf(ADF.config.get('messages').displayLevels,level) >= 0 ){
+            var displayMethod = ADF.config.get('messages').levels[level].displayMethod;
 
-            // if( level.toLowerCase() === 'error' ){
-            // if( level.toLowerCase() === 'error' ){
-            //   adf.page.showBackdrop();
-            //   adf.page.getRegion('modal').show( 'An error has occurred', ADF.utils.printObject( args ) );
-            // }else{
-              // TODO: extend this to present errors as modals
-              console[level](args);
-            // }
+            // TODO: extend this to present errors as modals
+            switch( displayMethod ){
+                case 'messagesWindow':
+                    adf.page.getRegion('messagesWindow').messageWindowView.collection.add([
+                        {
+                            level: level,
+                            label: 'An error has occurred',
+                            content: ADF.utils.arrayToHTML( args, 'ul', 'li' )
+                        }
+                    ]);
+                    adf.page.getRegion('messagesWindow').show();
+                    break;
+                case 'log':
+                    // since we are just logging it we add a prefix item to the logs just to try and be clear where it came from
+                    args.unshift('[ADF]');
+                    console[level](args);
+                    break;
+                default:
+                    // since we are just logging it we add a prefix item to the logs just to try and be clear where it came from
+                    args.unshift('[ADF]');
+                    console[level](args);
 
+            }
+
+        }else{
+            alert('unexpected level'+ADF.utils.printObject(args));
         }
-
-        // TODO: log all messages into "level" specific arrays
-
-//      // make sure our history log is ready
-//          autoAdmin.log.history = autoAdmin.log.history || [];   // store logs to an array for reference
-
-//          // output it if this browser supports that
-//          if(window.console){
-//          console.log( arguments );
-//          }
-
-//          // add a datestamp
-//          args.push(Date.now());
-
-//          // put it into our history log with the datestamp added
-//          autoAdmin.log.history.push(args);
-
-// below is from handlebars
-
-  // var logger = {
-  //   methodMap: { 0: 'debug', 1: 'info', 2: 'warn', 3: 'error' },
-
-  //   // State enum
-  //   DEBUG: 0,
-  //   INFO: 1,
-  //   WARN: 2,
-  //   ERROR: 3,
-  //   level: 3,
-
-  //   // can be overridden in the host environment
-  //   log: function(level, obj) {
-  //     if (logger.level <= level) {
-  //       var method = logger.methodMap[level];
-  //       if (typeof console !== 'undefined' && console[method]) {
-  //         console[method].call(console, obj);
-  //       }
-  //     }
-  //   }
-  // };
 
     },
 
