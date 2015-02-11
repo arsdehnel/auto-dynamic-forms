@@ -1327,11 +1327,15 @@ disabled look for disabled choices in the results dropdown
 .adf-messages-window {
   position: fixed;
   bottom: 0; }
+  .adf-messages-window .messages-wrapper > div {
+    display: inline-block; }
   .adf-messages-window .message {
     display: inline-block;
     padding: 4px;
     font-size: 12px;
-    font-weight: normal; }
+    font-weight: normal;
+    border-style: solid;
+    border-width: 1px 1px 0 0; }
     .adf-messages-window .message:hover .content {
       position: absolute;
       bottom: 100%;
@@ -1345,9 +1349,16 @@ disabled look for disabled choices in the results dropdown
       overflow: scroll; }
     .adf-messages-window .message.removed {
       display: none; }
-  .adf-messages-window .label .icon {
-    height: 1em;
-    border-radius: 50%; }
+  .adf-messages-window .label {
+    min-width: 100px;
+    position: relative; }
+    .adf-messages-window .label .message-remove {
+      position: absolute;
+      top: 2px;
+      right: 2px; }
+    .adf-messages-window .label .icon {
+      height: 1em;
+      border-radius: 50%; }
   .adf-messages-window .content {
     display: none; }
   .adf-messages-window .message-error {
@@ -1359,4 +1370,14 @@ disabled look for disabled choices in the results dropdown
     .adf-messages-window .message-error .icon {
       fill: white;
       background: #cc0000;
+      padding: 1px; }
+  .adf-messages-window .message-debug {
+    border-color: #336699;
+    background: #99b2cc;
+    color: white; }
+    .adf-messages-window .message-debug .content {
+      background: #336699; }
+    .adf-messages-window .message-debug .icon {
+      fill: white;
+      background: #336699;
       padding: 1px; }

@@ -22,7 +22,7 @@ ADF.Region = Marionette.Region.extend({
         var region = this;
         var settings = _.extend({data:JSON.stringify(region.options.adfAjaxData)}, options);
 
-        ADF.utils.message('log','Ajax Call',options,settings);
+        ADF.utils.message('debug','Ajax Call',options,settings);
 
         $.ajax({
             url: ( settings.url ? settings.url : region.options.adfAjaxUrl ),

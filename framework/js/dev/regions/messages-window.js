@@ -2,21 +2,21 @@
 ADF,
 adf
 */
-ADF.MessageWindowRegion = ADF.Region.extend({
+ADF.MessagesWindowRegion = ADF.Region.extend({
     initialize: function( options ) {
         ADF.utils.message('log','MessageWindow Initialized', options);
 
-        var messageWindow = this;
+        var messagesWindow = this;
 
         // this just means that we don't trigger the show() method on page load
-        messageWindow.inert = true;
+        messagesWindow.inert = true;
 
-        messageWindow.messageWindowView = new ADF.MessageWindowView({
-            el: messageWindow.$el.find('.messages-wrapper')[0],
+        messagesWindow.messagesWindowView = new ADF.MessagesWindowView({
+            el: messagesWindow.$el.find('.messages-wrapper')[0],
             collection: new ADF.MessagesCollection(),
             regionName: options.regionName
         });
-        messageWindow._super( options );
+        messagesWindow._super( options );
 
     },
 
@@ -27,7 +27,7 @@ ADF.MessageWindowRegion = ADF.Region.extend({
         // TODO: tabs for more than one message?
         ADF.utils.message('log','MessageWindow Shown');
         this.$el.addClass('show');
-        this.messageWindowView.render();
+        this.messagesWindowView.render();
     },
 
     hide: function() {

@@ -37,6 +37,12 @@ ADF.GridView = Marionette.CompositeView.extend({
             regionName: gridView.regionName
         });
 
+        gridView.gridActions = new ADF.GridActionsView({
+            el: gridView.$el.find('.adf-grid-actions')[0],
+            collection: region.actionsCollection,
+            regionName: gridView.regionName
+        });
+
         this._super();
 
     },

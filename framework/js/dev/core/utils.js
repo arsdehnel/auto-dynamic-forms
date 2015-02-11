@@ -17,6 +17,7 @@ ADF.utils = {
         });
     },
     arrayToHTML: function( array, parentElement, childElement ) {
+        // TODO: handle an item of the array being an object
         var retElement = document.createElement(parentElement);
         _.each( array, function(item) {
             var child = document.createElement(childElement);
@@ -126,6 +127,7 @@ ADF.utils = {
     message: function() {
 
         // TODO: log all messages into "level" specific arrays
+        // TODO: somehow know when there is a line number and file reference so the message in the messagesWindow could be a link
 
         // var args = Array.slice(arguments);
         var args = Array.prototype.slice.call(arguments);
@@ -135,29 +137,33 @@ ADF.utils = {
 
         if( ADF.config.get('messages').levels[level] ){
 
-            var displayMethod = ADF.config.get('messages').levels[level].displayMethod;
+            var levelObj = ADF.config.get('messages').levels[level];
 
             // TODO: extend this to present errors as modals
-            switch( displayMethod ){
+            switch( levelObj.displayMethod ){
                 case 'messagesWindow':
-                    adf.page.getRegion('messagesWindow').messageWindowView.collection.add([
-                        {
-                            level: level,
-                            label: 'An error has occurred',
-                            content: ADF.utils.arrayToHTML( args, 'ul', 'li' )
-                        }
-                    ]);
-                    adf.page.getRegion('messagesWindow').show();
+                    // TODO: handle errors somehow before the adf and adf.page are defined
+                    // since we might have an error before the page loads up we'll do this for a bit to see if we can get into the messages window
+                    if( adf.page ){
+                        adf.page.getRegion('messagesWindow').messagesWindowView.collection.add([
+                            {
+                                level: level,
+                                label: levelObj.label,
+                                content: ADF.utils.arrayToHTML( args, 'ul', 'li' ),
+                                contentArray: args
+                            }
+                        ]);
+                        adf.page.getRegion('messagesWindow').show();
+                    }else{
+                        args.unshift('[ADF]');
+                        console[level](args);
+                    }
                     break;
                 case 'log':
                     // since we are just logging it we add a prefix item to the logs just to try and be clear where it came from
                     args.unshift('[ADF]');
                     console[level](args);
                     break;
-                default:
-                    // since we are just logging it we add a prefix item to the logs just to try and be clear where it came from
-                    args.unshift('[ADF]');
-                    console[level](args);
 
             }
 

@@ -118,3 +118,17 @@
     background-color: $base-color;
     background-size: 75px 100px;
 }
+
+@mixin message-style( $color ){
+        border-color: $color;
+        background: mix( white, $color, 50% );
+        color: white;
+        .content {
+            background: $color;
+        }
+        .icon {
+            fill: white;
+            background: $color;
+            padding: 1px;
+        }
+}

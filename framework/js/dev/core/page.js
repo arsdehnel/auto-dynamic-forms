@@ -37,6 +37,10 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
                 regionData.elSelector = '#'+$(this).attr('id');
                 regionData.regionName = ADF.utils.camelize($(this).attr('id'));
 
+                if( !ADF[regionData.regionClass]){
+                    ADF.utils.message('error','unexpected region class',regionData.regionClass);
+                }
+
                 // create the region
                 regions[regionData.regionName] = new ADF[regionData.regionClass](_.extend({el: regionData.elSelector},regionData));
                 pageView.addRegions(regions);

@@ -5,19 +5,24 @@ ADF.config = {
     messages : {
         levels : {
             'log' : {
-                'displayMethod' : 'log'
+                'displayMethod' : 'none',
+                'label' : 'Log Entry'
             },
             'info' : {
-                'displayMethod' : 'log'
+                'displayMethod' : 'log',
+                'label' : 'Info'
             },
             'debug' : {
-                'displayMethod' : 'log'
+                'displayMethod' : 'messagesWindow',
+                'label' : 'Debug Info'
             },
             'warning' : {
-                'displayMethod' : 'log'
+                'displayMethod' : 'log',
+                'label' : 'Warning'
             },
             'error' : {
-                'displayMethod' : 'messagesWindow'
+                'displayMethod' : 'messagesWindow',
+                'label' : 'Error'
             }
         },
         displayLevels: [
