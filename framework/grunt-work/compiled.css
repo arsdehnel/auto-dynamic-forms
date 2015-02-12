@@ -285,15 +285,15 @@ dialog::backdrop {
   height: 30px;
   background: teal; }
 
-.dnd-item {
+.module {
   border: 1px solid #b2b2b2;
   box-shadow: 2px 2px 6px #7f7f7f;
   position: relative; }
-  .dnd-item.updated header {
+  .module.updated header {
     background: #bbf; }
-  .dnd-item.error header {
+  .module.error header {
     background: #f66; }
-  .dnd-item .dnd-handle {
+  .module .dnd-handle {
     position: absolute;
     top: 0;
     left: 0;
@@ -305,7 +305,7 @@ dialog::backdrop {
     color: white;
     z-index: 20;
     cursor: move; }
-  .dnd-item header {
+  .module header {
     position: relative;
     display: block;
     height: 2em;
@@ -314,10 +314,10 @@ dialog::backdrop {
     color: #000000;
     font-weight: 700;
     text-transform: uppercase; }
-    .dnd-item header p {
+    .module header p {
       margin: 0;
       line-height: 2em; }
-    .dnd-item header .dnd-details-toggle {
+    .module header .module-details-toggle {
       position: absolute;
       top: 0.5em;
       right: 0.5em;
@@ -1366,6 +1366,54 @@ disabled look for disabled choices in the results dropdown
       border-radius: 50%; }
   .adf-messages-window .content {
     display: none; }
+  .adf-messages-window .message-log {
+    border-color: #999999;
+    background: #cccccc;
+    color: white; }
+    .adf-messages-window .message-log:hover {
+      cursor: pointer;
+      background: #adadad; }
+    .adf-messages-window .message-log .content {
+      background: #999999; }
+    .adf-messages-window .message-log .icon {
+      fill: #999999;
+      padding: 1px; }
+  .adf-messages-window .message-info {
+    border-color: #336699;
+    background: #99b2cc;
+    color: white; }
+    .adf-messages-window .message-info:hover {
+      cursor: pointer;
+      background: #5b84ad; }
+    .adf-messages-window .message-info .content {
+      background: #336699; }
+    .adf-messages-window .message-info .icon {
+      fill: #336699;
+      padding: 1px; }
+  .adf-messages-window .message-debug {
+    border-color: purple;
+    background: #bf7fbf;
+    color: white; }
+    .adf-messages-window .message-debug:hover {
+      cursor: pointer;
+      background: #993399; }
+    .adf-messages-window .message-debug .content {
+      background: purple; }
+    .adf-messages-window .message-debug .icon {
+      fill: purple;
+      padding: 1px; }
+  .adf-messages-window .message-warn {
+    border-color: #7f6b00;
+    background: #bfb57f;
+    color: white; }
+    .adf-messages-window .message-warn:hover {
+      cursor: pointer;
+      background: #988833; }
+    .adf-messages-window .message-warn .content {
+      background: #7f6b00; }
+    .adf-messages-window .message-warn .icon {
+      fill: #7f6b00;
+      padding: 1px; }
   .adf-messages-window .message-error {
     border-color: #cc0000;
     background: #e57f7f;
@@ -1377,16 +1425,4 @@ disabled look for disabled choices in the results dropdown
       background: #cc0000; }
     .adf-messages-window .message-error .icon {
       fill: #cc0000;
-      padding: 1px; }
-  .adf-messages-window .message-debug {
-    border-color: #336699;
-    background: #99b2cc;
-    color: white; }
-    .adf-messages-window .message-debug:hover {
-      cursor: pointer;
-      background: #5b84ad; }
-    .adf-messages-window .message-debug .content {
-      background: #336699; }
-    .adf-messages-window .message-debug .icon {
-      fill: #336699;
       padding: 1px; }

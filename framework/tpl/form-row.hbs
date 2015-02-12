@@ -6,11 +6,8 @@
 {{/if}}
 <div
     class="form-row row {{wrapClass}}"
-    id="{{name}}-field-wrap"
+    id="{{#if regionName}}regionName--{{/if}}{{name}}-field-wrap"
     data-field-master-id="{{fldMstrId}}"
-    {{#each dataAttributes}}
-        data-{{name}}="{{value}}"
-    {{/each}}
     >
 
     <label for="{{name}}" class="layout-grid-3">{{label}}</label>

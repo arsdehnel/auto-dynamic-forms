@@ -85,11 +85,13 @@ module.exports = function(grunt) {
                     'js/dev/regions/region.js',
                     'js/dev/regions/form.js',
                     'js/dev/regions/grid.js',
+                    'js/dev/regions/modules.js',
                     'js/dev/regions/overlay-grid.js',
                     'js/dev/regions/messages-window.js',
                     // models
                     'js/dev/models/field.js',
                     'js/dev/models/record.js',
+                    'js/dev/models/module.js',
                     'js/dev/models/dropdown-menu.js',
                     'js/dev/models/action.js',
                     'js/dev/models/message.js',
@@ -107,6 +109,8 @@ module.exports = function(grunt) {
                     'js/dev/views/form-action.js',
                     'js/dev/views/field.js',
                     'js/dev/views/form.js',
+                    'js/dev/views/module.js',
+                    'js/dev/views/modules.js',
                     'js/dev/views/record.js',                    // has to be before grid
                     'js/dev/views/grid.js',
                     'js/dev/views/header.js',

@@ -158,13 +158,8 @@ this["ADF"]["templates"]["dropdownSelectItem"] = Handlebars.template({"1":functi
 this["ADF"]["templates"]["formRow"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   return "	<div class=\"form-row row\">\n		<div class=\"grid-spacer layout-grid-3\">&nbsp;</div>\n		<div class=\"form-input-notes layout-grid-6\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, placeat!</div>\n	</div>\n";
   },"3":function(depth0,helpers,partials,data) {
-  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "        data-"
-    + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
-    + "=\""
-    + escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"value","hash":{},"data":data}) : helper)))
-    + "\"\n";
-},"5":function(depth0,helpers,partials,data) {
+  return "regionName--";
+  },"5":function(depth0,helpers,partials,data) {
   var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, buffer = "            <span class=\"form-input-addon icon-tooltip icon form-tooltip tooltip-icon-inline\"><span class=\"tooltip\">";
   stack1 = ((helper = (helper = helpers.tooltip || (depth0 != null ? depth0.tooltip : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"tooltip","hash":{},"data":data}) : helper));
   if (stack1 != null) { buffer += stack1; }
@@ -175,14 +170,13 @@ this["ADF"]["templates"]["formRow"] = Handlebars.template({"1":function(depth0,h
   if (stack1 != null) { buffer += stack1; }
   buffer += "<div\n    class=\"form-row row "
     + escapeExpression(((helper = (helper = helpers.wrapClass || (depth0 != null ? depth0.wrapClass : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"wrapClass","hash":{},"data":data}) : helper)))
-    + "\"\n    id=\""
-    + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
+    + "\"\n    id=\"";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.regionName : depth0), {"name":"if","hash":{},"fn":this.program(3, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "-field-wrap\"\n    data-field-master-id=\""
     + escapeExpression(((helper = (helper = helpers.fldMstrId || (depth0 != null ? depth0.fldMstrId : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"fldMstrId","hash":{},"data":data}) : helper)))
-    + "\"\n";
-  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.dataAttributes : depth0), {"name":"each","hash":{},"fn":this.program(3, data),"inverse":this.noop,"data":data});
-  if (stack1 != null) { buffer += stack1; }
-  buffer += "    >\n\n    <label for=\""
+    + "\"\n    >\n\n    <label for=\""
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "\" class=\"layout-grid-3\">"
     + escapeExpression(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"label","hash":{},"data":data}) : helper)))
@@ -550,11 +544,24 @@ this["ADF"]["templates"]["message"] = Handlebars.template({"compiler":[6,">= 2.0
 
 
 
-this["ADF"]["templates"]["moduleWrapper"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+this["ADF"]["templates"]["moduleListWrapper"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "<div class=\"dnd-item layout-grid-4\" id=\""
+  return "<div class=\"module-list-wrapper dnd-wrapper\" data-adf-dnd-target=\""
+    + escapeExpression(((helper = (helper = helpers.dndTarget || (depth0 != null ? depth0.dndTarget : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"dndTarget","hash":{},"data":data}) : helper)))
+    + "\" data-adf-dnd-source=\""
+    + escapeExpression(((helper = (helper = helpers.dndSource || (depth0 != null ? depth0.dndSource : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"dndSource","hash":{},"data":data}) : helper)))
+    + "\">\n</div>";
+},"useData":true});
+
+
+
+this["ADF"]["templates"]["module"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div class=\"module layout-grid-4\" id=\""
     + escapeExpression(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"id","hash":{},"data":data}) : helper)))
-    + "\">\n    <span class=\"dnd-handle icon icon-handle\"></span>\n    <header class=\"dnd-label\">\n        <p>"
-    + escapeExpression(((helper = (helper = helpers.moduleLabel || (depth0 != null ? depth0.moduleLabel : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"moduleLabel","hash":{},"data":data}) : helper)))
-    + "</p>\n        <button type=\"button\" class=\"dnd-details-toggle icon icon-closed\"></button>\n    </header>\n    <ul class=\"dnd-details hide\"></ul>\n</div>";
+    + "\">\n    <header class=\"dnd-label\">\n        <span class=\"dnd-handle icon icon-handle\"></span>\n        <p>"
+    + escapeExpression(((helper = (helper = helpers.module_label || (depth0 != null ? depth0.module_label : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"module_label","hash":{},"data":data}) : helper)))
+    + "</p>\n        <button type=\"button\" class=\"module-details-toggle icon icon-closed\"></button>\n    </header>\n    <ul class=\"module-details hide\">";
+  stack1 = ((helper = (helper = helpers.fields || (depth0 != null ? depth0.fields : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"fields","hash":{},"data":data}) : helper));
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "</ul>\n</div>";
 },"useData":true});

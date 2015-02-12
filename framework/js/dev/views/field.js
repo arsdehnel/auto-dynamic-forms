@@ -17,6 +17,9 @@ ADF.FieldView = Backbone.Marionette.ItemView.extend({
         this.$el.html(this.template(this.model.toJSON()));
         return this;
     },
+    renderAsChild: function(){
+        return this.template(this.model.toJSON());
+    },
     valueChange: function(e) {
         // console.log('input change',e,$(e.target).val(),$(e.currentTarget).val());
         this.model.set('currentValue',$(e.target).val());

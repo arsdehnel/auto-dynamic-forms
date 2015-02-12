@@ -5,7 +5,6 @@ adf,
 $
 */
 ADF.GridView = Marionette.CompositeView.extend({
-    // TODO: 'add record' action
     // TODO: grid-row messaging
     // TODO: overlay template adjusted to handle array of data with format/delimiter from data-supl-info attribute
 

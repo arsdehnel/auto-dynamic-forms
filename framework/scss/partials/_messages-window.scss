@@ -53,10 +53,19 @@
     .content {
         display: none;
     }
-    .message-error {
-        @include message-style( $message-error );
+    .message-log {
+        @include message-style( $message-log );
+    }
+    .message-info {
+        @include message-style( $message-info );
     }
     .message-debug {
         @include message-style( $message-debug );
+    }
+    .message-warn {
+        @include message-style( $message-warn );
+    }
+    .message-error {
+        @include message-style( $message-error );
     }
 }

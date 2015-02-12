@@ -14,20 +14,8 @@
             "type" : "select2",
             "dataAttributes" : [
                 {
-                    "name" : "js-trigger",
-                    "value" : "field-lkup-on-change"
-                },
-                {
-                    "name" : "field-lkup-target",
-                    "value" : "promotion_id"
-                },
-                {
-                    "name" : "field-lkup-url",
-                    "value" : "../json/form-builder/promotions.json"
-                },
-                {
-                    "name" : "field-lkup-child-fields",
-                    "value" : "page_code"
+                    "name" : "adf-submit-on-change",
+                    "value" : "true"
                 }
             ],
             "data" : [

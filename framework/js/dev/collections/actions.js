@@ -8,7 +8,7 @@ ADF.ActionsCollection = Backbone.Collection.extend({
 
     initialize: function( models, opts ){
 
-        ADF.utils.message('debug','ActionsCollection initialized', opts);
+        ADF.utils.message('log','ActionsCollection initialized', opts);
 
     }
 

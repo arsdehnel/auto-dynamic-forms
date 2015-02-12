@@ -59,16 +59,15 @@
           },
           {
             "name" : "actions",
-            "label" : "Actions",
+            "label" : "",
             "wrapClass" : "adf-cell-actions",
-            "tooltip" : "This is the name of what we're actually doing (summing, dividing, multiplying, etc.) once we have all the values and we've determined we need to do this data type for this period and whatnot.",
             "fieldPriority" : "0",
             "type" : "ACTIONS",
             "actions" : [
               {
-                "href" : "#",
+                "url" : "saveUrl.action",
                 "type" : "save",
-                "label" : "Save This Record"
+                "label" : "Save"
               }
             ]
           }
@@ -97,22 +96,6 @@
             "prcs_code" : "DATA_DTL",
             "data_sce" : "CMN_DATA_SCE",
             "data_type" : "SA_ATTNMT_AWD_05",
-            "calc_operator" : "DIVIDE"
-          },
-          {
-            "MODULE_LABEL" : "Field #6",
-            "id" : 16,
-            "prcs_code" : "DATA_DTL",
-            "data_sce" : "CMN_DATA_SCE",
-            "data_type" : "PMA_AWD_CALC_05",
-            "calc_operator" : "DIVIDE"
-          },
-          {
-            "MODULE_LABEL" : "Field #7",
-            "id" : 17,
-            "prcs_code" : "DATA_DTL",
-            "data_sce" : "CMN_DATA_SCE",
-            "data_type" : "PMA_AWD_CALC_05",
             "calc_operator" : "DIVIDE"
           },
           {

@@ -39,6 +39,7 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
 
                 if( !ADF[regionData.regionClass]){
                     ADF.utils.message('error','unexpected region class',regionData.regionClass);
+                    return true;
                 }
 
                 // create the region

@@ -30,5 +30,8 @@ $zindex-messages-window: 8000;
 $zindex-overlay-bg:      5000;
 $zindex-overlay:         6000;
 
-$message-debug: #336699;
+$message-log: #999999;
+$message-info: #336699;
+$message-debug: purple;
+$message-warn: mix( black, gold, 50% );
 $message-error: #cc0000;

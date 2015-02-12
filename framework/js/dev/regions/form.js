@@ -21,10 +21,7 @@ ADF.FormRegion = ADF.Region.extend({
             regionName: formRegion.options.regionName
         });
 
-        formRegion.actionsCollection = new ADF.ActionsCollection(null,{
-            regionName: formRegion.options.regionName,
-            model: ADF.ActionModel
-        });
+        formRegion.actionsCollection = new ADF.ActionsCollection(null,{regionName: formRegion.options.regionName});
 
         this._super();
 

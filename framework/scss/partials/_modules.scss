@@ -3,7 +3,7 @@
     background: teal;
 }
 
-.dnd-item{
+.module{
     border: 1px solid tint( $primary_color, 70% );
     box-shadow: 2px 2px 6px tint( $primary_color, 50% );
     position: relative;
@@ -43,7 +43,7 @@
     	   margin: 0;
         	line-height: 2em;
         }
-        .dnd-details-toggle{
+        .module-details-toggle{
     		position: absolute;
     		top: .5em;
     		right: .5em;

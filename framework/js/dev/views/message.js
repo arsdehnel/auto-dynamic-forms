@@ -27,7 +27,8 @@ ADF.MessageView = Backbone.Marionette.ItemView.extend({
             // console.log('do not parse the array',this.model.get('originalArguments'),this.model.get('content') );
         }
     },
-    showMessageInConsole: function() {
+    showMessageInConsole: function(e) {
+        e.preventDefault();
         console[this.model.get('level')](this.model.toJSON());
     }
 });
