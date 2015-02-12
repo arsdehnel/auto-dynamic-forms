@@ -46,6 +46,7 @@ ADF.ModuleView = Backbone.Marionette.CompositeView.extend({
     },
     handleAction: function(e) {
         e.preventDefault();
+        e.stopPropagation();        //since the parent ModulesView will likely have this same event listener
         var $targetObj = $(e.target).closest('a');
         var actionType = $targetObj.attr('data-action-type');
         // TODO: experiment with making this dynamic

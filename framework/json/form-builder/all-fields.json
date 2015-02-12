@@ -15,15 +15,15 @@
             "type" : "READONLY"
           },
           {
-            "name" : "LABEL_TEXT",
-            "label" : "Label",
+            "name" : "FIELD_TYPE",
+            "label" : "Field Type",
             "tooltip" : "The label for this field in whatever context we're displaying it.",
             "fieldPriority" : "1",
             "type" : "TEXT"
           },
           {
-            "name" : "TOOLTIP_TEXT",
-            "label" : "Tooltip",
+            "name" : "FIELD_CODE",
+            "label" : "Field Code",
             "tooltip" : "Make sure (with your TA) that your usage of the dynamic forms are actually expecting tooltips.",
             "fieldPriority" : "1",
             "type" : "TEXTAREA"
@@ -66,9 +66,9 @@
             "type" : "ACTIONS",
             "actions" : [
               {
-                "href" : "#",
+                "url" : "../json/form-builder/save-field-master.json",
                 "type" : "save",
-                "label" : "Save This Record"
+                "label" : "Save This Field Master"
               }
             ]
           }

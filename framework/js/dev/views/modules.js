@@ -1,7 +1,8 @@
 /*global
 ADF,
 Marionette,
-adf
+adf,
+$
 */
 ADF.ModulesView = Marionette.CollectionView.extend({
 
@@ -11,9 +12,17 @@ ADF.ModulesView = Marionette.CollectionView.extend({
     childViewOptions: function() {
         return { regionName: this.regionName };
     },
+    events: {
+        'click .btn'                    : 'handleAction'
+    },
     initialize: function( options ) {
         ADF.utils.message('debug','ModulesView Initialized', options );
         this.regionName = options.regionName;
+        if( adf.page.getRegion(this.regionName).options.adfDndSource ){
+            this.dndSource = true;
+        }else{
+            this.dndSource = false;
+        }
     },
     render: function() {
 
@@ -25,6 +34,7 @@ ADF.ModulesView = Marionette.CollectionView.extend({
         // start by getting the region since that is where the actions are kept
         var region = adf.page.getRegion(modulesView.options.regionName);
 
+        // TODO: commonize this "action" handling since it's here and in the form view
         // see if we have any actions because if we don't we can stop right away
         if( region.actionsCollection.length > 0 ){
             modulesView.$el.append(ADF.templates.formRow({
@@ -41,56 +51,32 @@ ADF.ModulesView = Marionette.CollectionView.extend({
 
         }
 
-    }
+    },
+    handleAction: function(e) {
+        e.preventDefault();
+        var modulesView = this;
+        var $targetObj = $(e.target).closest('a');
+        var actionType = $targetObj.attr('data-action-type');
+        // TODO: experiment with making this dynamic
+        switch( actionType ){
+            case 'save':
+                modulesView.collection.each(function( moduleModel ){
+                    moduleModel.url = $targetObj.attr('href');
+                    moduleModel.save(null,{});
+                });
+                break;
+            default:
+                ADF.utils.message('error','Unexpected record action ('+actionType+') triggered.',$targetObj);
+        }
+    },
+
 
 });
 
 // ADF.ModulesView = Backbone.View.extend({
 
-//     className: 'ADF-modules',
-
-//     el: '.ADF-modules',
-
-//     childView: ADF.ModuleView,
-
 //     initialize: function(opts){
 //         var modulesView = this;
-
-//         modulesView.target = opts.target;
-//         modulesView.pageView = opts.pageView;
-
-//         ADF.utils.log('ModulesView initialized', opts);
-
-//         modulesView.fieldsColl = new ADF.FieldsCollection();
-//         modulesView.recordsColl = new ADF.RecordsCollection(null,{saveUrl:modulesView.target.attr('data-record-save-url'),newUrl:modulesView.target.attr('data-record-new-url')});
-//         modulesView.actionsColl = new ADF.ActionsCollection();
-
-//         this.listenTo(this,'modulesWrapperRendered', function(){
-
-//             modulesView.listenTo(modulesView.fieldsColl,'add',function(model){
-//                 var fieldView = new ADF.FieldView({parentModulesView : modulesView, model:model});
-//                 model.fieldView = fieldView;
-//             });
-
-//             modulesView.listenTo(modulesView.recordsColl,'add',function(model){
-//                 var recordView = new ADF.RecordView({model:model,parentModulesView:modulesView});
-//                 model.recordView = recordView;
-//             });
-
-//             modulesView.listenTo(modulesView.actionsColl,'add',function(model){
-//                 var actionView = new ADF.ActionView({model:model});
-//                 model.actionView = actionView;
-//             });
-
-//             modulesView.ajax( opts );
-
-//         });
-
-//         this.listenTo(this,'ajaxLoaded', function(){
-
-//             modulesView.renderModules();
-
-//         });
 
 //         this.listenTo(this,'modulesRendered', function(){
 

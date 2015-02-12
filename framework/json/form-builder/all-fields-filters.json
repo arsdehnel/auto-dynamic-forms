@@ -11,8 +11,13 @@
             "fldMstrId" : "21",
             "name" : "field_type",
             "label" : "Field Type",
-            "fieldClass" : "submit-on-change",
             "type" : "select2",
+            "dataAttributes" : [
+                {
+                    "name" : "adf-submit-on-change",
+                    "value" : "true"
+                }
+            ],
             "data" : [
               {
                 "value" : "CLAIM_FORM",

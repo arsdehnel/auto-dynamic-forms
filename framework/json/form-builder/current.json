@@ -118,7 +118,7 @@
         ],
         "actions" : [
             {
-                "href" : "#",
+                "url" : "../json/form-builder/current-save.json",
                 "label" : "Save",
                 "type" : "save"
             }
