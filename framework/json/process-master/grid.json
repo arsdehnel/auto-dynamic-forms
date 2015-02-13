@@ -1461,7 +1461,7 @@
             "type": "save",
             "wrapClass": null,
             "actionClass": null,
-            "url": "service/process-master/save.action",
+            "url": "../json/process-master/save.json",
             "pageDetailId": 20,
             "fieldPageDetailId": 76,
             "dataAttributes": []

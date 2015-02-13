@@ -124,6 +124,7 @@ module.exports = function(grunt) {
             lib: {
                 src: [
                     'js/lib/jquery-*.min.js',
+                    'js/lib/jquery-ui.js',
                     'js/lib/underscore.js',
                     'js/lib/backbone.js',
                     'js/lib/backbone.super.js',

@@ -10,6 +10,7 @@ ADF.ModuleView = Backbone.Marionette.CompositeView.extend({
     childView: ADF.FieldView,
     childContainer: '.module-details',
     events: {
+        'drop'                                  : 'drop',
         'click .module-details-toggle'          : 'toggleDetails',
         'change :input'                         : 'inputChange',
         'click .btn'                            : 'handleAction'
@@ -18,8 +19,9 @@ ADF.ModuleView = Backbone.Marionette.CompositeView.extend({
         ADF.utils.message('log','ModuleView Initialized', options);
         this.region = adf.page.getRegion(options.regionName);
         this.collection = this.region.fieldsCollection;
-        this.listenTo(this.model,'sync', this.moduleAction);
-        this.listenTo(this.model,'error',this.moduleAction);
+        // this.listenTo(this.model,'sync', this.moduleAction);
+        // this.listenTo(this.model,'error',this.moduleAction);
+        this.listenTo(this.model,'all',this.moduleAction);
     },
     render: function() {
 
@@ -75,26 +77,39 @@ ADF.ModuleView = Backbone.Marionette.CompositeView.extend({
         this.$el.removeClass('current').addClass('updated');
 
     },
-    moduleAction: function( model, response, options ) {
+    moduleAction: function( event, model, response, options ) {
 
-        if( response.status === 200 ){
+        if( model.get('id') === 11115 ){
+            // console.log(event,model.get('id'));
+            console.log(response,options);
+        }
 
-            ADF.utils.message('debug','Record action completed successfully',model,response,options);
+        if( options.xhr ){
 
-            if( response.responseJSON && response.responseJSON.success ){
-                this.$el.removeClass('updated new error').addClass('current');
+            if( options.xhr.status === 200 ){
+
+                ADF.utils.message('debug','Module action completed successfully',model,options.xhr.responseJSON,options);
+
+                if( options.xhr.responseJSON.success ){
+                    this.$el.removeClass('updated new error').addClass('current');
+                }else{
+                    this.$el.removeClass('updated new current').addClass('error');
+                    ADF.utils.message('warn','Something went wrong in saving the module',model,options.xhr.responseJSON,options);
+                }
+
             }else{
+
                 this.$el.removeClass('updated new current').addClass('error');
-                ADF.utils.message('error','Something went wrong in saving the module',model,response,options);
+                ADF.utils.message('error','Something unexpected went wrong in saving the module',model,options.xhr.responseJSON,options);
+
             }
-
-        }else{
-
-            this.$el.removeClass('updated new current').addClass('error');
-            ADF.utils.message('error','Something unexpected went wrong in saving the module',model,response,options);
 
         }
 
+    },
+    drop: function(e, i){
+        console.log('moduled dropped',e,i);
+        this.$el.trigger('moduleDropped',[this.model, i]);
     }
 
 });

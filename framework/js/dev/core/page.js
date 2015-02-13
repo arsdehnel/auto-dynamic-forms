@@ -11,12 +11,14 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
     initialize: function( options ) {
         ADF.utils.message('log','PageLayoutView Initialized', options);
         var pageView = this;
+        pageView.dndSources = [];
+        pageView.dndTargets = [];
 
         pageView.listenTo(pageView,'regionsInitialized',function(){
             // TODO: remove this bullshit
             setTimeout(function(){
                 pageView.showRegions();
-            },200);
+            },1);
         });
 
         pageView.initRegions();

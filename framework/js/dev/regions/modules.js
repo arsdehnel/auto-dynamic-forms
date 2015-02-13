@@ -27,7 +27,9 @@ ADF.ModulesRegion = ADF.Region.extend({
         modulesRegion.modulesView = new ADF.ModulesView({
             el:modulesRegion.$el.find('.module-list-wrapper')[0],
             collection: new ADF.RecordsCollection(),
-            regionName: modulesRegion.options.regionName
+            regionName: modulesRegion.options.regionName,
+            dndSource: modulesRegion.options.adfDndSource,
+            dndTarget: modulesRegion.options.adfDndTarget
         });
 
         this._super();

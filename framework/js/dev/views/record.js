@@ -111,11 +111,11 @@ ADF.RecordView = Marionette.CompositeView.extend({
 
     recordAction: function( model, response, options ) {
 
-        if( response.status === 200 ){
+        if( options.xhr.status === 200 ){
 
             ADF.utils.message('debug','Record action completed successfully',model,response,options);
 
-            if( response.responseJSON && response.responseJSON.success ){
+            if( response.success ){
                 this.$el.removeClass('updated new error').addClass('current');
             }else{
                 this.$el.removeClass('updated new current').addClass('error');

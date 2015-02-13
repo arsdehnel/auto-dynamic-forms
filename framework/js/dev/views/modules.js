@@ -13,28 +13,38 @@ ADF.ModulesView = Marionette.CollectionView.extend({
         return { regionName: this.regionName };
     },
     events: {
+        'moduleDropped'                 : 'moduleDrop',
         'click .btn'                    : 'handleAction'
     },
     initialize: function( options ) {
-        ADF.utils.message('debug','ModulesView Initialized', options );
+        ADF.utils.message('log','ModulesView Initialized', options );
         this.regionName = options.regionName;
-        if( adf.page.getRegion(this.regionName).options.adfDndSource ){
-            this.dndSource = true;
-        }else{
-            this.dndSource = false;
+        this.dndSource = options.dndSource;
+        this.dndTarget = options.dndTarget;
+
+        // TODO: seems like this should be in the initialize
+        if( this.dndSource ){
+            adf.page.dndSources.push(this);
+        }
+        if( this.dndTarget ){
+            adf.page.dndTargets.push(this);
         }
     },
     render: function() {
 
         // the normal render
         var modulesView = this;
+        // modulesView.$el.find('#ACTIONS-field-wrap').remove();
+        modulesView.$el.empty();
         modulesView._super();
+
+        console.log('within render',modulesView.collection);
 
         // rendering the 'actions' for a given form
         // start by getting the region since that is where the actions are kept
         var region = adf.page.getRegion(modulesView.options.regionName);
 
-        // TODO: commonize this "action" handling since it's here and in the form view
+        // TODO: commonize this "action collection" handling since it's here and in the form view
         // see if we have any actions because if we don't we can stop right away
         if( region.actionsCollection.length > 0 ){
             modulesView.$el.append(ADF.templates.formRow({
@@ -50,6 +60,51 @@ ADF.ModulesView = Marionette.CollectionView.extend({
             });
 
         }
+
+        // drag and drop setup
+        if( modulesView.dndSource ){
+
+            modulesView.$el.sortable({
+                handle: '.dnd-handle',
+                connectWith: '.dnd-wrapper[data-adf-dnd-target=true]',
+                placeholder: 'module-placeholder',
+                stop: function(event, ui) {
+                    ui.item.trigger('drop', ui.item.index());
+                },
+                // start: function( event, ui ) {
+
+                // },
+                // update: function( event, ui ) {
+                //     console.log('ending index',ui.item.index());
+                // },
+                // beforeStop: function( event, ui ) {
+                //     console.log('starting index',ui.item.index());
+                // },
+                activate: function( event, ui ) {
+                    modulesView.$el.addClass('dnd-active');
+                },
+                deactivate: function( event, ui ) {
+                    modulesView.$el.removeClass('dnd-active');
+                }
+            });
+
+        }
+
+        //     dndSourceInit: function( opts ) {
+
+//         var modulesView = this;
+
+//         if( opts.destroy ){
+//             // modulesView.$el.sortable('destroy');
+//         }
+
+//         modulesView.$el.sortable({
+//             connectWith: '.dnd-wrapper.dnd-target'
+//         }).bind('dragstart.h5s', function(e, ui) {
+//             console.log(e);
+//         });
+
+//     },
 
     },
     handleAction: function(e) {
@@ -69,6 +124,28 @@ ADF.ModulesView = Marionette.CollectionView.extend({
                 ADF.utils.message('error','Unexpected record action ('+actionType+') triggered.',$targetObj);
         }
     },
+    moduleDrop: function( e, model, position ) {
+
+        var modulesView = this;
+
+        // TODO: fetch the new page detail object
+        // console.log('modulesView moduleDrop',this.regionName,e,model,position);
+        console.log('record to be added at position',position);
+        // this.collection.remove(model);
+        // this.collection.each(function(model, index){
+        //   var ordinal = index;
+        //   if(index >= position){
+        //     ordinal+=1;
+        //   }
+        //   // model.set('ordinal', ordinal);
+        // });
+
+        // model.set('ordinal', position);
+        modulesView.collection.add(model, {at: position});
+        // modulesView.collection.add(new ADF.RecordModel({}));
+        console.log(modulesView.collection);
+        modulesView.render();
+    }
 
 
 });

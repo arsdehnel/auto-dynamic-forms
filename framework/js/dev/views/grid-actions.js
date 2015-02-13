@@ -50,7 +50,7 @@ ADF.GridActionsView = Backbone.Marionette.CompositeView.extend({
 
             var childView = new gridActions.childView({regionName:gridActions.regionName,model:model});
             childContainer.before(childView.template(model.toJSON()));
-            console.log('#'+gridActions.regionName+'Action--'+model.get('id'));
+            // console.log('#'+gridActions.regionName+'Action--'+model.get('id'));
             childView.setElement('#'+gridActions.regionName+'Action--'+model.get('id'));
 
         });
