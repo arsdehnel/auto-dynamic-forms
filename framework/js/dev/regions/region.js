@@ -37,11 +37,18 @@ ADF.Region = Marionette.Region.extend({
 
                 if( jqXHR.status === 200 ){
 
-                    ADF.utils.message('log','AJAX message: '+jqXHR.responseJSON.message);
+                    if( jqXHR.responseJSON ){
 
-                    // this is custom depending on the calling region's type so we send it back
-                    region.ajaxSuccessHandler(jqXHR.responseJSON, settings);
+                        ADF.utils.message('log','AJAX message: '+jqXHR.responseJSON.message);
 
+                        // this is custom depending on the calling region's type so we send it back
+                        region.ajaxSuccessHandler(jqXHR.responseJSON, settings);
+
+                    }else{
+
+                        ADF.utils.message('error','Malformed response received that does not have the expected JSON object',jqXHR,settings);
+
+                    }
 
                 }else if( jqXHR.status === 404 ){
 

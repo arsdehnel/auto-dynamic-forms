@@ -165,7 +165,7 @@ ADF.utils = {
                         console[level](args);
                     }
                     break;
-                case 'log':
+                case 'console':
                     // since we are just logging it we add a prefix item to the logs just to try and be clear where it came from
                     args.unshift('[ADF]');
                     console[level](args);

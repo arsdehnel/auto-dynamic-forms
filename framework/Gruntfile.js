@@ -18,19 +18,19 @@ module.exports = function(grunt) {
 
         case 'acuraadmin':
             filePath = '/Users/dehnel/cvsroot/client/auto/GlassFishacuraperformance/acuraadmin/src/webroot/v2/';
-            relativePath = '../../acuraadmin-v2/';
+            relativePath = '../../../acuraadmin-v2/';
             break;
         case 'acnmadmin':
             filePath = '/Users/dehnel/cvsroot/client/auto/GlassFishACNM/acnmadmin/src/webroot/v2/';
-            relativePath = '../../acnmadmin-v2/';
+            relativePath = '../../../acnmadmin-v2/';
             break;
         case 'candiadmin':
             filePath = '/Users/dehnel/cvsroot/client/auto/GlassFishNissan/candiadmin/src/webroot/v2/';
-            relativePath = '../../candiadmin-v2/';
+            relativePath = '../../../candiadmin-v2/';
             break;
         case 'client':
             filePath = '../client/';
-            relativePath = '../../client/';
+            relativePath = '../../../client/';
             break;
 
     }

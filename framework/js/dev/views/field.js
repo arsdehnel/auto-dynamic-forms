@@ -2,7 +2,8 @@
 ADF,
 Backbone,
 $,
-adf
+adf,
+_
 */
 ADF.FieldView = Backbone.Marionette.ItemView.extend({
     template: ADF.templates.formRow,
@@ -11,7 +12,11 @@ ADF.FieldView = Backbone.Marionette.ItemView.extend({
     },
     initialize: function( options ) {
         ADF.utils.message('log','FieldView Initialized', options);
-        this.model.set('inputField',this.model.get('inputTemplate')(this.model.toJSON()));
+        if( !_.isUndefined( this.model.get('inputTemplate') ) ){
+            this.model.set('inputField',this.model.get('inputTemplate')(this.model.toJSON()));
+        }else{
+            ADF.utils.message('error','Attempting to assign inputField attribute to undefined template',this.model);
+        }
     },
     render: function() {
         this.$el.html(this.template(this.model.toJSON()));

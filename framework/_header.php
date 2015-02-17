@@ -1,4 +1,5 @@
 <?php include('constants.php'); ?>
+<?php include('functions.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,25 +17,59 @@
                 <a href="#" class="refresh-menu fa"><i class="icon icon-refresh" title="refresh menu"></i>Refresh Menu</a>
             </div>
             <ul class="nav-level--1">
-                <li class="nav-item--1">
-                    <a href="index.html">Home</a>
-                </li>
-                <li class="nav-item--1 has-children">
-                    <a href="#">System</a>
-                    <ul class="nav-level--2">
-                        <li class="nav-item--2">
-                            <a href="job-submission.html">Job Submission</a>
-                        </li>
-                        <li class="nav-item--2">
-                            <a href="process-master.html">Process Master</a>
-                        </li>
-                    </ul>
-                </li>
+                <?php
+                    $menu_base = $_SERVER['DOCUMENT_ROOT'].'/auto/auto-dynamic-forms/framework/html/';
+
+                    // get the list of all the directories in this folder
+                    if ( $navHandle = @opendir( $menu_base ) ):
+
+                        // go through them all
+                        while (false !== ($navGroup = readdir($navHandle))):
+
+                            // make sure they aren't hidden or system stuff
+                            if( substr($navGroup,0,1) != '.' ):
+
+                                // open the nav group
+                                echo '<li class="nav-item--1"><a href="#">'.$navGroup.'</a>';
+
+                                // open the directory
+                                if( $itemsHandle = @opendir( $menu_base . $navGroup ) ){
+
+                                    // start the second level
+                                    echo '<ul class="nav-level--2">';
+
+                                    // go through all the files
+                                    // TODO: add children directory handling
+                                    while (false !== ($item = readdir($itemsHandle))):
+
+                                        if( substr($item,0,1) != '.' ):
+
+                                            echo '<li class="nav-item--2"><a href="../'.$navGroup.'/'.$item.'">'.str_replace('-',' ',substr($item,0,strpos($item,'.'))).'</a></li>';
+
+                                        endif;
+
+                                    endwhile;
+
+                                    echo '</ul>';
+
+                                }
+
+                                // close up the group
+                                echo '</li>';
+
+                            endif;
+
+                        endwhile;
+
+                    endif;
+                ?>
+<!--
+keeping this just so there is an example of the third level
                 <li class="nav-item--1">
                     <a href="#">Promotions</a>
                     <ul class="nav-level--2">
                         <li class="nav-item--2">
-                            <a href="report-data-calcs.html">Report Data Calcs</a>
+                            <a href="../promotions/n10-calc-controls.html">N10 Calc Controls</a>
                         </li>
                         <li class="nav-item--2 has-children">
                             <a href="form-builder.html">Form Builder</a>
@@ -48,40 +83,7 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-item--1">
-                    <a href="#">Web</a>
-                    <ul class="nav-level--2">
-                        <li class="nav-item--2">
-                            <a href="app-nav.html">App Nav</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item--1">
-                    <a href="#">Nav Item</a>
-                </li>
-                <li class="nav-item--1">
-                    <a href="#">Nav Item</a>
-                </li>
-                <li class="nav-item--1">
-                    <a href="#">Client Sites</a>
-                    <ul class="nav-level--2">
-                        <li class="nav-item--2">
-                            <a href="client-form.html">Client Form</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item--1">
-                    <a href="#">Framework</a>
-                    <ul class="nav-level--2">
-                        <li class="nav-item--2">
-                            <a href="input-types.html">Input Types</a>
-                        </li>
-                        <li class="nav-item--2">
-                            <a href="form-builder.html">Form Builder</a>
-                        </li>
-                    </ul>
-                </li>
+                </li> -->
             </ul>
         </nav><!-- #nav-main.nav-main -->
     </header>

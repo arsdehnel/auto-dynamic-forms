@@ -28,6 +28,8 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
     initRegions: function(){
         var pageView = this;
         var regions = {};
+        // make sure there is a messages window on the page
+        this._initMessagesWindow();
         pageView.$el.find('.adf-region').each(function(){
             var region = $(this);
             var regionData = region.data();
@@ -73,6 +75,12 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
     closeOverlayEditor: function(e) {
         e.preventDefault();
         this.getRegion('overlayEditor').hide();
+    },
+    _initMessagesWindow: function() {
+        var pageView = this;
+        if( pageView.$el.find('.adf-messages-window').size() === 0 ){
+            pageView.$el.append(ADF.templates.messagesWindow());
+        }
     }
 
 });

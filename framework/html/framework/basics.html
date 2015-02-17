@@ -1,0 +1,60 @@
+<?php
+    $header_text = 'Welcome';
+    include('../../_header.php');
+?>
+<section class="row">
+
+    <fieldset class="layout-grid-3">
+        <legend>Page Basics</legend>
+        <p>Anything using the ADF will need to have a ancestor element with the class <code>.adf-page</code> for the code to initialize against.  Everything utilizing ADF will need to be inside that element.</p>
+    </fieldset>
+    <fieldset class="layout-grid-9">
+        <legend>Regions</legend>
+        <p>Each piece of the page within that <code>.adf-page</code> parent will need to be wrapped in an element with the <code>.adf-region</code> class on it.  The app will iterate through those regions and initialize them as indicated by their <code>data-adf-</code> attributes.</p>
+        <h2>Requirements:</h2>
+        <ul>
+            <li><code>.adf-region</code> class</li>
+            <li><code>id</code> attribute that is unique to the page.  In most circumstances this would ideally be unique to all ADF regions in the application but that isn't always possible.</li>
+            <li><code>data-adf-region-type</code> attribute with one of the below accepted region types (* indicates special region types and unlikely will be added to individual implementations):
+                <ul>
+                    <li>form</li>
+                    <li>grid</li>
+                    <li>messages-window<sup>*</sup></li>
+                    <li>modules</li>
+                    <li>overlay-grid<sup>*</sup></li>
+                </ul>
+            </li>
+        </ul>
+        <h2>Optional Attributes</h2>
+        <ul>
+            <li><code>data-adf-ajax-onshow</code> is a simple boolean (literally true/false as the values) that will tell the framework to initiate an ajax request for this region when the page finishes loading and the framework itself has finished initializing itself.</li>
+            <li><code>data-adf-ajax-url</code> is the default URL to use for ajax calls whether they are initialized onload (via the above attribute) or by some other event on the page.</li>
+        </ul>
+    </fieldset>
+</section>
+<section class="row">
+    <fieldset class="layout-grid-6">
+        <legend>Examples</legend>
+        <h2>Form Example</h2>
+        <p>Form regions (ie elements with <code>data-adf-region-type="form"</code> in them must be a <em>parent</em> of the <code>form</code> element itself.</p>
+        <pre>
+            &lt;div class="adf-region"
+                id="process-master-filters"
+                data-adf-region-type="form"
+                data-adf-ajax-onshow="true"
+                data-adf-ajax-url="../json/process-master/filters.json"&gt;
+
+                &lt;form action="#process-master-grid" class="submit-on-change" method="post"&gt;
+
+                &lt;/form&gt;
+
+            &lt;/div&gt;
+        </pre>
+
+    </fieldset>
+
+</section>
+
+<?php
+    include('../_footer.php');
+?>

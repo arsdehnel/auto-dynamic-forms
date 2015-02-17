@@ -16,9 +16,6 @@
     endif;
 ?>
         <div class="adf-grid-overlay-editor adf-region" data-adf-ajax-onshow="true" data-adf-region-type="overlay-grid" id="overlay-editor"></div>
-        <div class="adf-messages-window adf-region" id="messages-window" data-adf-region-type="messages-window">
-            <div class="messages-wrapper"></div>
-        </div>
         <div class="backdrop hide"></div>
     </main>
     <footer>

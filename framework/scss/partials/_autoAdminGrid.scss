@@ -92,6 +92,9 @@
     }
   }
   tbody{
+    tr:hover td{
+        background: lime !important;   //hate it but for this use it maybe seems okay?
+    }
     .current:nth-child(odd) td{
       background: #e5e5e5;
     }

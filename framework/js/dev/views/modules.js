@@ -13,7 +13,8 @@ ADF.ModulesView = Marionette.CollectionView.extend({
         return { regionName: this.regionName };
     },
     events: {
-        'moduleDropped'                 : 'moduleDrop',
+        'adf-module-received'           : 'moduleReceived',
+        'adf-module-sent'               : 'moduleSent',
         'click .btn'                    : 'handleAction'
     },
     initialize: function( options ) {
@@ -38,7 +39,7 @@ ADF.ModulesView = Marionette.CollectionView.extend({
         modulesView.$el.empty();
         modulesView._super();
 
-        console.log('within render',modulesView.collection);
+        // console.log('within render',modulesView.collection);
 
         // rendering the 'actions' for a given form
         // start by getting the region since that is where the actions are kept
@@ -69,17 +70,12 @@ ADF.ModulesView = Marionette.CollectionView.extend({
                 connectWith: '.dnd-wrapper[data-adf-dnd-target=true]',
                 placeholder: 'module-placeholder',
                 stop: function(event, ui) {
-                    ui.item.trigger('drop', ui.item.index());
+                    ui.item.trigger('adf-module-drop', ui.item.index());
                 },
-                // start: function( event, ui ) {
-
-                // },
-                // update: function( event, ui ) {
-                //     console.log('ending index',ui.item.index());
-                // },
-                // beforeStop: function( event, ui ) {
-                //     console.log('starting index',ui.item.index());
-                // },
+                remove: function(event, ui) {
+                    console.log('remove');
+                    ui.item.trigger('adf-module-remove', ui.item.index());
+                },
                 activate: function( event, ui ) {
                     modulesView.$el.addClass('dnd-active');
                 },
@@ -124,13 +120,13 @@ ADF.ModulesView = Marionette.CollectionView.extend({
                 ADF.utils.message('error','Unexpected record action ('+actionType+') triggered.',$targetObj);
         }
     },
-    moduleDrop: function( e, model, position ) {
+    moduleReceived: function( e, model, position ) {
 
         var modulesView = this;
 
         // TODO: fetch the new page detail object
         // console.log('modulesView moduleDrop',this.regionName,e,model,position);
-        console.log('record to be added at position',position);
+        // console.log('record to be added at position',position);
         // this.collection.remove(model);
         // this.collection.each(function(model, index){
         //   var ordinal = index;
@@ -143,8 +139,13 @@ ADF.ModulesView = Marionette.CollectionView.extend({
         // model.set('ordinal', position);
         modulesView.collection.add(model, {at: position});
         // modulesView.collection.add(new ADF.RecordModel({}));
-        console.log(modulesView.collection);
+        // console.log(modulesView.collection);
         modulesView.render();
+    },
+    moduleSent: function( e, model, position ) {
+        var modulesView = this;
+        // console.log('moduleSent');
+        modulesView.collection.remove(model);
     }
 
 

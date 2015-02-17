@@ -10,15 +10,15 @@ ADF.config = {
                 'label' : 'Log Entry'
             },
             'info' : {
-                'displayMethod' : 'messagesWindow',
+                'displayMethod' : 'console',
                 'label' : 'Info'
             },
             'debug' : {
-                'displayMethod' : 'messagesWindow',
+                'displayMethod' : 'console',
                 'label' : 'Debug Info'
             },
             'warn' : {
-                'displayMethod' : 'messagesWindow',
+                'displayMethod' : 'console',
                 'label' : 'Warning'
             },
             'error' : {

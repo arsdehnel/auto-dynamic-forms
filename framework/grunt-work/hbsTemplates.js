@@ -413,6 +413,38 @@ this["ADF"]["templates"]["inputTypeNumber"] = Handlebars.template({"compiler":[6
 
 
 
+this["ADF"]["templates"]["inputTypeRadio"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "        data-"
+    + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
+    + "=\""
+    + escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"value","hash":{},"data":data}) : helper)))
+    + "\"\n";
+},"3":function(depth0,helpers,partials,data,depths) {
+  var lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
+  return "        <input type=\"radio\" name=\""
+    + escapeExpression(lambda((depths[1] != null ? depths[1].name : depths[1]), depth0))
+    + "\" value=\""
+    + escapeExpression(lambda((depth0 != null ? depth0.value : depth0), depth0))
+    + "\" "
+    + escapeExpression(((helpers.optionSelected || (depth0 && depth0.optionSelected) || helperMissing).call(depth0, (depth0 != null ? depth0.value : depth0), (depths[1] != null ? depths[1].currentValue : depths[1]), {"name":"optionSelected","hash":{},"data":data})))
+    + ">"
+    + escapeExpression(lambda((depth0 != null ? depth0.label : depth0), depth0))
+    + "\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data,depths) {
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div\n    id=\""
+    + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
+    + "\"\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.dataAttributes : depth0), {"name":"each","hash":{},"fn":this.program(1, data, depths),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "    >\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.data : depth0), {"name":"each","hash":{},"fn":this.program(3, data, depths),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "</div>";
+},"useData":true,"useDepths":true});
+
+
+
 this["ADF"]["templates"]["inputTypeReadonly"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
   return "        data-"
@@ -541,6 +573,12 @@ this["ADF"]["templates"]["message"] = Handlebars.template({"compiler":[6,">= 2.0
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</div>\n</div>";
 },"useData":true});
+
+
+
+this["ADF"]["templates"]["messagesWindow"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<div class=\"adf-messages-window adf-region\" id=\"messages-window\" data-adf-region-type=\"messages-window\">\n    <div class=\"messages-wrapper\"></div>\n</div>";
+  },"useData":true});
 
 
 

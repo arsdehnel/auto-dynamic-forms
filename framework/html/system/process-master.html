@@ -1,6 +1,6 @@
 <?php
     $header_text = 'Process Master';
-    include('../_header.php');
+    include('../../_header.php');
 ?>
 <div class="row">
     <div class="layout-grid-3"></div>
@@ -9,7 +9,7 @@
         data-adf-region-type="form"
         id="process-master-filters"
         data-adf-ajax-onshow="true"
-        data-adf-ajax-url="../json/process-master/filters.json"
+        data-adf-ajax-url="../../json/process-master/filters.json"
         data-adf-ajax-url-qa="/auto/auto-dynamic-forms/framework/getJson.php?client=acuraadmin&action=common/get-fields&pageCode=PROCESS_MASTER_FILTERS">
 
         <legend>Find Your Process Master</legend>
@@ -21,9 +21,9 @@
 <div class="adf-region"
 data-adf-region-type="grid"
 id="process-master-grid"
-data-adf-ajax-url="../json/process-master/grid.json"
+data-adf-ajax-url="../../json/process-master/grid.json"
 data-adf-ajax-url-qa="../getJson.php?client=acuraadmin&action=process-master/grid"></div>
 
 <?php
-    include('../_footer.php');
+    include('../../_footer.php');
 ?>

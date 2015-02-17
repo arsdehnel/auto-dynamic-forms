@@ -10,7 +10,8 @@ ADF.ModuleView = Backbone.Marionette.CompositeView.extend({
     childView: ADF.FieldView,
     childContainer: '.module-details',
     events: {
-        'drop'                                  : 'drop',
+        'adf-module-drop'                       : 'drop',
+        'adf-module-remove'                     : 'remove',
         'click .module-details-toggle'          : 'toggleDetails',
         'change :input'                         : 'inputChange',
         'click .btn'                            : 'handleAction'
@@ -81,10 +82,12 @@ ADF.ModuleView = Backbone.Marionette.CompositeView.extend({
 
         if( model.get('id') === 11115 ){
             // console.log(event,model.get('id'));
-            console.log(response,options);
+            // console.log(event,response,options);
         }
 
-        if( options.xhr ){
+        console.log(event,response,options);
+
+        if( options && options.xhr ){
 
             if( options.xhr.status === 200 ){
 
@@ -108,8 +111,14 @@ ADF.ModuleView = Backbone.Marionette.CompositeView.extend({
 
     },
     drop: function(e, i){
-        console.log('moduled dropped',e,i);
-        this.$el.trigger('moduleDropped',[this.model, i]);
+        // console.log('moduled dropped',e,i);
+        this.$el.trigger('adf-module-received',[this.model, i]);
+    },
+    remove: function(e, i){
+        if( e && e.type === 'adf-module-remove' ){
+            console.log('module remove',e,i);
+            this.$el.trigger('adf-module-sent',[this.model, i]);
+        }
     }
 
 });

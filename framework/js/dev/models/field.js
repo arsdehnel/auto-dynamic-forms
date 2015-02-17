@@ -19,7 +19,12 @@ ADF.FieldModel = Backbone.Model.extend({
         inputType = 'inputType'+inputType;
 
         // this.set('inputField',ADF.templates[inputType](this.toJSON()));
-        fieldModel.set('inputTemplate',ADF.templates[inputType]);
+        if( ADF.templates[inputType] ){
+            fieldModel.set('inputTemplate',ADF.templates[inputType]);
+        }else{
+            ADF.utils.message('error','unexpected template requested: '+inputType,fieldModel);
+        }
+
 
     }
 

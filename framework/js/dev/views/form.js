@@ -92,75 +92,6 @@ ADF.FormView = Marionette.CollectionView.extend({
                     method: 'POST'
                 });
 
-                // $.ajax({
-                //     url: opts.url,
-                //     type: opts.method,
-                //     data: opts.data,
-                //     dataType: ( opts.resultType === 'html' ? 'html' : 'json' ),
-                //     beforeSend: function(){
-                //         autoAdmin.utils.spin(opts.target);
-                //     },
-                //     complete: function( jqXHR, textStatus ){
-
-                //         if( jqXHR.status === 200 ){
-
-                //             if( opts.resultType === 'html' ){
-
-                //                 that.responseText = jqXHR.responseText;
-
-                //             }else{
-
-                //                 console.log('[autoAdmin] AJAX message: '+jqXHR.responseJSON.message);
-
-                //                 if( jqXHR.responseJSON.success === true ){
-
-                //                     if( jqXHR.responseJSON.data.hasOwnProperty('records') ){
-
-                //                         that.recordsColl = new autoAdmin.RecordsCollection();
-                //                         that.recordsColl.add(jqXHR.responseJSON.data.records);
-
-                //                     }
-
-                //                     if( jqXHR.responseJSON.data.hasOwnProperty('fields') ){
-
-                //                         that.fieldsColl = new autoAdmin.FieldsCollection();
-                //                         that.fieldsColl.add(jqXHR.responseJSON.data.fields);
-
-                //                     }
-
-
-                //                 }else{
-
-                //                     if( jqXHR.responseJSON.hasOwnProperty('errors') ){
-                //                         _.each(jqXHR.responseJSON.errors,function( element, index, array ){
-                //                             alert(element);
-                //                         })
-                //                     }else{
-                //                         alert('Looks like the ajax response wasn't quite what was expected from '+opts.url+'.  Probably need to get a TA involved.');
-                //                     }
-
-                //                 }
-
-                //             }
-
-                //             that.trigger('ajaxLoaded');
-
-                //         }else if( jqXHR.status === 404 ){
-
-                //             alert('Page Not Found\n\nThe ajax calls is being made to a page ('+opts.url+') that could not be found. Probably going to need to get a TA involved to see what is going on here.');
-
-                //         }else{
-
-                //             alert(textStatus+'! Probably going to need to get a TA involved.');
-                //             console.log('opts',opts);
-                //             console.log(jqXHR);
-                //             target.html(jqXHR.responseText);
-
-                //         }
-
-                //     }
-                // })
-
             }else{
                 ADF.utils.message('error','Trying to load ajax but destination element could not be found on the page');
             }
@@ -212,50 +143,6 @@ ADF.FormView = Marionette.CollectionView.extend({
             url: parentData.adfDependentFieldLkupUrl,
             emptyCollections:false
         });
-
-        // $.ajax({
-        //     data: dataArr,
-        //     url: parentData.adfDependentFieldLkupUrl,
-        //     type: 'POST',
-        //     beforeSend: function() {
-        //         ADF.utils.spin($form);
-        //     },
-        //     complete: function( jqXHR, textStatus ) {
-        //         ADF.utils.spin($form, { stop: true } );
-        //         if( jqXHR.status === 200 ){
-        //             ADF.utils.message('debug','Dependent field lookup success',jqXHR);
-
-        //                 if( jqXHR.responseJSON.data.hasOwnProperty('fields') ){
-
-        //                 formView.collection.add(jqXHR.responseJSON.data.fields);
-
-        //                 // TODO: add select2 renderer as part of the auto-rendering of the Marionette view
-        //                 //         $form.find('.select2').each(function(){
-        //                 //             autoAdmin.utils.renderSelect2({
-        //                 //                 select2Obj : $(this)
-        //                 //             })
-        //                 //         })
-
-        //                 // manually call render for some reason
-        //                 // thought that Marionette handled this for us but it wasn't firing so this had to be added
-        //                 formView.render();
-
-        //                 }else{
-        //                     ADF.utils.message('error','Dependent field lookup did not return any fields',jqXHR);
-        //                 }
-
-        //         }else{
-        //             ADF.utils.message('error','Dependent field lookup failed',jqXHR);
-        //             if( jqXHR.responseJSON.hasOwnProperty('errors') ){
-        //                 _.each(jqXHR.responseJSON.errors,function( element, index, array ){
-        //                     alert(element);
-        //                 });
-        //             }else{
-        //                 alert('Looks like the ajax response wasn\'t quite what was expected.  Probably need to get a TA involved to help figure it out.');
-        //             }
-        //         }
-        //     }
-        // });
 
     }
 });

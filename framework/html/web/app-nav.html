@@ -1,13 +1,11 @@
 <?php
     $header_text = 'App Nav';
-    include('../_header.php');
+    include('../../_header.php');
 ?>
 <div class="row"
     data-onload-ajax-url="../json/app-nav/promotions.json"
-    data-onload-ajax-url-qa2="http://acuraadminqa.biworldwide.com/acuraadmin/v2/service/common/get-fields.action?pageCode=PROCESS_MASTER_FILTERS"
     data-onload-ajax-url-qa="http://pedersoz-dv.bius.bi.corp:7001/acuraadmin/v2/service/common/get-fields.action?pageCode=PROCESS_MASTER_FILTERS"
     data-result-type="form"
-    data-onload-ajax-target-id="app-nav-filter"
     >
     <div class="layout-grid-3"></div>
     <fieldset

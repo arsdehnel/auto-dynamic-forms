@@ -9,7 +9,7 @@
         "fldMstrId": 1,
         "detailId": 1,
         "name": "APPLICATION",
-        "type": "SELECT2",
+        "type": "RADIO",
         "label": "Application",
         "tooltipText": null,
         "fieldClass": null,
