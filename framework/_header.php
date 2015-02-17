@@ -30,10 +30,12 @@
                             if( substr($navGroup,0,1) != '.' ):
 
                                 // open the nav group
-                                echo '<li class="nav-item--1"><a href="#">'.$navGroup.'</a>';
+                                echo '<li class="nav-item--1';
 
                                 // open the directory
-                                if( $itemsHandle = @opendir( $menu_base . $navGroup ) ){
+                                if( $itemsHandle = @opendir( $menu_base . $navGroup ) ):
+
+                                    echo ' has-children"><a href="#">'.$navGroup.'</a>';
 
                                     // start the second level
                                     echo '<ul class="nav-level--2">';
@@ -52,7 +54,9 @@
 
                                     echo '</ul>';
 
-                                }
+                                else:
+                                    echo '"><a href="#">'.$navGroup.'</a>';
+                                endif;
 
                                 // close up the group
                                 echo '</li>';
