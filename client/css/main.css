@@ -549,15 +549,13 @@ input[type=email], input[type=text], input[type=url] {
 
 .icon:before {
   display: inline-block;
-  margin-right: 4px;
-  font-family: 'FontAwesome';
-  font-style: normal; }
+  margin-right: 4px; }
 
 .icon-refresh:before {
   content: '\f021'; }
 
 .icon-times:before {
-  content: '\f00d'; }
+  background: url(../svg/defs.svg#icon-close) 50% 50% no-repeat; }
 
 .icon-save:before {
   content: '\f0c7'; }
@@ -678,11 +676,13 @@ body > svg {
       .nav-header a {
         font-size: 11px; } }
   .nav-header li.has-children:after {
+    content: '';
     position: absolute;
     display: block;
-    font-family: "FontAwesome";
-    color: #7f7f7f;
-    font-size: 12px; }
+    border: 4px solid;
+    border-color: #000000 transparent transparent transparent;
+    height: 0;
+    width: 0; }
   .nav-header li:hover.has-children:after {
     display: none; }
   .nav-header .nav-level--1 {
@@ -723,10 +723,10 @@ body > svg {
       .nav-header .nav-item--1 {
         border-left: 1px dotted #000000; } }
     .nav-header .nav-item--1.has-children:after {
-      content: "\f0d7";
-      left: 0;
-      bottom: 0;
-      width: 100%; }
+      left: 50%;
+      bottom: -1px;
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%); }
     .nav-header .nav-item--1:hover a {
       color: white; }
     .nav-header .nav-item--1:hover .nav-level--2 {
@@ -782,7 +782,9 @@ body > svg {
         background: #4c4c4c;
         color: white;
         right: 0; }
-      .nav-header .site-actions a i {
+      .nav-header .site-actions a svg {
+        padding: 2px 0;
+        height: 100%;
         color: #ccc; }
 
 .nav-footer {

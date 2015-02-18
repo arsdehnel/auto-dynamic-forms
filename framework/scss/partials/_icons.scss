@@ -1,14 +1,15 @@
 .icon:before{
 	display: inline-block;
 	margin-right: 4px;
-	font-family: 'FontAwesome';
-	font-style: normal;
+	// font-family: 'FontAwesome';
+	// font-style: normal;
 }
 .icon-refresh:before{
     content: '\f021';
 }
 .icon-times:before{
-    content: '\f00d';
+    // content: '\f00d';
+    background: url(../svg/defs.svg#icon-close) 50% 50% no-repeat;
 }
 .icon-save:before{
 	content: '\f0c7';
