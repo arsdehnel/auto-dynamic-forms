@@ -82,6 +82,8 @@
     .adf-grid thead th .adf-grid-header-cell-triggers {
       position: absolute;
       right: 0.5em; }
+  .adf-grid tbody tr:hover td {
+    background: lime !important; }
   .adf-grid tbody .current:nth-child(odd) td {
     background: #e5e5e5; }
   .adf-grid tbody .current:nth-child(even) td {
@@ -189,6 +191,12 @@
     width: 100%;
     text-align: center; }
 
+code {
+  background: #ccc;
+  position: relative;
+  border: 1px solid #909;
+  padding: 1px 4px; }
+
 .btn {
   text-transform: uppercase;
   color: white;
@@ -223,10 +231,12 @@
       border: 1px solid #005f00;
       background: #339233; }
 
-.content .page-title {
-  margin: 0;
-  padding: 0.25em;
-  background: rgba(0, 0, 0, 0.5); }
+.content {
+  line-height: 1.4; }
+  .content .page-title {
+    margin: 0;
+    padding: 0.25em;
+    background: rgba(0, 0, 0, 0.5); }
 
 dialog {
   display: none;
@@ -406,12 +416,6 @@ dialog::backdrop {
       border-color: transparent transparent transparent currentColor; }
   .dropdown-wrapper .dropdown-inner:hover {
     color: #cccccc; }
-
-@font-face {
-  font-family: 'FontAwesome';
-  src: url('../fonts/fontawesome-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal; }
 
 @font-face {
   font-family: 'Lato';

@@ -43,8 +43,12 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         copy: {
-            dist: {
+            fonts: {
                 src: 'fonts/*.woff',
+                dest: '../client/'
+            },
+            svg: {
+                src: ['svg/*.svg','svg/**/*.svg'],
                 dest: '../client/'
             }
         },
@@ -222,10 +226,10 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['copy','concat','sass:dist','handlebars','uglify:templates','autoprefixer','svgstore','setPHPConstant','watch']);
+    grunt.registerTask('default', ['svgstore','copy','concat','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
     grunt.registerTask('hbs', ['handlebars','uglify:templates']);
     grunt.registerTask('css', ['sass:dist','autoprefixer']);
-    grunt.registerTask('svg', ['svgstore']);
+    grunt.registerTask('svg', ['svgstore','copy:svg']);
     grunt.registerTask('scripts-dev', ['concat:dev']);
     grunt.registerTask('scripts-lib', ['concat:lib']);
     grunt.registerTask('scripts-plugins', ['concat:plugins']);

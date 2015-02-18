@@ -1,0 +1,65 @@
+<?php
+    $header_text = 'Welcome';
+    include('../../_header.php');
+?>
+<style type="text/css">
+.svg-wrap {
+    display: inline-block;
+    margin: 1em;
+    text-align: center;
+    border: 1px solid purple;
+    min-width: 100px;
+}
+.svg-wrap svg {
+    height: 2em;
+    fill: purple;
+}
+</style>
+<section class="row">
+
+    <fieldset class="layout-grid-6">
+        <legend>Included in defs.svg</legend>
+        <p>These elements are included in a consolidated defs file and are used as part of the ADF framework itself. These could also be referenced individually as well but they are included in the defs file to streamline usage and caching.</p>
+        <h2>Markup</h2>
+        <pre>
+            &lt;svg viewBox="0 0 32 32" class="icon"&gt;
+                &lt;use xlink:href="&lt;&lt;&lt;path to defs.svg&gt;&gt;&gt;#&lt;&lt;&lt;svg id&gt;&gt;&gt;"&gt;&lt;/use&gt;
+            &lt;/svg&gt;
+        </pre>
+        <?php
+            $sym_dir = realpath(rtrim(dirname(__FILE__), DIRECTORY_SEPARATOR).'/'.str_repeat('..' . DIRECTORY_SEPARATOR, 2).'/svg/symbols/');
+
+            // get the list of all the files
+            if ( $sym_handle = @opendir( $sym_dir ) ):
+
+                // go through them all
+                while (false !== ($symbol = readdir($sym_handle))):
+
+                    if( substr($symbol,0,1) != '.' && $symbol != 'CVS' ):
+
+                        echo '<div class="svg-wrap"><h6>'.$symbol.'</h6><svg viewBox="0 0 32 32" class="icon"><use xlink:href="'.CLIENT_PATH.'svg/defs.svg#icon-'.substr($symbol,0,strpos($symbol,'.')).'"></use></svg></div>';
+
+                    endif;
+
+                endwhile;
+
+            endif;
+        ?>
+
+    </fieldset>
+    <fieldset class="layout-grid-6">
+        <legend>Individual SVGs</legend>
+        <p>These SVG files are in the svg folder of each ADF installation for use individually.  This allows for use in the CSS as well as individually in the markup.</p>
+        <h2>Markup</h2>
+        <pre>
+            &lt;svg viewBox="0 0 32 32" class="icon"&gt;
+                &lt;use xlink:href="&lt;&lt;&lt;svg id&gt;&gt;&gt;"&gt;&lt;/use&gt;
+            &lt;/svg&gt;
+        </pre>
+    </fieldset>
+</section>
+</section>
+
+<?php
+    include('../../_footer.php');
+?>

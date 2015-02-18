@@ -18,7 +18,7 @@
             </div>
             <ul class="nav-level--1">
                 <?php
-                    $menu_base = $_SERVER['DOCUMENT_ROOT'].'/auto/auto-dynamic-forms/framework/html/';
+                    $menu_base = dirname(__FILE__).'/html/';
 
                     // get the list of all the directories in this folder
                     if ( $navHandle = @opendir( $menu_base ) ):
