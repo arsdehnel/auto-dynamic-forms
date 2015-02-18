@@ -1,6 +1,6 @@
 <?php
 
-    function basic_filter( $fieldset_label, $form_id, $grid_id, $ajax_url ){
+    function basic_filter( $fieldset_label, $form_id, $grid_id, $ajax_url, $ajax_onshow ){
 
         $return_string = '';
 

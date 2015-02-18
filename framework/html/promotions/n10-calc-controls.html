@@ -6,7 +6,7 @@
         );
 
     include('../../_header.php');
-    basic_filter( 'Find your N10 calculations', 'n10-calc-ctrl-filters', 'n10-calc-ctrl-grid', $urls[JSON_SOURCE] );
+    basic_filter( 'Find your N10 calculations', 'n10-calc-ctrl-filters', 'n10-calc-ctrl-grid', $urls[JSON_SOURCE], true );
 
 ?>
 <div class="adf-region" id="app-nav-grid" data-adf-region-type="grid" data-adf-ajax-url="../json/app-nav/grid.json"></div>

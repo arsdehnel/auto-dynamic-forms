@@ -1,19 +1,14 @@
 <?php
-    $header_text = 'Form Builder';
+    $header_text   = 'Form Builder';
+    $urls          = [];
+    $urls['local'] = '../../json/form-builder/current-filters.json';
+
     include('../../_header.php');
-?>
-<div class="row">
-
-    <fieldset
-        class="layout-grid-6 adf-region"
-        data-adf-region-type="form"
-        id="form-builder-current-filters"
-        data-adf-ajax-onshow="true"
-        data-adf-ajax-url="../json/form-builder/current-filters.json">
-
-        <legend>Your Form</legend>
-        <form action="#form-builder-current-fields" class="form-horizontal" method="post"></form>
-
+    ?>
+    <div class="row">
+        <?php
+            basic_filter( 'Your Form', 'form-builder-current-filters', 'form-builder-current-fields', $urls[JSON_SOURCE], true );
+        ?>
 		<div id="form-builder-current-fields"
             class="adf-region"
             data-adf-region-type="modules"
@@ -21,7 +16,6 @@
             data-adf-dnd-source="true"
             data-adf-ajax-url="../json/form-builder/current.json">
         </div>
-
     </fieldset>
     <fieldset
         class="layout-grid-6 adf-region"

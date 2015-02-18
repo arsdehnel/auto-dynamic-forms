@@ -1,8 +1,12 @@
 <?php
-    $header_text = 'App Nav';
+    $header_text   = 'App Nav';
+    $urls          = [];
+    $urls['local'] = '../../json/app-nav/promotions.json';
+
     include('../../_header.php');
+    basic_filter( 'Find Your App Nav Items', 'app-nav-filters', 'app-nav-grid', $urls[JSON_SOURCE], true );
 ?>
-<div class="row"
+<!-- <div class="row"
     data-onload-ajax-url="../json/app-nav/promotions.json"
     data-onload-ajax-url-qa="http://pedersoz-dv.bius.bi.corp:7001/acuraadmin/v2/service/common/get-fields.action?pageCode=PROCESS_MASTER_FILTERS"
     data-result-type="form"
@@ -20,7 +24,7 @@
         <form action="#app-nav-grid" class="form-horizontal" method="post"></form>
     </fieldset>
     <div class="layout-grid-3"></div>
-</div>
+</div> -->
 <div class="adf-region" id="app-nav-grid" data-adf-region-type="grid" data-adf-ajax-url="../json/app-nav/grid.json"></div>
 <?php
     include('../../_footer.php');
