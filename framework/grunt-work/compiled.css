@@ -362,9 +362,16 @@ dialog::backdrop {
     background: transparent;
     border: 0; }
   .dropdown-wrapper .dropdown-inner .dropdown-toggle-caret {
-    width: 2em; }
-    .dropdown-wrapper .dropdown-inner .dropdown-toggle-caret .caret {
-      font-family: 'FontAwesome'; }
+    width: 2em;
+    position: relative; }
+    .dropdown-wrapper .dropdown-inner .dropdown-toggle-caret::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      border: 4px solid;
+      border-color: #ffffff transparent transparent; }
   .dropdown-wrapper .dropdown-inner .dropdown-menu {
     position: absolute;
     z-index: 9999;
@@ -415,6 +422,8 @@ dialog::backdrop {
       border-color: transparent transparent transparent currentColor; }
   .dropdown-wrapper .dropdown-inner:hover {
     color: #cccccc; }
+    .dropdown-wrapper .dropdown-inner:hover .dropdown-toggle-caret::before {
+      border-color: #cccccc transparent transparent; }
 
 @font-face {
   font-family: 'Lato';
@@ -810,7 +819,7 @@ body > svg {
   width: 12px;
   height: 12px;
   position: absolute;
-  right: 24px;
+  right: 18px;
   top: 0;
   font-size: 1px;
   text-decoration: none;
@@ -822,7 +831,6 @@ body > svg {
   display: inline-block; }
 
 .select2-container .select2-choice abbr:hover {
-  background-position: right -11px;
   cursor: pointer; }
 
 .select2-drop-mask {
@@ -865,9 +873,8 @@ body > svg {
 .select2-drop-auto-width {
   border-top: 1px solid #aaa;
   width: auto; }
-
-.select2-drop-auto-width .select2-search {
-  padding-top: 4px; }
+  .select2-drop-auto-width .select2-search {
+    padding-top: 4px; }
 
 .select2-container .select2-choice .select2-arrow {
   display: inline-block;
@@ -879,20 +886,21 @@ body > svg {
   border-left: 1px solid #aaa;
   background-clip: padding-box;
   background: #ddd; }
-
-.select2-container .select2-choice .select2-arrow b {
-  display: block;
-  width: 100%;
-  height: 100%; }
-  .select2-container .select2-choice .select2-arrow b:before {
-    content: "\f0d7";
+  .select2-container .select2-choice .select2-arrow b {
     display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    font-family: 'FontAwesome';
-    text-align: center;
-    color: #666; }
+    width: 100%;
+    height: 100%; }
+    .select2-container .select2-choice .select2-arrow b:before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 58%;
+      height: 0;
+      width: 0;
+      transform: translate3d(-50%, -50%, 0);
+      border: 4px solid;
+      border-color: #666 transparent transparent; }
 
 .select2-search {
   display: inline-block;
@@ -902,29 +910,28 @@ body > svg {
   position: relative;
   z-index: 10000;
   white-space: nowrap; }
-
-.select2-search input {
-  width: 100%;
-  height: auto !important;
-  min-height: 26px;
-  padding: 4px 20px 4px 5px;
-  margin: 0;
-  outline: 0;
-  font-family: sans-serif;
-  font-size: 1em;
-  border: 0 solid #aaa;
-  border-bottom: 1px;
-  box-shadow: none; }
-.select2-search:after {
-  position: absolute;
-  font-family: 'FontAwesome';
-  top: 0;
-  right: 10px;
-  line-height: 26px;
-  font-size: 0.8em;
-  content: "\F002";
-  display: block;
-  color: #666; }
+  .select2-search input {
+    width: 100%;
+    height: auto !important;
+    min-height: 26px;
+    padding: 4px 20px 4px 5px;
+    margin: 0;
+    outline: 0;
+    font-family: sans-serif;
+    font-size: 1em;
+    border: 0 solid #aaa;
+    border-bottom: 1px;
+    box-shadow: none; }
+  .select2-search:after {
+    position: absolute;
+    font-family: 'FontAwesome';
+    top: 0;
+    right: 10px;
+    line-height: 26px;
+    font-size: 0.8em;
+    content: "\F002";
+    display: block;
+    color: #666; }
 
 .select2-drop.select2-drop-above .select2-search input {
   margin-top: 4px; }
@@ -1135,17 +1142,9 @@ disabled look for disabled choices in the results dropdown
   position: absolute;
   right: 3px;
   top: 4px;
-  font-size: 1px;
-  outline: none; }
-  .select2-search-choice-close:before {
-    content: "\F00d";
-    position: absolute;
-    display: block;
-    font-family: "FontAwesome";
-    font-size: 12px;
-    color: #ddd; }
-  .select2-search-choice-close:hover:before {
-    color: #444; }
+  background: transparent url(../svg/symbols/close.svg) 50% 50% no-repeat;
+  background-size: 10px;
+  opacity: 0.2; }
 
 .select2-container-multi .select2-search-choice-close {
   left: 3px; }

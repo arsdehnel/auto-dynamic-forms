@@ -115,7 +115,7 @@ this["ADF"]["templates"]["dropdownMenu"] = Handlebars.template({"1":function(dep
     + escapeExpression(((helper = (helper = helpers.wrapClass || (depth0 != null ? depth0.wrapClass : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"wrapClass","hash":{},"data":data}) : helper)))
     + " dropdown-wrapper\">\n  	<div class=\"grid-action grid-dropdown dropdown-inner\">\n    	<button type=\"button\" class=\"dropdown-toggle dropdown-label\">"
     + escapeExpression(((helper = (helper = helpers.buttonLabel || (depth0 != null ? depth0.buttonLabel : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"buttonLabel","hash":{},"data":data}) : helper)))
-    + "</button>\n    	<button type=\"button\" class=\"dropdown-toggle-caret dropdown-toggle\">\n      		<span class=\"caret\">&#xf0d7;</span>\n    	</button>\n    	<ul class=\"dropdown-menu hide\">\n";
+    + "</button>\n    	<button type=\"button\" class=\"dropdown-toggle-caret dropdown-toggle\"></button>\n    	<ul class=\"dropdown-menu hide\">\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.primaryOptions : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   buffer += "  		    <li class=\"divider\"></li>\n";
