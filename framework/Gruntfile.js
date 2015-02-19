@@ -45,11 +45,11 @@ module.exports = function(grunt) {
         copy: {
             fonts: {
                 src: 'fonts/*.woff',
-                dest: '../client/'
+                dest: filePath+'/'
             },
             svg: {
                 src: ['svg/*.svg','svg/**/*.svg'],
-                dest: '../client/'
+                dest: filePath+'/'
             }
         },
         svgstore: {

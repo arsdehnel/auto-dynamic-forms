@@ -1,5 +1,12 @@
-<?php include('constants.php'); ?>
-<?php include('functions.php'); ?>
+<?php
+    include('constants.php');
+    include('functions.php');
+
+    $urls          = [];
+    $urls['local'] = [];
+    $urls['zack']  = [];
+
+?>
 <!DOCTYPE html>
 <html>
 <head>

@@ -314,6 +314,15 @@ this["ADF"]["templates"]["inputTypeActions"] = Handlebars.template({"1":function
 
 
 
+this["ADF"]["templates"]["inputTypeAdfSerializedData"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, helperMissing=helpers.helperMissing, buffer = "<input type=\"hidden\" name=\"adf-serialized-data\" value='";
+  stack1 = ((helpers.json || (depth0 && depth0.json) || helperMissing).call(depth0, (depth0 != null ? depth0.data : depth0), {"name":"json","hash":{},"data":data}));
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "'>";
+},"useData":true});
+
+
+
 this["ADF"]["templates"]["inputTypeCheckbox"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, lambda=this.lambda;
   return "<input type=\"checkbox\" name=\""
@@ -338,17 +347,25 @@ this["ADF"]["templates"]["inputTypeCheckboxes"] = Handlebars.template({"1":funct
     + "\"\n";
 },"3":function(depth0,helpers,partials,data,depths) {
   var lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
-  return "        <input type=\"checkbox\" name=\""
+  return "        <div class=\"adf-checkbox-wrapper\">\n            <input type=\"checkbox\" id=\"adf-checkbox-"
+    + escapeExpression(lambda((depths[1] != null ? depths[1].name : depths[1]), depth0))
+    + "-"
+    + escapeExpression(lambda((depth0 != null ? depth0.value : depth0), depth0))
+    + "\" name=\""
     + escapeExpression(lambda((depths[1] != null ? depths[1].name : depths[1]), depth0))
     + "\" value=\""
     + escapeExpression(lambda((depth0 != null ? depth0.value : depth0), depth0))
     + "\" "
-    + escapeExpression(((helpers.optionSelected || (depth0 && depth0.optionSelected) || helperMissing).call(depth0, (depth0 != null ? depth0.value : depth0), (depths[1] != null ? depths[1].currentValue : depths[1]), {"name":"optionSelected","hash":{},"data":data})))
-    + ">"
+    + escapeExpression(((helpers.optionChecked || (depth0 && depth0.optionChecked) || helperMissing).call(depth0, (depth0 != null ? depth0.value : depth0), (depths[1] != null ? depths[1].currentValue : depths[1]), {"name":"optionChecked","hash":{},"data":data})))
+    + ">\n            <label for=\"adf-checkbox-"
+    + escapeExpression(lambda((depths[1] != null ? depths[1].name : depths[1]), depth0))
+    + "-"
+    + escapeExpression(lambda((depth0 != null ? depth0.value : depth0), depth0))
+    + "\">"
     + escapeExpression(lambda((depth0 != null ? depth0.label : depth0), depth0))
-    + "\n";
+    + "</label>\n        </div>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data,depths) {
-  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div\n    class=\"adf-checkbox-wrapper "
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div\n    class=\"adf-checkboxes-wrapper adf-input-wrapper "
     + escapeExpression(((helper = (helper = helpers.fieldClass || (depth0 != null ? depth0.fieldClass : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"fieldClass","hash":{},"data":data}) : helper)))
     + "\"\n    id=\""
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
@@ -467,7 +484,18 @@ this["ADF"]["templates"]["inputTypeReadonly"] = Handlebars.template({"1":functio
 
 
 
-this["ADF"]["templates"]["inputTypeSelect"] = Handlebars.template({"1":function(depth0,helpers,partials,data,depths) {
+this["ADF"]["templates"]["inputTypeSelect"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+  return "multiple";
+  },"3":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "            data-"
+    + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
+    + "=\""
+    + escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"value","hash":{},"data":data}) : helper)))
+    + "\"\n";
+},"5":function(depth0,helpers,partials,data) {
+  return "      <option></option>\n";
+  },"7":function(depth0,helpers,partials,data,depths) {
   var lambda=this.lambda, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
   return "		<option value=\""
     + escapeExpression(lambda((depth0 != null ? depth0.value : depth0), depth0))
@@ -477,10 +505,20 @@ this["ADF"]["templates"]["inputTypeSelect"] = Handlebars.template({"1":function(
     + escapeExpression(lambda((depth0 != null ? depth0.label : depth0), depth0))
     + "</option>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data,depths) {
-  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<select name=\""
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<select\n    class=\""
+    + escapeExpression(((helper = (helper = helpers.fieldClass || (depth0 != null ? depth0.fieldClass : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"fieldClass","hash":{},"data":data}) : helper)))
+    + "\"\n    name=\""
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
-    + "\">\n    <option>Please Select</option>\n";
-  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.data : depth0), {"name":"each","hash":{},"fn":this.program(1, data, depths),"inverse":this.noop,"data":data});
+    + "\" ";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.multiple : depth0), {"name":"if","hash":{},"fn":this.program(1, data, depths),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.dataAttributes : depth0), {"name":"each","hash":{},"fn":this.program(3, data, depths),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "    >\n";
+  stack1 = helpers.unless.call(depth0, (depth0 != null ? depth0.required : depth0), {"name":"unless","hash":{},"fn":this.program(5, data, depths),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.data : depth0), {"name":"each","hash":{},"fn":this.program(7, data, depths),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</select>";
 },"useData":true,"useDepths":true});

@@ -1,13 +1,14 @@
 <?php
-$urlRoot = 'http://pedersoz-dv.bius.bi.corp:7001/';
-// $urlRoot = 'http://acuraadminqa.biworldwide.com/';
-// acuraadmin/v2/service/common/get-fields.action?pageCode=PROCESS_MASTER_FILTERS
-// $page    = 'service/common/get-fields.action?pageCode=PROCESS_MASTER_FILTERS';
-$page = $_REQUEST['client'].'/v2/service/'.$_REQUEST['action'].'.action?pageCode='.$_REQUEST['pageCode'];
+
+    $urlRoots         = [];
+    $urlRoots['zack'] = 'http://pedersoz-dv.bius.bi.corp:7001/';
+    $urlRoots['qa']   = 'http://'.$_REQUEST['client'].'qa.biworldwide.com/';
+
+    $page = $_REQUEST['client'].'/v2/service/'.$_REQUEST['action'].'.action?pageCode='.$_REQUEST['pageCode'];
 
 // echo $urlRoot.$page;
 
-echo makePostRequest( $urlRoot.$page );
+echo makePostRequest( $urlRoots[$_REQUEST['env']].$page );
 
 
 // $token = getToken($apiUrl, $username, $password);

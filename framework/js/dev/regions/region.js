@@ -5,20 +5,26 @@ _,
 $
 */
 ADF.Region = Marionette.Region.extend({
-    // TODO: create new region for an overlay
     // TODO: overlay region optionally can get data from caller region
 
     initialize: function(options){
-        ADF.utils.message('log','Region Initialized',options);
+        ADF.utils.message('debug','Region Initialized',options);
         this.adfAjaxOnshow = ( options.adfAjaxOnshow ? options.adfAjaxOnshow : false );
     },
     show: function() {
         // TODO: this really shouldn't be in the region object, probably part of the view that we've associated with it...
+
+        var onShowData = this.$el.find(':input[data-adf-onshow-data=true]').serializeObject();
+
         if( this.adfAjaxOnshow ){
-            this.ajax();
+            this.ajax({data:onShowData});
         }
     },
     ajax: function( options ){
+
+        /*
+            options.data    this should be a js object literal as it will be stringified once in the below call
+        */
         var region = this;
         var settings = _.extend({data:JSON.stringify(region.options.adfAjaxData)}, options);
 
@@ -27,7 +33,7 @@ ADF.Region = Marionette.Region.extend({
         $.ajax({
             url: ( settings.url ? settings.url : region.options.adfAjaxUrl ),
             type: ( settings.method ? settings.method : 'POST' ),
-            data: settings.data,
+            data: JSON.stringify(settings.data),
             beforeSend: function(){
                 ADF.utils.spin(region.$el);
             },

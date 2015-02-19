@@ -1,5 +1,13 @@
-<select name="{{name}}">
-    <option>Please Select</option>
+<select
+    class="{{fieldClass}}"
+    name="{{name}}" {{#if multiple}}multiple{{/if}}
+        {{#each dataAttributes}}
+            data-{{name}}="{{value}}"
+        {{/each}}
+    >
+    {{#unless required}}
+      <option></option>
+    {{/unless}}
     {{#each data}}
 		<option value="{{this.value}}" {{optionSelected this.value ../currentValue}}>{{this.label}}</option>
     {{/each}}

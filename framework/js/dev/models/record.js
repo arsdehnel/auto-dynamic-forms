@@ -33,6 +33,69 @@ ADF.RecordModel = Backbone.Model.extend({
 
         this.listenTo(this,'sync',recordModel.recordSave);
 
+    },
+
+    saveNew: function( method, model, options ) {
+
+        /* ----------------------------------------------
+                 BEGIN FROM ORIGINAL BACKBONE.SYNC (v1.1.2)
+           ---------------------------------------------- */
+            // Default JSON-request options.
+            var params = {type: type, dataType: 'json'};
+
+            // Ensure that we have a URL.
+            if (!options.url) {
+              params.url = _.result(model, 'url') || urlError();
+            }
+
+            // Ensure that we have the appropriate request data.
+            if (options.data == null && model && (method === 'create' || method === 'update' || method === 'patch')) {
+              params.contentType = 'application/json';
+              params.data = JSON.stringify(options.attrs || model.toJSON(options));
+            }
+
+            // For older servers, emulate HTTP by mimicking the HTTP method with `_method`
+            // And an `X-HTTP-Method-Override` header.
+            if (options.emulateHTTP && (type === 'PUT' || type === 'DELETE' || type === 'PATCH')) {
+              params.type = 'POST';
+              var beforeSend = options.beforeSend;
+              options.beforeSend = function(xhr) {
+                xhr.setRequestHeader('X-HTTP-Method-Override', type);
+                if (beforeSend) return beforeSend.apply(this, arguments);
+              };
+            }
+
+            // Don't process data on a non-GET request.
+            if (params.type !== 'GET' && !options.emulateJSON) {
+              params.processData = false;
+            }
+        /* ----------------------------------------------
+                 END FROM ORIGINAL BACKBONE.SYNC (v1.1.2)
+           ---------------------------------------------- */
+
+            // now that we're in our own custom code we'll have to do our slightly odd JSON creation
+            // where we create a three attribute object for each attribute
+            // and put them into an array and then submit that
+            var attrObj
+            _.each(this.attributes,function( attr, index ) {
+
+
+
+            })
+
+            // and then back to the original backbone sync
+        /* ----------------------------------------------
+                 BEGIN FROM ORIGINAL BACKBONE.SYNC (v1.1.2)
+           ---------------------------------------------- */
+            // Make the request, allowing the user to override any Ajax options.
+            var xhr = options.xhr = Backbone.ajax(_.extend(params, options));
+            model.trigger('request', model, xhr, options);
+            return xhr;
+        /* ----------------------------------------------
+                 END FROM ORIGINAL BACKBONE.SYNC (v1.1.2)
+           ---------------------------------------------- */
+
+
     }
 
 });

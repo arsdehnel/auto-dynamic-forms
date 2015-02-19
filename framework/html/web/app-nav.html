@@ -1,31 +1,19 @@
 <?php
+
     $header_text   = 'App Nav';
-    $urls          = [];
-    $urls['local'] = '../../json/app-nav/promotions.json';
-
     include('../../_header.php');
-    basic_filter( 'Find Your App Nav Items', 'app-nav-filters', 'app-nav-grid', $urls[JSON_SOURCE], true );
-?>
-<!-- <div class="row"
-    data-onload-ajax-url="../json/app-nav/promotions.json"
-    data-onload-ajax-url-qa="http://pedersoz-dv.bius.bi.corp:7001/acuraadmin/v2/service/common/get-fields.action?pageCode=PROCESS_MASTER_FILTERS"
-    data-result-type="form"
-    >
-    <div class="layout-grid-3"></div>
-    <fieldset
-        class="layout-grid-6 adf-region"
-        data-adf-region-type="form"
-        id="app-nav-filter"
-        data-adf-ajax-onshow="true"
-        data-adf-ajax-url-dev="../json/app-nav/filters.json"
-        data-adf-ajax-url="/auto/auto-dynamic-forms/framework/getJson.php?client=acuraadmin&action=common/get-fields&pageCode=APP_NAV_FILTERS">
 
-        <legend>Find Your App Nav Items</legend>
-        <form action="#app-nav-grid" class="form-horizontal" method="post"></form>
-    </fieldset>
-    <div class="layout-grid-3"></div>
-</div> -->
-<div class="adf-region" id="app-nav-grid" data-adf-region-type="grid" data-adf-ajax-url="../json/app-nav/grid.json"></div>
-<?php
+    $urls['local']['filters'] = '../../json/app-nav/promotions.json';
+    $urls['local']['grid']    = '../../json/app-nav/grid.json';
+
+    $urls['zack']['filters']  = '/auto/auto-dynamic-forms/framework/getJson.php?env=zack&client=acuraadmin&action=common/get-fields&pageCode=APP_NAV_FILTERS';
+    $urls['zack']['grid']     = '../../json/app-nav/grid.json';
+    // $urls['zack']['grid']     = '/auto/auto-dynamic-forms/framework/getJson.php?client=acuraadmin&action=web-appl-nav/grid.action';
+
+    $urls['qa']['filters']    = '/auto/auto-dynamic-forms/framework/getJson.php?env=qa&client=acuraadmin&action=common/get-fields&pageCode=APP_NAV_FILTERS';
+
+    basic_filter( 'Find Your App Nav Items', 'app-nav-filters', 'app-nav-grid', $urls[JSON_SOURCE]['filters'], true );
+    basic_grid( 'app-nav-grid', $urls[JSON_SOURCE]['grid'] );
     include('../../_footer.php');
+
 ?>

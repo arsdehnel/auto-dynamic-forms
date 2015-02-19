@@ -49,8 +49,10 @@ ADF.utils = {
     select2: {
         render: function() {
 
-            // TODO dynamically determine if user can clear selection
-            // TODO dynamically determine if user cna add new option
+            // TODO: dynamically determine if user can clear selection
+            // TODO: dynamically determine if user can add new option
+            // TODO: handle the readonly assignment in the constructor rather than calling the select2() function again
+            // TODO: allow for ajax lookup to be dictated through some data- attributes
 
             var settings = {
                 dropdownAutoWidth : true,
@@ -65,10 +67,12 @@ ADF.utils = {
 
             delete settings.select2Obj;
 
-            select2Obj.select2(settings);
-
-            if( select2Obj.attr('readonly') === 'readonly' ){
-                select2Obj.select2('readonly',true);
+            // TODO: remove this IF condition (maybe) if we figure out why sometimes this isn't available
+            if( select2Obj.select2 ){
+                select2Obj.select2(settings);
+                if( select2Obj.attr('readonly') === 'readonly' ){
+                    select2Obj.select2('readonly',true);
+                }
             }
 
         },
@@ -182,5 +186,56 @@ ADF.utils = {
     printObject: function(obj){
         return JSON.stringify(obj,null,'\t').replace(/\n/g,'<br>').replace(/\t/g,'&nbsp;&nbsp;&nbsp;');
     },
+
+    // dataSerialize: function( $jqObj ){
+
+    //         var dataObj = {};
+    //         var fields = $jqObj.serializeArray();
+
+    //         var $inputWrapper;// = $triggerObj.closest('.adf-input-wrapper');
+    //         var $parentRow;// = $triggerObj.closest('.form-row');
+    //         var fieldData = {};
+
+    //         $.each(fields, function() {
+
+    //             fieldData = ADF.utils.fieldDataAggregate( this );
+
+    //             if( dataObj[fieldData.fieldMasterId] ){
+
+    //             }else{
+    //                 dataObj[fieldData.fieldMasterId]
+    //             }
+
+    //             crntField = _.find( dataObj, function( fieldObj ) {
+    //                 return fieldObj[fldMstrId] = this.attr('fldMstrId');
+    //             },this);
+
+    //             if( _.isUndefined( crntField ) ){
+    //                 dataObj[] =
+    //             }
+
+    //             }
+
+    //             if (o[this.name] !== undefined) {
+    //                 if (!o[this.name].push) {
+    //                     o[this.name] = [o[this.name]];
+    //                 }
+    //                 o[this.name].push(this.value || '');
+    //             } else {
+    //                 o[this.name] = this.value || '';
+    //             }
+    //         });
+    //         return o;
+    //     };
+    // },
+
+    // fieldDataAggregate: function( $fieldObj ) {
+
+    //     var $inputWrapper = $fieldObj.closest('.adf-input-wrapper');
+    //     var $parentRow = $fieldObj.closest('.form-row');
+
+    //     return $.extend($parentRow.data(),$inputWrapper.data(),$fieldObj.data());
+
+    // }
 
 };
