@@ -1,7 +1,6 @@
 /*global
 ADF,
-adf,
-_
+adf
 */
 ADF.OverlayGridRegion = ADF.GridRegion.extend({
     initialize: function( options ) {
@@ -26,10 +25,12 @@ ADF.OverlayGridRegion = ADF.GridRegion.extend({
         this.$el.addClass('open').css({top:( triggerOffset.top + triggerBox.height ) });
         this.options.adfAjaxUrl = triggerData.adfAjaxUrl;
         this.options.adfAjaxData = {};
-        _.each(triggerData.adfAjaxDataFields.split(','), function( fieldName ){
-            // TODO: get this from the backbone model rather than the DOM
-            this.options.adfAjaxData[fieldName] = $triggerObj.closest('tr').find(':input[name='+fieldName+']').val();
-        },this);
+
+
+        // _.each(triggerData.adfAjaxDataFields.split(','), function( fieldName ){
+        //     // TODO: get this from the backbone model rather than the DOM
+        //     this.options.adfAjaxData[fieldName] = $triggerObj.closest('tr').find(':input[name='+fieldName+']').val();
+        // },this);
         this._super();
     },
 

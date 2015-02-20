@@ -33,7 +33,8 @@ ADF.Region = Marionette.Region.extend({
         $.ajax({
             url: ( settings.url ? settings.url : region.options.adfAjaxUrl ),
             type: ( settings.method ? settings.method : 'POST' ),
-            data: JSON.stringify(settings.data),
+            // data: JSON.stringify(settings.data),
+            data: settings.data,
             beforeSend: function(){
                 ADF.utils.spin(region.$el);
             },

@@ -315,7 +315,7 @@ this["ADF"]["templates"]["inputTypeActions"] = Handlebars.template({"1":function
 
 
 this["ADF"]["templates"]["inputTypeAdfSerializedData"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, helperMissing=helpers.helperMissing, buffer = "<input type=\"hidden\" name=\"adf-serialized-data\" value='";
+  var stack1, helperMissing=helpers.helperMissing, buffer = "<input type=\"hidden\" name=\"adfSerializedData\" value='";
   stack1 = ((helpers.json || (depth0 && depth0.json) || helperMissing).call(depth0, (depth0 != null ? depth0.data : depth0), {"name":"json","hash":{},"data":data}));
   if (stack1 != null) { buffer += stack1; }
   return buffer + "'>";

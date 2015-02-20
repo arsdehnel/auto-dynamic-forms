@@ -88,7 +88,7 @@ ADF.FormView = Marionette.CollectionView.extend({
             attribute : 'el',
             value : action
         });
-        var dataObj = {};
+        var dataArray = ADF.utils.dataSerialize( formView.collection );
 
         if( action.substring(0,1) === '#' ){
 
@@ -100,7 +100,7 @@ ADF.FormView = Marionette.CollectionView.extend({
                 console.log();
 
                 region.ajax({
-                    data: JSON.stringify($form.serializeObject()),
+                    data: {adfSerializedData:JSON.stringify(dataArray)},
                     method: 'POST'
                 });
 
@@ -108,16 +108,10 @@ ADF.FormView = Marionette.CollectionView.extend({
                 ADF.utils.message('error','Trying to load ajax but destination element could not be found on the page');
             }
         }else{
-            // TODO: just let the form submit
-            // $form.append(ADF.templates.adfDataJson(ADF.utils.dataSerialize($form)));
-            formView.collection.each(function( model ) {
-                dataObj[model.get('fldMstrId')] = {
-                    fldMstrId : model.get('fldMstrId'),
-                    name : model.get('name'),
-                    value : model.get('currentValue')
-                };
-            });
-            $form.append(ADF.templates.inputTypeAdfSerializedData({data:dataObj}));
+            // do our little fancy bit to get the form data into our custom field
+            $form.append(ADF.templates.inputTypeAdfSerializedData({data:dataArray}));
+
+            // and then let the form submit
             return true;
         }
 
@@ -126,7 +120,8 @@ ADF.FormView = Marionette.CollectionView.extend({
     dependentFieldLkup: function(e) {
 
         var formView = this;
-        var dataObj = {};
+        // var dataObj = {};
+        var dataArray = [];
         var $triggerObj = $(e.target);
         var $inputWrapper = $triggerObj.closest('.adf-input-wrapper');
         var $parentRow = $triggerObj.closest('.form-row');
@@ -147,9 +142,7 @@ ADF.FormView = Marionette.CollectionView.extend({
             $('#'+fieldName+'-field-wrap').remove();
         });
 
-        formView.collection.each(function( model ) {
-            dataObj[model.get('fldMstrId')] = model.get('currentValue');
-        });
+        dataArray = ADF.utils.dataSerialize( formView.collection );
 
         if( $target.size() === 0 ){
             // TODO:somehow also remove any prefix/suffix for this field upon load of the new stuff
@@ -162,7 +155,7 @@ ADF.FormView = Marionette.CollectionView.extend({
         }
 
         region.ajax({
-            data: dataObj,
+            data: {adfSerializedData:JSON.stringify(dataArray)},
             url: triggerData.adfDependentFieldLkupUrl,
             emptyCollections:false
         });

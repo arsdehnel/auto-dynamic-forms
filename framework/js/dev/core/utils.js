@@ -187,55 +187,27 @@ ADF.utils = {
         return JSON.stringify(obj,null,'\t').replace(/\n/g,'<br>').replace(/\t/g,'&nbsp;&nbsp;&nbsp;');
     },
 
-    // dataSerialize: function( $jqObj ){
+    dataSerialize: function( fieldCollection, dataModel ){
 
-    //         var dataObj = {};
-    //         var fields = $jqObj.serializeArray();
+        var dataArray = [];
+        var crntVal;
 
-    //         var $inputWrapper;// = $triggerObj.closest('.adf-input-wrapper');
-    //         var $parentRow;// = $triggerObj.closest('.form-row');
-    //         var fieldData = {};
+        fieldCollection.each(function( model ) {
+            if( _.isUndefined( dataModel ) ){
+                crntVal = model.get('currentValue');
+            }else{
+                crntVal = dataModel.get(model.get('name'));
+            }
 
-    //         $.each(fields, function() {
+            dataArray.push({
+                dyn_frm_fld_mstr_id : model.get('fldMstrId'),
+                field_code : model.get('name'),
+                data_value : model.get('currentValue')
+            });
+        });
 
-    //             fieldData = ADF.utils.fieldDataAggregate( this );
+        return dataArray;
 
-    //             if( dataObj[fieldData.fieldMasterId] ){
-
-    //             }else{
-    //                 dataObj[fieldData.fieldMasterId]
-    //             }
-
-    //             crntField = _.find( dataObj, function( fieldObj ) {
-    //                 return fieldObj[fldMstrId] = this.attr('fldMstrId');
-    //             },this);
-
-    //             if( _.isUndefined( crntField ) ){
-    //                 dataObj[] =
-    //             }
-
-    //             }
-
-    //             if (o[this.name] !== undefined) {
-    //                 if (!o[this.name].push) {
-    //                     o[this.name] = [o[this.name]];
-    //                 }
-    //                 o[this.name].push(this.value || '');
-    //             } else {
-    //                 o[this.name] = this.value || '';
-    //             }
-    //         });
-    //         return o;
-    //     };
-    // },
-
-    // fieldDataAggregate: function( $fieldObj ) {
-
-    //     var $inputWrapper = $fieldObj.closest('.adf-input-wrapper');
-    //     var $parentRow = $fieldObj.closest('.form-row');
-
-    //     return $.extend($parentRow.data(),$inputWrapper.data(),$fieldObj.data());
-
-    // }
+    }
 
 };
