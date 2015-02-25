@@ -1,5 +1,6 @@
 /*global
 ADF,
+Backbone,
 Marionette,
 adf,
 $
@@ -21,6 +22,7 @@ ADF.GridView = Marionette.CompositeView.extend({
     initialize: function( options ) {
         ADF.utils.message('log','GridView Initialized', options );
         this.regionName = options.regionName;
+        this.filters = new Backbone.Collection();
         var gridView = this;
         var region = adf.page[gridView.regionName];
         gridView.$el.html(gridView.template({}));
@@ -43,16 +45,19 @@ ADF.GridView = Marionette.CompositeView.extend({
             regionName: gridView.regionName
         });
 
+        this.listenTo(this.filters,'add',this.filtersQueue);
+        this.listenTo(this.filters,'remove',this.filtersQueue);
+
         this._super();
 
     },
     render: function() {
+        console.log(this.filters);
         var gridView = this;
         gridView.headersView.render();
         gridView.columnSelect.render();
         gridView.gridActions.render();
         var childContainer = this.$el.find(this.childViewContainer);
-        // console.log(gridView.collection.length);
         childContainer.empty();
         gridView.collection.each(function(recordModel) {
 
@@ -71,6 +76,16 @@ ADF.GridView = Marionette.CompositeView.extend({
         ADF.utils.select2.refresh();
 
         // console.log(gridView.children);
+    },
+    filtersQueue: function(model) {
+
+        // the first time we add to the queue we just start with whatever we have already applied
+        if( !this.filtersQueued ){
+            this.filtersQueued = this.filters;
+        }
+
+        // this.filtersQueued
+
     }
 
 });

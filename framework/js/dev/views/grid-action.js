@@ -11,7 +11,7 @@ ADF.GridActionView = Backbone.Marionette.ItemView.extend({
         'click' : 'handleClick'
     },
     initialize: function( options ){
-        ADF.utils.message('debug','GridActionView Initialized', options);
+        ADF.utils.message('log','GridActionView Initialized', options);
         this.region = adf.page.getRegion(options.regionName);
     },
     handleClick: function(e){

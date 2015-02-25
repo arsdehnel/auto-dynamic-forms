@@ -113,7 +113,7 @@ this["ADF"]["templates"]["dropdownMenu"] = Handlebars.template({"1":function(dep
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div class=\""
     + escapeExpression(((helper = (helper = helpers.wrapClass || (depth0 != null ? depth0.wrapClass : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"wrapClass","hash":{},"data":data}) : helper)))
-    + " dropdown-wrapper\">\n  	<div class=\"grid-action grid-dropdown dropdown-inner\">\n    	<button type=\"button\" class=\"dropdown-toggle dropdown-label\">"
+    + " dropdown-wrapper\">\n  	<div class=\"dropdown-inner\">\n    	<button type=\"button\" class=\"dropdown-toggle dropdown-label\">"
     + escapeExpression(((helper = (helper = helpers.buttonLabel || (depth0 != null ? depth0.buttonLabel : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"buttonLabel","hash":{},"data":data}) : helper)))
     + "</button>\n    	<button type=\"button\" class=\"dropdown-toggle-caret dropdown-toggle\"></button>\n    	<ul class=\"dropdown-menu hide\">\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.primaryOptions : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});

@@ -1,71 +1,64 @@
 /*global
 ADF,
-Backbone,
-$
+$,
+_
 */
-// TODO: get this prototype to work
-// ADF.ColumnSelectView = ADF.DropdownMenuView({
-ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
-    template: ADF.templates.dropdownMenu,
-    tagName: 'li',
+ADF.ColumnSelectView = ADF.DropdownMenuView.extend({
     childView: ADF.ColumnSelectItemView,
-    childViewContainer: '.dropdown-menu',
-    // childViewOptions : function () {
-    //     return { regionName: this.regionName };
-    // },
     events: {
-        // TODO: this should go to the parent prototype
-        'click .dropdown-wrapper .dropdown-toggle'     : 'dropdownToggle',
-        // TODO: create hierarchy of events somehow
-        'click .adf-grid-column-group'          : 'columnSelect',
+        'click  .adf-grid-column-group'                : 'columnSelect',
         'change .column-selector .dropdown-menu input' : 'columnSelect'
     },
     initialize: function( options ) {
         ADF.utils.message('log','ColumnSelectView Initialized', options );
+
+        var footerOptions = [];
+
         this.regionName = options.regionName;
 
-        // TODO: this model should go to the parent prototype but something wasn't working with that so it's on the list for later
-        // TODO: seems like this model shouldn't be created in the view since that's a bit backwards
-        // TODO: hide this when the user clicks off of it
-        this.model = new ADF.DropdownMenuModel({
-            buttonLabel : 'Column Select',
-            wrapClass : 'column-selector',
-            footerOptions : [
+        // inherit events from the prototype but allow for custom events as well
+        this.events = _.extend({},ADF.DropdownMenuView.prototype.events,this.events);
+
+        this.model.set('buttonLabel','Column Select');
+        this.model.set('wrapClass','column-selector');
+
+        footerOptions.push({
+            href : '#',
+            itemClass : 'adf-grid-column-group',
+            label : 'All Columns',
+            dataAttributes : [
                 {
-                    href : '#',
-                    itemClass : 'adf-grid-column-group',
-                    label : 'All Columns',
-                    dataAttributes : [
-                        {
-                            'name' : 'column-select-type',
-                            'value' : 'all'
-                        }
-                    ]
-                },
-                {
-                    href : '#',
-                    itemClass : 'adf-grid-column-group',
-                    label : 'Minimum Columns',
-                    dataAttributes : [
-                        {
-                            'name' : 'column-select-type',
-                            'value' : 'min'
-                        }
-                    ]
-                },
-                {
-                    href : '#',
-                    itemClass : 'adf-grid-column-group',
-                    label : 'Default Columns',
-                    dataAttributes : [
-                        {
-                            'name' : 'column-select-type',
-                            'value' : 'dflt'
-                        }
-                    ]
+                    'name' : 'column-select-type',
+                    'value' : 'all'
                 }
             ]
         });
+
+        footerOptions.push({
+            href : '#',
+            itemClass : 'adf-grid-column-group',
+            label : 'Minimum Columns',
+            dataAttributes : [
+                {
+                    'name' : 'column-select-type',
+                    'value' : 'min'
+                }
+            ]
+        });
+
+        footerOptions.push({
+            href : '#',
+            itemClass : 'adf-grid-column-group',
+            label : 'Default Columns',
+            dataAttributes : [
+                {
+                    'name' : 'column-select-type',
+                    'value' : 'dflt'
+                }
+            ]
+        });
+
+        this.model.set('footerOptions',footerOptions);
 
     },
     render: function() {
@@ -96,25 +89,6 @@ ADF.ColumnSelectView = Backbone.Marionette.CompositeView.extend({
         });
 
         return this;
-    },
-    // TODO: move this to the prototype
-    dropdownToggle: function( event ) {
-
-        var $target = {};
-
-        if( event.target ){
-
-            event.preventDefault();
-            $target = $(event.target);
-
-        }else{      // we're just going to assume it's a jQuery object then
-
-            $target = event;
-
-        }
-
-        $target.closest('.dropdown-wrapper').find('.dropdown-menu').toggleClass('hide');
-
     },
     columnSelect: function(e) {
 

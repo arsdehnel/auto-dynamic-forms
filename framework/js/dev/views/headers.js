@@ -1,3 +1,7 @@
+/*global
+ADF,
+Backbone
+*/
 ADF.HeadersView = Backbone.Marionette.CollectionView.extend({
     template: ADF.templates.gridRow,
     tagName: 'tr',

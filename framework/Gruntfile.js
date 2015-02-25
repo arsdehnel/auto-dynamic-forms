@@ -108,6 +108,8 @@ module.exports = function(grunt) {
                     'js/dev/views/column-select.js',
                     'js/dev/views/grid-action.js',
                     'js/dev/views/grid-actions.js',
+                    'js/dev/views/grid-filter-item.js',
+                    'js/dev/views/grid-filter.js',
                     'js/dev/views/message.js',
                     'js/dev/views/messages-window.js',
                     'js/dev/views/form-action.js',
@@ -222,6 +224,14 @@ module.exports = function(grunt) {
                 constant    : 'CLIENT_PATH',
                 value       : relativePath,
                 file        : 'constants.php'
+            }
+        },
+        notify: {
+            'scripts-dev': {
+                options: {
+                    title: 'Task Complete',  // optional
+                    message: 'SASS and Uglify finished running', //required
+                }
             }
         }
     });

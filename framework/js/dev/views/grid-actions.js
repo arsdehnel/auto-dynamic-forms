@@ -20,7 +20,7 @@ ADF.GridActionsView = Backbone.Marionette.CompositeView.extend({
         'change .column-selector .dropdown-menu input' : 'columnSelect'
     },
     initialize: function( options ) {
-        ADF.utils.message('debug','GridActionsView Initialized', options );
+        ADF.utils.message('log','GridActionsView Initialized', options );
         this.regionName = options.regionName;
 
         // TODO: this model should go to the parent prototype but something wasn't working with that so it's on the list for later
