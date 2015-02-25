@@ -4,6 +4,7 @@ Backbone,
 $,
 _
 */
+// TODO: add unload check to make sure there aren't any changes pending before navigating away
 ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
     events: {
         'click .overlay-close'          : 'closeOverlayEditor'
@@ -47,7 +48,7 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
                 }
 
                 // create the region
-                regions[regionData.regionName] = new ADF[regionData.regionClass](_.extend({el: regionData.elSelector},regionData));
+                regions[regionData.regionName] = new ADF[regionData.regionClass]($.extend({el: regionData.elSelector},regionData));
                 pageView.addRegions(regions);
 
             }

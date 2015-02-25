@@ -23,10 +23,12 @@ ADF.FormView = Marionette.CollectionView.extend({
         // same handlers as above but now in the event that the UI has the data- attributes on a parent "wrapper" element rather than right on the select
         'change [data-adf-submit-on-change=true] select'                    : 'submitParentForm',
         'change [data-adf-dependent-field-lkup-on-change=true] select'      : 'dependentFieldLkup',
+        'change [data-adf-dependent-field-lkup-on-change=true] :checkbox'   : 'dependentFieldLkup',
 
         // button handlers
         'click .btn-submit'                                                 : 'submitParentForm',
         'click .btn-query'                                                  : 'submitParentForm',
+        'click .btn-submit-custom-url'                                      : 'submitCustomUrl',
 
         // form submission
         'submit'                                                            : 'submitForm'
@@ -69,14 +71,24 @@ ADF.FormView = Marionette.CollectionView.extend({
 
     },
 
+    submitCustomUrl: function( e ) {
+
+        e.preventDefault();
+        var $triggerObj = $(e.target).closest('.btn');
+        $triggerObj.closest('form').attr('action',$triggerObj.attr('href')).submit();
+
+    },
+
     submitForm: function( e ) {
 
+        var formView = this;
         var $form = $(e.target);
         var action = $form.attr('action');
         var region = adf.page.findRegion({
             attribute : 'el',
             value : action
         });
+        var dataArray = ADF.utils.dataSerialize( formView.collection );
 
         if( action.substring(0,1) === '#' ){
 
@@ -88,7 +100,7 @@ ADF.FormView = Marionette.CollectionView.extend({
                 console.log();
 
                 region.ajax({
-                    data: JSON.stringify($form.serializeObject()),
+                    data: {adfSerializedData:JSON.stringify(dataArray)},
                     method: 'POST'
                 });
 
@@ -96,7 +108,10 @@ ADF.FormView = Marionette.CollectionView.extend({
                 ADF.utils.message('error','Trying to load ajax but destination element could not be found on the page');
             }
         }else{
-            // TODO: just let the form submit
+            // do our little fancy bit to get the form data into our custom field
+            $form.append(ADF.templates.inputTypeAdfSerializedData({data:dataArray}));
+
+            // and then let the form submit
             return true;
         }
 
@@ -105,20 +120,19 @@ ADF.FormView = Marionette.CollectionView.extend({
     dependentFieldLkup: function(e) {
 
         var formView = this;
-        var dataObj = {};
-        var $parentRow = $(e.target).closest('.form-row');
+        // var dataObj = {};
+        var dataArray = [];
+        var $triggerObj = $(e.target);
+        var $inputWrapper = $triggerObj.closest('.adf-input-wrapper');
+        var $parentRow = $triggerObj.closest('.form-row');
         // var $form = $parentRow.closest('form');
-        var parentData = $parentRow.data();
-        var $target = $('#'+parentData.fieldLkupTarget+'-field-wrap');
-        var childFields = parentData.adfDependentFieldLkupChildFields ? parentData.adfDependentFieldLkupChildFields.split(',') : null;
+        var triggerData = $.extend({},$parentRow.data(),$inputWrapper.data(),$triggerObj.data());
+        var $target = $('#'+triggerData.fieldLkupTarget+'-field-wrap');
+        var childFields = triggerData.adfDependentFieldLkupChildFields ? triggerData.adfDependentFieldLkupChildFields.split(',') : null;
         var region = adf.page[formView.options.regionName];
 
         e.preventDefault();
         ADF.utils.message('log','dependentFieldLkup',e);
-
-        formView.collection.each(function( model ) {
-            dataObj[model.get('fldMstrId')] = model.get('currentValue');
-        });
 
         _.each(childFields,function( fieldName ){
             var modelToRemove = formView.collection.filter(function( model ){
@@ -127,6 +141,8 @@ ADF.FormView = Marionette.CollectionView.extend({
             formView.collection.remove(modelToRemove);
             $('#'+fieldName+'-field-wrap').remove();
         });
+
+        dataArray = ADF.utils.dataSerialize( formView.collection );
 
         if( $target.size() === 0 ){
             // TODO:somehow also remove any prefix/suffix for this field upon load of the new stuff
@@ -139,8 +155,8 @@ ADF.FormView = Marionette.CollectionView.extend({
         }
 
         region.ajax({
-            data: JSON.stringify(dataObj),
-            url: parentData.adfDependentFieldLkupUrl,
+            data: {adfSerializedData:JSON.stringify(dataArray)},
+            url: triggerData.adfDependentFieldLkupUrl,
             emptyCollections:false
         });
 

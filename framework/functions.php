@@ -16,3 +16,13 @@
         echo $return_string;
 
     }
+
+    function basic_grid( $id, $ajax_url ){
+
+        $return_string = '';
+
+        $return_string .= '<div class="adf-region" id="'.$id.'" data-adf-region-type="grid" data-adf-ajax-url="'.$ajax_url.'"></div>';
+
+        echo $return_string;
+
+    }

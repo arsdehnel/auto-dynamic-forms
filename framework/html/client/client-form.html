@@ -2,9 +2,11 @@
     $header_text = 'Client Site Sample Form';
     include('../../_header.php');
 ?>
-<div class="row adf-region" data-adf-region-type="form" id="client-form" data-adf-ajax-onshow="true" data-adf-ajax-url="../json/client-form/initial.json">
+<div class="row adf-region" data-adf-region-type="form" id="client-form" data-adf-ajax-onshow="true" data-adf-ajax-url="../../json/client-form/initial.json">
     <h2>Select Your Promotion</h2>
-    <form action="../json/client-form/result.json" class="form-horizontal" method="post"></form>
+    <form action="../../json/client-form/result.json" class="form-horizontal" method="post">
+        <input type="text" name="something_awesome" value="123" data-adf-onshow-data="true">
+    </form>
 </div>
 
 <?php

@@ -1,0 +1,17 @@
+<?php
+
+    $header_text   = 'Item Masters';
+    include('../../_header.php');
+
+    $urls['local']['filters'] = '../../json/item-masters/templates.json';
+    $urls['local']['grid']    = '../json/item-masters/grid.json';
+
+    $urls['zack']['filters']  = '/auto/auto-dynamic-forms/framework/getJson.php?client=acuraadmin&action=common/get-fields&pageCode=ITEM_MASTERS_FILTERS';
+    $urls['zack']['grid']     = '../../json/item-masters/grid.json';
+    // $urls['zack']['grid']     = '/auto/auto-dynamic-forms/framework/getJson.php?client=acuraadmin&action=web-appl-nav/grid.action';
+
+    basic_filter( 'Find Your Item Masters', 'item-masters-filters', 'item-masters-grid', $urls[JSON_SOURCE]['filters'], true );
+    basic_grid( 'item-masters-grid', $urls[JSON_SOURCE]['grid'] );
+    include('../../_footer.php');
+
+?>

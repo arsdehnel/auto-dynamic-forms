@@ -75,13 +75,14 @@ ADF.RecordView = Marionette.CompositeView.extend({
     },
     handleAction: function(e) {
         e.preventDefault();
+        var recordView = this;
         var $targetObj = $(e.target).closest('a');
         var actionType = $targetObj.attr('data-action-type');
         // TODO: experiment with making this dynamic
         switch( actionType ){
             case 'save':
                 this.model.url = $targetObj.attr('href');
-                this.model.save(null,{});
+                this.model.save(null,{fieldsCollection: recordView.collection});
                 break;
             default:
                 ADF.utils.message('error','Unexpected record action ('+actionType+') triggered.',$targetObj);

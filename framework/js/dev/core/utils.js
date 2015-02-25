@@ -49,8 +49,10 @@ ADF.utils = {
     select2: {
         render: function() {
 
-            // TODO dynamically determine if user can clear selection
-            // TODO dynamically determine if user cna add new option
+            // TODO: dynamically determine if user can clear selection
+            // TODO: dynamically determine if user can add new option
+            // TODO: handle the readonly assignment in the constructor rather than calling the select2() function again
+            // TODO: allow for ajax lookup to be dictated through some data- attributes
 
             var settings = {
                 dropdownAutoWidth : true,
@@ -65,10 +67,12 @@ ADF.utils = {
 
             delete settings.select2Obj;
 
-            select2Obj.select2(settings);
-
-            if( select2Obj.attr('readonly') === 'readonly' ){
-                select2Obj.select2('readonly',true);
+            // TODO: remove this IF condition (maybe) if we figure out why sometimes this isn't available
+            if( select2Obj.select2 ){
+                select2Obj.select2(settings);
+                if( select2Obj.attr('readonly') === 'readonly' ){
+                    select2Obj.select2('readonly',true);
+                }
             }
 
         },
@@ -182,5 +186,28 @@ ADF.utils = {
     printObject: function(obj){
         return JSON.stringify(obj,null,'\t').replace(/\n/g,'<br>').replace(/\t/g,'&nbsp;&nbsp;&nbsp;');
     },
+
+    dataSerialize: function( fieldCollection, dataModel ){
+
+        var dataArray = [];
+        var crntVal;
+
+        fieldCollection.each(function( model ) {
+            if( _.isUndefined( dataModel ) ){
+                crntVal = model.get('currentValue');
+            }else{
+                crntVal = dataModel.get(model.get('name'));
+            }
+
+            dataArray.push({
+                dyn_frm_fld_mstr_id : model.get('fldMstrId'),
+                field_code : model.get('name'),
+                data_value : model.get('currentValue')
+            });
+        });
+
+        return dataArray;
+
+    }
 
 };
