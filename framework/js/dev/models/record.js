@@ -6,7 +6,7 @@ _
 ADF.RecordModel = Backbone.Model.extend({
 
     initialize: function( attrs, opts ){
-        ADF.utils.message('log','RecordModel Initialized', attrs, opts);
+        ADF.utils.message('debug','RecordModel Initialized', attrs, opts);
         var recordModel = this;
 
         // give the record an ID even if it is new (ie not from the database)
@@ -60,7 +60,7 @@ ADF.RecordModel = Backbone.Model.extend({
             // now that we're in our own custom code we'll have to do our slightly odd JSON creation
             // where we create a three attribute object for each attribute
             // and put them into an array and then submit that
-            // console.log( options.fieldsCollection, this, ADF.utils.dataSerialize( options.fieldsCollection, this ) );
+            console.log( options.fieldsCollection, this, ADF.utils.dataSerialize( options.fieldsCollection, this ) );
             dataArray = ADF.utils.dataSerialize( options.fieldsCollection, recordModel );
             params.data = {adfSerializedData:JSON.stringify(dataArray)};
 

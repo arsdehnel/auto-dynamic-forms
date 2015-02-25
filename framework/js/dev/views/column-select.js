@@ -1,5 +1,9 @@
 /*global
 ADF,
+<<<<<<< Updated upstream
+=======
+Backbone,
+>>>>>>> Stashed changes
 $,
 _
 */
@@ -98,9 +102,9 @@ ADF.ColumnSelectView = ADF.DropdownMenuView.extend({
         var $target = $(e.target);
         var groupType = $target.attr('data-column-select-type');
 
-        console.log('columnselect triggered',$target,groupType,id);
+        console.log('columnselect triggered',$target,groupType);
 
-        if( typeof groupType == 'undefined' ){
+        if( _.isUndefined( groupType ) ){
 
             var id = $target.val();
             var cells = $('#'+id+', .adf-grid td[data-header-id='+id+']');

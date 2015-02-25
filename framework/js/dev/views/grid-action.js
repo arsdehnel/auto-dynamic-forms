@@ -41,12 +41,18 @@ ADF.GridActionView = Backbone.Marionette.ItemView.extend({
 
         var gridView = this.region.gridView;
         var actionData = actionObj.data();
+        var defaultsObj = {};
+
+        if( this.region.options && this.region.options.dataFields ){
+            defaultsObj = this.region.options.dataFields.createRecordObject();
+        }
+        // console.log('grid data fields',this.region.options.dataFields, defaultsObj );
 
         ADF.utils.spin(this.region.$el);
         actionObj.closest('.dropdown-menu').addClass('hide');
 
         for( var i = 1; i <= actionData.recordCount; i++ ){
-            gridView.collection.add({},{ at: 0 });
+            gridView.collection.add(defaultsObj,{ at: 0 });
         }
 
         gridView.render();

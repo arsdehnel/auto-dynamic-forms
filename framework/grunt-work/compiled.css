@@ -83,7 +83,7 @@
       position: absolute;
       right: 0.5em; }
   .adf-grid tbody tr:hover td {
-    background: lime !important; }
+    box-shadow: inset 0 0 40px 80px rgba(0, 0, 0, 0.1) !important; }
   .adf-grid tbody .current:nth-child(odd) td {
     background: #e5e5e5; }
   .adf-grid tbody .current:nth-child(even) td {
@@ -1291,7 +1291,7 @@ disabled look for disabled choices in the results dropdown
   background-size: 35px 20px, 100% 100%, 100% 100%; }
 
 .backdrop {
-  background: rgba(80, 80, 80, 0.76);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 5000;
   position: fixed;
   top: 0;
@@ -1304,12 +1304,6 @@ disabled look for disabled choices in the results dropdown
 
 .loading {
   min-height: 6em; }
-
-.to-do .done {
-  color: #ccc;
-  text-decoration: line-through; }
-.to-do .ready-for-server {
-  color: #ccc; }
 
 .adf-grid-overlay-editor {
   display: none;

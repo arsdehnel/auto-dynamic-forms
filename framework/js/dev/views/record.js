@@ -91,7 +91,7 @@ ADF.RecordView = Marionette.CompositeView.extend({
     showOverlayEditor: function(e) {
         // TODO: find the actual cell that had this event and then trigger with that as the trigger object
         e.preventDefault();
-        adf.page.getRegion('overlayEditor').show( $(e.target) );
+        adf.page.getRegion('overlayEditor').show( this, $(e.target) );
     },
     inputChange: function( e ){
 
@@ -105,6 +105,8 @@ ADF.RecordView = Marionette.CompositeView.extend({
         obj[changed.name] = value;
 
         this.model.set(obj);
+
+        ADF.utils.message('debug','Record input change',obj,this.model);
 
         this.$el.removeClass('current').addClass('updated');
 

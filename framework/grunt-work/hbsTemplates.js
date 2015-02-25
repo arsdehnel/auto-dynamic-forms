@@ -198,6 +198,8 @@ this["ADF"]["templates"]["gridCell"] = Handlebars.template({"compiler":[6,">= 2.
   var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<td data-column-select-priority=\""
     + escapeExpression(((helper = (helper = helpers.fieldPriority || (depth0 != null ? depth0.fieldPriority : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"fieldPriority","hash":{},"data":data}) : helper)))
     + "\" data-header-id=\""
+    + escapeExpression(((helper = (helper = helpers.regionName || (depth0 != null ? depth0.regionName : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"regionName","hash":{},"data":data}) : helper)))
+    + "--"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "\" class=\""
     + escapeExpression(((helper = (helper = helpers.wrapClass || (depth0 != null ? depth0.wrapClass : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"wrapClass","hash":{},"data":data}) : helper)))

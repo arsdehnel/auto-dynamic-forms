@@ -1,7 +1,6 @@
 /*global
 ADF,
 Marionette,
-_,
 $
 */
 ADF.Region = Marionette.Region.extend({
@@ -14,6 +13,8 @@ ADF.Region = Marionette.Region.extend({
     show: function() {
         // TODO: this really shouldn't be in the region object, probably part of the view that we've associated with it...
 
+        // this onShowData is meant to be used just for java passing data into the ADF request
+        // and should NOT be used for calls within the ADF application code
         var onShowData = this.$el.find(':input[data-adf-onshow-data=true]').serializeObject();
 
         if( this.adfAjaxOnshow ){
@@ -26,9 +27,17 @@ ADF.Region = Marionette.Region.extend({
             options.data    this should be a js object literal as it will be stringified once in the below call
         */
         var region = this;
-        var settings = _.extend({data:JSON.stringify(region.options.adfAjaxData)}, options);
 
-        ADF.utils.message('log','Ajax Call',options,settings);
+        // handle the data separately so we can extend it at an attribute level
+        var data = $.extend({},region.options.adfAjaxData, options.data);
+
+        // remove this so we can get all the other bits from options but don't overwrite the data we just created
+        delete options.data;
+
+        // use the combination of the above stuff
+        var settings = $.extend({data:data}, options);
+
+        ADF.utils.message('debug','Ajax Call',options,settings);
 
         $.ajax({
             url: ( settings.url ? settings.url : region.options.adfAjaxUrl ),

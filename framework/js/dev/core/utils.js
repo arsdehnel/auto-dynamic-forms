@@ -193,6 +193,7 @@ ADF.utils = {
         var crntVal;
 
         fieldCollection.each(function( model ) {
+            // console.log(model,dataModel);
             if( _.isUndefined( dataModel ) ){
                 crntVal = model.get('currentValue');
             }else{
@@ -202,7 +203,7 @@ ADF.utils = {
             dataArray.push({
                 dyn_frm_fld_mstr_id : model.get('fldMstrId'),
                 field_code : model.get('name'),
-                data_value : model.get('currentValue')
+                data_value : crntVal
             });
         });
 

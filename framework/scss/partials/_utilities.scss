@@ -1,5 +1,5 @@
 .backdrop{
-    background: tint( rgba( $primary_color, .7 ), 20% );
+    background: rgba( black, .7 );
     z-index: $zindex-overlay-bg;
     position: fixed;
     top: 0;
@@ -14,14 +14,4 @@
 }
 .loading{
 	min-height: 6em;
-}
-
-.to-do{
-  .done{
-    color: #ccc;
-    text-decoration: line-through;
-  }
-  .ready-for-server{
-    color: #ccc;
-  }
 }
