@@ -7,7 +7,7 @@ ADF.Region = Marionette.Region.extend({
     // TODO: overlay region optionally can get data from caller region
 
     initialize: function(options){
-        ADF.utils.message('debug','Region Initialized',options);
+        ADF.utils.message('log','Region Initialized',options);
         this.adfAjaxOnshow = ( options.adfAjaxOnshow ? options.adfAjaxOnshow : false );
     },
     show: function() {
@@ -37,7 +37,7 @@ ADF.Region = Marionette.Region.extend({
         // use the combination of the above stuff
         var settings = $.extend({data:data}, options);
 
-        ADF.utils.message('debug','Ajax Call',options,settings);
+        ADF.utils.message('log','Ajax Call',options,settings);
 
         $.ajax({
             url: ( settings.url ? settings.url : region.options.adfAjaxUrl ),

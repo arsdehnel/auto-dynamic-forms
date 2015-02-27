@@ -4,15 +4,24 @@ Backbone,
 adf,
 _
 */
+// TODO: clear queued filters when this closes
 ADF.GridFilterView = ADF.DropdownMenuView.extend({
     childView: ADF.GridFilterItemView,
     childViewContainer: '.dropdown-menu',
     collection: new Backbone.Collection(),
+    events: {
+        'dropdownToggle:after'                   : 'populateFilters',
+        'click [data-filter-action-type=cancel]' : 'cancelFilters',
+        'click [data-filter-action-type=apply]'  : 'applyFilters',
+        'click [data-filter-action-type=clear]'  : 'clearFilters'
+    },
     initialize: function( options ){
         ADF.utils.message('log','GridFilterView Initialized', options);
 
-        this.region = adf.page.getRegion(options.regionName);
         this.regionName = options.regionName;
+        this.region = adf.page.getRegion(this.regionName);
+        this.gridView = this.region.gridView;
+        this.gridFilterQueue = this.gridView.filterQueue;
         this.fieldName = options.fieldName;
         this.fieldType = options.fieldType;
 
@@ -21,11 +30,35 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
         footerOptions.push({
             href : '#',
             itemClass : 'adf-grid-filter-action',
-            label : 'Clear Actions',
+            label : 'Clear Filters',
             dataAttributes : [
                 {
                     'name' : 'filter-action-type',
                     'value' : 'clear'
+                }
+            ]
+        });
+
+        footerOptions.push({
+            href : '#',
+            itemClass : 'adf-grid-filter-action',
+            label : 'Apply',
+            dataAttributes : [
+                {
+                    'name' : 'filter-action-type',
+                    'value' : 'apply'
+                }
+            ]
+        });
+
+        footerOptions.push({
+            href : '#',
+            itemClass : 'adf-grid-filter-action',
+            label : 'Cancel',
+            dataAttributes : [
+                {
+                    'name' : 'filter-action-type',
+                    'value' : 'cancel'
                 }
             ]
         });
@@ -56,6 +89,9 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
             // });
         }
     },
+    populateFilters: function() {
+        alert('yay');
+    },
     dropdownToggle: function( event ) {
 
         // this basically just opens the dropdown
@@ -79,12 +115,25 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
         this.collection.each(function( model ){
             child = this.addChild(model,this.childView);
             // TODO: override the stupid rendering of ItemViews within composites and collections to not replicate their parent element
-            this.$el.find('.dropdown-menu .divider').before(child.renderAsChild());
-            child.setElement(this.$el.find('.dropdown-menu .divider').prev()[0]);
+            this.$el.find('.dropdown-menu .primary-options').append(child.renderAsChild());
+            child.setElement(this.$el.find('.dropdown-menu .primary-options li').last()[0]);
         },this);
 
         // console.log(this.collection,this.children);
 
+    },
+    cancelFilters: function( e ) {
+        e.preventDefault();
+        this.gridFilterQueue.reset();
+    },
+    applyFilters: function( e ) {
+        e.preventDefault();
+        this.gridView.applyFilters();
+    },
+    clearFilters: function( e ) {
+        e.preventDefault();
+        // TODO: make this smart so that it only removes the field that we're on
+        this.gridView.clearFilters();
     }
 
 });
