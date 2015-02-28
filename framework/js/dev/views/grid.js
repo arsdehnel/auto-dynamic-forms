@@ -24,7 +24,7 @@ ADF.GridView = Marionette.CompositeView.extend({
         this.regionName = options.regionName;
         this.filters = new Backbone.Collection();
         var gridView = this;
-        var region = adf.page[gridView.regionName];
+        var region = adf.page.getRegion(gridView.regionName);
         gridView.$el.html(gridView.template({}));
 
         gridView.headersView = new ADF.HeadersView({
@@ -52,7 +52,7 @@ ADF.GridView = Marionette.CompositeView.extend({
 
     },
     render: function() {
-        console.log(this.filters);
+        // console.log(this.filters);
         var gridView = this;
         gridView.headersView.render();
         gridView.columnSelect.render();

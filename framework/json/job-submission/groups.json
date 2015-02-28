@@ -1,5 +1,5 @@
 <?php
-	sleep(2);
+	sleep(1);
 ?>
 {
     "success" : true,
@@ -12,6 +12,13 @@
             "label" : "Job Group",
             "fieldClass" : "submit-on-change",
             "type" : "select2",
+            "dataAttributes" : [
+              {
+                "detailId": 108,
+                "name": "adf-submit-on-change",
+                "value": "true"
+              }
+            ],
             "data" : [
               {
                 "value" : "VIN_DTL",

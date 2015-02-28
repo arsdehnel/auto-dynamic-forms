@@ -2,7 +2,8 @@
 ADF,
 Marionette,
 adf,
-$
+$,
+_
 */
 ADF.RecordView = Marionette.CompositeView.extend({
     template: ADF.templates.gridRow,
@@ -77,12 +78,22 @@ ADF.RecordView = Marionette.CompositeView.extend({
         e.preventDefault();
         var recordView = this;
         var $targetObj = $(e.target).closest('a');
+        var targetData = $targetObj.data();
         var actionType = $targetObj.attr('data-action-type');
+        var regionObj = {};
         // TODO: experiment with making this dynamic
         switch( actionType ){
             case 'save':
                 this.model.url = $targetObj.attr('href');
                 this.model.save(null,{fieldsCollection: recordView.collection});
+                break;
+            case 'load-adf-region':
+                $.extend(regionObj,targetData,{adfAjaxOnshow:true,adfAjaxUrl:$targetObj.attr('href')});
+                if( !_.isUndefined( adf.page.getRegion(regionObj.regionName) ) ) {
+                    adf.page.removeRegion(regionObj.regionName);
+                }
+                adf.page.addRegions( adf.page._buildRegion(regionObj,targetData.adfRegionId) );
+                adf.page.getRegion(regionObj.regionName).show();
                 break;
             default:
                 ADF.utils.message('error','Unexpected record action ('+actionType+') triggered.',$targetObj);

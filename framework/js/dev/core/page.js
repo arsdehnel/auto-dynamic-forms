@@ -15,44 +15,41 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
         pageView.dndSources = [];
         pageView.dndTargets = [];
 
-        pageView.listenTo(pageView,'regionsInitialized',function(){
-            // TODO: remove this bullshit
-            setTimeout(function(){
-                pageView.showRegions();
-            },1);
-        });
-
         pageView.initRegions();
 
         this._super( options );
     },
+    _buildRegion: function( regionData, id ) {
+        var regionObj = {};
+        regionData.regionClass = ADF[ADF.utils.capitalize(ADF.utils.camelize(regionData.adfRegionType))+'Region'];
+        regionData.selector = '#'+id;
+        regionData.regionName = ADF.utils.camelize(id);
+
+        regionObj[regionData.regionName] = regionData;
+
+        return regionObj;
+    },
     initRegions: function(){
         var pageView = this;
-        var regions = {};
+        // var regions = {};
         // make sure there is a messages window on the page
         this._initMessagesWindow();
         pageView.$el.find('.adf-region').each(function(){
-            var region = $(this);
-            var regionData = region.data();
+            var $region = $(this);
+            var regionData = $region.data();
 
             // skip regions that maybe are malformed or missing the region type
             if( regionData.adfRegionType ){
 
-                regionData.regionClass = ADF.utils.capitalize(ADF.utils.camelize(regionData.adfRegionType))+'Region';
-                regionData.elSelector = '#'+$(this).attr('id');
-                regionData.regionName = ADF.utils.camelize($(this).attr('id'));
-
-                if( !ADF[regionData.regionClass]){
-                    ADF.utils.message('error','unexpected region class',regionData.regionClass);
-                    return true;
-                }
-
-                // create the region
-                regions[regionData.regionName] = new ADF[regionData.regionClass]($.extend({el: regionData.elSelector},regionData));
-                pageView.addRegions(regions);
+                pageView.addRegions(pageView._buildRegion( regionData, $region.attr('id') ));
 
             }
-        },pageView.trigger('regionsInitialized'));
+        });
+        // TODO: remove this bullshit
+        setTimeout(function(){
+            pageView.showRegions();
+        },1);
+
     },
     showRegions: function() {
         _.each(this.getRegions(),function(region){

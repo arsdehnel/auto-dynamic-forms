@@ -12,6 +12,15 @@ ADF.Region = Marionette.Region.extend({
     },
     show: function() {
         // TODO: this really shouldn't be in the region object, probably part of the view that we've associated with it...
+        this.$el.removeClass('hide');
+
+        if( this.options.adfRegionLabel ) {
+            if( this.$el.find('[data-adf-region-label]').size() > 0 ) {
+                this.$el.find('[data-adf-region-label]').html( this.options.adfRegionLabel );
+            }else{
+                this.$el.prepend('<legend>'+this.options.adfRegionLabel+'</legend>');
+            }
+        }
 
         // this onShowData is meant to be used just for java passing data into the ADF request
         // and should NOT be used for calls within the ADF application code
