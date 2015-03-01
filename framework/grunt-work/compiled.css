@@ -1,11 +1,12 @@
 .adf-grid-wrapper {
   position: relative;
-  padding-top: 1px; }
+  padding-top: 1px;
+  overflow-x: scroll; }
   .loading .adf-grid-wrapper {
     opacity: 0.25; }
 
 .adf-grid {
-  margin: 0 auto;
+  margin: 2em auto 0;
   width: calc( 100% - 2em);
   border-collapse: collapse; }
   .adf-grid th, .adf-grid td {
@@ -70,7 +71,7 @@
     border: solid #999;
     border-width: 0 1px 1px 0;
     padding: 0 0.5em;
-    background: #000000;
+    background: #009900;
     color: white;
     position: relative;
     line-height: 2em;
@@ -170,11 +171,16 @@
     max-height: 40vh;
     overflow-y: scroll; }
 
-.adf-grid-actions-wrapper .dropdown-wrapper {
-  position: relative;
-  margin-right: 1em;
-  float: right;
-  background: #666666; }
+.adf-grid-actions-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0; }
+  .adf-grid-actions-wrapper .dropdown-wrapper {
+    position: relative;
+    margin-right: 1em;
+    float: right;
+    background: #66c166; }
 
 .adf-grid thead .icon-tooltip {
   position: absolute;
@@ -210,13 +216,13 @@ code {
   position: relative;
   line-height: 2em;
   min-height: 2em;
-  color: #333333;
-  border: 1px solid #333333;
+  color: #33ad33;
+  border: 1px solid #33ad33;
   transition: all 0.1s linear; }
   .btn:hover {
     color: white;
-    border: 1px solid black;
-    background: #333333; }
+    border: 1px solid #007a00;
+    background: #33ad33; }
   .btn svg {
     position: absolute;
     top: 0.5em;
@@ -237,7 +243,7 @@ code {
   .content .page-title {
     margin: 0;
     padding: 0.25em;
-    background: rgba(0, 0, 0, 0.5); }
+    background: rgba(0, 153, 0, 0.5); }
 
 dialog {
   display: none;
@@ -302,8 +308,8 @@ dialog::backdrop {
     box-shadow: inset 0 0 8px 1px #393; }
 
 .module {
-  border: 1px solid #b2b2b2;
-  box-shadow: 2px 2px 6px #7f7f7f;
+  border: 1px solid #b2e0b2;
+  box-shadow: 2px 2px 6px #7fcc7f;
   position: relative; }
   .module.updated header {
     background: #bbf; }
@@ -317,7 +323,7 @@ dialog::backdrop {
     height: 2em;
     line-height: 2em;
     text-align: center;
-    background: #000000;
+    background: #009900;
     color: white;
     z-index: 20;
     cursor: move; }
@@ -326,8 +332,8 @@ dialog::backdrop {
     display: block;
     height: 2em;
     padding-left: 2.5em;
-    background: #999999;
-    color: #000000;
+    background: #99d699;
+    color: #009900;
     font-weight: 700;
     text-transform: uppercase; }
     .module header p {
@@ -423,9 +429,9 @@ dialog::backdrop {
       border-style: solid;
       border-color: transparent transparent transparent currentColor; }
   .dropdown-wrapper .dropdown-inner:hover {
-    color: #cccccc; }
+    color: #cceacc; }
     .dropdown-wrapper .dropdown-inner:hover .dropdown-toggle-caret::before {
-      border-color: #cccccc transparent transparent; }
+      border-color: #cceacc transparent transparent; }
 
 @font-face {
   font-family: 'Lato';
@@ -434,7 +440,7 @@ dialog::backdrop {
   font-style: normal; }
 
 fieldset {
-  border: 1px solid #b2b2b2;
+  border: 1px solid #b2e0b2;
   position: relative;
   padding: 2em 0.5em 0.5em; }
   fieldset legend {
@@ -445,8 +451,8 @@ fieldset {
     width: calc( 100% + 1em);
     margin: 0 -0.5em;
     padding: 0.25em;
-    background: #999999;
-    color: #000000;
+    background: #99d699;
+    color: #009900;
     font-weight: 700;
     text-transform: uppercase; }
 
@@ -519,6 +525,30 @@ input[type=email], input[type=text], input[type=url] {
   flex: 11; }
 .layout-grid .layout-grid-12 {
   flex: 12; }
+.layout-grid .layout-grid-13 {
+  flex: 13; }
+.layout-grid .layout-grid-14 {
+  flex: 14; }
+.layout-grid .layout-grid-15 {
+  flex: 15; }
+.layout-grid .layout-grid-16 {
+  flex: 16; }
+.layout-grid .layout-grid-17 {
+  flex: 17; }
+.layout-grid .layout-grid-18 {
+  flex: 18; }
+.layout-grid .layout-grid-19 {
+  flex: 19; }
+.layout-grid .layout-grid-20 {
+  flex: 20; }
+.layout-grid .layout-grid-21 {
+  flex: 21; }
+.layout-grid .layout-grid-22 {
+  flex: 22; }
+.layout-grid .layout-grid-23 {
+  flex: 23; }
+.layout-grid .layout-grid-24 {
+  flex: 24; }
 
 .layout-grid-zebra .row:nth-child(odd) {
   background: #ddd; }
@@ -595,13 +625,13 @@ body {
   margin: 0;
   height: 100%;
   background: radial-gradient(circle at 100% 50%, transparent 20%, rgba(255, 255, 255, 0.1) 21%, rgba(255, 255, 255, 0.1) 34%, transparent 35%, transparent), radial-gradient(circle at 0% 50%, transparent 20%, rgba(255, 255, 255, 0.1) 21%, rgba(255, 255, 255, 0.1) 34%, transparent 35%, transparent) 0 -50px;
-  background-color: #000000;
+  background-color: #009900;
   background-size: 75px 100px;
   font-size: 14px;
   font-family: 'Lato'; }
   body.environment-qa {
-    background: radial-gradient(circle at 100% 50%, transparent 20%, rgba(0, 255, 0, 0.8) 21%, rgba(0, 255, 0, 0.8) 34%, transparent 35%, transparent), radial-gradient(circle at 0% 50%, transparent 20%, rgba(0, 255, 0, 0.8) 21%, rgba(0, 255, 0, 0.8) 34%, transparent 35%, transparent) 0 -50px;
-    background-color: #000000;
+    background: radial-gradient(circle at 100% 50%, transparent 20%, magenta 21%, magenta 34%, transparent 35%, transparent), radial-gradient(circle at 0% 50%, transparent 20%, magenta 21%, magenta 34%, transparent 35%, transparent) 0 -50px;
+    background-color: #009900;
     background-size: 75px 100px; }
   body.dialog-open > header *, body.dialog-open > main * {
     filter: blur(1px); }
@@ -642,7 +672,7 @@ body > svg {
     margin: 0.25em 0;
     padding: 0.5em 1em;
     overflow: hidden;
-    color: #000000;
+    color: #009900;
     text-transform: uppercase;
     text-decoration: none;
     text-overflow: ellipsis;
@@ -655,7 +685,7 @@ body > svg {
     position: absolute;
     display: block;
     border: 4px solid;
-    border-color: #000000 transparent transparent transparent;
+    border-color: #009900 transparent transparent transparent;
     height: 0;
     width: 0; }
   .nav-header li:hover.has-children:after {
@@ -675,7 +705,7 @@ body > svg {
     position: absolute;
     opacity: 0;
     left: -9999px;
-    background: #191919;
+    background: #19a319;
     transition: 0.4s opacity linear; }
     .nav-header .nav-level--2 a, .nav-header .nav-level--3 a {
       color: white;
@@ -684,13 +714,13 @@ body > svg {
   .nav-header .nav-item--1, .nav-header .nav-item--2, .nav-header .nav-item--3 {
     transition: 0.1s all linear; }
     .nav-header .nav-item--1:hover, .nav-header .nav-item--2:hover, .nav-header .nav-item--3:hover {
-      background: #4c4c4c; }
+      background: #4cb74c; }
   .nav-header .nav-item--1 {
     position: relative;
     flex: 1; }
     @media (max-width: 1200px) {
       .nav-header .nav-item--1 {
-        border-left: 1px dotted #000000; } }
+        border-left: 1px dotted #009900; } }
     .nav-header .nav-item--1.has-children:after {
       left: 50%;
       bottom: -1px;
@@ -743,11 +773,11 @@ body > svg {
       padding: 0 6px 2px 4px;
       display: block;
       transition: 0.2s all linear;
-      background: #4c4c4c; }
+      background: #4cb74c; }
       .nav-header .site-actions a:nth-child(2) {
         top: 50%; }
       .nav-header .site-actions a:hover {
-        background: #4c4c4c;
+        background: #4cb74c;
         color: white;
         right: 0; }
       .nav-header .site-actions a svg {
@@ -994,7 +1024,7 @@ body > svg {
   .select2-results li:nth-child(even) {
     background: rgba(0, 0, 0, 0.05); }
   .select2-results li.select2-highlighted {
-    background: #000000;
+    background: #009900;
     color: #fff; }
 
 .select2-results li.select2-result-with-children > .select2-result-label {
@@ -1220,7 +1250,7 @@ disabled look for disabled choices in the results dropdown
   opacity: 0;
   padding: 0.5em;
   background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 8px 1px #000000;
+  box-shadow: 0 0 8px 1px #009900;
   border-radius: 2px;
   transition: 0.2s opacity linear;
   width: 200px;
@@ -1237,7 +1267,7 @@ disabled look for disabled choices in the results dropdown
   content: "\f059";
   display: inline-block; }
 .icon-tooltip:hover {
-  color: #7f7f7f;
+  color: #7fcc7f;
   cursor: help; }
   .icon-tooltip:hover .tooltip {
     display: block;
@@ -1431,3 +1461,29 @@ disabled look for disabled choices in the results dropdown
     .adf-messages-window .message-error .icon {
       fill: #cc0000;
       padding: 1px; }
+
+.layout-grid .tab-group-nav {
+  margin: 0.25em 0.5em 0; }
+  .layout-grid .tab-group-nav a {
+    color: #666;
+    text-align: center;
+    border-top: 1px #ccc solid;
+    background: #ddd;
+    padding: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0.5em 0.1em 0 0;
+    text-decoration: none; }
+    .layout-grid .tab-group-nav a:hover {
+      border-top: 1px #7fcc7f solid;
+      background: #cceacc; }
+  .layout-grid .tab-group-nav .active {
+    color: black;
+    border-top: 3px #009900 solid;
+    background: #b2e0b2;
+    pointer-events: none; }
+.layout-grid .tab-group-content {
+  border-top: 1px #009900 solid;
+  margin: 0;
+  padding: 1em; }

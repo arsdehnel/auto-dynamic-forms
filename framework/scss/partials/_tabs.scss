@@ -1,0 +1,32 @@
+.layout-grid {
+    .tab-group-nav {
+        margin: .25em .5em 0;
+        a {
+            color: #666;
+            text-align: center;
+            border-top: 1px #ccc solid;
+            background: #ddd;
+            padding: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: .5em .1em 0 0;
+            text-decoration: none;
+            &:hover {
+                border-top: 1px mix( white, $primary_color, 50% ) solid;
+                background: mix( white, $primary_color, 80% );
+            }
+        }
+        .active {
+            color: black;
+            border-top: 3px $primary_color solid;
+            background: mix( white, $primary_color, 70% );
+            pointer-events: none;
+        }
+    }
+    .tab-group-content {
+        border-top: 1px $primary_color solid;
+        margin: 0;
+        padding: 1em;
+    }
+}

@@ -25,5 +25,6 @@
     <script src="<?php echo CLIENT_PATH ?>js/plugins.min.js"></script>
     <script src="<?php echo CLIENT_PATH ?>js/hbsTemplates.min.js"></script>
     <script src="<?php echo CLIENT_PATH ?>js/adf.min.js"></script>
+    <script src="//localhost:12349/livereload.js"></script>
 </body>
 </html>

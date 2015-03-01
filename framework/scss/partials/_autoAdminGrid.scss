@@ -1,12 +1,13 @@
 .adf-grid-wrapper{
-	position: relative;
+    position: relative;
     padding-top: 1px;
+    overflow-x: scroll;
     .loading & {
         opacity: .25;
     }
 }
 .adf-grid{
-  margin: 0 auto;
+  margin: 2em auto 0;
   width: calc( 100% - 2em );
   border-collapse: collapse;
   th,
@@ -222,11 +223,17 @@
 }
 
 // for the "grid level" drop downs that show to the top right of the grid
-.adf-grid-actions-wrapper .dropdown-wrapper{
-	position: relative;
-    margin-right: 1em;
-	float: right;
-    background: tint( $primary_color, 40% );
+.adf-grid-actions-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    .dropdown-wrapper{
+    	position: relative;
+        margin-right: 1em;
+    	float: right;
+        background: tint( $primary_color, 40% );
+    }
 }
 
 // tooltip
