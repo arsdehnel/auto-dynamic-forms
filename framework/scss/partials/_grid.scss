@@ -13,7 +13,7 @@
     fieldset[class*=layout-grid].layout-grid-inner-pad{
         padding: 3em 1em 1em;
     }
-    @for $i from 1 through 12{
+    @for $i from 1 through 24{
         .layout-grid-#{$i}{
             flex: $i;
         }

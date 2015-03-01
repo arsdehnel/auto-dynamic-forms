@@ -1,0 +1,26 @@
+<?php
+    $header_text = '2116: Sales Growth FY2014';
+    include('../../_header.php');
+?>
+<nav class="row tab-group-nav">
+    <a class="layout-grid-1 active" href="../../json/promotion-details/basics.json">Basics</a>
+    <a class="layout-grid-1" href="../../json/promotion-details/periods.json">Periods</a>
+    <a class="layout-grid-1" href="#">Rules</a>
+    <a class="layout-grid-1" href="#">Rule Groups</a>
+    <a class="layout-grid-1" href="#">Awards</a>
+    <a class="layout-grid-1" href="#">PCCs</a>
+    <a class="layout-grid-1" href="#">Groups</a>
+    <a class="layout-grid-1" href="#">Objectives</a>
+    <a class="layout-grid-1" href="#">BARS</a>
+</nav>
+<div class="row">
+    <div class="layout-grid-24 adf-region tab-group-content"
+        data-adf-region-type="form"
+        data-adf-ajax-onshow="true"
+        data-adf-ajax-url="../../json/promotion-details/basics.json"
+        id="promotion-tab-data">
+    </div>
+</div>
+<?php
+    include('../../_footer.php');
+?>

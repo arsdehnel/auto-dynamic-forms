@@ -217,6 +217,9 @@ module.exports = function(grunt) {
             config: {
                 files: ['Gruntfile.js'],
                 tasks: ['default']
+            },
+            options: {
+                livereload: 12349
             }
         },
         setPHPConstant: {
