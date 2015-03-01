@@ -3,7 +3,7 @@ ADF,
 _
 */
 ADF.GridRegion = ADF.Region.extend({
-    template: ADF.templates.gridWrapper,
+    template: ADF.templates.gridRegion,
     initialize: function( options ) {
 
         ADF.utils.message('log','GridRegion Initialized', options);
@@ -65,12 +65,6 @@ ADF.GridRegion = ADF.Region.extend({
             if( xhrJson.data.hasOwnProperty('records') ){
 
                 gridRegion.gridView.collection.reset(xhrJson.data.records);
-
-                // console.log(gridRegion.gridView.children);
-
-                // console.log(gridRegion.gridView.collection.length);
-
-                // TODO: add select2 renderer as part of the auto-rendering of the Marionette view
 
                 // manually call render for some reason
                 // thought that Marionette handled this for us but it wasn't firing so this had to be added

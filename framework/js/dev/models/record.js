@@ -6,7 +6,7 @@ _
 ADF.RecordModel = Backbone.Model.extend({
 
     initialize: function( attrs, opts ){
-        ADF.utils.message('debug','RecordModel Initialized', attrs, opts);
+        ADF.utils.message('log','RecordModel Initialized', attrs, opts);
         var recordModel = this;
 
         // give the record an ID even if it is new (ie not from the database)

@@ -8,7 +8,7 @@ ADF.FieldsCollection = Backbone.Collection.extend({
     model: ADF.FieldModel,
 
     initialize: function( models, options ){
-        ADF.utils.message('debug','FieldsCollection Initialized', models, options);
+        ADF.utils.message('log','FieldsCollection Initialized', models, options);
 
         this.options = {};
 
@@ -19,7 +19,7 @@ ADF.FieldsCollection = Backbone.Collection.extend({
             _.each(models,function( model ){
                 this.options.recordModelDefaults[model.get('name')] = options.recordModelDefaults[model.get('name')];
             },this);
-            ADF.utils.message('debug','fields collection recordModelDefaults',this.options.recordModelDefaults);
+            ADF.utils.message('log','fields collection recordModelDefaults',this.options.recordModelDefaults);
         }
 
     },

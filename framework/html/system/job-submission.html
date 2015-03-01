@@ -1,24 +1,36 @@
 <?php
-    $header_text = 'Job Submission';
-    include('../../_header.php');
-?>
-	<div class="row" data-onload-ajax-target-id="job-submission">
-        <div class="layout-grid-3"></div>
-        <fieldset class="layout-grid-6 adf-region" id="job-submission-filters" data-adf-region-type="form" data-adf-ajax-onshow="true" data-adf-ajax-url="../json/job-submission/groups.json">
-            <legend>Find Your Job</legend>
-            <form action="#job-submission-grid" class="form-horizontal submit-on-change" method="post"></form>
-        </fieldset>
-        <div class="layout-grid-3"></div>
-    </div>
-  <div id="job-submission-grid" class="adf-region" data-adf-region-type="grid" data-adf-ajax-url="../json/job-submission/processes.json"></div>
-  <!--
-    TODO: breadcrumbs back to grid listing from run panels
-    TODO: whole page covered by spinner while job is running
-    TODO: handle results via ajax
-    TODO: adjust button styles
-    TODO: style select2 template "tooltip"
--->
 
+    $header_text   = 'Job Submission';
+    include('../../_header.php');
+
+    $urls['local']['filters'] = '../../json/job-submission/groups.json';
+    $urls['local']['grid']    = '../../json/job-submission/grid.json';
+
+    $urls['zack']['filters']  = '/auto/auto-dynamic-forms/framework/getJson.php?env=zack&client=acuraadmin&action=common/get-fields&pageCode=APP_NAV_FILTERS';
+    $urls['zack']['grid']     = '../../json/job-submission/grid.json';
+    // $urls['zack']['grid']     = '/auto/auto-dynamic-forms/framework/getJson.php?client=acuraadmin&action=web-appl-nav/grid.action';
+
+    $urls['qa']['filters']    = '/auto/auto-dynamic-forms/framework/getJson.php?env=qa&client=acuraadmin&action=common/get-fields&pageCode=APP_NAV_FILTERS';
+?>
+<div class="row">
+    <fieldset class="layout-grid-6">
+        <legend>Find Your Job</legend>
+        <div class="layout-grid-6 adf-region"
+            data-adf-region-type="form"
+            id="job-submission-filters"
+            data-adf-ajax-onshow="true"
+            data-adf-ajax-url="<?php echo $urls[JSON_SOURCE]['filters']; ?>">
+
+            <form action="#job-submission-grid" class="form-horizontal" method="post"></form>
+        </div>
+        <div class="adf-region"
+            data-adf-region-type="grid"
+            id="job-submission-grid"
+            data-adf-ajax-url="<?php echo $urls[JSON_SOURCE]['grid']; ?>"></div>
+
+    </fieldset>
+    <fieldset class="layout-grid-6 hide" id="job-submission-work">
+    </div>
+</div>
 <?php
     include('../../_footer.php');
-?>

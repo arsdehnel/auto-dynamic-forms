@@ -5,9 +5,12 @@ _
 ADF.FormRegion = ADF.Region.extend({
     // TODO: handle being in a dialog
     // TODO: preexisting data handled
-
+    template: ADF.templates.formRegion,
     initialize: function( options ) {
         ADF.utils.message('log','FormRegion Initialized', options);
+        if( this.$el.find('form').size() === 0 ){
+            this.$el.html(this.template());
+        }
         this._super( options );
     },
 

@@ -502,7 +502,8 @@ input[type=email], input[type=text], input[type=url] {
       -ms-flex-flow: row wrap;
           flex-flow: row wrap; }
 .layout-grid *[class*=layout-grid] {
-  margin: 0.5em; }
+  margin: 0.5em;
+  transition: 0.2s all linear; }
   .layout-grid *[class*=layout-grid].grid-inner-pad {
     padding: 1em; }
 .layout-grid fieldset[class*=layout-grid].layout-grid-inner-pad {

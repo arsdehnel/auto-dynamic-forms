@@ -5,6 +5,7 @@
     }
     *[class*=layout-grid]{
         margin: .5em;
+        transition: .2s all linear;
         &.grid-inner-pad{
             padding: 1em;
         }

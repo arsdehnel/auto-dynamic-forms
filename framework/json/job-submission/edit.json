@@ -1,5 +1,5 @@
 <?php
-	sleep(1);
+  sleep(1);
 ?>
 {
     "success" : true,
@@ -71,23 +71,45 @@
         "actions": [
           {
             "tooltipText": null,
-            "label": "Save",
-            "actionType": "save",
+            "label": "Edit",
+            "type": "load-adf-region",
             "wrapClass": null,
             "actionClass": null,
-            "url": "#",
+            "url": "../../json/job-submission/edit.json",
             "pageDetailId": 20,
-            "fieldPageDetailId": 24
+            "fieldPageDetailId": 24,
+            "dataAttributes" : [
+                {
+                    "detailId": 108,
+                    "name": "adf-region-type",
+                    "value": "grid"
+                },
+                {
+                    "name": "adf-region-id",
+                    "value": "job-submission-work"
+                }
+            ]
           },
           {
             "tooltipText": null,
             "label": "Run",
-            "actionType": "run",
+            "type": "load-adf-region",
             "wrapClass": null,
             "actionClass": null,
-            "url": "#",
+            "url": "../../json/job-submission/run.json",
             "pageDetailId": 20,
-            "fieldPageDetailId": 24
+            "fieldPageDetailId": 24,
+            "dataAttributes" : [
+                {
+                    "detailId": 108,
+                    "name": "adf-region-type",
+                    "value": "grid"
+                },
+                {
+                    "name": "adf-region-id",
+                    "value": "job-submission-work"
+                }
+                ]
           }
         ],
         "dataAttributes": []
@@ -146,72 +168,72 @@
 
         ],
         "gridActions" : [
-        	{
-    			"href" : "#",
-    			"itemClass" : "adf-grid-record-add",
-    			"label" : "Add 1 Record",
-    	        "dataAttributes" : [
-    	            {
-    	                "name" : "record-count",
-    	                "value" : "1"
-    	            }
-    	        ]
-    		},
-        	{
-    			"href" : "#",
-    			"itemClass" : "adf-grid-record-add",
-    			"label" : "Add 2 Records",
-    	        "dataAttributes" : [
-    	            {
-    	                "name" : "record-count",
-    	                "value" : "2"
-    	            }
-    	        ]
-    		},
-        	{
-    			"href" : "#",
-    			"itemClass" : "adf-grid-record-add",
-    			"label" : "Add 3 Records",
-    	        "dataAttributes" : [
-    	            {
-    	                "name" : "record-count",
-    	                "value" : "3"
-    	            }
-    	        ]
-    		},
-        	{
-    			"href" : "#",
-    			"itemClass" : "adf-grid-record-add",
-    			"label" : "Add 4 Records",
-    	        "dataAttributes" : [
-    	            {
-    	                "name" : "record-count",
-    	                "value" : "4"
-    	            }
-    	        ]
-    		},
-        	{
-    			"href" : "#",
-    			"itemClass" : "adf-grid-record-add",
-    			"label" : "Add 5 Records",
-    	        "dataAttributes" : [
-    	            {
-    	                "name" : "record-count",
-    	                "value" : "5"
-    	            }
-    	        ]
-    		},
-        	{
-    			"href" : "#",
-    			"itemClass" : "adf-grid-record-add",
-    			"label" : "Add 10 Records",
-    	        "dataAttributes" : [
-    	            {
-    	                "name" : "record-count",
-    	                "value" : "10"
-    	            }
-    	        ]
-    		}
-    	]
+          {
+          "href" : "#",
+          "itemClass" : "adf-grid-record-add",
+          "label" : "Add 1 Record",
+              "dataAttributes" : [
+                  {
+                      "name" : "record-count",
+                      "value" : "1"
+                  }
+              ]
+        },
+          {
+          "href" : "#",
+          "itemClass" : "adf-grid-record-add",
+          "label" : "Add 2 Records",
+              "dataAttributes" : [
+                  {
+                      "name" : "record-count",
+                      "value" : "2"
+                  }
+              ]
+        },
+          {
+          "href" : "#",
+          "itemClass" : "adf-grid-record-add",
+          "label" : "Add 3 Records",
+              "dataAttributes" : [
+                  {
+                      "name" : "record-count",
+                      "value" : "3"
+                  }
+              ]
+        },
+          {
+          "href" : "#",
+          "itemClass" : "adf-grid-record-add",
+          "label" : "Add 4 Records",
+              "dataAttributes" : [
+                  {
+                      "name" : "record-count",
+                      "value" : "4"
+                  }
+              ]
+        },
+          {
+          "href" : "#",
+          "itemClass" : "adf-grid-record-add",
+          "label" : "Add 5 Records",
+              "dataAttributes" : [
+                  {
+                      "name" : "record-count",
+                      "value" : "5"
+                  }
+              ]
+        },
+          {
+          "href" : "#",
+          "itemClass" : "adf-grid-record-add",
+          "label" : "Add 10 Records",
+              "dataAttributes" : [
+                  {
+                      "name" : "record-count",
+                      "value" : "10"
+                  }
+              ]
+        }
+      ]
     }
 }
