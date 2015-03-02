@@ -31,12 +31,13 @@ ADF.RecordModel = Backbone.Model.extend({
             }
         });
 
-        this.listenTo(this,'sync',recordModel.recordSave);
+        // this.listenTo(this,'sync',recordModel.recordSave);
 
     },
 
     save: function( attrs, options ) {
 
+        var attrs, xhr, attributes = this.attributes;
         var recordModel = this;
         var params = {};
         var dataArray = [];
@@ -52,6 +53,18 @@ ADF.RecordModel = Backbone.Model.extend({
             if (!options.url) {
               params.url = _.result(recordModel, 'url') || ADF.utils.message('error','No URL specified');
             }
+            var success = options.success;
+            options.success = function(resp) {
+                // Ensure attributes are restored during synchronous saves.
+                recordModel.attributes = attributes;
+                var serverAttrs = recordModel.parse(resp, options);
+                if (options.wait) serverAttrs = _.extend(attrs || {}, serverAttrs);
+                if (_.isObject(serverAttrs) && !recordModel.set(serverAttrs, options)) {
+                    return false;
+                }
+                if (success) success(recordModel, resp, options);
+                recordModel.trigger('sync', recordModel, resp, options);
+            };
 
         /* ----------------------------------------------
                  END FROM ORIGINAL BACKBONE.SYNC (v1.1.2)
@@ -70,7 +83,7 @@ ADF.RecordModel = Backbone.Model.extend({
                  BEGIN FROM ORIGINAL BACKBONE.SYNC (v1.1.2)
            ---------------------------------------------- */
             // Make the request, allowing the user to override any Ajax options.
-            var xhr = options.xhr = Backbone.ajax(_.extend(params, options));
+            xhr = options.xhr = Backbone.ajax(_.extend(params, options));
             recordModel.trigger('request', recordModel, xhr, options);
             return xhr;
         /* ----------------------------------------------

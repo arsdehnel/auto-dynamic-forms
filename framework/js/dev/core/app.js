@@ -5,6 +5,7 @@ $
 */
 // TODO: svg rendering
 Backbone.emulateHTTP = true;
+$.event.props.push('dataTransfer');
 var ADF = ADF||{};
 ADF.App = Marionette.Application.extend({
   initialize: function(options) {

@@ -49,6 +49,7 @@ ADF.OverlayGridRegion = ADF.GridRegion.extend({
 
     hide: function() {
         ADF.utils.message('log','OverlayGridRegion Hidden');
+        var gridView = this.gridView;
         // TODO: empty the region
         // TODO: remove the ajax url
 
@@ -57,7 +58,9 @@ ADF.OverlayGridRegion = ADF.GridRegion.extend({
             alert('found records that have been changed and not saved');
         }
 
-        this.$el.empty().removeClass('open');
+        this.$el.removeClass('open');
+
+        gridView.$el.html(gridView.template({}));
         adf.page.hideBackdrop();
 
     }

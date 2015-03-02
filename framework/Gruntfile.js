@@ -7,8 +7,8 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     var client = grunt.option('client');
-    var filePath;
-    var relativePath;
+    var buildTargetPath;
+    var localServerPath;
 
     if( !client ){
         grunt.fail.fatal('no client set');
@@ -17,26 +17,30 @@ module.exports = function(grunt) {
     switch( client ) {
 
         case 'acuraadmin':
-            filePath = '/Users/dehnel/cvsroot/client/auto/GlassFishacuraperformance/acuraadmin/src/webroot/v2/';
-            relativePath = '../../../acuraadmin-v2/';
+            buildTargetPath = '/Users/dehnel/cvsroot/client/auto/GlassFishacuraperformance/acuraadmin/src/webroot/v2/';
+            localServerPath = '../../../acuraadmin-v2/';
             break;
         case 'acnmadmin':
-            filePath = '/Users/dehnel/cvsroot/client/auto/GlassFishACNM/acnmadmin/src/webroot/v2/';
-            relativePath = '../../../acnmadmin-v2/';
+            buildTargetPath = '/Users/dehnel/cvsroot/client/auto/GlassFishACNM/acnmadmin/src/webroot/v2/';
+            localServerPath = '../../../acnmadmin-v2/';
             break;
         case 'candiadmin':
-            filePath = '/Users/dehnel/cvsroot/client/auto/GlassFishNissan/candiadmin/src/webroot/v2/';
-            relativePath = '../../../candiadmin-v2/';
+            buildTargetPath = '/Users/dehnel/cvsroot/client/auto/GlassFishNissan/candiadmin/src/webroot/v2/';
+            localServerPath = '../../../candiadmin-v2/';
+            break;
+        case 'candiadmin-static':
+            buildTargetPath = '/Volumes/static_content/candiadmin.biworldwide.com/candiadmin/v2/';
+            localServerPath = '../../../candiadmin-v2/';
             break;
         case 'client':
-            filePath = '../client/';
-            relativePath = '../../../client/';
+            buildTargetPath = '../client/';
+            localServerPath = '../../../client/';
             break;
 
     }
 
-    if( !filePath ){
-        grunt.fail.fatal('no filePath set');
+    if( !buildTargetPath ){
+        grunt.fail.fatal('no buildTargetPath set');
     }
 
     // Project configuration.
@@ -45,11 +49,11 @@ module.exports = function(grunt) {
         copy: {
             fonts: {
                 src: 'fonts/*.woff',
-                dest: filePath+'/'
+                dest: buildTargetPath+'/'
             },
             svg: {
                 src: ['svg/*.svg','svg/**/*.svg'],
-                dest: filePath+'/'
+                dest: buildTargetPath+'/'
             }
         },
         svgstore: {
@@ -66,8 +70,8 @@ module.exports = function(grunt) {
             compile: {
                 options: {
                     namespace: 'ADF.templates',
-                    processName: function(filePath) {
-                        var tmpltName = filePath.replace(/^.*[\\\/]/, '').replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+                    processName: function(buildTargetPath) {
+                        var tmpltName = buildTargetPath.replace(/^.*[\\\/]/, '').replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
                             tmpltName = tmpltName.substr(0, tmpltName.lastIndexOf('.'));
                         return tmpltName;
                     }
@@ -125,7 +129,7 @@ module.exports = function(grunt) {
 
                     'js/dev/core/common.js'
                 ],
-                dest: filePath+'js/adf.min.js',
+                dest: buildTargetPath+'js/adf.min.js',
             },
             lib: {
                 src: [
@@ -141,13 +145,13 @@ module.exports = function(grunt) {
                     'js/lib/select2.js',
                     'js/lib/spin.js'
                 ],
-                dest: filePath+'js/lib.min.js',
+                dest: buildTargetPath+'js/lib.min.js',
             },
             plugins: {
                 src: [
                     'js/plugins/*.js'
                 ],
-                dest: filePath+'js/plugins.min.js',
+                dest: buildTargetPath+'js/plugins.min.js',
             },
             tests: {
                 src: [
@@ -162,7 +166,7 @@ module.exports = function(grunt) {
             },
             templates: {
                 files: [
-                    {dest: filePath+'js/hbsTemplates.min.js', src: ['grunt-work/hbsTemplates.js']}
+                    {dest: buildTargetPath+'js/hbsTemplates.min.js', src: ['grunt-work/hbsTemplates.js']}
                 ]
             }
         },
@@ -184,7 +188,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         src: 'grunt-work/compiled.css',
-                        dest: filePath+'css/main.css'
+                        dest: buildTargetPath+'css/main.css'
                     }
                 ]
             },
@@ -225,7 +229,7 @@ module.exports = function(grunt) {
         setPHPConstant: {
             stage: {
                 constant    : 'CLIENT_PATH',
-                value       : relativePath,
+                value       : localServerPath,
                 file        : 'constants.php'
             }
         },

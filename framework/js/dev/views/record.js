@@ -22,8 +22,7 @@ ADF.RecordView = Marionette.CompositeView.extend({
         this.regionName = this.region.options.regionName;
         this.model.set('regionName',this.regionName);
         this.collection = this.region.fieldsCollection;
-        this.listenTo(this.model,'sync', this.recordAction);
-        this.listenTo(this.model,'error',this.recordAction);
+        this.listenTo(this.model,'all', this.recordEvent);
     },
     renderSelf: function() {
         // this would be called when the record has changed and needs to be rerendered
@@ -106,6 +105,8 @@ ADF.RecordView = Marionette.CompositeView.extend({
     },
     inputChange: function( e ){
 
+        // console.log('input change',model,options);
+
         // stopping the propagation for overlay changes so they don't change the master
         e.preventDefault();
         e.stopPropagation();
@@ -123,25 +124,38 @@ ADF.RecordView = Marionette.CompositeView.extend({
 
     },
 
-    recordAction: function( model, response, options ) {
+    recordEvent: function( event, model, response, options ) {
 
-        if( options.xhr.status === 200 ){
+        switch( event.indexOf(':') >= 0 ? event.substr(0,event.indexOf(':')) : event ){
+            case 'change':
+                break;
+            case 'request':
+                break;
+            case 'sync':
+                if( options.xhr.status === 200 ){
 
-            ADF.utils.message('debug','Record action completed successfully',model,response,options);
+                    ADF.utils.message('debug','Record action completed successfully',model,response,options);
 
-            if( response.success ){
-                this.$el.removeClass('updated new error').addClass('current');
-            }else{
-                this.$el.removeClass('updated new current').addClass('error');
-                ADF.utils.message('error','Something went wrong in saving the record',model,response,options);
-            }
+                    if( response.success ){
+                        this.$el.removeClass('updated added error').addClass('current');
+                    }else{
+                        this.$el.removeClass('updated added current').addClass('error');
+                        ADF.utils.message('error','Something went wrong in saving the record',model,response,options);
+                    }
 
-        }else{
+                }else{
 
-            this.$el.removeClass('updated new current').addClass('error');
-            ADF.utils.message('error','Something unexpected went wrong in saving the record',model,response,options);
+                    this.$el.removeClass('updated added current').addClass('error');
+                    ADF.utils.message('error','Something unexpected went wrong in saving the record',model,response,options);
 
+                }
+                break;
+
+            default:
+                ADF.utils.message('debug','Unexpected event from the record view',event, model, response, options);
+                break;
         }
+
 
     }
 

@@ -18,6 +18,11 @@ ADF.GridView = Marionette.CompositeView.extend({
     childViewOptions : function () {
         return { regionName: this.regionName };
     },
+    events : {
+        'dragover'                        : 'uploadDragHandle',
+        'dragleave'                       : 'uploadDragHandle',
+        'drop'                            : 'uploadStart'
+    },
     template: ADF.templates.gridTable,
     initialize: function( options ) {
         ADF.utils.message('log','GridView Initialized', options );
@@ -26,6 +31,7 @@ ADF.GridView = Marionette.CompositeView.extend({
         var gridView = this;
         var region = adf.page.getRegion(gridView.regionName);
         gridView.$el.html(gridView.template({}));
+        this.uploadUrl = region.$el.attr('data-grid-upload-url');
 
         gridView.headersView = new ADF.HeadersView({
             el: gridView.$el.find('thead')[0],
@@ -86,7 +92,141 @@ ADF.GridView = Marionette.CompositeView.extend({
 
         // this.filtersQueued
 
+    },
+    uploadDragHandle: function( e ) {
+
+        e.stopPropagation();
+        e.preventDefault();
+        console.log('dragover happening');
+
+        if( e.type == 'dragover' ){
+            clearTimeout(this.dndTimer);
+            $('body').addClass('droppable');
+            if( $(e.target).hasClass('upload-drop-zone') ){
+                $(e.target).addClass('hover');
+            }else{
+                $('.upload-drop-zone').removeClass('hover');
+            }
+        }else{
+            this.dndTimer = setTimeout(function() {
+                $('body').removeClass('droppable');
+                $('.upload-drop-zone').removeClass('hover');
+            }, 200);
+        }
+
+    },
+    uploadStart: function( e ){
+
+        var gridView = this;
+        var file;
+
+        // TODO: do this a bit more elegantly but for some reason the XHR upload was getting the uploadStart to fire on it so this just stop that
+        if( $(e.target).closest('.adf-grid').size() === 0 ){
+            return false;
+        }
+
+        // Or else the browser will open the file
+        e.preventDefault();
+        e.stopPropagation();
+
+        this.dndTimer = setTimeout(function() {
+            $('body').removeClass('droppable');
+            $('.upload-drop-zone').removeClass('hover');
+        }, 200);
+
+        // gridView.uploadDragHandle(e);
+
+        // autoAdmin.ui.dialog({
+        //     id : "upload-progress",
+        //     header : "File Upload Progress",
+        //     footer : "<a href='#' class='btn icon icon-cancel upload-cancel'>Cancel</a>",
+        //     action : "showModal"
+        // })
+
+        var files = e.target.files || e.dataTransfer.files;
+
+        for( var i = 0; file = files[i]; i++ ) {
+
+            var xhr = new XMLHttpRequest();
+
+            if (xhr.upload && file.size <= 30000000) {
+                // start upload
+                xhr.upload.filename = file.name;
+                // generate a random number to be used for this file's progress
+                xhr.progressId = 'progress-' + Math.floor((Math.random() * 100000));
+                xhr.upload.progressId = xhr.progressId;
+                xhr.upload.addEventListener('loadstart', gridView.uploadLoadStart, false);
+                xhr.upload.addEventListener('progress', gridView.uploadProgress, false);
+                xhr.upload.addEventListener('load', gridView.uploadComplete, false);
+                xhr.upload.addEventListener('error', gridView.uploadError, false);
+                xhr.upload.addEventListener('abort', gridView.uploadAbort, false);
+                xhr.addEventListener('load',function(e){
+                    gridView.uploadResponse( this.status, this.progressId, e.currentTarget.responseText );
+                });
+                xhr.open('POST', this.uploadUrl, true);
+                xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+                xhr.setRequestHeader('X-File-Name', file.name);
+                xhr.send(file);
+            }else{
+                console.log('file not uploaded',file);
+            }
+
+        }
+    },
+    uploadLoadStart: function( event ){
+
+        // append to the dialog body
+        $('#upload-progress .dialog-body').append('<div class="upload-progress" id="'+this.progressId+'"><label for="'+this.progressId+'-meter">'+this.filename+'</label><progress id="'+this.progressId+'-meter" max="100" value="0" /></div>');
+
+    },
+
+    uploadProgress: function( event ){
+        if (event.lengthComputable) {
+            var progress = Math.ceil( ( event.loaded / event.total ) * 100 );
+            $('#'+this.progressId+'-meter').attr('value',progress);
+        }
+    },
+
+    uploadComplete: function( event ){
+        $('#upload-progress .dialog-footer .upload-cancel').replaceWith('<a href="#" class="btn close icon icon-close">done</a>');
+    },
+
+    uploadResponse: function( status, progressId, responseText ){
+
+        if( status == 200 ){
+
+            var data = JSON.parse(responseText);
+            var records = data.records;
+
+            records.forEach(function( element, index, array ){
+                ADF.utils.message('warn','create new record');
+                // autoAdmin.render.renderGridRecord({
+                //     "target" : $('.auto-admin-grid tbody'),
+                //     "columns" : data.columns,
+                //     "dataObj" : element,
+                //     "createRow" : true
+                // })
+            });
+
+            $('#'+progressId).after('<p>'+records.length+' records added successfully.</p>');
+
+
+        }else{
+
+            ADF.utils.message('error','Error processing upload of file',responseText);
+
+        }
+
+    },
+    uploadError: function(e) {
+        e.preventDefault();
+        ADF.utils.message('error','Error processing upload of file');
+    },
+    uploadAbort: function(e) {
+        e.preventDefault();
+        ADF.utils.message('error','File upload aborted');
     }
+
 
 });
 

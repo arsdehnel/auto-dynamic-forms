@@ -1,0 +1,15 @@
+<?php
+    $header_text = 'Current Sessions';
+    include('../../_header.php');
+?>
+<div class="row">
+    <div class="layout-grid-3"></div>
+    <div class="layout-grid-6 adf-region" id="current-sessions-filters" data-adf-region-type="form" data-adf-ajax-onshow="true" data-adf-ajax-url="../../json/process-master/filters.json">
+        <form action="#current-sessions-grid" class="form-horizontal" method="post"></form>
+    </div>
+    <div class="layout-grid-3"></div>
+</div>
+<div class="adf-region" data-adf-region-type="grid" data-adf-ajax-url="../../json/process-master/grid.json" id="current-sessions-grid"></div>
+<?php
+    include('../../_footer.php');
+?>
