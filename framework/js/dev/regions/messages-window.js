@@ -21,10 +21,6 @@ ADF.MessagesWindowRegion = ADF.Region.extend({
     },
 
     show: function( messageHeader, messageBody, messageFooter ) {
-        // TODO: populate modal with the incoming content
-        // TODO: handle the modal already being open for error things and appending to it
-        // TODO: have a way to know if it's a similar message (all errors, etc) and group them
-        // TODO: tabs for more than one message?
         ADF.utils.message('log','MessageWindow Shown');
         this.$el.addClass('show');
         this.messagesWindowView.render();
@@ -32,12 +28,8 @@ ADF.MessagesWindowRegion = ADF.Region.extend({
 
     hide: function() {
         ADF.utils.message('log','MessageWindow Hidden');
-        // TODO: empty the region
-        // TODO: remove the ajax url
-
         this.$el.empty().removeClass('open');
         adf.page.hideBackdrop();
-
     }
 
 });

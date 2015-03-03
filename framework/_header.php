@@ -58,7 +58,7 @@
                                     echo '<ul class="nav-level--2">';
 
                                     // go through all the files
-                                    // TODO: add children directory handling
+                                    // TODO: (99) add children directory handling
                                     while (false !== ($item = readdir($itemsHandle))):
 
                                         if( substr($item,0,1) != '.' ):
