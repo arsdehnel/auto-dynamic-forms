@@ -18,6 +18,7 @@ ADF.Region = Marionette.Region.extend({
             if( this.$el.find('[data-adf-region-label]').size() > 0 ) {
                 this.$el.find('[data-adf-region-label]').html( this.options.adfRegionLabel );
             }else{
+                // TODO: (99) make this have options as to what this should render like
                 this.$el.prepend('<legend>'+this.options.adfRegionLabel+'</legend>');
             }
         }
