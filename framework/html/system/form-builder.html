@@ -1,31 +1,28 @@
 <?php
     $header_text   = 'Form Builder';
-    $urls          = [];
-    $urls['local'] = '../../json/form-builder/current-filters.json';
-
     include('../../_header.php');
+
+    $urls['local']['current-filters'] = '../../json/form-builder/current-filters.json';
+    $urls['local']['all-filters']     = '../../json/form-builder/all-fields-filters.json';
+
     ?>
     <div class="row">
         <?php
-            basic_filter( 'Your Form', 'form-builder-current-filters', 'form-builder-current-fields', $urls[JSON_SOURCE], true );
-        ?>
-		<div id="form-builder-current-fields"
-            class="adf-region"
-            data-adf-region-type="modules"
-            data-adf-dnd-target="true"
-            data-adf-dnd-source="true"
-            data-adf-ajax-url="../json/form-builder/current.json">
-        </div>
-    </fieldset>
-    <fieldset
-        class="layout-grid-6 adf-region"
-        data-adf-region-type="form"
-        id="form-builder-allfields-filters"
-        data-adf-ajax-onshow="true"
-        data-adf-ajax-url="../json/form-builder/all-fields-filters.json">
-
-        <legend>Available Form Fields</legend>
-        <form action="#form-builder-all-fields" class="form-horizontal" method="post"></form>
+            // this opens the fieldset but leaves it open so the modules region can live inside
+            echo form_region( 'fieldset', 'Your Form', 'form-builder-current-filters', 'form-builder-current-fields', $urls[JSON_SOURCE]['current-filters'], true, false );
+            ?>
+    		<div id="form-builder-current-fields"
+                class="adf-region"
+                data-adf-region-type="modules"
+                data-adf-dnd-target="true"
+                data-adf-dnd-source="true"
+                data-adf-ajax-url="../../json/form-builder/current.json">
+            </div>
+        </fieldset>
+        <?php
+            // this opens the fieldset but leaves it open so the modules region can live inside
+            echo form_region( 'fieldset', 'Available Fields', 'form-builder-allfields-filters', 'form-builder-all-fields', $urls[JSON_SOURCE]['all-filters'], true, false );
+            ?>
 <!--         <div class="btn-group">
         	<a href="javascript:alert('Open modal to give parameters');" class="btn">copy from another promotion</a>
             <a href="#" class="btn btn-add dialog-form-trigger" data-action-type="dialog-form" title="New Field Master" data-dialog-form-lkup-url="../json/common/dialog-form.json" data-dialog-form-save-url="../json/form-builder/field-save.json">
@@ -39,15 +36,15 @@
         </div>
  -->
 
-		<div id="form-builder-all-fields"
-            class="adf-region"
-            data-adf-region-type="modules"
-            data-adf-dnd-target="false"
-            data-adf-dnd-source="true"
-            data-adf-ajax-url="../json/form-builder/all-fields.json">
-        </div>
-    </fieldset>
-</div>
+    		<div id="form-builder-all-fields"
+                class="adf-region"
+                data-adf-region-type="modules"
+                data-adf-dnd-target="false"
+                data-adf-dnd-source="true"
+                data-adf-ajax-url="../../json/form-builder/all-fields.json">
+            </div>
+        </fieldset>
+    </div>
 <?php
     include('../../_footer.php');
 ?>
