@@ -31,7 +31,6 @@ ADF.ModuleView = Backbone.Marionette.CompositeView.extend({
 
         var moduleView = this;
 
-        // put the children (the fields) into the drop down but above the divider
         this.collection.each(function(model){
 
             model.set('currentValue',moduleView.model.get(model.get('name')));
@@ -87,25 +86,29 @@ ADF.ModuleView = Backbone.Marionette.CompositeView.extend({
 
         console.log(event,response,options);
 
-        if( options && options.xhr ){
+        switch( event ){
+            case 'sync':
+                if( options.xhr.status === 200 ){
 
-            if( options.xhr.status === 200 ){
+                    ADF.utils.message('debug','Module action completed successfully',model,options.xhr.responseJSON,options);
 
-                ADF.utils.message('debug','Module action completed successfully',model,options.xhr.responseJSON,options);
+                    if( options.xhr.responseJSON.success ){
+                        this.$el.removeClass('updated new error').addClass('current');
+                    }else{
+                        this.$el.removeClass('updated new current').addClass('error');
+                        ADF.utils.message('warn','Something went wrong in saving the module',model,options.xhr.responseJSON,options);
+                    }
 
-                if( options.xhr.responseJSON.success ){
-                    this.$el.removeClass('updated new error').addClass('current');
                 }else{
+
                     this.$el.removeClass('updated new current').addClass('error');
-                    ADF.utils.message('warn','Something went wrong in saving the module',model,options.xhr.responseJSON,options);
+                    ADF.utils.message('error','Something unexpected went wrong in saving the module',model,options.xhr.responseJSON,options);
+
                 }
+                break;
 
-            }else{
-
-                this.$el.removeClass('updated new current').addClass('error');
-                ADF.utils.message('error','Something unexpected went wrong in saving the module',model,options.xhr.responseJSON,options);
-
-            }
+            default:
+                ADF.utils.message('debug','Unhandled module event type',event,model,response,options);
 
         }
 

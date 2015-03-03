@@ -20,10 +20,10 @@ ADF.ModulesView = Marionette.CollectionView.extend({
     initialize: function( options ) {
         ADF.utils.message('log','ModulesView Initialized', options );
         this.regionName = options.regionName;
+        this.fieldsCollection = adf.page.getRegion(this.regionName).fieldsCollection;
         this.dndSource = options.dndSource;
         this.dndTarget = options.dndTarget;
 
-        // TODO: seems like this should be in the initialize
         if( this.dndSource ){
             adf.page.dndSources.push(this);
         }
@@ -113,7 +113,7 @@ ADF.ModulesView = Marionette.CollectionView.extend({
             case 'save':
                 modulesView.collection.each(function( moduleModel ){
                     moduleModel.url = $targetObj.attr('href');
-                    moduleModel.save(null,{});
+                    moduleModel.save(null,{fieldsCollection: modulesView.fieldsCollection});
                 });
                 break;
             default:
@@ -151,151 +151,6 @@ ADF.ModulesView = Marionette.CollectionView.extend({
 
 });
 
-// ADF.ModulesView = Backbone.View.extend({
-
-//     initialize: function(opts){
-//         var modulesView = this;
-
-//         this.listenTo(this,'modulesRendered', function(){
-
-//             // TODO: somehow setup these to not care which order they happen in (issue is present in form-builder)
-
-//             if( modulesView.$el.hasClass('dnd-source') ){
-
-//                 modulesView.dndSourceInit({destroy: true});
-//                 _.each(modulesView.pageView.dndTargets,function(element, index, array){
-//                     element.dndTargetInit({destroy: true});
-//                 });
-//                 modulesView.pageView.dndSources.push(modulesView);
-
-//             }else if( modulesView.$el.hasClass('dnd-target') ){
-
-//                 modulesView.dndTargetInit({destroy: true});
-//                 _.each(modulesView.pageView.dndSources,function(element, index, array){
-//                     element.dndSourceInit({destroy: true});
-//                 });
-//                 modulesView.pageView.dndTargets.push(modulesView);
-
-//             }
-
-//             ADF.utils.spin(opts.target, { stop: true } );
-
-//         });
-
-//         modulesView.render();
-
-//     },
-
-//     events: {
-//         // ACTIONS
-//         'click .btn-save'                     : 'saveModules'
-//     },
-
-//     render: function() {
-
-//         var modulesView = this;
-
-//         this.setElement(modulesView.target);
-
-//         modulesView.trigger('modulesWrapperRendered');
-
-//     },
-
-//     renderModules: function() {
-
-//         var modulesView = this;
-//         modulesView.$el.sortable('destroy');
-
-//         for ( var j = 0; j < modulesView.recordsColl.models.length; j++ ) {
-
-//             modulesView.recordsColl.models[j].recordView.renderModule({
-//                 target : modulesView.$el,
-//                 fields : modulesView.fieldsColl.models
-//             });
-
-//         }
-
-//         for ( var j = 0; j < modulesView.actionsColl.models.length; j++ ) {
-
-//             // console.log(modulesView.actionsColl.models[j]);
-
-//             modulesView.actionsColl.models[j].actionView.render({
-//                 target : modulesView.$el
-//             });
-
-//         }
-
-//         modulesView.trigger('modulesRendered');
-
-//     },
-
-//     ajax: function( opts ) {
-
-//         var modulesView = this;
-
-//         $.ajax({
-//             url: opts.url,
-//             type: opts.method,
-//             data: opts.data,
-//             dataType: ( opts.resultType === 'html' ? 'html' : 'json' ),
-//             beforeSend: function(){
-//                 ADF.utils.spin(opts.target);
-//             },
-//             complete: function( jqXHR, textStatus ){
-
-//                 if( jqXHR.status === 200 ){
-
-//                     if( !jqXHR.hasOwnProperty('responseJSON') ){
-//                         jqXHR.responseJSON = JSON.parse(jqXHR.responseText);
-//                     }
-
-//                     ADF.utils.log('AJAX message: '+jqXHR.responseJSON.message);
-
-//                     if( jqXHR.responseJSON.success === true ){
-
-//                         if( jqXHR.responseJSON.data.hasOwnProperty('records') ){
-//                             modulesView.recordsColl.add( jqXHR.responseJSON.data.records );
-//                         }
-
-//                         if( jqXHR.responseJSON.data.hasOwnProperty('fields') ){
-//                             modulesView.fieldsColl.add( jqXHR.responseJSON.data.fields );
-//                         }
-
-//                         if( jqXHR.responseJSON.data.hasOwnProperty('actions') ){
-//                             modulesView.actionsColl.add( jqXHR.responseJSON.data.actions );
-//                         }
-
-//                         modulesView.trigger('ajaxLoaded');
-
-//                     }else{
-
-//                         if( jqXHR.responseJSON.hasOwnProperty('errors') ){
-//                             _.each(jqXHR.responseJSON.errors,function( element, index, array ){
-//                                 alert(element);
-//                             });
-//                         }else{
-//                             alert('Looks like the ajax response wasn\'t quite what was expected from '+opts.url+'.  Probably need to get a TA involved.');
-//                         }
-
-//                     }
-
-//                 }else if( jqXHR.status === 404 ){
-
-//                     alert('Page Not Found<br>The ajax calls is being made to a page ('+opts.url+') that could not be found. Probably going to need to get a TA involved to see what is going on here.');
-
-//                 }else{
-
-//                     alert(textStatus+'! Probably going to need to get a TA involved.');
-//                     console.log('opts',opts);
-//                     console.log(jqXHR);
-//                     // target.html(jqXHR.responseText);
-
-//                 }
-
-//             }
-//         });
-
-//     },
 
 //     saveModules: function( e ){
 
