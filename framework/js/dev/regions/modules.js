@@ -41,6 +41,8 @@ ADF.ModulesRegion = ADF.Region.extend({
 
         var modulesRegion = this;
         var modulesView = modulesRegion.modulesView;
+        var ajaxData = {};
+        var defaultObj = {};
 
         if( xhrJson.success === true ){
 
@@ -57,9 +59,9 @@ ADF.ModulesRegion = ADF.Region.extend({
             if( xhrJson.data.hasOwnProperty('fields') ){
 
                 if( settings.emptyCollections === false ){
-                    modulesRegion.fieldsCollection.add(xhrJson.data.fields);
+                    modulesView.fieldsCollection.add(xhrJson.data.fields);
                 }else{
-                    modulesRegion.fieldsCollection.reset(xhrJson.data.fields);
+                    modulesView.fieldsCollection.reset(xhrJson.data.fields);
                 }
 
             }
@@ -72,6 +74,23 @@ ADF.ModulesRegion = ADF.Region.extend({
                     modulesView.collection.reset(xhrJson.data.records);
                 }
 
+            }
+
+            if( settings.data && settings.data.adfSerializedData ){
+                ajaxData = JSON.parse(settings.data.adfSerializedData);            
+
+                _.each(modulesView.fieldsCollection.models,function( fieldModel ){
+                    defaultObj = _.find(ajaxData,function(adfRecord){
+                        return adfRecord['field_code'] === fieldModel.get('name');
+                    })
+                    if( !_.isUndefined( defaultObj ) ){
+                        console.log('in here');
+                        fieldModel.set('currentValue',defaultObj.data_value);
+                        console.log( 'new current value',fieldModel.get('currentValue') );
+                    }
+                    // console.log(fieldModel.get('currentValue'),defaultObj.data_value);
+                    console.log(fieldModel.get('currentValue'));
+                },this);
             }
 
             // manually call render for some reason

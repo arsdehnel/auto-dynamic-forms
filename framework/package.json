@@ -14,9 +14,10 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-notify": "^0.4.1",
     "grunt-php-set-constant": "0.0.15",
-    "grunt-sass": "^0.17.0",
+    "grunt-sass": "^0.18.0",
     "grunt-svgstore": "^0.3.0",
     "jshint": "^2.6.0",
-    "load-grunt-tasks": "^0.6.0"
+    "load-grunt-tasks": "^0.6.0",
+    "node-sass": "^2.0.1"
   }
 }

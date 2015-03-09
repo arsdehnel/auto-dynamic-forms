@@ -20,8 +20,16 @@ module.exports = function(grunt) {
             buildTargetPath = '/Users/dehnel/cvsroot/client/auto/GlassFishacuraperformance/acuraadmin/src/webroot/v2/';
             localServerPath = '../../../acuraadmin-v2/';
             break;
+        case 'acuraadmin-static':
+            buildTargetPath = '/Volumes/static_content/acuraadmin.biworldwide.com/acuraadmin/v2/';
+            localServerPath = '../../../acuraadmin-v2/';
+            break;
         case 'acnmadmin':
             buildTargetPath = '/Users/dehnel/cvsroot/client/auto/GlassFishACNM/acnmadmin/src/webroot/v2/';
+            localServerPath = '../../../acnmadmin-v2/';
+            break;
+        case 'acnmadmin-static':
+            buildTargetPath = '/Volumes/static_content/kbbadmin.biworldwide.com/kbbadmin/v2/';
             localServerPath = '../../../acnmadmin-v2/';
             break;
         case 'candiadmin':
@@ -243,7 +251,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['svgstore','copy','concat','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
+//    grunt.registerTask('default', ['svgstore','copy','concat','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
+    grunt.registerTask('default', ['svgstore','copy','concat','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
     grunt.registerTask('hbs', ['handlebars','uglify:templates']);
     grunt.registerTask('css', ['sass:dist','autoprefixer']);
     grunt.registerTask('svg', ['svgstore','copy:svg']);
