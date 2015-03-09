@@ -29,8 +29,20 @@
             data-adf-ajax-url="<?php echo $urls[JSON_SOURCE]['grid']; ?>"></div>
 
     </fieldset>
-    <fieldset class="layout-grid-6 hide" id="job-submission-work">
-    </div>
+    <fieldset class="layout-grid-6 hide" id="job-submission-work" data-adf-ajax-onshow-dependent-region-id="job-submission-history" data-adf-ajax-onshow-dependent-region-data-fields="prcs_mstr_id">
+    </fieldset>
+</div>
+<div class="row">
+    <fieldset
+        class="layout-grid-12 hide"
+        <legend>History</legend>
+        <div
+            class="adf-region"
+            id="job-submission-history"
+            data-adf-region-type="grid"
+            data-adf-ajax-url="<?php echo $urls[JSON_SOURCE]['grid']; ?>">
+        </div>
+    </fieldset>
 </div>
 <?php
     include('../../_footer.php');

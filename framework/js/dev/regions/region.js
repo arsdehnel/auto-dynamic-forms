@@ -23,6 +23,10 @@ ADF.Region = Marionette.Region.extend({
             }
         }
 
+        if(  this.options.adfAjaxOnshowDependentRegion ){
+            console.log('load '+this.$el.attr('data-adf-ajax-onshow-dependent-region-id')+' with data from '+this.$el.attr('data-adf-ajax-onshow-dependent-region-data-fields'));
+        }
+
         // this onShowData is meant to be used just for java passing data into the ADF request
         // and should NOT be used for calls within the ADF application code
         var onShowData = this.$el.find(':input[data-adf-onshow-data=true]').serializeObject();
