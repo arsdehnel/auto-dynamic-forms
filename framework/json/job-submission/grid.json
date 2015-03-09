@@ -1340,8 +1340,12 @@
                 {
                     "name": "adf-region-label",
                     "value": "Run Your Job"
+                },
+                {
+                    "name": "adf-ajax-onshow-dependent-region",
+                    "value": "true"
                 }
-                ]
+            ]
           }
         ],
         "dataAttributes": []

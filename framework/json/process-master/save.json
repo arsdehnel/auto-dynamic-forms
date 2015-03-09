@@ -5,5 +5,20 @@
     "success" : true,
     "message" : "Process master saved",
     "errors" : [],
-    "data" : {}
+    "data" : {
+        "id": 123,
+        "PRCS_MSTR_ID": 456,
+        "APPLICATION": "CORE",
+        "PRCS_NAME": "PRC_PARTS_INVCE_DATA_LOAD",
+        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_DATA_LOAD",
+        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_DATA_LOAD",
+        "JS_READ_ORDER": 3,
+        "STATUS_CODE": "A",
+        "DATE_CREATED": "02-03-2015 15:17:33",
+        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+        "DATE_MODIFIED": "02-09-2015 08:52:29",
+        "MODIFIED_BY": "PEDERSOZ",
+        "RETURN_CODE_DTL": "4 return codes setup",
+        "EMAIL_DIST": "34 email messages setup with 8 total recipients"
+    }
 }
