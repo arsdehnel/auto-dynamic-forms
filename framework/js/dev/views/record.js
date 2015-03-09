@@ -31,9 +31,9 @@ ADF.RecordView = Marionette.CompositeView.extend({
         this.render();
     },
     assignCollectionValues: function( initialAssignment ) {
-        console.log('this model',this.model);
+        // console.log('this model',this.model);
         this.collection.each(function(model){
-            console.log(model.get('name'),this.model.get(model.get('name')));
+            // console.log(model.get('name'),this.model.get(model.get('name')));
             if( initialAssignment ){
                 model.set('regionName',this.regionName);
             }

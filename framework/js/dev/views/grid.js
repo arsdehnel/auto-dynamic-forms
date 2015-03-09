@@ -147,6 +147,8 @@ ADF.GridView = Marionette.CompositeView.extend({
 
         for( var i = 0; file = files[i]; i++ ) {
 
+            console.log('in the file loop');
+
             var xhr = new XMLHttpRequest();
 
             if (xhr.upload && file.size <= 30000000) {
