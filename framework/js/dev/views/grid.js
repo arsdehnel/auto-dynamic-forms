@@ -31,7 +31,7 @@ ADF.GridView = Marionette.CompositeView.extend({
         var gridView = this;
         var region = adf.page.getRegion(gridView.regionName);
         gridView.$el.html(gridView.template({}));
-        this.uploadUrl = region.$el.attr('data-grid-upload-url');
+        this.uploadUrl = region.$el.find('.adf-grid-actions [data-action-type=upload]').attr('href');
 
         gridView.headersView = new ADF.HeadersView({
             el: gridView.$el.find('thead')[0],

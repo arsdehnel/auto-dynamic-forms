@@ -2002,11 +2002,11 @@
       },
       {
         "tooltipText": null,
-        "label": "Add 5 Records",
-        "type": "grid-action",
+        "label": "Upload",
+        "type": "upload",
         "wrapClass": null,
         "actionClass": null,
-        "url": "#",
+        "url": "../../json/common/upload.json",
         "pageDetailId": 22,
         "fieldPageDetailId": 0,
         "dataAttributes": [
