@@ -1,6 +1,7 @@
 /*global
 ADF,
 Backbone,
+adf,
 $
 */
 // TODO: get a prototype setup for all dropdowns to work
@@ -54,6 +55,10 @@ ADF.GridActionsView = Backbone.Marionette.CompositeView.extend({
             childView.setElement('#'+gridActions.regionName+'Action--'+model.get('id'));
 
         });
+
+        var region = adf.page.getRegion(this.regionName);
+        var gridView = region.gridView;
+        gridView.uploadUrl = region.$el.find('.adf-grid-actions [data-action-type=upload]').attr('href');
 
         return this;
     },
