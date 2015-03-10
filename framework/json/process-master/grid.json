@@ -2006,13 +2006,13 @@
         "type": "upload",
         "wrapClass": null,
         "actionClass": null,
-        "url": "../../json/common/upload.json",
+        "href": "../../json/common/upload.json",
         "pageDetailId": 22,
         "fieldPageDetailId": 0,
         "dataAttributes": [
           {
             "name": "action-type",
-            "value": "grid-record-add",
+            "value": "upload",
             "pageDetailId": 22
           },
           {
