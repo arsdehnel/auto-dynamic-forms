@@ -1,18 +1,14 @@
-// GM
-// $primary_color : #223366;
+/*
+    __                                        _       __    __
+   / /_  ____ _________     _   ______ ______(_)___ _/ /_  / /__  _____
+  / __ \/ __ `/ ___/ _ \   | | / / __ `/ ___/ / __ `/ __ \/ / _ \/ ___/
+ / /_/ / /_/ (__  )  __/   | |/ / /_/ / /  / / /_/ / /_/ / /  __(__  )
+/_.___/\__,_/____/\___/    |___/\__,_/_/  /_/\__,_/_.___/_/\___/____/
 
-// Acura
-$primary_color : #000000;
-$qa-indicator-color: rgba(0,255,0,.8);
 
-// Nissan
-$primary_color : #009900;
-$qa-indicator-color: magenta;
+ these are system-wide variables and normally will NOT be overridden by skins
 
-// KBB
-// $primary_color : #336699;
-// $qa-indicator-color: magenta;
-
+*/
 $btn-bg : #ddd;
 
 $header-bg-color: #B7410E;
@@ -35,3 +31,19 @@ $message-info: #336699;
 $message-debug: purple;
 $message-warn: mix( black, gold, 50% );
 $message-error: #cc0000;
+
+
+/*
+
+         __   _                           _       __    __
+   _____/ /__(_)___     _   ______ ______(_)___ _/ /_  / /__  _____
+  / ___/ //_/ / __ \   | | / / __ `/ ___/ / __ `/ __ \/ / _ \/ ___/
+ (__  ) ,< / / / / /   | |/ / /_/ / /  / / /_/ / /_/ / /  __(__  )
+/____/_/|_/_/_/ /_/    |___/\__,_/_/  /_/\__,_/_.___/_/\___/____/
+
+
+  DEFAULTS THAT SHOULD BE OVERRIDDEN BY THE CURRENT SKIN
+
+*/
+$primary_color : #000000;
+$qa-indicator-color: orange;
