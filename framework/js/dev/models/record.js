@@ -87,7 +87,7 @@ ADF.RecordModel = Backbone.Model.extend({
             // now that we're in our own custom code we'll have to do our slightly odd JSON creation
             // where we create a three attribute object for each attribute
             // and put them into an array and then submit that
-            console.log( options.fieldsCollection, this, ADF.utils.dataSerialize( options.fieldsCollection, this ) );
+            // console.log( options.fieldsCollection, this, ADF.utils.dataSerialize( options.fieldsCollection, this ) );
             dataArray = ADF.utils.dataSerialize( options.fieldsCollection, recordModel );
             params.data = {adfSerializedData:JSON.stringify(dataArray)};
 

@@ -9,46 +9,38 @@ module.exports = function(grunt) {
     var client = grunt.option('client');
     var buildTargetPath;
     var localServerPath;
+    var clients = {
+        'dev' : {
+            buildTargetPath : '../dev/',
+            localServerPath : '../../../dev/'
+        },
+        'acuraadmin' : {
+            buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishacuraperformance/acuraadmin/src/webroot/v2/',
+            localServerPath : '../../../acuraadmin-v2/'
+        },
+        'acnmadmin' : {
+            buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishACNM/acnmadmin/src/webroot/v2/',
+            localServerPath : '../../../acnmadmin-v2/'
+        },
+        'candiadmin' : {
+            buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishNissan/candiadmin/src/webroot/v2/',
+            localServerPath : '../../../candiadmin-v2/'
+        },
+        'candiadmin-static' : {
+            buildTargetPath : '/Volumes/static_content/candiadmin.biworldwide.com/candiadmin/v2/',
+            localServerPath : '../../../candiadmin-v2/'
+        }
+    };
 
     if( !client ){
         grunt.fail.fatal('no client set');
     }
 
-    switch( client ) {
+    buildTargetPath = clients[client].buildTargetPath;
+    localServerPath = clients[client].localServerPath;
 
-        case 'acuraadmin':
-            buildTargetPath = '/Users/dehnel/cvsroot/client/auto/GlassFishacuraperformance/acuraadmin/src/webroot/v2/';
-            localServerPath = '../../../acuraadmin-v2/';
-            break;
-        case 'acuraadmin-static':
-            buildTargetPath = '/Volumes/static_content/acuraadmin.biworldwide.com/acuraadmin/v2/';
-            localServerPath = '../../../acuraadmin-v2/';
-            break;
-        case 'acnmadmin':
-            buildTargetPath = '/Users/dehnel/cvsroot/client/auto/GlassFishACNM/acnmadmin/src/webroot/v2/';
-            localServerPath = '../../../acnmadmin-v2/';
-            break;
-        case 'acnmadmin-static':
-            buildTargetPath = '/Volumes/static_content/kbbadmin.biworldwide.com/kbbadmin/v2/';
-            localServerPath = '../../../acnmadmin-v2/';
-            break;
-        case 'candiadmin':
-            buildTargetPath = '/Users/dehnel/cvsroot/client/auto/GlassFishNissan/candiadmin/src/webroot/v2/';
-            localServerPath = '../../../candiadmin-v2/';
-            break;
-        case 'candiadmin-static':
-            buildTargetPath = '/Volumes/static_content/candiadmin.biworldwide.com/candiadmin/v2/';
-            localServerPath = '../../../candiadmin-v2/';
-            break;
-        case 'client':
-            buildTargetPath = '../client/';
-            localServerPath = '../../../client/';
-            break;
-
-    }
-
-    if( !buildTargetPath ){
-        grunt.fail.fatal('no buildTargetPath set');
+    if( !buildTargetPath || !localServerPath ){
+        grunt.fail.fatal('no buildTargetPath or localServerPath set');
     }
 
     // Project configuration.
@@ -62,7 +54,7 @@ module.exports = function(grunt) {
             svg: {
                 src: ['svg/*.svg','svg/**/*.svg'],
                 dest: buildTargetPath+'/'
-            }
+            },
         },
         svgstore: {
             options: {
@@ -216,7 +208,7 @@ module.exports = function(grunt) {
                 tasks: ['scripts-plugins']
             },
             scss: {
-                files: ['scss/partials/*.scss','scss/*.scss'],
+                files: ['scss/partials/*.scss','scss/skins/*.scss','scss/*.scss'],
                 tasks: ['css']
             },
             hbs: {
@@ -226,10 +218,6 @@ module.exports = function(grunt) {
             svg: {
                 files: ['svg/symbols/*.svg'],
                 tasks: ['svg']
-            },
-            config: {
-                files: ['Gruntfile.js'],
-                tasks: ['default']
             },
             options: {
                 livereload: 12349
@@ -249,17 +237,57 @@ module.exports = function(grunt) {
                     message: 'SASS and Uglify finished running', //required
                 }
             }
-        }
+        },
     });
 
-//    grunt.registerTask('default', ['svgstore','copy','concat','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
-    grunt.registerTask('default', ['svgstore','copy','concat','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
+    grunt.registerTask('skin', function () {
+        if( grunt.file.exists('scss/skin.scss') ){
+            grunt.file.delete('scss/skin.scss');
+        }
+        grunt.file.write('scss/skin.scss', '@import "skins/' + (client.split(/\s*\-\s*/g))[0] + '";');
+    });
+
+    /*
+             __             ___                       __       __       __             __
+        ____/ /__ _   __   ( _ )      _      ______ _/ /______/ /_     / /_____ ______/ /_______
+       / __  / _ \ | / /  / __ \/|   | | /| / / __ `/ __/ ___/ __ \   / __/ __ `/ ___/ //_/ ___/
+      / /_/ /  __/ |/ /  / /_/  <    | |/ |/ / /_/ / /_/ /__/ / / /  / /_/ /_/ (__  ) ,< (__  )
+      \__,_/\___/|___/   \____/\/    |__/|__/\__,_/\__/\___/_/ /_/   \__/\__,_/____/_/|_/____/
+
+    */
+    grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
     grunt.registerTask('hbs', ['handlebars','uglify:templates']);
-    grunt.registerTask('css', ['sass:dist','autoprefixer']);
+    grunt.registerTask('css', ['skin','sass:dist','autoprefixer']);
     grunt.registerTask('svg', ['svgstore','copy:svg']);
     grunt.registerTask('scripts-dev', ['concat:dev']);
     grunt.registerTask('scripts-lib', ['concat:lib']);
     grunt.registerTask('scripts-plugins', ['concat:plugins']);
     grunt.registerTask('scripts-tests', ['concat:tests']);
+
+    /*
+             ___      __       _ __          __  _                __             __
+        ____/ (_)____/ /______(_) /_  __  __/ /_(_)___  ____     / /_____ ______/ /_______
+       / __  / / ___/ __/ ___/ / __ \/ / / / __/ / __ \/ __ \   / __/ __ `/ ___/ //_/ ___/
+      / /_/ / (__  ) /_/ /  / / /_/ / /_/ / /_/ / /_/ / / / /  / /_/ /_/ (__  ) ,< (__  )
+      \__,_/_/____/\__/_/  /_/_.___/\__,_/\__/_/\____/_/ /_/   \__/\__,_/____/_/|_/____/
+
+    */
+    grunt.registerTask('dist-js', function(){
+        var distFiles = [
+            'adf.min.js',
+            'hbsTemplates.min.js',
+            'lib.min.js',
+            'plugins.min.js'
+        ];
+        for (var client in clients) {
+            if( client != 'dev' ){
+                var clientObj = clients[client];
+                for( var fileIdx in distFiles ){
+                    console.log(client+': '+clientObj.buildTargetPath+'js/'+distFiles[fileIdx]);
+                }
+            }
+        }
+    });
+
 
 };
