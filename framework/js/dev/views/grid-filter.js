@@ -8,6 +8,7 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
     childView: ADF.GridFilterItemView,
     childViewContainer: '.dropdown-menu',
     collection: new Backbone.Collection(),
+    model: new ADF.DropdownMenuModel(),
     initialize: function( options ){
         ADF.utils.message('log','GridFilterView Initialized', options);
 

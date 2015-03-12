@@ -127,9 +127,10 @@ module.exports = function(grunt) {
                     'js/dev/views/form-action.js',
                     'js/dev/views/field.js',
                     'js/dev/views/form.js',
+                    'js/dev/views/record.js',                    // has to be before module and gridRow
                     'js/dev/views/module.js',
                     'js/dev/views/modules.js',
-                    'js/dev/views/record.js',                    // has to be before grid
+                    'js/dev/views/grid-row.js',
                     'js/dev/views/grid.js',
                     'js/dev/views/header.js',
                     'js/dev/views/headers.js',

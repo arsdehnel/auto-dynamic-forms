@@ -12,8 +12,8 @@ ADF.GridView = Marionette.CompositeView.extend({
 
     className: 'adf-grid',
     tagName: 'table',
-    childView: ADF.RecordView,
-    childViewClass: ADF.RecordView,
+    childView: ADF.GridRowView,
+    childViewClass: ADF.GridRowView,
     childViewContainer: 'tbody',
     childViewOptions : function () {
         return { regionName: this.regionName };
@@ -25,7 +25,7 @@ ADF.GridView = Marionette.CompositeView.extend({
     },
     template: ADF.templates.gridTable,
     initialize: function( options ) {
-        ADF.utils.message('log','GridView Initialized', options );
+        ADF.utils.message('debug','GridView Initialized', options );
         this.regionName = options.regionName;
         this.filters = new Backbone.Collection();
         var gridView = this;

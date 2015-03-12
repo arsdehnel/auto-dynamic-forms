@@ -84,12 +84,8 @@ ADF.ModulesRegion = ADF.Region.extend({
                         return adfRecord['field_code'] === fieldModel.get('name');
                     })
                     if( !_.isUndefined( defaultObj ) ){
-                        console.log('in here');
                         fieldModel.set('currentValue',defaultObj.data_value);
-                        console.log( 'new current value',fieldModel.get('currentValue') );
                     }
-                    // console.log(fieldModel.get('currentValue'),defaultObj.data_value);
-                    console.log(fieldModel.get('currentValue'));
                 },this);
             }
 

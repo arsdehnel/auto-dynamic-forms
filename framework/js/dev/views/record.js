@@ -6,23 +6,18 @@ $,
 _
 */
 ADF.RecordView = Marionette.CompositeView.extend({
-    template: ADF.templates.gridRow,
-    tagName: 'tr',
     className: 'adf-record',
-    childView: ADF.CellView,
-    childViewClass: ADF.CellView,
     events: {
         'change :input'                 : 'inputChange',
-        'click .btn'                    : 'handleAction',
-        'click .adf-grid-overlay-value' : 'showOverlayEditor'
+        'click .btn'                    : 'handleAction'
     },
     initialize: function( options ) {
-        ADF.utils.message('log','RecordView Initialized', options );
+        ADF.utils.message('debug','RecordView Initialized', options );
         this.region = adf.page.getRegion(options.regionName);
         this.regionName = this.region.options.regionName;
         this.model.set('regionName',this.regionName);
-        this.collection = $.extend({},this.region.fieldsCollection);
-        this.assignCollectionValues(true);
+        this.collection = new ADF.FieldsCollection(this.region.fieldsCollection.toJSON());
+        this.assignCollectionValuesFromModel(true);
         this.listenTo(this.model,'all', this.recordEvent);
     },
     renderSelf: function() {
@@ -30,14 +25,24 @@ ADF.RecordView = Marionette.CompositeView.extend({
         // TODO: make this actually work for both rendering on initial load (as child) and as standalone record (on change)
         this.render();
     },
-    assignCollectionValues: function( initialAssignment ) {
-        console.log('this model',this.model);
+    assignCollectionValuesFromModel: function( initialAssignment ) {
+        // console.log('this model',this.model);
         this.collection.each(function(model){
-            console.log(model.get('name'),this.model.get(model.get('name')));
+            // console.log(model.get('name'),this.model.get(model.get('name')));
             if( initialAssignment ){
                 model.set('regionName',this.regionName);
             }
-            model.set('currentValue',this.model.get(model.get('name')));
+            // only set the currentValue to the model's value if the model has a value
+            // because otherwise the currentValue will still have the default values from the fieldsCollection
+            if( this.model.get(model.get('name')) ){
+                model.set('currentValue',this.model.get(model.get('name')));                
+            }else{
+                // now we see if there is a "default" value in the fieldsCollection and use that (if there is)
+                if( model.get('currentValue') ){
+                    console.log('no value provided in current model for '+model.get('name')+' so we are keeping the fieldsColleciton value of '+model.get('currentValue'));
+                    this.model.set(model.get('name'),model.get('currentValue'));
+                }
+            }
         },this);
     },
     render: function() {
@@ -56,7 +61,7 @@ ADF.RecordView = Marionette.CompositeView.extend({
             // this.addChild(childView);
             // console.debug(childView.render());
             cellsString += childView.render();
-            // this.addChild(childView);
+            // this.addChild(childView);    
 
         },this);
 
@@ -151,7 +156,7 @@ ADF.RecordView = Marionette.CompositeView.extend({
                     ADF.utils.message('debug','Record sync completed successfully',model,response,options);
 
                     if( response.success ){
-                        this.assignCollectionValues();
+                        this.assignCollectionValuesFromModel();
                         this.render();
                         // this.$el.removeClass('updated added error').addClass('current');
                     }else{
@@ -176,73 +181,3 @@ ADF.RecordView = Marionette.CompositeView.extend({
     }
 
 });
-
-//     events: {
-//         // ACTIONS
-//         'click .btn-save'                     : 'save'
-//     },
-
-//     createTplObject: function( args ){
-
-//         var record = this;
-//         var fieldsArray = args.fields;
-//         var $target = args.target;
-//         var createRow = ( args.hasOwnProperty('createRow') && args.createRow );
-//         var cellObj = {};
-//         var recordObj = {}
-//         recordObj.cells = new Array();
-
-//         for ( var i = 0; i < fieldsArray.length; i++ ) {
-
-//             cellObj = fieldsArray[i];
-//             cellObj.set('currentValue',record.get(fieldsArray[i].get('name')));
-//             cellObj.set('inputField',cellObj.render());
-
-//             recordObj.cells.push({'html': autoAdmin.templates.gridCell( cellObj.toJSON() )});
-
-//         }
-
-//         //make sure we have an ID value, even for new rows
-//         if( record.get('id') ){
-//             recordObj.id = record.get('id');
-//             recordObj.rowClass = 'current';
-//         }else{
-//             recordObj.id = 'a' + Math.round( Math.random() * 10000000 );
-//             rowClass = 'added';
-//         }
-
-//         return recordObj;
-
-//     },
-
-//     render: function( args ){
-
-//         var tplObject = this.createTplObject( args );
-
-//         alert('not done');
-
-//         // TODO handle create row argument, etc.
-
-//         // if( createRow ){
-
-//     //         if( !args.hasOwnProperty('adjSibObj') || args.adjSibObj === false ){
-//     //             $target.append( autoAdmin.render.hbsTemplate( 'autoAdminGridRow', rowObj ) );
-//     //         }else{
-//     //             adjSibObj.after( autoAdmin.render.hbsTemplate( 'autoAdminGridRow', rowObj ) );
-//     //         }
-
-//         // }else{
-
-//         //      $target.find('tbody tr#'+recordObj.id).replaceWith(autoAdmin.templates.gridRow( rowObj ) );
-
-//         // }
-
-//     //     $('#'+dataObj.id).find('.select2').each(function(){
-//     //         autoAdmin.render.renderSelect2({
-//     //             select2Obj : $(this)
-//     //         })
-//     //     });
-
-//     },
-
-// });

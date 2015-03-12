@@ -1,9 +1,6 @@
 /*global
 ADF,
-<<<<<<< Updated upstream
-=======
 Backbone,
->>>>>>> Stashed changes
 $,
 _
 */
