@@ -1,34 +1,108 @@
-<?php
-	sleep(1);
-?>
 {
-    "success" : true,
-    "message" : "Data lookup successful.",
-    "errors" : [],
-    "data" : {
-        "fields" : [
+  "authenticated": true,
+  "success": true,
+  "message": null,
+  "methodName": null,
+  "data": {
+    "fields": [
+      {
+        "fldMstrId": 1,
+        "detailId": 26,
+        "name": "APPLICATION",
+        "type": "SELECT2",
+        "label": "Application",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 100,
+        "requiredInd": "N",
+        "fieldPriority": 1,
+        "value": null,
+        "data": [
           {
-            "fldMstrId" : "1",
-            "name" : "application",
-            "label" : "Application",
-            "type" : "select2",
-            "dataAttributes" : [
-                {
-                    "name" : "adf-submit-on-change",
-                    "value" : "true"
-                }
-            ],
-            "data" : [
-                {
-                    "value" : "CORE",
-                    "label" : "Core System"
-                },
-                {
-                    "value" : "N10",
-                    "label" : "Nissan 10"
-                }
-            ]
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "ADMIN_FORMS",
+            "label": "Admin Forms",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "CMN_UTIL",
+            "label": "Common Utilities",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "CORE",
+            "label": "Core",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "VIN_APPL",
+            "label": "FlexCash / VIN Application",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "OBJ",
+            "label": "Objective Programs",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "PGM_ADM",
+            "label": "Program Administrator (aka ZIP)",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "REPORT_BUILDER",
+            "label": "Report Builder",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "SPIN",
+            "label": "Spins",
+            "selectedInd": "N"
+          }
+        ],
+        "actions": [],
+        "dataAttributes": [
+          {
+            "detailId": 26,
+            "name": "adf-dependent-field-lkup-on-change",
+            "value": "true"
+          },
+          {
+            "detailId": 26,
+            "name": "adf-ajax-child-fields",
+            "value": "page_code"
+          },
+          {
+            "detailId": 26,
+            "name": "adf-dependent-field-lkup-url",
+            "value": "service/common/get-child-fields.action?pageCode=FORM_BUILDER_CURRENT_FILTERS"
           }
         ]
-    }
+      }
+    ],
+    "records": [],
+    "actions": []
+  },
+  "errors": null,
+  "hasMessage": true
 }

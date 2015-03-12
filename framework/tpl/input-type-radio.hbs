@@ -3,8 +3,12 @@
     {{#each dataAttributes}}
         data-{{name}}="{{value}}"
     {{/each}}
+    class="{{fieldClass}}"
     >
     {{#each data}}
-        <input type="radio" name="{{../name}}" value="{{this.value}}" {{optionSelected value ../currentValue}}>{{this.label}}
+        <div class="adf-radio-wrapper">
+        	<input type="radio" id="adf-radio-{{../name}}-{{this.value}}" name="{{../name}}" value="{{this.value}}" {{optionSelected value ../currentValue}}>
+            <label for="adf-checkbox-{{../name}}-{{this.value}}">{{this.label}}</label>
+        </div>        
     {{/each}}
 </div>

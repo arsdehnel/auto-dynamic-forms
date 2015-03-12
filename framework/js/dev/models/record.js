@@ -35,6 +35,16 @@ ADF.RecordModel = Backbone.Model.extend({
 
     },
 
+    parse: function( response, options ){
+
+        if( response.success ){
+            return ADF.utils.objPropToLower( response.data );
+        }else{
+            return response;
+        }
+
+    },
+
     save: function( attrs, options ) {
 
         var attrs, xhr, attributes = this.attributes;
@@ -63,6 +73,10 @@ ADF.RecordModel = Backbone.Model.extend({
                     return false;
                 }
                 if (success) success(recordModel, resp, options);
+
+                // the following line is NOT from the original sync
+                recordModel.set('rowClass','current');
+
                 recordModel.trigger('sync', recordModel, resp, options);
             };
 

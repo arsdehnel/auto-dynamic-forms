@@ -4,3 +4,4 @@ css
 grunt-work
 client/js
 framework/constants.php
+.DS_Store
