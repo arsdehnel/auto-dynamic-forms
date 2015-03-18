@@ -1,6 +1,7 @@
 /*global
 Backbone,
 Marionette,
+Handlebars,
 $
 */
 // TODO: svg rendering
@@ -20,6 +21,10 @@ adf.on('start', function(options){
         // contentType: 'application/json'
     });
     adf.page = new ADF.PageLayoutView({el:'.adf-page'});
+    $('.adf-template').each(function(){
+      var $tmplt = $(this);
+      ADF.templates[ADF.utils.camelize($tmplt.attr('id'))] = Handlebars.compile($tmplt.html());
+    });
 });
 
 window.onerror = function( message, file, lineNumber ) {
