@@ -21,7 +21,8 @@ ADF.GridView = Marionette.CompositeView.extend({
     events : {
         'dragover'                        : 'dragHandle',
         'dragleave'                       : 'dragHandle',
-        'drop'                            : 'transferStart'
+        'drop'                            : 'transferStart',
+        'click thead th .sort-trigger'    : 'sortGrid'
     },
     template: ADF.templates.gridTable,
     initialize: function( options ) {
@@ -53,6 +54,8 @@ ADF.GridView = Marionette.CompositeView.extend({
         this.listenTo(this.filters,'add',this.filtersQueue);
         this.listenTo(this.filters,'remove',this.filtersQueue);
 
+        this.listenTo(this.collection,'sort',this.renderBody);
+
         this._super();
 
     },
@@ -62,6 +65,10 @@ ADF.GridView = Marionette.CompositeView.extend({
         gridView.headersView.render();
         gridView.columnSelect.render();
         gridView.gridActions.render();
+        gridView.renderBody();
+    },
+    renderBody: function() {
+        var gridView = this;
         var childContainer = this.$el.find(this.childViewContainer);
         childContainer.empty();
         gridView.collection.each(function(recordModel) {
@@ -79,8 +86,6 @@ ADF.GridView = Marionette.CompositeView.extend({
         },this);
 
         ADF.utils.select2.refresh();
-
-        // console.log(gridView.children);
     },
     filtersQueue: function(model) {
 
@@ -242,6 +247,36 @@ ADF.GridView = Marionette.CompositeView.extend({
             e.preventDefault();
             ADF.utils.message('error','File upload aborted');
         }
+
+    },
+
+    sortGrid: function( e ) {
+
+        e.preventDefault();
+
+        var $triggerObj = $(e.currentTarget),
+            columnName = $triggerObj.closest('th').attr('data-column-name'),
+            gridSortAttribute = this.collection.sortAttribute;
+
+        // Toggle sort if the current column is sorted
+        if (columnName === gridSortAttribute) {
+            this.collection.sortDirection *= -1;
+        } else {
+            this.collection.sortDirection = 1;
+        }
+
+        // Adjust the indicators.  Reset everything to hide the indicator
+        $triggerObj.closest('thead').find('.sort-trigger').removeClass('sort-up sort-down');
+
+        // Now show the correct icon on the correct column
+        if (this.collection.sortDirection == 1) {
+            $triggerObj.addClass('sort-up');
+        } else {
+            $triggerObj.addClass('sort-down');
+        }
+
+        // Now sort the collection
+        this.collection.sortRecords(columnName);
 
     }
 
