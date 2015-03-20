@@ -28,6 +28,7 @@ ADF.HeaderView = Backbone.Marionette.CompositeView.extend({
         // TODO: use hbs template rather than all this silly JS
         this.$el
             .attr('data-column-select-priority',this.model.get('fieldPriority'))
+            .attr('data-column-name',this.model.get('name'))
             .attr('id',this.model.get('regionName') + '--' + this.model.get('name'))
             .attr('data-column-index',this.model.get('colIndex'))
             .addClass(this.model.get('wrapClass'));

@@ -1,6 +1,7 @@
 /*global
 Backbone,
 Marionette,
+Handlebars,
 $
 */
 // TODO: svg rendering
@@ -10,6 +11,12 @@ var ADF = ADF||{};
 ADF.App = Marionette.Application.extend({
   initialize: function(options) {
      ADF.utils.message('log','App Initialized', options);
+  },
+  importPageTemplates: function() {
+    $('.adf-template').each(function(){
+      var $tmplt = $(this);
+      ADF.templates[ADF.utils.camelize($tmplt.attr('id'))] = Handlebars.compile($tmplt.html());
+    });
   }
 });
 
@@ -20,6 +27,7 @@ adf.on('start', function(options){
         // contentType: 'application/json'
     });
     adf.page = new ADF.PageLayoutView({el:'.adf-page'});
+    this.importPageTemplates();
 });
 
 window.onerror = function( message, file, lineNumber ) {
