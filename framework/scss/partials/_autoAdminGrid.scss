@@ -81,6 +81,15 @@
       &.has-filter {
         padding-right: 2.5em;
       }
+      .sort-trigger {
+        color: white;
+        &.sort-up {
+          color: orange;
+        }
+        &.sort-down {
+          color: lime;
+        }
+      }
       background: $primary_color;
       color: white;
       position: relative;
