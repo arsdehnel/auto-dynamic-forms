@@ -28,7 +28,9 @@ ADF.GridView = Marionette.CompositeView.extend({
     initialize: function( options ) {
         ADF.utils.message('debug','GridView Initialized', options );
         this.regionName = options.regionName;
+        this.filteredRecords = new ADF.RecordsCollection(this.collection.models);
         this.filters = new Backbone.Collection();
+        this.filterQueue = new Backbone.Collection();
         var gridView = this;
         var region = adf.page.getRegion(gridView.regionName);
         gridView.$el.html(gridView.template({}));
@@ -51,8 +53,15 @@ ADF.GridView = Marionette.CompositeView.extend({
             regionName: gridView.regionName
         });
 
-        this.listenTo(this.filters,'add',this.filtersQueue);
-        this.listenTo(this.filters,'remove',this.filtersQueue);
+        // this.listenTo(this.filterQueue,'add',this.filterQueueAdd);
+        // this.listenTo(this.filterQueue,'remove',this.filterQueueRemove);
+        // this.listenTo(this.filterQueue,'reset',this.filterQueueReset);
+
+        this.stopListening(this.collection);
+
+        this.listenTo(this.collection,'add',this.refreshFilteredRecords);
+        this.listenTo(this.collection,'remove',this.refreshFilteredRecords);
+        this.listenTo(this.collection,'reset',this.refreshFilteredRecords);
 
         this.listenTo(this.collection,'sort',this.renderBody);
 
@@ -60,7 +69,14 @@ ADF.GridView = Marionette.CompositeView.extend({
 
     },
     render: function() {
+<<<<<<< HEAD
         // console.log(this.filters);
+=======
+        // do nothing here because this would render the initial collection (by default in Marionette) and we want to render the filteredRecords collection
+    },
+    renderFilteredRecords: function() {
+        console.log('records rerendered',this.filteredRecords,this.filters);
+>>>>>>> 63eda22905cbd6043f2b25e56aa9bbc6bca81d21
         var gridView = this;
         gridView.headersView.render();
         gridView.columnSelect.render();
@@ -71,7 +87,8 @@ ADF.GridView = Marionette.CompositeView.extend({
         var gridView = this;
         var childContainer = this.$el.find(this.childViewContainer);
         childContainer.empty();
-        gridView.collection.each(function(recordModel) {
+        // gridView.collection.each(function(recordModel) {
+        gridView.filteredRecords.each(function(recordModel){
 
             // this works but we end up with the wrong rendering
             // something about the record render() not returning 'this' is causing a problem
@@ -87,15 +104,58 @@ ADF.GridView = Marionette.CompositeView.extend({
 
         ADF.utils.select2.refresh();
     },
-    filtersQueue: function(model) {
 
-        // the first time we add to the queue we just start with whatever we have already applied
-        if( !this.filtersQueued ){
-            this.filtersQueued = this.filters;
+    // filterQueueProcess: function( method, model, options ) {
+
+    //     // the first time we add to the queue we just start with whatever we have already applied
+    //     if( !this.filtersQueued ){
+    //         this.filtersQueued = this.filters;
+    //     }
+
+    //     console.log('filtersQueue',model, options, this.filters, this.filtersQueued);
+
+    //     // this.filtersQueued
+
+    // },
+    // filterQueueAdd: function( model, options ) {
+    //     console.debug('add to filter queue', model, options);
+
+    //     this.filterQueueProcess( 'add', model, options );
+    // },
+    // filterQueueRemove: function( model, options ) {
+    //     this.filterQueueProcess( 'remove', model, options );
+    // },
+    // filterQueueReset: function( model, options ) {
+    //     this.filterQueueProcess( 'reset', model, options );
+    // },
+    refreshFilteredRecords: function() {
+
+        console.log('refreshFilteredRecords', this.filters.length, arguments);
+
+        if( this.filters.length ){
+            console.log('filters to be applied');
+            this.filteredRecords = this.collection;
+        }else{
+            this.filteredRecords = this.collection;
         }
+        // this.filteredRecords.reset(baseCollection.where(this.filters));
+        this.renderFilteredRecords();
 
-        // this.filtersQueued
+    },
+    applyFilters: function() {
 
+        this.filters.add(this.filterQueue.models);
+        this.refreshFilteredRecords();
+        this.filterQueue.reset();
+
+    },
+    clearFilters: function() {
+
+        this.filters.reset();
+        this.refreshFilteredRecords();
+        this.filterQueue.reset();
+
+<<<<<<< HEAD
     },
     dragHandle: function( e ) {
         this.upload.dragHandle( e );
@@ -113,6 +173,59 @@ ADF.GridView = Marionette.CompositeView.extend({
 
             var region = adf.page.getRegion(gridView.regionName);
             return region.$el.find('.adf-grid-actions [data-action-type=upload]').attr('href');
+=======
+    }
+
+
+});
+
+/*
+
+filters
+
+  - DONE: load initial collection into filtersRecords
+  - DONE: changes to initial collection cause refresh of filteredRecords that takes into account current filters
+  - filter selection changes filtersQueued but NOT gridView.filters
+  - "apply" action moves filters from filtersQueued into gridView.filters and calls refreshFilteredRecords
+  - "cancel" action empties the filteresQueued collection only
+  - "clear" action empties the filtersQueued collection, the gridView.filters collection and then calls the refreshFilteredRecords
+
+*/
+
+
+
+
+
+// autoAdmin.GridView = autoAdmin.PageView.extend({
+
+//     render: function( opts ){
+
+//         var gridView = this;
+//         var $target = opts.target;
+//         var fieldsArray = opts.ajaxView.fieldsColl.models;
+//         var recordsArray = opts.ajaxView.recordsColl.models;
+//         var gridObj = {};
+
+//         gridObj.headers = new Array();
+//         gridObj.colSelectCols = new Array();
+//         gridObj.records = new Array();
+
+//         // COLUMNS
+//         for ( var i = 0; i < fieldsArray.length; i++ ) {
+
+//             fieldsArray[i].set('colIndex',i);
+//             fieldsArray[i].set('gridRow',true);
+
+//             gridObj.headers[i] = { 'html' : autoAdmin.templates.gridHeaderCell( fieldsArray[i].toJSON() ) };
+
+//             if( fieldsArray[i].get('columnSelectPriority') != 0 ){
+
+//                 // TODO: set the checked attribute if this is going to be visible
+
+//                 gridObj.colSelectCols.push({'html' : autoAdmin.templates.dropdownSelectItem( $.extend( fieldsArray[i].toJSON(), {parent:'column-selector'} ) ) });
+
+//             }
+>>>>>>> 63eda22905cbd6043f2b25e56aa9bbc6bca81d21
 
         },
 
