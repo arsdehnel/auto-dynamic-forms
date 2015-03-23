@@ -152,6 +152,9 @@ ADF.utils = {
 
             // TODO: extend this to present errors as modals
             switch( levelObj.displayMethod ){
+                case 'confirm':
+                    confirm(args);
+                    break;
                 case 'messagesWindow':
                     // TODO: handle errors somehow before the adf and adf.page are defined
                     // since we might have an error before the page loads up we'll do this for a bit to see if we can get into the messages window

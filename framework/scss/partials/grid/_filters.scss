@@ -1,0 +1,51 @@
+// for the header cell filters
+.grid-header-filter.dropdown-wrapper{
+    position: absolute;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    width: 2em;
+    right: 0;
+    .dropdown-label{
+        display: none;
+    }
+    .dropdown-toggle{
+        background: rgba( 255, 255, 255, .2 );
+    }
+    .dropdown-inner .dropdown-menu{
+        right: 50%;
+        left: auto;
+        width: 30em;
+        height: 300px;
+        overflow-y: hidden;
+        padding-top: 2em;
+    }
+    .primary-options {
+        margin: 0;
+        padding: 0;
+        overflow-y: scroll;
+        height: 280px;
+        li {
+           list-style: none;
+           padding: 0;
+           margin: 0;
+        }
+    }
+    .dropdown-inner .footer-options {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        background: mix( $primary-color, white, 30% );
+        text-align: right;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid #666;
+        li {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-block;
+        }
+    }
+}
