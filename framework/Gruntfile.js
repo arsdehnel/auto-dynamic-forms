@@ -18,8 +18,16 @@ module.exports = function(grunt) {
             buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishacuraperformance/acuraadmin/src/webroot/v2/',
             localServerPath : '../../../acuraadmin-v2/'
         },
+        'acuraadmin-static' : {
+            buildTargetPath : '/Volumes/static_content/acuraadmin.biworldwide.com/acuraadmin/v2/',
+            localServerPath : '../../../acuraadmin-v2/'
+        },
         'acnmadmin' : {
             buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishACNM/acnmadmin/src/webroot/v2/',
+            localServerPath : '../../../acnmadmin-v2/'
+        },
+        'acnmadmin-static' : {
+            buildTargetPath : '/Volumes/static_content/kbbadmin.biworldwide.com/kbbadmin/v2/',
             localServerPath : '../../../acnmadmin-v2/'
         },
         'candiadmin' : {
@@ -247,14 +255,17 @@ module.exports = function(grunt) {
         grunt.file.write('scss/skin.scss', '@import "skins/' + (client.split(/\s*\-\s*/g))[0] + '";');
     });
 
-    /*
-             __             ___                       __       __       __             __
-        ____/ /__ _   __   ( _ )      _      ______ _/ /______/ /_     / /_____ ______/ /_______
-       / __  / _ \ | / /  / __ \/|   | | /| / / __ `/ __/ ___/ __ \   / __/ __ `/ ___/ //_/ ___/
-      / /_/ /  __/ |/ /  / /_/  <    | |/ |/ / /_/ / /_/ /__/ / / /  / /_/ /_/ (__  ) ,< (__  )
-      \__,_/\___/|___/   \____/\/    |__/|__/\__,_/\__/\___/_/ /_/   \__/\__,_/____/_/|_/____/
-
-    */
+/*
+         888                      .d8888b.                              888           888          888                   888              
+         888                     d88P  "88b                             888           888          888                   888              
+         888                     Y88b. d88P                             888           888          888                   888              
+     .d88888 .d88b. 888  888      "Y8888P"         888  888  888 8888b. 888888 .d8888b88888b.      888888 8888b. .d8888b 888  888.d8888b  
+    d88" 888d8P  Y8b888  888     .d88P88K.d88P     888  888  888    "88b888   d88P"   888 "88b     888       "88b88K     888 .88P88K      
+    888  88888888888Y88  88P     888"  Y888P"      888  888  888.d888888888   888     888  888     888   .d888888"Y8888b.888888K "Y8888b. 
+    Y88b 888Y8b.     Y8bd8P      Y88b .d8888b      Y88b 888 d88P888  888Y88b. Y88b.   888  888     Y88b. 888  888     X88888 "88b     X88 
+     "Y88888 "Y8888   Y88P        "Y8888P" Y88b     "Y8888888P" "Y888888 "Y888 "Y8888P888  888      "Y888"Y888888 88888P'888  888 88888P' 
+                                                                                                                                          
+*/
     //grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
     // TODO: had to remove sass:dist because npm won't install node-sass on my new mac
     grunt.registerTask('default', ['svgstore','copy','concat','skin','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
@@ -285,7 +296,8 @@ module.exports = function(grunt) {
             if( client != 'dev' ){
                 var clientObj = clients[client];
                 for( var fileIdx in distFiles ){
-                    console.log(client+': '+clientObj.buildTargetPath+'js/'+distFiles[fileIdx]);
+                    console.log('Copying '+clients['dev'].buildTargetPath+'js/'+distFiles[fileIdx]+' to '+clientObj.buildTargetPath+'js/'+distFiles[fileIdx]);
+                    grunt.file.copy(clients['dev'].buildTargetPath+'js/'+distFiles[fileIdx], clientObj.buildTargetPath+'js/'+distFiles[fileIdx]);
                 }
             }
         }
