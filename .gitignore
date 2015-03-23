@@ -6,3 +6,4 @@ client/js
 dev/js
 framework/constants.php
 .DS_Store
+npm-debug.log

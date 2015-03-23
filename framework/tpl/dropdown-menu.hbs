@@ -1,25 +1,24 @@
 <div class="{{wrapClass}} dropdown-wrapper">
-  	<div class="dropdown-inner">
-    	<button type="button" class="dropdown-toggle dropdown-label">{{buttonLabel}}</button>
-    	<button type="button" class="dropdown-toggle-caret dropdown-toggle"></button>
-    	<ul class="dropdown-menu hide">
-      		{{#each primaryOptions}}
-                {{{html}}}
-      		{{/each}}
-  		    <li class="divider"></li>
-      		{{#each footerOptions}}
-				<li>
-					<a
-						href="{{href}}"
-						class="{{itemClass}}"
-					    {{#each dataAttributes}}
-					        data-{{name}}="{{value}}"
-					    {{/each}}
-						>
-						{{{label}}}
-					</a>
-				</li>
-      		{{/each}}
-    	</ul>
+    <div class="dropdown-inner">
+        <button type="button" class="dropdown-toggle dropdown-label">{{buttonLabel}}</button>
+        <button type="button" class="dropdown-toggle-caret dropdown-toggle"></button>
+        <div class="dropdown-menu hide">
+            <ul class="dropdown-item-group primary-options"></ul>
+            <ul class="dropdown-item-group footer-options">
+                {{#each footerOptions}}
+                    <li>
+                        <a
+                            href="{{href}}"
+                            class="{{itemClass}}"
+                            {{#each dataAttributes}}
+                                data-{{name}}="{{value}}"
+                            {{/each}}
+                            >
+                            {{{label}}}
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
   	</div>
 </div>

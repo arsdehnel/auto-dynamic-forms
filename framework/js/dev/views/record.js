@@ -12,7 +12,7 @@ ADF.RecordView = Marionette.CompositeView.extend({
         'click .btn'                    : 'handleAction'
     },
     initialize: function( options ) {
-        ADF.utils.message('debug','RecordView Initialized', options );
+        ADF.utils.message('log','RecordView Initialized', options );
         this.region = adf.page.getRegion(options.regionName);
         this.regionName = this.region.options.regionName;
         this.model.set('regionName',this.regionName);
@@ -35,7 +35,7 @@ ADF.RecordView = Marionette.CompositeView.extend({
             // only set the currentValue to the model's value if the model has a value
             // because otherwise the currentValue will still have the default values from the fieldsCollection
             if( this.model.get(model.get('name')) ){
-                model.set('currentValue',this.model.get(model.get('name')));                
+                model.set('currentValue',this.model.get(model.get('name')));
             }else{
                 // now we see if there is a "default" value in the fieldsCollection and use that (if there is)
                 if( model.get('currentValue') ){
@@ -61,7 +61,7 @@ ADF.RecordView = Marionette.CompositeView.extend({
             // this.addChild(childView);
             // console.debug(childView.render());
             cellsString += childView.render();
-            // this.addChild(childView);    
+            // this.addChild(childView);
 
         },this);
 

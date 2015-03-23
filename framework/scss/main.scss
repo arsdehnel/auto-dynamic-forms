@@ -3,6 +3,10 @@
 @import "mixins";
 
 @import "partials/autoAdminGrid";
+
+// grid view broken into pieces
+@import "partials/grid/filters";
+
 @import "partials/documentation";
 @import "partials/buttons";
 @import "partials/content";

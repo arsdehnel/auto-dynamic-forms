@@ -1,5 +1,6 @@
 /*global
-ADF
+ADF,
+_
 */
 ADF.GridRowView = ADF.RecordView.extend({
     template: ADF.templates.gridRow,
@@ -10,7 +11,7 @@ ADF.GridRowView = ADF.RecordView.extend({
         'click .adf-grid-overlay-value' : 'showOverlayEditor'
     },
     initialize: function( options ) {
-        ADF.utils.message('debug','GridRowView Initialized', options);
+        ADF.utils.message('log','GridRowView Initialized', options);
 
         // inherit events from the prototype but allow for custom events as well
         this.events = _.extend({},ADF.RecordView.prototype.events,this.events);
@@ -18,4 +19,4 @@ ADF.GridRowView = ADF.RecordView.extend({
         this._super( options );
 
     }
-})
+});

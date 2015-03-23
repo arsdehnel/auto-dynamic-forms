@@ -216,7 +216,7 @@ module.exports = function(grunt) {
                 tasks: ['scripts-plugins']
             },
             scss: {
-                files: ['scss/partials/*.scss','scss/skins/*.scss','scss/*.scss'],
+                files: ['scss/partials/*.scss','scss/partials/**/*.scss','scss/skins/*.scss','scss/*.scss'],
                 tasks: ['css']
             },
             hbs: {
