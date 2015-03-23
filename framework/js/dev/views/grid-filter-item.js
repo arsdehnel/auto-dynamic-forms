@@ -35,7 +35,7 @@ ADF.GridFilterItemView = Marionette.ItemView.extend({
             // console.log('this one is not checked',this.model.id);
             this.gridFilterQueue.remove(this.model.id);
         }
-        console.log('within GridFilterItemView',this.gridFilterQueue);
+        // console.log('within GridFilterItemView',this.gridFilterQueue);
     }
 
 });

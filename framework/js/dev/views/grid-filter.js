@@ -5,16 +5,17 @@ adf,
 _
 */
 // TODO: clear queued filters when this closes
+// TODO: only show clear filters option when there are applied filters
 ADF.GridFilterView = ADF.DropdownMenuView.extend({
     childView: ADF.GridFilterItemView,
     childViewContainer: '.dropdown-menu',
     collection: new Backbone.Collection(),
     model: new ADF.DropdownMenuModel(),
     events: {
-        'dropdownToggle:after'                   : 'populateFilters',
-        'click [data-filter-action-type=cancel]' : 'cancelFilters',
-        'click [data-filter-action-type=apply]'  : 'applyFilters',
-        'click [data-filter-action-type=clear]'  : 'clearFilters'
+        'dropdownToggle:open'                     : 'showFilters',
+        'click *[data-filter-action-type=cancel]' : 'cancelFilters',
+        'click *[data-filter-action-type=apply]'  : 'applyFilters',
+        'click *[data-filter-action-type=clear]'  : 'clearFilters'
     },
     initialize: function( options ){
         ADF.utils.message('log','GridFilterView Initialized', options);
@@ -25,6 +26,7 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
         this.gridFilterQueue = this.gridView.filterQueue;
         this.fieldName = options.fieldName;
         this.fieldType = options.fieldType;
+        this.filtersGenerated = false;
 
         var footerOptions = [];
 
@@ -84,35 +86,41 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
         if( this.includeInRender ) {
             this.headerEl.addClass('has-filter').append(this.template(this.model.toJSON()));
             this.setElement(this.headerEl.find('.dropdown-wrapper')[0]);
-            // TODO: review if this should be here or just in the dropdownToggle function
-            // this.listenTo(this.collection,'add',function(model){
-            //     gridFilterView.addChild(model,gridFilterView.childView);
-            // });
         }
     },
-    populateFilters: function() {
-        alert('yay');
-    },
-    dropdownToggle: function( event ) {
-
-        // this basically just opens the dropdown
-        this._super( event );
-
-        var child = {};
-
-        // TODO: add type-ahead-style search (or something)
-        // TODO: make this spinner work with the parent code that removes the hide class
-        // ADF.utils.spin(this.$el.find('.dropdown-menu'));
+    generateFilters: function() {
 
         // create an array based on all the values existing in the column
         var distinctValues = _.groupBy(this.region.gridView.collection.models, function( recordModel ){
             return recordModel.get(this.fieldName);
         },this);
 
+        // add those as models to a new collection
         _.each(distinctValues,function(fieldValue, index){
             this.collection.add({fieldName:this.fieldName,fieldValue:index,records:fieldValue});
         },this);
 
+        // TODO: get this sorting to work properly so the filter listing is in alpha order
+        this.collection.reset(_.sortBy(this.collection.models,function( filterModel ){
+            filterModel.get('fieldName');
+        }));
+
+        this.filtersGenerated = true;
+
+    },
+    showFilters: function() {
+
+        var child = {};
+
+        // TODO: add type-ahead-style search (or something)
+        // TODO: make this spinner work with the parent code that removes the hide class
+        ADF.utils.spin(this.$el.find('.dropdown-menu .primary-options'));
+
+        if( !this.filtersGenerated ){
+            this.generateFilters();
+        }
+
+        // render those as options
         this.collection.each(function( model ){
             child = this.addChild(model,this.childView);
             // TODO: override the stupid rendering of ItemViews within composites and collections to not replicate their parent element
@@ -120,12 +128,22 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
             child.setElement(this.$el.find('.dropdown-menu .primary-options li').last()[0]);
         },this);
 
+        ADF.utils.spin(this.$el.find('.dropdown-menu .primary-options'), {stop:true});
+
         // console.log(this.collection,this.children);
 
     },
     cancelFilters: function( e ) {
-        e.preventDefault();
+
+        // close the drop down (also handles the prevention of the events default action)
+        this.dropdownToggle( e );
+
+        ADF.utils.message('debug','cancelFilters called');
+
+        // empty the queue so we don't apply the selected filters that haven't explicitly been applied
         this.gridFilterQueue.reset();
+
+
     },
     applyFilters: function( e ) {
         e.preventDefault();

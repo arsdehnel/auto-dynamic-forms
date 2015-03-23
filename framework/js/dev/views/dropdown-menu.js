@@ -40,7 +40,19 @@ ADF.DropdownMenuView = Backbone.Marionette.CompositeView.extend({
 
         }
 
-        $target.closest('.dropdown-wrapper').find('.dropdown-menu').toggleClass('hide');
+        var $ddMenu = $target.closest('.dropdown-wrapper').find('.dropdown-menu');
+
+        if( $ddMenu.hasClass('hide') ){
+            $ddMenu.removeClass('hide');
+            this.$el.trigger('dropdownToggle:open');
+        }else{
+            $ddMenu.addClass('hide');
+            this.$el.trigger('dropdownToggle:close');
+        }
+
+        // $target.closest('.dropdown-wrapper').find('.dropdown-menu').toggleClass('hide');
+
+        // this.$el.trigger('dropdownToggle:after');
 
         // adf.page.trigger('dropdownToggle:after');
 

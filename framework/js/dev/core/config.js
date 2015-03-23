@@ -5,6 +5,10 @@ _
 ADF.config = {
     messages : {
         levels : {
+            'confirm' : {
+                'displayMethod' : 'none',
+                'label' : 'Confirm'
+            },
             'log' : {
                 'displayMethod' : 'none',
                 'label' : 'Log Entry'

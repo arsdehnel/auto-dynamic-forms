@@ -3,7 +3,8 @@ ADF,
 Backbone,
 Marionette,
 adf,
-$
+$,
+_
 */
 ADF.GridView = Marionette.CompositeView.extend({
     // TODO: grid-row messaging
@@ -26,7 +27,7 @@ ADF.GridView = Marionette.CompositeView.extend({
     },
     template: ADF.templates.gridTable,
     initialize: function( options ) {
-        ADF.utils.message('debug','GridView Initialized', options );
+        ADF.utils.message('log','GridView Initialized', options );
         this.regionName = options.regionName;
         this.filteredRecords = new ADF.RecordsCollection(this.collection.models);
         this.filters = new Backbone.Collection();
@@ -69,14 +70,11 @@ ADF.GridView = Marionette.CompositeView.extend({
 
     },
     render: function() {
-<<<<<<< HEAD
         // console.log(this.filters);
-=======
         // do nothing here because this would render the initial collection (by default in Marionette) and we want to render the filteredRecords collection
     },
     renderFilteredRecords: function() {
-        console.log('records rerendered',this.filteredRecords,this.filters);
->>>>>>> 63eda22905cbd6043f2b25e56aa9bbc6bca81d21
+        // console.log('records rerendered',this.filteredRecords,this.filters);
         var gridView = this;
         gridView.headersView.render();
         gridView.columnSelect.render();
@@ -86,6 +84,9 @@ ADF.GridView = Marionette.CompositeView.extend({
     renderBody: function() {
         var gridView = this;
         var childContainer = this.$el.find(this.childViewContainer);
+        if( childContainer.find('.updated, .added').size() > 0 ){
+            ADF.utils.message('confirm','There are new or edited records in the grid that we are going to have to refresh to complete the requested task.  Are you sure you want to proceed?');
+        }
         childContainer.empty();
         // gridView.collection.each(function(recordModel) {
         gridView.filteredRecords.each(function(recordModel){
@@ -130,23 +131,77 @@ ADF.GridView = Marionette.CompositeView.extend({
     // },
     refreshFilteredRecords: function() {
 
-        console.log('refreshFilteredRecords', this.filters.length, arguments);
+        // console.log('refreshFilteredRecords', this.filters.length, arguments);
+
+        // start with everything we have and (maybe) filter from there
+        this.filteredRecords = this.collection;
 
         if( this.filters.length ){
-            console.log('filters to be applied');
-            this.filteredRecords = this.collection;
-        }else{
-            this.filteredRecords = this.collection;
+            // console.log('filters to be applied');
+            // this.filteredRecords = this.collection;
+            // console.log(this.filteredRecords.models.length,this.filters.toJSON());
+
+            // go through each filter and trim down our records
+            this.filters.each(function(filterModel){
+                this.filteredRecords = new Backbone.Collection(this.filteredRecords.filter(function(recordModel){
+                    // console.log('filter comparison',filterModel.get('filterValues'),recordModel.get(filterModel.get('fieldName')),_.indexOf(filterModel.get('filterValues'),recordModel.get(filterModel.get('fieldName'))));
+                    return _.indexOf(filterModel.get('filterValues'),recordModel.get(filterModel.get('fieldName'))) >= 0;
+                }));
+            },this);
+            // console.log(this.filteredRecords.models.length,this.filters.toJSON());
+            // this.filteredRecords.reset(this.collection.where(this.filters));
         }
-        // this.filteredRecords.reset(baseCollection.where(this.filters));
+
+
         this.renderFilteredRecords();
 
     },
     applyFilters: function() {
 
-        this.filters.add(this.filterQueue.models);
+        // we will start by just building an array of the selected values
+        var filterValues = [];
+
+        // now we go through the filterQueue collection and turn them into our filterValues array
+        // because that's all we want for the stored filters
+        _.each(this.filterQueue.models,function(model){
+            filterValues.push(model.get('fieldValue'));
+        });
+
+        // do we have an existing filter for this field
+        var existingFilter = this.filters.find(function(model){
+            return model.get('fieldName') === filterModel.get('fieldName');
+        });
+
+        // if we have an existing model in the collection for this field then we just update its value
+        if( existingFilter ){
+            existingFilter.set('filterValues',filterValues);
+        }else{
+            // otherwise we need to create a new model for the particular field we're adding to our filters
+            var filterModel = new Backbone.Model();
+            filterModel.set('fieldName',this.filterQueue.models[0].get('fieldName'));
+            filterModel.set('filterValues',filterValues);
+            this.filters.add(filterModel);
+        }
         this.refreshFilteredRecords();
         this.filterQueue.reset();
+
+//         __
+//   _____/ /_  ____ _____  ____ ____
+//  / ___/ __ \/ __ `/ __ \/ __ `/ _ \
+// / /__/ / / / /_/ / / / / /_/ /  __/
+// \___/_/ /_/\__,_/_/ /_/\__, /\___/
+//                       /____/
+// TODO: this should somehow identify the field that the models relate to... so they are attributes of a model and that model will be unique in this collection for the field name that it has
+/*
+
+    something like this
+    filterModel.set('fieldName',this.filterQueue.models[0].get('fieldName'));
+    filterModel.set('selectedValues',this.filterQueue.models);
+
+
+*/
+
+        // this.filters.add(this.filterQueue.models);
 
     },
     clearFilters: function() {
@@ -155,7 +210,6 @@ ADF.GridView = Marionette.CompositeView.extend({
         this.refreshFilteredRecords();
         this.filterQueue.reset();
 
-<<<<<<< HEAD
     },
     dragHandle: function( e ) {
         this.upload.dragHandle( e );
@@ -173,60 +227,6 @@ ADF.GridView = Marionette.CompositeView.extend({
 
             var region = adf.page.getRegion(gridView.regionName);
             return region.$el.find('.adf-grid-actions [data-action-type=upload]').attr('href');
-=======
-    }
-
-
-});
-
-/*
-
-filters
-
-  - DONE: load initial collection into filtersRecords
-  - DONE: changes to initial collection cause refresh of filteredRecords that takes into account current filters
-  - filter selection changes filtersQueued but NOT gridView.filters
-  - "apply" action moves filters from filtersQueued into gridView.filters and calls refreshFilteredRecords
-  - "cancel" action empties the filteresQueued collection only
-  - "clear" action empties the filtersQueued collection, the gridView.filters collection and then calls the refreshFilteredRecords
-
-*/
-
-
-
-
-
-// autoAdmin.GridView = autoAdmin.PageView.extend({
-
-//     render: function( opts ){
-
-//         var gridView = this;
-//         var $target = opts.target;
-//         var fieldsArray = opts.ajaxView.fieldsColl.models;
-//         var recordsArray = opts.ajaxView.recordsColl.models;
-//         var gridObj = {};
-
-//         gridObj.headers = new Array();
-//         gridObj.colSelectCols = new Array();
-//         gridObj.records = new Array();
-
-//         // COLUMNS
-//         for ( var i = 0; i < fieldsArray.length; i++ ) {
-
-//             fieldsArray[i].set('colIndex',i);
-//             fieldsArray[i].set('gridRow',true);
-
-//             gridObj.headers[i] = { 'html' : autoAdmin.templates.gridHeaderCell( fieldsArray[i].toJSON() ) };
-
-//             if( fieldsArray[i].get('columnSelectPriority') != 0 ){
-
-//                 // TODO: set the checked attribute if this is going to be visible
-
-//                 gridObj.colSelectCols.push({'html' : autoAdmin.templates.dropdownSelectItem( $.extend( fieldsArray[i].toJSON(), {parent:'column-selector'} ) ) });
-
-//             }
->>>>>>> 63eda22905cbd6043f2b25e56aa9bbc6bca81d21
-
         },
 
         dragHandle: function( e ) {
@@ -395,3 +395,50 @@ filters
 
 
 });
+
+/*
+
+filters
+
+  - DONE: load initial collection into filtersRecords
+  - DONE: changes to initial collection cause refresh of filteredRecords that takes into account current filters
+  - filter selection changes filtersQueued but NOT gridView.filters
+  - "apply" action moves filters from filtersQueued into gridView.filters and calls refreshFilteredRecords
+  - "cancel" action empties the filteresQueued collection only
+  - "clear" action empties the filtersQueued collection, the gridView.filters collection and then calls the refreshFilteredRecords
+
+*/
+
+
+
+
+
+// autoAdmin.GridView = autoAdmin.PageView.extend({
+
+//     render: function( opts ){
+
+//         var gridView = this;
+//         var $target = opts.target;
+//         var fieldsArray = opts.ajaxView.fieldsColl.models;
+//         var recordsArray = opts.ajaxView.recordsColl.models;
+//         var gridObj = {};
+
+//         gridObj.headers = new Array();
+//         gridObj.colSelectCols = new Array();
+//         gridObj.records = new Array();
+
+//         // COLUMNS
+//         for ( var i = 0; i < fieldsArray.length; i++ ) {
+
+//             fieldsArray[i].set('colIndex',i);
+//             fieldsArray[i].set('gridRow',true);
+
+//             gridObj.headers[i] = { 'html' : autoAdmin.templates.gridHeaderCell( fieldsArray[i].toJSON() ) };
+
+//             if( fieldsArray[i].get('columnSelectPriority') != 0 ){
+
+//                 // TODO: set the checked attribute if this is going to be visible
+
+//                 gridObj.colSelectCols.push({'html' : autoAdmin.templates.dropdownSelectItem( $.extend( fieldsArray[i].toJSON(), {parent:'column-selector'} ) ) });
+
+//             }
