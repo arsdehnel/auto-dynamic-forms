@@ -268,7 +268,7 @@ module.exports = function(grunt) {
 */
     //grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
     // TODO: had to remove sass:dist because npm won't install node-sass on my new mac
-    grunt.registerTask('default', ['svgstore','copy','concat','skin','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
+    grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
     grunt.registerTask('hbs', ['handlebars','uglify:templates']);
     grunt.registerTask('css', ['skin','sass:dist','autoprefixer']);
     grunt.registerTask('svg', ['svgstore','copy:svg']);

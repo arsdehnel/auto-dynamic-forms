@@ -1,11 +1,11 @@
-{{#if html_prefix}}
-	<div class="form-row row">
+{{#if prefix}}
+	<div class="form-row row form-row-prefix">
 		<div class="grid-spacer layout-grid-3">&nbsp;</div>
-		<div class="form-input-notes layout-grid-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, placeat!</div>
+		<div class="form-input-notes layout-grid-6">{{prefix}}</div>
 	</div>
 {{/if}}
 <div
-    class="form-row row {{wrapClass}}"
+    class="form-row row {{wrapClass}} {{#if prefix}}has-prefix{{/if}} {{#if suffix}}has-suffix{{/if}}"
     id="{{#if regionName}}regionName--{{/if}}{{name}}-field-wrap"
     data-field-master-id="{{fldMstrId}}"
     >
@@ -18,9 +18,9 @@
         {{/if}}
     </div>
 </div>
-{{#if html_suffix}}
-	<div class="form-row row">
+{{#if suffix}}
+	<div class="form-row row form-row-suffix">
 		<div class="grid-spacer layout-grid-3">&nbsp;</div>
-		<div class="form-input-notes layout-grid-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, placeat!</div>
+		<div class="form-input-notes layout-grid-6">{{suffix}}</div>
 	</div>
 {{/if}}

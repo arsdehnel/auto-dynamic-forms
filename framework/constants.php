@@ -1,3 +1,3 @@
 <?php
-define('CLIENT_PATH','../../../candiadmin-v2/');
+define('CLIENT_PATH','../../../dev/');
 define('JSON_SOURCE','local');
