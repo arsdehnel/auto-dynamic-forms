@@ -1,7 +1,13 @@
 <div class="{{wrapClass}} dropdown-wrapper">
     <div class="dropdown-inner">
         <button type="button" class="dropdown-toggle dropdown-label">{{buttonLabel}}</button>
-        <button type="button" class="dropdown-toggle-caret dropdown-toggle"></button>
+        <button type="button" class="dropdown-toggle-caret dropdown-toggle">
+            {{#if caretSvg}}
+                <svg viewBox="0 0 32 32" class="icon">
+                    <use xlink:href="#icon-{{caretSvg}}"></use>
+                </svg>
+            {{/if}}
+        </button>
         <div class="dropdown-menu hide">
             <ul class="dropdown-item-group primary-options"></ul>
             <ul class="dropdown-item-group footer-options">

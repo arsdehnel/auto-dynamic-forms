@@ -68,6 +68,7 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
 
         this.model.set('footerOptions',footerOptions);
         this.model.set('wrapClass','grid-header-filter');
+        this.model.set('caretSvg','filter');
 
         if( this.fieldType === 'TEXT' ){
             this.includeInRender = true;

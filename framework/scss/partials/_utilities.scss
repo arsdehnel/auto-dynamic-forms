@@ -1,3 +1,7 @@
+:focus {
+    outline: none;
+}
+
 .backdrop{
     background: rgba( black, .7 );
     z-index: $zindex-overlay-bg;

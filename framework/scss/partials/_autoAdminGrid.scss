@@ -69,38 +69,6 @@
       }
     }
   }
-  thead{
-    th{
-      font-size: 1em;
-      border: solid #999;
-      border-width: 0 1px 1px 0;
-      padding: 0 .5em;
-      &.has-tooltip {
-        padding-left: 2.5em;
-      }
-      &.has-filter {
-        padding-right: 2.5em;
-      }
-      .sort-trigger {
-        color: white;
-        &.sort-up {
-          color: orange;
-        }
-        &.sort-down {
-          color: lime;
-        }
-      }
-      background: $primary_color;
-      color: white;
-      position: relative;
-      line-height: 2em;
-      white-space: nowrap;
-      .adf-grid-header-cell-triggers{
-        position: absolute;
-        right: .5em;
-      }
-    }
-  }
   tbody{
     tr:hover td{
         box-shadow: inset 0 0 40px 80px rgba( #000000, .1 ) !important;   //hate it but for this use it maybe seems okay?

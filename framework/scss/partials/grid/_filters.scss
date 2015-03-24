@@ -12,6 +12,14 @@
     .dropdown-toggle{
         background: rgba( 255, 255, 255, .2 );
     }
+    .dropdown-inner .dropdown-toggle-caret {
+        svg {
+            fill: white;
+        }
+        &::before {
+            content: none;
+        }
+    }
     .dropdown-inner .dropdown-menu{
         right: 50%;
         left: auto;

@@ -105,30 +105,6 @@ ADF.GridView = Marionette.CompositeView.extend({
 
         ADF.utils.select2.refresh();
     },
-
-    // filterQueueProcess: function( method, model, options ) {
-
-    //     // the first time we add to the queue we just start with whatever we have already applied
-    //     if( !this.filtersQueued ){
-    //         this.filtersQueued = this.filters;
-    //     }
-
-    //     console.log('filtersQueue',model, options, this.filters, this.filtersQueued);
-
-    //     // this.filtersQueued
-
-    // },
-    // filterQueueAdd: function( model, options ) {
-    //     console.debug('add to filter queue', model, options);
-
-    //     this.filterQueueProcess( 'add', model, options );
-    // },
-    // filterQueueRemove: function( model, options ) {
-    //     this.filterQueueProcess( 'remove', model, options );
-    // },
-    // filterQueueReset: function( model, options ) {
-    //     this.filterQueueProcess( 'reset', model, options );
-    // },
     refreshFilteredRecords: function() {
 
         // console.log('refreshFilteredRecords', this.filters.length, arguments);
@@ -160,6 +136,9 @@ ADF.GridView = Marionette.CompositeView.extend({
 
         // we will start by just building an array of the selected values
         var filterValues = [];
+        var filterFieldName = this.filterQueue.models[0].get('fieldName');
+
+        $('#'+this.regionName+'--'+filterFieldName).css('color','pink');
 
         // now we go through the filterQueue collection and turn them into our filterValues array
         // because that's all we want for the stored filters
@@ -169,7 +148,7 @@ ADF.GridView = Marionette.CompositeView.extend({
 
         // do we have an existing filter for this field
         var existingFilter = this.filters.find(function(model){
-            return model.get('fieldName') === filterModel.get('fieldName');
+            return model.get('fieldName') === filterFieldName;
         });
 
         // if we have an existing model in the collection for this field then we just update its value
@@ -178,7 +157,7 @@ ADF.GridView = Marionette.CompositeView.extend({
         }else{
             // otherwise we need to create a new model for the particular field we're adding to our filters
             var filterModel = new Backbone.Model();
-            filterModel.set('fieldName',this.filterQueue.models[0].get('fieldName'));
+            filterModel.set('fieldName',filterFieldName);
             filterModel.set('filterValues',filterValues);
             this.filters.add(filterModel);
         }
