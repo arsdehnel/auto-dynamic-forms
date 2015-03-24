@@ -86,22 +86,6 @@ ADF.ModulesView = Marionette.CollectionView.extend({
 
         }
 
-        //     dndSourceInit: function( opts ) {
-
-//         var modulesView = this;
-
-//         if( opts.destroy ){
-//             // modulesView.$el.sortable('destroy');
-//         }
-
-//         modulesView.$el.sortable({
-//             connectWith: '.dnd-wrapper.dnd-target'
-//         }).bind('dragstart.h5s', function(e, ui) {
-//             console.log(e);
-//         });
-
-//     },
-
     },
     handleAction: function(e) {
         e.preventDefault();
