@@ -12,12 +12,25 @@
     .dropdown-toggle{
         background: rgba( 255, 255, 255, .2 );
     }
-    .dropdown-inner .dropdown-toggle-caret {
+    .dropdown-toggle-caret {
         svg {
             fill: white;
         }
         &::before {
             content: none;
+        }
+    }
+    .is-filtered & {
+        .dropdown-toggle {
+            background: $is-filtered-icon-background;
+        }
+        @if $is-filtered-icon-color {
+            .dropdown-toggle-caret {
+                svg {
+                   fill: $is-filtered-icon-color;
+                }
+            }
+
         }
     }
     .dropdown-inner .dropdown-menu{

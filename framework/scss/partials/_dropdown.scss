@@ -1,52 +1,54 @@
 .dropdown-wrapper{
-  .dropdown-inner{
-    display: block;
-    min-width: 150px;
-    position: relative;
-    color: white;
-    .dropdown-label{
-    	white-space: nowrap;
-    }
-    button{
-      display: block;
-      float: left;
-      height: 2em;
-      width: calc( 100% - 2em );
-      margin: 0;
-      padding: 3px 8px;
-      color: inherit;
-      font-size: 14px;
-      font-weight: normal;
-      text-decoration: none;
-      cursor: pointer;
-      background: transparent;
-      border: 0;
-    }
-    .dropdown-toggle-caret{
-  		width: 2em;
-      position: relative;
-      &::before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 12px;
-        left: 50%;
-        transform: translateX( -50% );
-        border: 4px solid;
-        border-color: #ffffff transparent transparent;
-      }
-    }
-    .dropdown-menu{
-      @include dropdown();
-      top: 2em;
-      left: 0;
-      right: 0;
-    }
-    &:hover{
-    	color: tint( $primary_color, 80% );
-      .dropdown-toggle-caret::before {
-        border-color: tint( $primary_color, 80% ) transparent transparent;
-      }
-    }
-  }
+	.dropdown-inner{
+		display: block;
+		min-width: 150px;
+		position: relative;
+		color: white;
+		.dropdown-label{
+			white-space: nowrap;
+		}
+		.dropdown-menu{
+			@include dropdown();
+			top: 2em;
+			left: 0;
+			right: 0;
+		}
+		&:hover{
+			color: tint( $primary_color, 80% );
+			.dropdown-toggle-caret::before {
+				border-color: tint( $primary_color, 80% ) transparent transparent;
+			}
+		}
+	}
+	.dropdown-toggle-caret{
+		width: 2em;
+		position: relative;
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 12px;
+			left: 50%;
+			transform: translateX( -50% );
+			border: 4px solid;
+			border-color: #ffffff transparent transparent;
+		}
+	}
+	.dropdown-label {
+		width: calc( 100% - 2em );
+	}
+	.dropdown-toggle{
+		display: block;
+		float: left;
+		height: 2em;
+		margin: 0;
+		padding: 3px 8px;
+		color: inherit;
+		font-size: 14px;
+		font-weight: normal;
+		text-decoration: none;
+		cursor: pointer;
+		background: transparent;
+		border: 0;
+	}
 }

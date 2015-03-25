@@ -1,6 +1,7 @@
 /*global
 ADF,
-Backbone
+Backbone,
+adf
 */
 ADF.HeaderView = Backbone.Marionette.CompositeView.extend({
     template: ADF.templates.gridHeaderCell,
@@ -15,6 +16,7 @@ ADF.HeaderView = Backbone.Marionette.CompositeView.extend({
         headerView.regionName = options.regionName;
         this.model.set('colIndex',this.model.collection.indexOf(this.model));
         this.model.set('regionName',options.regionName);
+        this.gridView = adf.page.getRegion(headerView.regionName).gridView;
 
         headerView.gridFilter = new ADF.GridFilterView({
             headerEl: headerView.$el,
@@ -34,6 +36,10 @@ ADF.HeaderView = Backbone.Marionette.CompositeView.extend({
             .addClass(this.model.get('wrapClass'));
         if( this.model.get('tooltip') ){
             this.$el.addClass('has-tooltip');
+        }
+
+        if( this.gridView.filters.where({fieldName:this.model.get('name')}).length > 0 ){
+            this.$el.addClass('is-filtered');
         }
 
         // this.$el.append(this.childView.render());
