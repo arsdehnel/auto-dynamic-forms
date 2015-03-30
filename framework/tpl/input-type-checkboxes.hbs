@@ -7,7 +7,7 @@
     >
     {{#each data}}
         <div class="adf-checkbox-wrapper">
-            <input type="checkbox" id="adf-checkbox-{{../name}}-{{this.value}}" name="{{../name}}" value="{{this.value}}" {{optionChecked value ../currentValue}}>
+            <input type="checkbox" id="adf-checkbox-{{../name}}-{{this.value}}" name="{{../name}}" value="{{this.value}}" {{optionChecked checked value ../currentValue}}>
             <label for="adf-checkbox-{{../name}}-{{this.value}}">{{this.label}}</label>
         </div>
     {{/each}}

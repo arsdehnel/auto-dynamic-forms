@@ -1,4 +1,4 @@
 <li>
-    <input type="checkbox" id="{{#if regionName}}{{regionName}}--{{/if}}{{name}}" value="{{#if regionName}}{{regionName}}--{{/if}}{{name}}" {{#if checked}}checked{{/if}}>
-    <label for="{{#if regionName}}{{regionName}}--{{/if}}{{name}}">{{label}}</label>
+    <input type="checkbox" id="{{regionName}}--{{name}}" value="{{regionName}}--{{name}}" {{optionChecked checkedAttr fieldValue currentValue}}>
+    <label for="{{regionName}}--{{name}}">{{label}}</label>
 </li>

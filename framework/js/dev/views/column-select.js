@@ -1,6 +1,5 @@
 /*global
 ADF,
-Backbone,
 $,
 _
 */
@@ -82,7 +81,7 @@ ADF.ColumnSelectView = ADF.DropdownMenuView.extend({
                 var childView = new columnSelect.childView();
                 var headerCell = $('#'+columnSelect.regionName+'--'+model.get('name'));
                 if( headerCell.css('display') === 'table-cell' ){
-                    model.set('checked',true);
+                    model.set('checkedAttr',true);
                 }
                 childContainer.before(childView.template(model.toJSON()));
             }

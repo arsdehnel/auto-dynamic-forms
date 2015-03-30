@@ -20,7 +20,7 @@
         "minLength": 0,
         "maxLength": 12,
         "requiredInd": "N",
-        "fieldPriority": 0,
+        "fieldPriority": 8,
         "value": null,
         "data": [],
         "actions": [],
@@ -41,7 +41,7 @@
         "minLength": 1,
         "maxLength": 100,
         "requiredInd": "N",
-        "fieldPriority": 9,
+        "fieldPriority": 8,
         "value": null,
         "data": [
           {
@@ -119,7 +119,7 @@
         "minLength": 0,
         "maxLength": 30,
         "requiredInd": "Y",
-        "fieldPriority": 9,
+        "fieldPriority": 1,
         "value": null,
         "data": [],
         "actions": [],
@@ -161,7 +161,7 @@
         "minLength": 1,
         "maxLength": 60,
         "requiredInd": "Y",
-        "fieldPriority": 5,
+        "fieldPriority": 0,
         "value": null,
         "data": [],
         "actions": [],
@@ -1319,7 +1319,7 @@
         "minLength": 1,
         "maxLength": 1,
         "requiredInd": "Y",
-        "fieldPriority": 1,
+        "fieldPriority": 8,
         "value": null,
         "data": [
           {

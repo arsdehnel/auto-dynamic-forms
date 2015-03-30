@@ -22,7 +22,8 @@ ADF.HeaderView = Backbone.Marionette.CompositeView.extend({
             headerEl: headerView.$el,
             regionName: headerView.regionName,
             fieldType: headerView.model.get('type'),
-            fieldName: headerView.model.get('name')
+            fieldName: headerView.model.get('name'),
+            collection: new Backbone.Collection()
         });
 
     },

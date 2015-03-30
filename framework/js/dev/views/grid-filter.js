@@ -1,6 +1,5 @@
 /*global
 ADF,
-Backbone,
 adf,
 _
 */
@@ -9,7 +8,8 @@ _
 ADF.GridFilterView = ADF.DropdownMenuView.extend({
     childView: ADF.GridFilterItemView,
     childViewContainer: '.dropdown-menu',
-    collection: new Backbone.Collection(),
+    // collection: new Backbone.Collection(),
+    // collection: Backbone.Collection,
     model: new ADF.DropdownMenuModel(),
     events: {
         'dropdownToggle:open'                     : 'showFilters',
@@ -98,6 +98,7 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
 
         // add those as models to a new collection
         _.each(distinctValues,function(fieldValue, index){
+            // console.log(fieldValue,index);
             this.collection.add({fieldName:this.fieldName,fieldValue:index,records:fieldValue});
         },this);
 
@@ -109,9 +110,10 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
         this.filtersGenerated = true;
 
     },
-    showFilters: function() {
+    showFilters: function(e) {
 
         var child = {};
+        var existingFilter = {};
 
         // TODO: add type-ahead-style search (or something)
         // TODO: make this spinner work with the parent code that removes the hide class
@@ -121,13 +123,37 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
             this.generateFilters();
         }
 
-        // render those as options
-        this.collection.each(function( model ){
-            child = this.addChild(model,this.childView);
-            // TODO: override the stupid rendering of ItemViews within composites and collections to not replicate their parent element
-            this.$el.find('.dropdown-menu .primary-options').append(child.renderAsChild());
-            child.setElement(this.$el.find('.dropdown-menu .primary-options li').last()[0]);
-        },this);
+        if( this.children.length !== this.collection.length ){
+
+            if( this.children.length !== 0 ){
+                console.error('this should never actually happen');
+            }
+
+            // render those as options
+            this.collection.each(function( model ){
+                existingFilter = this.gridView.filters.find(function(filterModel){
+                    return filterModel.get('fieldName') === model.get('fieldName');
+                });
+                if( existingFilter ){
+                    // console.log('something',existingFilter.get('filterValues'));
+                    model.set('currentValue',existingFilter.get('filterValues'));
+                }
+                // console.log( model.get('fieldName'), existingFilter ? existingFilter.get('filterValues') : false );
+                child = this.addChild(model,this.childView);
+                // TODO: override the stupid rendering of ItemViews within composites and collections to not replicate their parent element
+                this.$el.find('.dropdown-menu .primary-options').append(child.renderAsChild());
+                child.setElement(this.$el.find('.dropdown-menu .primary-options li').last()[0]);
+            },this);
+
+        }else{
+
+            this.$el.find('.dropdown-menu .primary-options').empty();
+            this.children.each(function(filterItemView){
+                this.$el.find('.dropdown-menu .primary-options').append(child.renderAsChild());
+                child.setElement(this.$el.find('.dropdown-menu .primary-options li').last()[0]);
+            });
+
+        }
 
         ADF.utils.spin(this.$el.find('.dropdown-menu .primary-options'), {stop:true});
 

@@ -2,6 +2,7 @@
     position: relative;
     padding-top: 1px;
     overflow-x: scroll;
+    min-height: 500px;
     .loading & {
         opacity: .25;
     }
