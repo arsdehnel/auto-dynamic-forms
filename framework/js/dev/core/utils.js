@@ -46,6 +46,12 @@ ADF.utils = {
         return object;
 
     },
+    inputHandlerRefresh: function() {
+
+        $('.adf-datepicker').datepicker();
+        this.select2.refresh();
+
+    },
     select2: {
         render: function() {
 
@@ -169,7 +175,7 @@ ADF.utils = {
                         adf.page.getRegion('messagesWindow').show();
                     }else{
                         args.unshift('[ADF]');
-                        console[level](args);
+                        window.console && console[level](args);
                     }
                     break;
                 case 'console':

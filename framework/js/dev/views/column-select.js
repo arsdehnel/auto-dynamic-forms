@@ -69,7 +69,7 @@ ADF.ColumnSelectView = ADF.DropdownMenuView.extend({
         var columnSelect = this;
 
         // normally would do variables up top but this requires the html() to be created already
-        var childContainer = this.$el.find(this.childViewContainer).find('.divider');
+        var childContainer = this.$el.find(this.childViewContainer);
 
         // put the children (the fields) into the drop down but above the divider
         this.collection.each(function(model){
@@ -83,7 +83,7 @@ ADF.ColumnSelectView = ADF.DropdownMenuView.extend({
                 if( headerCell.css('display') === 'table-cell' ){
                     model.set('checkedAttr',true);
                 }
-                childContainer.before(childView.template(model.toJSON()));
+                childContainer.append(childView.template(model.toJSON()));
             }
 
         });

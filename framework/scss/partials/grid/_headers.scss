@@ -10,11 +10,11 @@
             position: relative;
             line-height: 2em;
             white-space: nowrap;
-            &.has-tooltip {
-                padding-left: 2.5em;
-            }
             &.has-filter {
                 padding-right: 2.5em;
+            }
+            &.is-sortable {
+                padding-left: 2.5em;
             }
             .sort-trigger {
                 color: white;

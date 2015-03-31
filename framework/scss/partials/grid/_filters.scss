@@ -14,6 +14,8 @@
     }
     .dropdown-toggle-caret {
         svg {
+            height: 12px;
+            width: 12px;
             fill: white;
         }
         &::before {

@@ -2,11 +2,16 @@
 @import "skin";
 @import "mixins";
 
+// library support styles
+@import "lib/jquery-ui";
+
 @import "partials/autoAdminGrid";
 
 // grid view broken into pieces
+@import "partials/grid/wrapper";
 @import "partials/grid/filters";
 @import "partials/grid/headers";
+@import "partials/grid/actions";
 
 @import "partials/documentation";
 @import "partials/buttons";

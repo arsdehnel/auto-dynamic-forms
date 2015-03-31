@@ -9,7 +9,7 @@ ADF.GridActionsView = Backbone.Marionette.CompositeView.extend({
     template: ADF.templates.dropdownMenu,
     tagName: 'li',
     childView: ADF.GridActionView,
-    childViewContainer: '.dropdown-menu',
+    childViewContainer: '.dropdown-menu .primary-options',
     childViewOptions : function () {
         return { regionName: this.regionName };
     },
@@ -41,7 +41,7 @@ ADF.GridActionsView = Backbone.Marionette.CompositeView.extend({
         var gridActions = this;
 
         // normally would do variables up top but this requires the html() to be created already
-        var childContainer = this.$el.find(this.childViewContainer).find('.divider');
+        var childContainer = this.$el.find(this.childViewContainer);
 
         // put the children (the fields) into the drop down but above the divider
         this.collection.each(function(model){
@@ -50,7 +50,7 @@ ADF.GridActionsView = Backbone.Marionette.CompositeView.extend({
             model.set('regionName',gridActions.regionName);
 
             var childView = new gridActions.childView({regionName:gridActions.regionName,model:model});
-            childContainer.before(childView.template(model.toJSON()));
+            childContainer.append(childView.template(model.toJSON()));
             // console.log('#'+gridActions.regionName+'Action--'+model.get('id'));
             childView.setElement('#'+gridActions.regionName+'Action--'+model.get('id'));
 

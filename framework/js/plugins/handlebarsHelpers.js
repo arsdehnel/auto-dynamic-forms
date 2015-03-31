@@ -24,3 +24,11 @@ Handlebars.registerHelper('optionChecked', function(checkedAttr, value, currentV
 Handlebars.registerHelper('json', function(context) {
     return JSON.stringify(context);
 });
+
+Handlebars.registerHelper('numberInputMinMaxBuilder', function(stringLength, fillString) {
+    var retString = '';
+    for( var i = 0; i < stringLength; i++ ){
+        retString += fillString;
+    }
+    return retString;
+}); 

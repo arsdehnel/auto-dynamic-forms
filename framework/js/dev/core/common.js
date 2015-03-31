@@ -3,7 +3,5 @@ $,
 adf
 */
 $(function(){
-
-    adf.start({});
-
-});
+  adf.start({});
+})
