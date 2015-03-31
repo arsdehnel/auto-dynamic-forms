@@ -1,0 +1,9 @@
+.adf-grid-wrapper{
+    position: relative;
+    padding-top: 1px;
+    overflow-x: scroll;
+    min-height: 60vh;
+    .loading & {
+        opacity: .25;
+    }
+}
