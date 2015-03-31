@@ -112,6 +112,7 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
     },
     showFilters: function(e) {
 
+        var gridFilter = this;
         var child = {};
         var existingFilter = {};
 
@@ -129,18 +130,29 @@ ADF.GridFilterView = ADF.DropdownMenuView.extend({
                 console.error('this should never actually happen');
             }
 
+            // check for (and retrieve) any existing filters
+            existingFilter = this.gridView.filters.find(function(filterModel){
+                return filterModel.get('fieldName') === this.fieldName;
+            },this);
+
+            // if there is an existing filter we should pre-populate our filterQueue with it's values
+            if( existingFilter ){
+                _.each(existingFilter.get('filterValues'),function(filterValue){
+                    gridFilter.gridFilterQueue.add(gridFilter.collection.findWhere({'fieldValue':filterValue}).toJSON());
+                },this);
+            }
+
             // render those as options
             this.collection.each(function( model ){
-                existingFilter = this.gridView.filters.find(function(filterModel){
-                    return filterModel.get('fieldName') === model.get('fieldName');
-                });
+
+                // check if there is an existing filter and if this one matches with it
                 if( existingFilter ){
-                    // console.log('something',existingFilter.get('filterValues'));
                     model.set('currentValue',existingFilter.get('filterValues'));
                 }
-                // console.log( model.get('fieldName'), existingFilter ? existingFilter.get('filterValues') : false );
+
+                // add a childview for re-rendering later
                 child = this.addChild(model,this.childView);
-                // TODO: override the stupid rendering of ItemViews within composites and collections to not replicate their parent element
+
                 this.$el.find('.dropdown-menu .primary-options').append(child.renderAsChild());
                 child.setElement(this.$el.find('.dropdown-menu .primary-options li').last()[0]);
             },this);

@@ -163,25 +163,6 @@ ADF.GridView = Marionette.CompositeView.extend({
         }
         this.refreshFilteredRecords();
         this.filterQueue.reset();
-
-//         __
-//   _____/ /_  ____ _____  ____ ____
-//  / ___/ __ \/ __ `/ __ \/ __ `/ _ \
-// / /__/ / / / /_/ / / / / /_/ /  __/
-// \___/_/ /_/\__,_/_/ /_/\__, /\___/
-//                       /____/
-// TODO: this should somehow identify the field that the models relate to... so they are attributes of a model and that model will be unique in this collection for the field name that it has
-/*
-
-    something like this
-    filterModel.set('fieldName',this.filterQueue.models[0].get('fieldName'));
-    filterModel.set('selectedValues',this.filterQueue.models);
-
-
-*/
-
-        // this.filters.add(this.filterQueue.models);
-
     },
     clearFilters: function() {
 
