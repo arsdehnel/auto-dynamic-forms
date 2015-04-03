@@ -1,5 +1,6 @@
 /*global
-Handlebars
+Handlebars,
+_
 */
 Handlebars.registerHelper('optionSelected', function(checkedAttr, value, currentValue) {
     var selectedProperty;
@@ -23,4 +24,20 @@ Handlebars.registerHelper('optionChecked', function(checkedAttr, value, currentV
 
 Handlebars.registerHelper('json', function(context) {
     return JSON.stringify(context);
+});
+
+Handlebars.registerHelper('overlaySummary', function(inputData, dataAttributes) {
+    if( _.indexOf(inputData,'|') >= 0 ){
+        if( dataAttributes.formatStyle ){
+            switch( dataAttributes.formatStyle ){
+                default:
+                    return inputData.split('|').join(', ');
+            }
+        }else{
+            return inputData.split('|').length + ' values (' + inputData.split('|').join(', ') + ')';
+
+        }
+    }else{
+        return inputData;
+    }
 });

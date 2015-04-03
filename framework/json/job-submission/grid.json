@@ -1022,6 +1022,38 @@
         ]
       },
       {
+        "fldMstrId": 76,
+        "detailId": 79,
+        "name": "EMAIL_DIST",
+        "type": "GRID_OVERLAY",
+        "label": "EMAIL DIST",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 90,
+        "requiredInd": "N",
+        "fieldPriority": 0,
+        "value": null,
+        "data": [],
+        "actions": [],
+        "dataAttributes": [
+          {
+            "detailId": 79,
+            "name": "adf-ajax-url",
+            "value": "../../json/process-master/return-code-dtl-grid.json"
+          },
+          {
+            "detailId": 79,
+            "name": "adf-ajax-data-fields",
+            "value": "prcs_mstr_id"
+          }
+        ]
+      },
+      {
         "fldMstrId": 8,
         "detailId": 10,
         "name": "JS_GRP_CD",
@@ -1365,8 +1397,8 @@
         "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
         "DATE_MODIFIED": "02-09-2015 08:52:29",
         "MODIFIED_BY": "PEDERSOZ",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+        "RETURN_CODE_DTL": "WRITE~MTH~~~|READ~~##CRNT_PD_CODE##~~",
+        "EMAIL_DIST": "31|47|18|19"
       },
       {
         "id": 5896,
