@@ -38,6 +38,12 @@ ADF.HeaderView = Backbone.Marionette.CompositeView.extend({
         if( this.model.get('tooltip') ){
             this.$el.addClass('has-tooltip');
         }
+        if( this.model.get('type') !== 'ACTIONS' ){
+            this.$el.addClass('is-sortable');
+            this.model.set('sortable',true);
+        }else{
+            this.model.set('sortable',false);
+        }
 
         if( this.gridView.filters.where({fieldName:this.model.get('name')}).length > 0 ){
             this.$el.addClass('is-filtered');

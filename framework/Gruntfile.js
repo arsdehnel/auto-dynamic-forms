@@ -22,6 +22,16 @@ module.exports = function(grunt) {
             buildTargetPath : '/Volumes/static_content/acuraadmin.biworldwide.com/acuraadmin/v2/',
             localServerPath : '../../../acuraadmin-v2/'
         },
+        'hpc-static' : {
+            buildTargetPath   : '/Volumes/static_content/www.myhondaperformancecenter.com/ahmperfcenter/v2/',
+            jsBuildTargetPath : '/Volumes/static_content/www.myhondaperformancecenter.com/ahmperfcenter/js/adf/',
+            localServerPath   : '../../../dev/'
+        },
+        'hps-static' : {
+            buildTargetPath   : '/Volumes/static_content/www.hondappc.com/ahmperfcenter/v2/',
+            jsBuildTargetPath : '/Volumes/static_content/www.hondappc.com/ahmperfcenter/js/adf/',
+            localServerPath   : '../../../dev/'
+        },        
         'acnmadmin' : {
             buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishACNM/acnmadmin/src/webroot/v2/',
             localServerPath : '../../../acnmadmin-v2/'
@@ -286,6 +296,7 @@ module.exports = function(grunt) {
 
     */
     grunt.registerTask('dist-js', function(){
+        var jsBuildTargetPath;
         var distFiles = [
             'adf.min.js',
             'hbsTemplates.min.js',
@@ -295,13 +306,19 @@ module.exports = function(grunt) {
         for (var client in clients) {
             if( client != 'dev' ){
                 var clientObj = clients[client];
+                console.log('');
+                console.log('Client: '.green+client.blue);
                 for( var fileIdx in distFiles ){
-                    console.log('Copying '+clients['dev'].buildTargetPath+'js/'+distFiles[fileIdx]+' to '+clientObj.buildTargetPath+'js/'+distFiles[fileIdx]);
-                    grunt.file.copy(clients['dev'].buildTargetPath+'js/'+distFiles[fileIdx], clientObj.buildTargetPath+'js/'+distFiles[fileIdx]);
+                    jsBuildTargetPath = clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/';
+                    console.log('Copying '+clients['dev'].buildTargetPath+'js/'+distFiles[fileIdx]+' to '+jsBuildTargetPath+distFiles[fileIdx]);
+                    grunt.file.copy(clients['dev'].buildTargetPath+'js/'+distFiles[fileIdx], jsBuildTargetPath+distFiles[fileIdx]);
                 }
             }
         }
     });
-
+    // TODO: change this to uglify the main JS files and not just the HBS templates
+    // TODO: figure out a way to distribute each skin and fonts, etc.
+    // this currently just distributes the 4 JS files
+    grunt.registerTask('dist',['svgstore','concat','handlebars','uglify:templates','dist-js']);
 
 };

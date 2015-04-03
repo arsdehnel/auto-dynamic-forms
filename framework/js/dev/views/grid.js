@@ -103,7 +103,7 @@ ADF.GridView = Marionette.CompositeView.extend({
 
         },this);
 
-        ADF.utils.select2.refresh();
+        ADF.utils.inputHandlerRefresh();
     },
     refreshFilteredRecords: function() {
 

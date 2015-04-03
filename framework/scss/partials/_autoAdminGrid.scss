@@ -1,12 +1,3 @@
-.adf-grid-wrapper{
-    position: relative;
-    padding-top: 1px;
-    overflow-x: scroll;
-    min-height: 500px;
-    .loading & {
-        opacity: .25;
-    }
-}
 .adf-grid{
   margin: 2em auto 0;
   width: calc( 100% - 2em );
@@ -197,20 +188,6 @@
         width: 30em;
         max-height: 40vh;
         overflow-y: scroll;
-    }
-}
-
-// for the "grid level" drop downs that show to the top right of the grid
-.adf-grid-actions-wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    .dropdown-wrapper{
-    	position: relative;
-        margin-right: 1em;
-    	float: right;
-        background: tint( $primary_color, 40% );
     }
 }
 

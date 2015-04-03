@@ -60,7 +60,7 @@ ADF.FormView = Marionette.CollectionView.extend({
 
         }
 
-        ADF.utils.select2.refresh();
+        ADF.utils.inputHandlerRefresh();
 
     },
 

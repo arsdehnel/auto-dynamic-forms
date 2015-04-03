@@ -68,7 +68,7 @@ ADF.RecordView = Marionette.CompositeView.extend({
         // return this.template($.extend({},this.model.toJSON(),{cells:cellsString}));
         this.$el.replaceWith(this.template($.extend({},this.model.toJSON(),{cells:cellsString})));
         this.setElement('#'+this.model.get('regionName') + '--' + this.model.get('id'));
-        ADF.utils.select2.refresh();
+        ADF.utils.inputHandlerRefresh();
     },
     renderAsChild: function() {
 
