@@ -9,6 +9,6 @@
       <option></option>
     {{/unless}}
     {{#each data}}
-      <option value="{{this.value}}" {{#if tooltip}} data-tooltip="{{tooltip}}" {{/if}} {{optionSelected selectedBln value ../currentValue}}>{{#if this.label}}{{this.label}}{{else}}{{this.value}}{{/if}}</option>
+      <option value="{{this.value}}" {{#if tooltip}} data-tooltip="{{tooltip}}" {{/if}} {{optionSelected selectedBln this.value ../currentValue}}>{{#if this.label}}{{this.label}}{{else}}{{this.value}}{{/if}}</option>
     {{/each}}
   </select><!-- /.select2 -->

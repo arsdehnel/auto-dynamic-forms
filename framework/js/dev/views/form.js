@@ -24,6 +24,7 @@ ADF.FormView = Marionette.CollectionView.extend({
         'change [data-adf-submit-on-change=true] select'                    : 'submitParentForm',
         'change [data-adf-dependent-field-lkup-on-change=true] select'      : 'dependentFieldLkup',
         'change [data-adf-dependent-field-lkup-on-change=true] :checkbox'   : 'dependentFieldLkup',
+        'change [data-adf-dependent-field-lkup-on-change=true] :radio'      : 'dependentFieldLkup',
 
         // button handlers
         'click .btn-submit'                                                 : 'submitParentForm',
@@ -39,6 +40,7 @@ ADF.FormView = Marionette.CollectionView.extend({
         // the normal render
         var formView = this;
         formView._super();
+        var $childContainer = formView.$el.find('#ACTIONS-field-wrap .form-input')
 
         // rendering the 'actions' for a given form
         // start by getting the region since that is where the actions are kept
@@ -46,16 +48,16 @@ ADF.FormView = Marionette.CollectionView.extend({
 
         // see if we have any actions because if we don't we can stop right away
         if( region.actionsCollection.length > 0 ){
+            $childContainer.remove();
             formView.$el.append(ADF.templates.formRow({
                 name: 'ACTIONS',
                 fldMstrId: 0
             }));
-
-            var childContainer = formView.$el.find('#ACTIONS-field-wrap .form-input');
+            $childContainer = formView.$el.find('#ACTIONS-field-wrap .form-input');
 
             region.actionsCollection.each( function( action ) {
                 var childView = new ADF.FormActionView({model:action});
-                childContainer.append(childView.render());
+                $childContainer.append(childView.render());
             });
 
         }

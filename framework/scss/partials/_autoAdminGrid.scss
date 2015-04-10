@@ -168,28 +168,28 @@
 }
 
 // for the header cell filters
-.grid-header-filter.dropdown-wrapper{
-    position: absolute;
-    margin: 0;
-    top: 0;
-    bottom: 0;
-    width: 2em;
-    right: 0;
-    .dropdown-label{
-    	display: none;
-    }
-	.dropdown-toggle{
-        background: rgba( 255, 255, 255, .2 );
-	}
-    .dropdown-inner .dropdown-menu{
-        min-height: 4em;
-        right: 50%;
-        left: auto;
-        width: 30em;
-        max-height: 40vh;
-        overflow-y: scroll;
-    }
-}
+// .grid-header-filter.dropdown-wrapper{
+//     position: absolute;
+//     margin: 0;
+//     top: 0;
+//     bottom: 0;
+//     width: 2em;
+//     right: 0;
+//     .dropdown-label{
+//     	display: none;
+//     }
+// 	.dropdown-toggle{
+//         background: rgba( 255, 255, 255, .2 );
+// 	}
+//     .dropdown-inner .dropdown-menu{
+//         min-height: 4em;
+//         right: 50%;
+//         left: auto;
+//         width: 30em;
+//         max-height: 40vh;
+//         overflow-y: scroll;
+//     }
+// }
 
 // tooltip
 .adf-grid thead{

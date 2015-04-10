@@ -22,9 +22,14 @@ module.exports = function(grunt) {
             buildTargetPath : '/Volumes/static_content/acuraadmin.biworldwide.com/acuraadmin/v2/',
             localServerPath : '../../../acuraadmin-v2/'
         },
+        'apc-static' : {
+            buildTargetPath   : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/v2/',
+            jsBuildTargetPath : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/js/adf/',
+            localServerPath   : '../../../dev/'
+        },
         'hpc-static' : {
-            buildTargetPath   : '/Volumes/static_content/www.myhondaperformancecenter.com/ahmperfcenter/v2/',
-            jsBuildTargetPath : '/Volumes/static_content/www.myhondaperformancecenter.com/ahmperfcenter/js/adf/',
+            buildTargetPath   : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/v2/',
+            jsBuildTargetPath : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/js/adf/',
             localServerPath   : '../../../dev/'
         },
         'hps-static' : {
@@ -53,7 +58,8 @@ module.exports = function(grunt) {
     if( !client ){
         grunt.fail.fatal('no client set');
     }
-
+    
+    var clientObj = clients[client];
     buildTargetPath = clients[client].buildTargetPath;
     localServerPath = clients[client].localServerPath;
 
@@ -148,7 +154,7 @@ module.exports = function(grunt) {
 
                     'js/dev/core/common.js'
                 ],
-                dest: buildTargetPath+'js/adf.min.js',
+                dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'adf.min.js',
             },
             lib: {
                 src: [
@@ -164,13 +170,13 @@ module.exports = function(grunt) {
                     'js/lib/select2.js',
                     'js/lib/spin.js'
                 ],
-                dest: buildTargetPath+'js/lib.min.js',
+                dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'lib.min.js',
             },
             plugins: {
                 src: [
                     'js/plugins/*.js'
                 ],
-                dest: buildTargetPath+'js/plugins.min.js',
+                dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'plugins.min.js',
             },
             tests: {
                 src: [
@@ -185,7 +191,7 @@ module.exports = function(grunt) {
             },
             templates: {
                 files: [
-                    {dest: buildTargetPath+'js/hbsTemplates.min.js', src: ['grunt-work/hbsTemplates.js']}
+                    {dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'hbsTemplates.min.js', src: ['grunt-work/hbsTemplates.js']}
                 ]
             }
         },

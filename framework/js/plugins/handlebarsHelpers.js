@@ -6,7 +6,7 @@ Handlebars.registerHelper('optionSelected', function(checkedAttr, value, current
 	if( Array.isArray( currentValue ) ){
 		selectedProperty = currentValue.indexOf( value ) ? 'selected="selected"' : '';
 	}else{
-		selectedProperty = value == currentValue >= 0 ? 'selected="selected"' : '';
+		selectedProperty = value == currentValue ? 'selected="selected"' : '';
 	}
   return new Handlebars.SafeString(selectedProperty);
 });
