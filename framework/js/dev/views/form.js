@@ -157,7 +157,7 @@ ADF.FormView = Marionette.CollectionView.extend({
 
             if( fldMstrId ){
                 var modelToFollow = formView.collection.find(function( model ){
-                    return model.get('field-master-id') === fldMstrId;
+                    return model.get('fldMstrId') === fldMstrId;
                 });
                 newModelIdx = formView.collection.indexOf(modelToFollow) + 1;
             }else{
