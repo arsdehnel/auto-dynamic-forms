@@ -40,7 +40,7 @@ ADF.FormView = Marionette.CollectionView.extend({
         // the normal render
         var formView = this;
         formView._super();
-        var $childContainer = formView.$el.find('#ACTIONS-field-wrap .form-input')
+        var $childContainer = formView.$el.find('#ACTIONS-field-wrap .form-input');
 
         // rendering the 'actions' for a given form
         // start by getting the region since that is where the actions are kept
@@ -99,8 +99,6 @@ ADF.FormView = Marionette.CollectionView.extend({
                 ADF.utils.message('log','Found something to load into');
                 e.preventDefault();
 
-                console.log();
-
                 region.ajax({
                     data: {adfSerializedData:JSON.stringify(dataArray)},
                     method: 'POST'
@@ -122,14 +120,13 @@ ADF.FormView = Marionette.CollectionView.extend({
     dependentFieldLkup: function(e) {
 
         var formView = this;
-        // var dataObj = {};
         var dataArray = [];
         var $triggerObj = $(e.target);
         var $inputWrapper = $triggerObj.closest('.adf-input-wrapper');
         var $parentRow = $triggerObj.closest('.form-row');
-        // var $form = $parentRow.closest('form');
         var triggerData = $.extend({},$parentRow.data(),$inputWrapper.data(),$triggerObj.data());
-        var $target = $('#'+triggerData.fieldLkupTarget+'-field-wrap');
+        var target;
+        var newModelIdx;
         var childFields = triggerData.adfDependentFieldLkupChildFields ? triggerData.adfDependentFieldLkupChildFields.split(',') : null;
         var region = adf.page[formView.options.regionName];
 
@@ -141,25 +138,45 @@ ADF.FormView = Marionette.CollectionView.extend({
                 return model.get('name') === fieldName;
             });
             formView.collection.remove(modelToRemove);
-            $('#'+fieldName+'-field-wrap').remove();
+            // $('#'+fieldName+'-field-wrap').remove();
         });
 
         dataArray = ADF.utils.dataSerialize( formView.collection );
 
-        if( $target.size() === 0 ){
+        if( triggerData.fieldLkupTarget ){
+
+            // figure out the location of the field we're after
+            var fldMstrId = false;
+            if( triggerData.fieldLkupTarget === 'next' ){
+                fldMstrId = $parentRow.attr('data-field-master-id');
+            }else{
+                if( $('#'+triggerData.fieldLkupTarget+'-field-wrap').size() > 0 ){
+                    fldMstrId = $('#'+triggerData.fieldLkupTarget+'-field-wrap').attr('data-field-master-id');
+                }
+            }
+
+            if( fldMstrId ){
+                var modelToFollow = formView.collection.find(function( model ){
+                    return model.get('field-master-id') === fldMstrId;
+                });
+                newModelIdx = formView.collection.indexOf(modelToFollow) + 1;
+            }else{
+                newModelIdx = false;
+            }
+
+            // check for the "next" keyword that just means to put it right after the field calling the lookup
+            target = triggerData.fieldLkupTarget === 'next' ? 'next' : 'next';
             // TODO:somehow also remove any prefix/suffix for this field upon load of the new stuff
             // TODO:allow field to be dropped into the middle of a form rather than append to the form
 
-            $target = $parentRow;
-        }else{
-            $target.remove();
-            $target = $parentRow;
+            // $target = $parentRow;
         }
 
         region.ajax({
             data: {adfSerializedData:JSON.stringify(dataArray)},
             url: triggerData.adfDependentFieldLkupUrl,
-            emptyCollections:false
+            emptyCollections:false,
+            newModelIdx: newModelIdx
         });
 
     }
