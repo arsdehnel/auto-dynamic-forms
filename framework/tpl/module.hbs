@@ -1,8 +1,23 @@
 <div class="module layout-grid-4" id="{{id}}">
     <header class="dnd-label">
-        <span class="dnd-handle icon icon-handle"></span>
+        <span class="dnd-handle">
+            <svg viewBox="0 0 32 32" class="icon">
+                <use xlink:href="#icon-menu"></use>
+            </svg>
+        </span>
         <p>{{module_label}}</p>
-        <button type="button" class="module-details-toggle icon icon-closed"></button>
+        <button type="button" class="module-details-toggle">
+            <span class="icon-expand">
+                <svg viewBox="0 0 32 32" class="icon">
+                    <use xlink:href="#icon-expand"></use>
+                </svg>
+            </span>
+            <span class="icon-contract hide">
+                <svg viewBox="0 0 32 32" class="icon">
+                    <use xlink:href="#icon-contract"></use>
+                </svg>
+            </span>
+        </button>
     </header>
     <ul class="module-details hide">{{{fields}}}</ul>
 </div>

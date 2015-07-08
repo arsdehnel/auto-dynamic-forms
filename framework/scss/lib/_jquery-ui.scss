@@ -93,10 +93,12 @@
 	width: 17em;
 	padding: .2em .2em 0;
 	display: none;
+	background: $primary_color;
 }
 .ui-datepicker .ui-datepicker-header {
 	position: relative;
 	padding: .2em 0;
+	color: invert( $primary_color );
 }
 .ui-datepicker .ui-datepicker-prev,
 .ui-datepicker .ui-datepicker-next {
@@ -104,6 +106,7 @@
 	top: 2px;
 	width: 1.8em;
 	height: 1.8em;
+	color: mix( white, $primary_color, 50% );
 }
 .ui-datepicker .ui-datepicker-prev-hover,
 .ui-datepicker .ui-datepicker-next-hover {
@@ -158,6 +161,7 @@
 .ui-datepicker td {
 	border: 0;
 	padding: 1px;
+	background: mix( white, $primary_color, 30% );
 }
 .ui-datepicker td span,
 .ui-datepicker td a {
@@ -165,6 +169,7 @@
 	padding: .2em;
 	text-align: right;
 	text-decoration: none;
+	color: mix( white, $primary_color, 50% );
 }
 .ui-datepicker .ui-datepicker-buttonpane {
 	background-image: none;

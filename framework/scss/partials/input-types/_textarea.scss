@@ -1,0 +1,68 @@
+.form-row.large {
+  .textarea-wrap {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    bottom: 5%;
+    left: 5%;
+    z-index: $zindex-overlay;
+  }
+}
+
+
+.textarea-wrap-inner {
+  background: #444;
+  position: relative;
+}
+textarea {
+  width: calc( 100% - 2em );
+  height: calc( 100% - 4px );
+  margin-left: 2px;
+}
+.textarea-toggle {
+  position: absolute;
+  top: 50%;
+  height: 20px;
+  width: 20px;
+  transform: translateY( -50% );
+  svg {
+    fill: white;
+    height: 100%;
+    width: 18px;
+    padding-left: 1px;
+  }
+}
+.textarea-wrap.inline {
+  .textarea-wrap-inner {
+    height: 40px;
+    width: 200px;
+  }
+  .textarea-toggle {
+    .icon-expand {
+      display: block;
+    }
+    .icon-collapse {
+      display: none;
+    }
+  }
+}
+.textarea-wrap.overlay {
+  .textarea-wrap-inner {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+    bottom: 1em;
+    left: 1em;
+    height: 90%;
+    width: 90%;
+  }
+  .textarea-toggle {
+    top: 10px;
+    .icon-expand {
+      display: none;
+    }
+    .icon-collapse {
+      display: block;
+    }
+  }
+}

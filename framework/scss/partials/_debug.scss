@@ -1,0 +1,22 @@
+.tsga-debug-enabled {
+    .tsga-debug-data {
+        display: none;
+        position: absolute;
+        background: orange;
+        top: 0;
+        left: 100%;
+        padding: 8px 8px 8px 30px;
+        list-style: none;
+        li {
+            text-indent: -10px;
+        }  
+    }
+    .adf-region {
+        &:hover {
+            box-shadow: inset 0 0 12px orange;
+            .tsga-debug-data {
+                display: block;
+            }
+        }
+    }
+}

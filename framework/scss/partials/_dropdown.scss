@@ -20,6 +20,23 @@
 			}
 		}
 	}
+    .dropdown-menu-mouse-padding {
+    	display: none;
+        position: absolute;
+        top: 0;
+        right: -100px;
+        bottom: -100px;
+        left: -100px;
+        z-index: $zindex-overlay-bg;
+    }
+    .primary-options,
+    .footer-options {
+        position: relative;
+        z-index: $zindex-overlay;    	
+    }
+    .dropdown-menu.show .dropdown-menu-mouse-padding{
+    	display: block;
+    }
 	.dropdown-toggle-caret{
 		width: 2em;
 		position: relative;

@@ -1,0 +1,51 @@
+  .adf-cell-actions{
+    white-space: nowrap;
+    font-size: 0;
+    position: relative;
+    @include breakpoint( mama-bear ){
+        .btn {
+            padding: 0 1em;
+            border: 0;
+            svg{
+                top: .25em;
+                left: .25em;
+                height: 1.5em;
+            }
+            span {
+                display: none;
+            }
+            &:hover{
+                border: 0;
+            }
+        }
+      }
+    .adf-record-messages{
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 3px;
+      color: black;
+      overflow: hidden;
+      transition: 1s left linear;
+      &.success{
+        border: 1px solid $body-bg-color-success;
+        background: $body-bg-color-success;
+      }
+      .error &{
+        border: 1px solid $body-bg-color-error;
+        background: $body-bg-color-error;
+      }
+      &.info{
+        border: 1px solid $body-bg-color-info;
+        background: $body-bg-color-info;
+      }
+      &.warning{
+        border: 1px solid $body-bg-color-warning;
+        background: $body-bg-color-warning;
+      }
+    }        
+  }

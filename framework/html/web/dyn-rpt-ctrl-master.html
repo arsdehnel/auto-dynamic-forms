@@ -1,0 +1,20 @@
+<?php
+
+    $header_text   = 'Dynamic Report Masters';
+    include('../../_header.php');
+
+    $urls['local']['filters'] = '../../json/dyn-rpt-ctrl-mstr/filters.json';
+    $urls['local']['grid']    = '../../json/dyn-rpt-ctrl-mstr/grid.json';
+
+    $urls['zack']['filters']  = '/auto/auto-dynamic-forms/framework/getJson.php?env=zack&client=candiadmin&action=common/get-fields&pageCode=DYN_RPTNG_CTRL_MSTR_FILTERS';
+    $urls['zack']['grid']     = '../../json/app-nav/grid.json';
+    // $urls['zack']['grid']     = '/auto/auto-dynamic-forms/framework/getJson.php?client=acuraadmin&action=web-appl-nav/grid.action';
+
+    $urls['qa']['filters']    = '/auto/auto-dynamic-forms/framework/getJson.php?env=qa&client=candiadmin&action=common/get-fields&pageCode=DYN_RPTNG_CTRL_MSTR_FILTERS';
+    $urls['qa']['grid']    = '/auto/auto-dynamic-forms/framework/getJson.php?env=qa&client=candiadmin&action=common/get-fields&pageCode=DYN_RPTNG_CTRL_MSTR_GRID';
+
+    basic_filter( 'Find Your Report Master', 'app-nav-filters', 'app-nav-grid', $urls[JSON_SOURCE]['filters'], true );
+    basic_grid( 'app-nav-grid', $urls[JSON_SOURCE]['grid'] );
+    include('../../_footer.php');
+
+?>

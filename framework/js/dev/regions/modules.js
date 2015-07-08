@@ -4,17 +4,14 @@ _,
 $
 */
 ADF.ModulesRegion = ADF.Region.extend({
-    template: ADF.templates.moduleListWrapper,
+    template: ADF.templates.modulesWrapper,
     initialize: function( options ) {
+
         ADF.utils.message('log','ModulesRegion Initialized', options);
+
         var modulesRegion = this;
+
         modulesRegion.options = $.extend({},options,modulesRegion.$el.data());
-        this._super( options );
-    },
-
-    show: function() {
-
-        var modulesRegion = this;
 
         modulesRegion.$el.html(modulesRegion.template({
             dndSource:modulesRegion.options.adfDndSource,
@@ -22,11 +19,19 @@ ADF.ModulesRegion = ADF.Region.extend({
         }));
 
         modulesRegion.fieldsCollection = new ADF.FieldsCollection(null,{regionName:modulesRegion.options.regionName});
-        modulesRegion.actionsCollection = new ADF.ActionsCollection(null,{regionName: modulesRegion.options.regionName});
+        modulesRegion.actionsCollection = new ADF.ActionsCollection(null,{regionName: modulesRegion.options.regionName});       
+        modulesRegion.recordsCollection = new ADF.RecordsCollection(null,{regionName: modulesRegion.options.regionName});       
 
-        modulesRegion.modulesView = new ADF.ModulesView({
-            el:modulesRegion.$el.find('.module-list-wrapper')[0],
-            collection: new ADF.RecordsCollection(),
+        this._super( options );
+
+    },
+
+    show: function() {
+
+        var modulesRegion = this;
+
+        modulesRegion.modulesView = new ADF.Modules.ModulesView({
+            el:modulesRegion.$el.find('.modules-wrapper')[0], 
             regionName: modulesRegion.options.regionName,
             dndSource: modulesRegion.options.adfDndSource,
             dndTarget: modulesRegion.options.adfDndTarget
@@ -40,7 +45,6 @@ ADF.ModulesRegion = ADF.Region.extend({
     ajaxSuccessHandler: function( xhrJson, settings ) {
 
         var modulesRegion = this;
-        var modulesView = modulesRegion.modulesView;
         var ajaxData = {};
         var defaultObj = {};
 
@@ -59,9 +63,9 @@ ADF.ModulesRegion = ADF.Region.extend({
             if( xhrJson.data.hasOwnProperty('fields') ){
 
                 if( settings.emptyCollections === false ){
-                    modulesView.fieldsCollection.add(xhrJson.data.fields);
+                    modulesRegion.fieldsCollection.add(xhrJson.data.fields);
                 }else{
-                    modulesView.fieldsCollection.reset(xhrJson.data.fields);
+                    modulesRegion.fieldsCollection.reset(xhrJson.data.fields);
                 }
 
             }
@@ -69,9 +73,9 @@ ADF.ModulesRegion = ADF.Region.extend({
             if( xhrJson.data.hasOwnProperty('records') ){
 
                 if( settings.emptyCollections === false ){
-                    modulesView.collection.add(xhrJson.data.records);
+                    modulesRegion.recordsCollection.add(xhrJson.data.records);
                 }else{
-                    modulesView.collection.reset(xhrJson.data.records);
+                    modulesRegion.recordsCollection.reset(xhrJson.data.records);
                 }
 
             }
@@ -79,10 +83,10 @@ ADF.ModulesRegion = ADF.Region.extend({
             if( settings.data && settings.data.adfSerializedData ){
                 ajaxData = JSON.parse(settings.data.adfSerializedData);            
 
-                _.each(modulesView.fieldsCollection.models,function( fieldModel ){
+                _.each(modulesRegion.fieldsCollection.models,function( fieldModel ){
                     defaultObj = _.find(ajaxData,function(adfRecord){
-                        return adfRecord['field_code'] === fieldModel.get('name');
-                    })
+                        return adfRecord.field_code === fieldModel.get('name');
+                    });
                     if( !_.isUndefined( defaultObj ) ){
                         fieldModel.set('currentValue',defaultObj.data_value);
                     }
@@ -91,7 +95,7 @@ ADF.ModulesRegion = ADF.Region.extend({
 
             // manually call render for some reason
             // thought that Marionette handled this for us but it wasn't firing so this had to be added
-            modulesView.render();
+            modulesRegion.modulesView.render();
 
         }else{
 

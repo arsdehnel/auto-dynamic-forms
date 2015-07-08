@@ -3,6 +3,23 @@ ADF,
 _
 */
 ADF.config = {
+    validationSettings : {
+        selector: '.adf-validation-required',
+        failClass: 'adf-validation-fail'
+    },
+    dataAttributes: {
+        // these will be "formRow" if not valued
+        'input-delimiter': { 
+            location: 'formInput'
+        }
+    },
+    upload : {
+        url : '../service/excel-conversion/upload-file.action',
+        maxFileSize : 30000000,
+        fileTypes: [
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        ]
+    },
     messages : {
         levels : {
             'confirm' : {
@@ -18,11 +35,11 @@ ADF.config = {
                 'label' : 'Info'
             },
             'debug' : {
-                'displayMethod' : 'console',
-                'label' : 'Debug Info'
+                'displayMethod' : 'messagesWindow',
+                'label' : 'Debug'
             },
             'warn' : {
-                'displayMethod' : 'console',
+                'displayMethod' : 'messagesWindow',
                 'label' : 'Warning'
             },
             'error' : {

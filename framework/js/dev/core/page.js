@@ -7,7 +7,8 @@ _
 // TODO: add unload check to make sure there aren't any changes pending before navigating away
 ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
     events: {
-        'click .overlay-close'          : 'closeOverlayEditor'
+        'click .overlay-close'          : 'closeOverlayEditor',
+        'adf-module-received'           : 'moduleReceived'
     },
     initialize: function( options ) {
         ADF.utils.message('log','PageLayoutView Initialized', options);
@@ -15,9 +16,29 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
         pageView.dndSources = [];
         pageView.dndTargets = [];
 
+        pageView.loadSvgDefs();
+
         pageView.initRegions();
 
+
+        if( ADF.utils.cookies.get('tsga-adf-debug') === 'true' ){
+            this.$el.addClass('tsga-debug-enabled');
+            this.debugEnabled = true;
+        }else{
+            this.debugEnabled = false;            
+        }
+
         this._super( options );
+    },
+    loadSvgDefs: function() {
+        var adfPage = this;
+        $.ajax({
+            url:'https://www.program-info.com/cdn/adf/svg/defs.svg',
+            dataType: 'html',
+            complete: function( jqXHR, textStatus ){
+                adfPage.$el.append(jqXHR.responseText);
+            }
+        });
     },
     _buildRegion: function( regionData, id ) {
         var regionObj = {};

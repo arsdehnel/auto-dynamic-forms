@@ -9,6 +9,7 @@ module.exports = function(grunt) {
     var client = grunt.option('client');
     var buildTargetPath;
     var localServerPath;
+    var cdnTargetPath = '/Volumes/zonegrps-1/grp0143/apache2/prod0143m1-docroot/cdn/adf/';
     var clients = {
         'dev' : {
             buildTargetPath : '../dev/',
@@ -19,7 +20,7 @@ module.exports = function(grunt) {
             localServerPath : '../../../acuraadmin-v2/'
         },
         'acuraadmin-static' : {
-            buildTargetPath : '/Volumes/static_content/acuraadmin.biworldwide.com/acuraadmin/v2/',
+            buildTargetPath : '/Volumes/static_content-1/acuraadmin.biworldwide.com/acuraadmin/v2/',
             localServerPath : '../../../acuraadmin-v2/'
         },
         'apc-static' : {
@@ -33,8 +34,8 @@ module.exports = function(grunt) {
             localServerPath   : '../../../dev/'
         },
         'hps-static' : {
-            buildTargetPath   : '/Volumes/static_content/www.hondappc.com/ahmperfcenter/v2/',
-            jsBuildTargetPath : '/Volumes/static_content/www.hondappc.com/ahmperfcenter/js/adf/',
+            buildTargetPath   : '/Volumes/static_content-1/www.hondappc.com/ahmperfcenter/v2/',
+            jsBuildTargetPath : '/Volumes/static_content-1/www.hondappc.com/ahmperfcenter/js/adf/',
             localServerPath   : '../../../dev/'
         },        
         'acnmadmin' : {
@@ -42,7 +43,7 @@ module.exports = function(grunt) {
             localServerPath : '../../../acnmadmin-v2/'
         },
         'acnmadmin-static' : {
-            buildTargetPath : '/Volumes/static_content/kbbadmin.biworldwide.com/kbbadmin/v2/',
+            buildTargetPath : '/Volumes/static_content-1/kbbadmin.biworldwide.com/kbbadmin/v2/',
             localServerPath : '../../../acnmadmin-v2/'
         },
         'candiadmin' : {
@@ -50,7 +51,7 @@ module.exports = function(grunt) {
             localServerPath : '../../../candiadmin-v2/'
         },
         'candiadmin-static' : {
-            buildTargetPath : '/Volumes/static_content/candiadmin.biworldwide.com/candiadmin/v2/',
+            buildTargetPath : '/Volumes/static_content-1/candiadmin.biworldwide.com/candiadmin/v2/',
             localServerPath : '../../../candiadmin-v2/'
         }
     };
@@ -73,11 +74,11 @@ module.exports = function(grunt) {
         copy: {
             fonts: {
                 src: 'fonts/*.woff',
-                dest: buildTargetPath+'/'
+                dest: cdnTargetPath+'/'
             },
             svg: {
                 src: ['svg/*.svg','svg/**/*.svg'],
-                dest: buildTargetPath+'/'
+                dest: cdnTargetPath+'/'
             },
         },
         svgstore: {
@@ -130,47 +131,74 @@ module.exports = function(grunt) {
                     // collections
                     'js/dev/collections/*.js',
                     // views
-                    'js/dev/views/dropdown-menu.js',
-                    'js/dev/views/cell.js',
-                    'js/dev/views/column-select-item.js',
-                    'js/dev/views/column-select.js',
-                    'js/dev/views/grid-action.js',
-                    'js/dev/views/grid-actions.js',
-                    'js/dev/views/grid-filter-item.js',
-                    'js/dev/views/grid-filter.js',
-                    'js/dev/views/message.js',
-                    'js/dev/views/messages-window.js',
-                    'js/dev/views/form-action.js',
-                    'js/dev/views/field.js',
-                    'js/dev/views/form.js',
-                    'js/dev/views/record.js',                    // has to be before module and gridRow
-                    'js/dev/views/module.js',
-                    'js/dev/views/modules.js',
-                    'js/dev/views/grid-row.js',
-                    'js/dev/views/grid.js',
-                    'js/dev/views/header.js',
-                    'js/dev/views/headers.js',
-                    'js/dev/views/page.js',
+
+                        // core
+                        'js/dev/views/core/*.js',
+
+                        // forms
+                        'js/dev/views/forms/action.js',
+                        'js/dev/views/forms/actions.js',
+                        'js/dev/views/forms/field.js',
+                        'js/dev/views/forms/fields.js',
+                        'js/dev/views/forms/form.js',
+
+                        // grids
+                        'js/dev/views/grids/action.js',
+                        'js/dev/views/grids/actions.js',
+                        'js/dev/views/grids/cell.js',
+                        'js/dev/views/grids/column-select-item.js',
+                        'js/dev/views/grids/column-select.js',
+                        'js/dev/views/grids/filter-item.js',
+                        'js/dev/views/grids/filter.js',
+                        'js/dev/views/grids/header.js',
+                        'js/dev/views/grids/headers.js',
+                        'js/dev/views/grids/row.js',
+                        'js/dev/views/grids/body.js',
+                        'js/dev/views/grids/grid.js',
+
+                        // messages
+                        'js/dev/views/messages/message.js',
+                        'js/dev/views/messages/window.js',
+
+                        // modules
+                        'js/dev/views/modules/action.js',
+                        'js/dev/views/modules/actions.js',
+                        'js/dev/views/modules/module.js',
+                        'js/dev/views/modules/module-list.js',
+                        'js/dev/views/modules/modules.js',
 
                     'js/dev/core/common.js'
                 ],
                 dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'adf.min.js',
             },
-            lib: {
+            libAdmin:  {
                 src: [
                     'js/lib/jquery-*.min.js',
                     'js/lib/jquery-ui.js',
+                    'js/lib/spin.js'
+                ],
+                dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'lib-admin.min.js',
+            },
+            lib: {
+                src: [
                     'js/lib/underscore.js',
                     'js/lib/backbone.js',
                     'js/lib/backbone.super.js',
                     'js/lib/backbone.wreqr.js',
                     'js/lib/backbone.babysitter.js',
                     'js/lib/backbone.marionette.js',
-                    'js/lib/handlebars.min.js',
-                    'js/lib/select2.js',
-                    'js/lib/spin.js'
+                    'js/lib/handlebars.min.js'
+                    // 'js/lib/select2.js',
+                    // 'js/lib/chosen.js',
                 ],
                 dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'lib.min.js',
+            },
+            handlebarsHelpers: {
+                src: [
+                    'js/plugins/handlebars-helpers/*.js'
+                ],
+                // written to the local directories because the plugins concatenation later will pull these into the plugins.min.js file
+                dest: 'js/plugins/handlebars-helpers.min.js',
             },
             plugins: {
                 src: [
@@ -187,18 +215,24 @@ module.exports = function(grunt) {
         },
         uglify: {
             options: {
-                // mangle: false
+                sourceMap: true
             },
             templates: {
                 files: [
                     {dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'hbsTemplates.min.js', src: ['grunt-work/hbsTemplates.js']}
+                ]
+            },
+            dist: {
+                files: [
+                    {dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'adf.min.js', src: [(clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'adf.min.js']},
+                    {dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'plugins.min.js', src: [(clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'plugins.min.js']}
                 ]
             }
         },
         sass: {
             dist: {
                 options: {
-                    style: 'compressed'
+                    outputStyle: 'expanded'
                 },
                 files: {
                     'grunt-work/compiled.css': 'scss/main.scss'
@@ -220,7 +254,7 @@ module.exports = function(grunt) {
         },
         watch: {
             scriptsDev: {
-                files: ['js/dev/**/*.js'],
+                files: ['js/dev/**/*.js','js/dev/**/**/*.js'],
                 tasks: ['scripts-dev']
             },
             scriptsLib: {
@@ -232,7 +266,7 @@ module.exports = function(grunt) {
                 tasks: ['scripts-plugins']
             },
             scss: {
-                files: ['scss/partials/*.scss','scss/partials/**/*.scss','scss/skins/*.scss','scss/*.scss'],
+                files: ['scss/lib/*.scss','scss/partials/*.scss','scss/partials/**/*.scss','scss/skins/*.scss','scss/*.scss'],
                 tasks: ['css']
             },
             hbs: {
@@ -265,10 +299,12 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('skin', function () {
-        if( grunt.file.exists('scss/skin.scss') ){
-            grunt.file.delete('scss/skin.scss');
+        if( grunt.file.exists('scss/skins/'+(client.split(/\s*\-\s*/g))[0]+'.scss') ){
+            if( grunt.file.exists('scss/skin.scss') ){
+                grunt.file.delete('scss/skin.scss');
+            }
+            grunt.file.write('scss/skin.scss', '@import "skins/' + (client.split(/\s*\-\s*/g))[0] + '";');
         }
-        grunt.file.write('scss/skin.scss', '@import "skins/' + (client.split(/\s*\-\s*/g))[0] + '";');
     });
 
 /*
@@ -305,9 +341,12 @@ module.exports = function(grunt) {
         var jsBuildTargetPath;
         var distFiles = [
             'adf.min.js',
+            'adf.min.js.map',
             'hbsTemplates.min.js',
+            'hbsTemplates.min.js.map',
             'lib.min.js',
-            'plugins.min.js'
+            'plugins.min.js',
+            'plugins.min.js.map'
         ];
         for (var client in clients) {
             if( client != 'dev' ){
@@ -316,15 +355,15 @@ module.exports = function(grunt) {
                 console.log('Client: '.green+client.blue);
                 for( var fileIdx in distFiles ){
                     jsBuildTargetPath = clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/';
-                    console.log('Copying '+clients['dev'].buildTargetPath+'js/'+distFiles[fileIdx]+' to '+jsBuildTargetPath+distFiles[fileIdx]);
-                    grunt.file.copy(clients['dev'].buildTargetPath+'js/'+distFiles[fileIdx], jsBuildTargetPath+distFiles[fileIdx]);
+                    console.log('Copying '+clients.dev.buildTargetPath+'js/'+distFiles[fileIdx]+' to '+jsBuildTargetPath+distFiles[fileIdx]);
+                    grunt.file.copy(clients.dev.buildTargetPath+'js/'+distFiles[fileIdx], jsBuildTargetPath+distFiles[fileIdx]);
                 }
             }
         }
     });
     // TODO: change this to uglify the main JS files and not just the HBS templates
-    // TODO: figure out a way to distribute each skin and fonts, etc.
-    // this currently just distributes the 4 JS files
-    grunt.registerTask('dist',['svgstore','concat','handlebars','uglify:templates','dist-js']);
+    // TODO: figure out a way to distribute each skin
+    // this currently just distributes the 5 JS files
+    grunt.registerTask('dist',['concat','uglify:dist','handlebars','uglify:templates','dist-js']);
 
 };

@@ -4,4 +4,4 @@ adf
 */
 $(function(){
   adf.start({});
-})
+});

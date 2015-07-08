@@ -6,7 +6,7 @@
 
         $return_string .= '<div class="row">';
         $return_string .= '<div class="layout-grid-3"></div>';
-        $return_string .= form_region( 'fieldset', $form_id, $ajax_url, $fieldset_label, $grid_id, $ajax_onshow, true );
+        $return_string .= form_region( 'fieldset', $fieldset_label, $form_id, $grid_id, $ajax_url, $ajax_onshow, true );
         $return_string .= '<div class="layout-grid-3"></div>';
         $return_string .= '</div>';
 

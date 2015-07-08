@@ -1,0 +1,29 @@
+<?php
+    $header_text   = 'Files';
+    include('../../_header.php');
+
+    ?>
+    <div class="row">
+        <div class="layout-grid-3"></div>
+        <?php
+            echo form_region( 'fieldset', 'Filters Files', 'process-file-dtl-filters', 'process-file-dtl-grid', '../../getJson.php?client=acuraadmin&action=common/get-fields&pageCode=PROCESS_FILE_DTL_FILTERS&devPath=process-file-dtl/filters.json', true, true );
+            ?>
+        </fieldset>
+        <div class="layout-grid-3"></div>
+    </div><!-- /.row -->
+
+<div class="adf-region"
+data-adf-region-type="grid"
+id="process-master-grid"
+data-adf-ajax-onshow="false"
+data-adf-ajax-url="../../json/process-master/grid.json"
+data-adf-ajax-url="../../getJson.php?client=acuraadmin&action=common/get-fields&pageCode=PROCESS_FILE_DTL_GRID"
+data-adf-ajax-url="../getJson.php?client=acuraadmin&action=process-master/grid"></div>
+
+<script type="text/x-handlebars-template" class="adf-template" id="message">
+    <div class="whatever-you-need">Craptastic</div>
+</script>
+
+<?php
+    include('../../_footer.php');
+?>

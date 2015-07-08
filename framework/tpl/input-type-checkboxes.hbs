@@ -1,13 +1,14 @@
 <div
-    class="adf-checkboxes-wrapper adf-input-wrapper {{fieldClass}}"
+    class="adf-checkboxes-wrapper adf-input-wrapper adf-form-input {{fieldClass}}"
     id="{{name}}"
     {{#each dataAttributes}}
-        data-{{name}}="{{value}}"
+        {{dataAttributeWrite name value 'formInput'}}
     {{/each}}
     >
+    {{checkboxesSelectAll dataAttributes}}
     {{#each data}}
         <div class="adf-checkbox-wrapper">
-            <input type="checkbox" id="adf-checkbox-{{../name}}-{{this.value}}" name="{{../name}}" value="{{this.value}}" {{optionChecked checked value ../currentValue}}>
+            <input type="checkbox" id="adf-checkbox-{{../name}}-{{this.value}}" name="{{../name}}" value="{{this.value}}" {{optionChecked selectedInd value ../currentValue}}>
             <label for="adf-checkbox-{{../name}}-{{this.value}}">{{this.label}}</label>
         </div>
     {{/each}}

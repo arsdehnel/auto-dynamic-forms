@@ -1,14 +1,14 @@
 <select
-    class="{{fieldClass}}"
-    name="{{name}}" {{#if multiple}}multiple{{/if}}
+    class="{{fieldClass}} adf-form-input"
+    name="{{name}}" {{dataAttributeBoolean dataAttributes 'multiple' 'multiple'}}
         {{#each dataAttributes}}
-            data-{{name}}="{{value}}"
+            {{dataAttributeWrite name value 'formInput'}}
         {{/each}}
     >
     {{#unless required}}
       <option></option>
     {{/unless}}
     {{#each data}}
-		<option value="{{this.value}}" {{optionSelected selectedBln this.value ../currentValue}}>{{this.label}}</option>
+		<option value="{{this.value}}" {{#if tooltip}} data-tooltip="{{tooltip}}" {{/if}} {{optionSelected selectedBln this.value ../currentValue}}>{{#if this.label}}{{this.label}}{{else}}{{this.value}}{{/if}}</option>
     {{/each}}
 </select>

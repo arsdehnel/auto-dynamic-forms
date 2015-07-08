@@ -17,6 +17,13 @@ fieldset{
   }
 }
 
+.form-row {
+  position: relative;
+  // &[data-field-priority="0"]{ 
+  //   display: none !important;  //annoying fix for the stupid .layout-grid .row that we put on the form row most of the time
+  // }
+}
+
 .form-horizontal{
   width: 100%;
   .form-row{

@@ -1,7 +1,8 @@
 /*global
 ADF,
 Backbone,
-_
+_,
+$
 */
 ADF.FieldsCollection = Backbone.Collection.extend({
 
@@ -10,7 +11,7 @@ ADF.FieldsCollection = Backbone.Collection.extend({
     initialize: function( models, options ){
         ADF.utils.message('log','FieldsCollection Initialized', models, options);
 
-        this.options = {};
+        this.options = $.extend({},options);
 
         // iterate through the options.recordModelDefaults and create a new record model defaults object
         // with the values from that incoming object

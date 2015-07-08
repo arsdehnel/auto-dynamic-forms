@@ -1,6 +1,7 @@
 /*global
 ADF,
 Marionette,
+adf,
 $
 */
 ADF.Region = Marionette.Region.extend({
@@ -13,6 +14,10 @@ ADF.Region = Marionette.Region.extend({
     show: function() {
         // TODO: this really shouldn't be in the region object, probably part of the view that we've associated with it...
         this.$el.removeClass('hide');
+
+        if( adf.page.$el.hasClass('tsga-debug-enabled') ){
+            ADF.utils.prepareDebug( this.$el );
+        }
 
         if( this.options.adfRegionLabel ) {
             if( this.$el.find('[data-adf-region-label]').size() > 0 ) {
@@ -43,7 +48,13 @@ ADF.Region = Marionette.Region.extend({
         var region = this;
 
         // handle the data separately so we can extend it at an attribute level
-        var data = $.extend({},region.options.adfAjaxData, options.data);
+        // console.log('fieldscollection length',region.fieldsCollection.models.length);
+
+        // var dataArray = ADF.utils.dataSerialize( region.fieldsCollection );
+        var dataArray = ADF.utils.dataSerializeNonADFData( this.$el.find(':input:hidden').serializeObject() );
+        dataArray = dataArray.concat(ADF.utils.dataSerialize( region.fieldsCollection ));
+
+        var data = $.extend({adfSerializedData:JSON.stringify(dataArray)},region.options.adfAjaxData, options.data);
 
         // remove this so we can get all the other bits from options but don't overwrite the data we just created
         delete options.data;
@@ -66,6 +77,11 @@ ADF.Region = Marionette.Region.extend({
                 ADF.utils.spin(region.$el, { stop: true } );
 
                 if( jqXHR.status === 200 ){
+
+                    // some of the client sites are using an older version of jQuery that doesn't automatically supply the responseJSON attribute so we have to create it
+                    if( !jqXHR.responseJSON ){
+                        jqXHR.responseJSON = $.parseJSON(jqXHR.responseText);
+                    }
 
                     if( jqXHR.responseJSON ){
 

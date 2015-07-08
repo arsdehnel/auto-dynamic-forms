@@ -9,6 +9,7 @@
             {{/if}}
         </button>
         <div class="dropdown-menu hide">
+            <div class="dropdown-menu-mouse-padding"></div>
             <ul class="dropdown-item-group primary-options"></ul>
             <ul class="dropdown-item-group footer-options">
                 {{#each footerOptions}}
@@ -25,6 +26,9 @@
                     </li>
                 {{/each}}
             </ul>
+            {{#if textFilterInput}}
+                <input type="search" class="dropdown-text-filter">
+            {{/if}}
         </div>
   	</div>
 </div>

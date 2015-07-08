@@ -1,0 +1,26 @@
+{{#if prefix}}
+	<div class="form-row row form-row-prefix">
+		<div class="grid-spacer layout-grid-3">&nbsp;</div>
+		<div class="form-input-notes layout-grid-6">{{prefix}}</div>
+	</div>
+{{/if}}
+<div
+    class="form-row row {{wrapClass}} {{#if prefix}}has-prefix{{/if}} {{#if suffix}}has-suffix{{/if}}"
+    id="{{#if regionName}}regionName--{{/if}}{{name}}-field-wrap"
+    data-field-master-id="{{fldMstrId}}"
+    >
+
+    <label for="{{name}}" class="layout-grid-3">{{label}}</label>
+    <div class="form-input layout-grid-6 layout-grid">
+        {{{inputField}}}
+        {{#if tooltip}}
+            <span class="form-input-addon icon-tooltip icon form-tooltip tooltip-icon-inline"><span class="tooltip">{{{tooltip}}}</span></span>
+        {{/if}}
+    </div>
+</div>
+{{#if suffix}}
+	<div class="form-row row form-row-suffix">
+		<div class="grid-spacer layout-grid-3">&nbsp;</div>
+		<div class="form-input-notes layout-grid-6">{{suffix}}</div>
+	</div>
+{{/if}}

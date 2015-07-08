@@ -4,14 +4,26 @@
 
 // library support styles
 @import "lib/jquery-ui";
-
-@import "partials/autoAdminGrid";
+@import "lib/timepicker";
+// @import "lib/chosen";
+// @import "lib/select2";
 
 // grid view broken into pieces
 @import "partials/grid/wrapper";
+@import "partials/grid/table";
 @import "partials/grid/filters";
+@import "partials/grid/cells";
 @import "partials/grid/headers";
+@import "partials/grid/tooltips";
+@import "partials/grid/row";
+@import "partials/grid/overlay";
 @import "partials/grid/actions";
+@import "partials/grid/cell-actions";
+
+// input types can have their own special partials
+@import "partials/input-types/datetime";
+@import "partials/input-types/select";
+@import "partials/input-types/textarea";
 
 @import "partials/documentation";
 @import "partials/buttons";
@@ -22,13 +34,11 @@
 @import "partials/fonts";
 @import "partials/forms";
 @import "partials/grid";
-@import "partials/icons";
 @import "partials/layout";
 @import "partials/nav";
-@import "partials/select2";
 @import "partials/tooltip";
 @import "partials/upload";
 @import "partials/utilities";
-@import "partials/overlay-editor";
 @import "partials/messages-window";
 @import "partials/tabs";
+@import "partials/debug";

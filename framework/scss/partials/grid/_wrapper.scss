@@ -1,7 +1,11 @@
 .adf-grid-wrapper{
     position: relative;
     padding-top: 1px;
-    overflow-x: scroll;
+    .droppable & {
+        box-shadow: inset 0 0 12px 8px teal;
+        background: rgba( teal, .3 );
+    }
+    // overflow-x: scroll;
     min-height: 60vh;
     .loading & {
         opacity: .25;

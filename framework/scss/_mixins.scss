@@ -26,9 +26,6 @@
   @else if $point == colBreakpoint8 {
     @media (min-width: 1800px) { @content; }
   }
-  @else if $point == colBreakpoint9 {
-    @media (min-width: 6000px) { @content; }
-  }
 }
 
 @mixin button( $primary-color ){

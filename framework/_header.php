@@ -12,6 +12,7 @@
 <head>
     <title>Auto Admin Forms 2.0</title>
     <link rel="stylesheet" type="text/css" href="<?php echo CLIENT_PATH ?>css/main.css">
+    <script src="<?php echo CLIENT_PATH ?>js/lib-admin.min.js"></script>
     <script src="<?php echo CLIENT_PATH ?>js/lib.min.js"></script>
 </head>
 <!-- <body class="adf-app environment-qa"> -->

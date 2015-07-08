@@ -2,18 +2,28 @@
     class="form-row row {{wrapClass}} {{#if prefix}}has-prefix{{/if}} {{#if suffix}}has-suffix{{/if}}"
     id="{{#if regionName}}regionName--{{/if}}{{name}}-field-wrap"
     data-field-master-id="{{fldMstrId}}"
+    data-page-dtl-id="{{detailId}}"
+    data-field-priority="{{fieldPriority}}"
+    {{#each dataAttributes}}
+        {{dataAttributeWrite name value 'formRow'}}
+    {{/each}}
     >
 
-    <label for="{{name}}" class="layout-grid-3">{{label}}</label>
-        {{#if prefix}}
-            <div class="form-row-prefix">{{{prefix}}}</div>
+    <label for="{{name}}" class="layout-grid-3">
+        {{label}}
+        {{#if tooltipText}}
+            <a class="tooltip-trigger toolTipIcon" href="#"><p class="tooltip-content">{{{tooltipText}}}</p></a>
         {{/if}}
+    </label>
+
+    {{#if prefix}}
+        <div class="form-row-prefix">{{{prefix}}}</div>
+    {{/if}}
+
     <div class="form-input layout-grid-6 layout-grid">
         {{{inputField}}}
-        {{#if tooltip}}
-            <span class="form-input-addon icon-tooltip icon form-tooltip tooltip-icon-inline"><span class="tooltip">{{{tooltip}}}</span></span>
-        {{/if}}
     </div>
+
     {{#if suffix}}
         <div class="form-row-suffix">{{{suffix}}}</div>
     {{/if}}

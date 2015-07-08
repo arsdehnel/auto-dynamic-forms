@@ -11,7 +11,7 @@ ADF.MessagesWindowRegion = ADF.Region.extend({
         // this just means that we don't trigger the show() method on page load
         messagesWindow.inert = true;
 
-        messagesWindow.messagesWindowView = new ADF.MessagesWindowView({
+        messagesWindow.messagesWindowView = new ADF.Messages.WindowView({
             el: messagesWindow.$el.find('.messages-wrapper')[0],
             collection: new ADF.MessagesCollection(),
             regionName: options.regionName

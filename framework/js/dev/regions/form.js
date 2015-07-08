@@ -17,13 +17,13 @@ ADF.FormRegion = ADF.Region.extend({
 
         var formRegion = this;
 
-        formRegion.formView = new ADF.FormView({
+        formRegion.actionsCollection = new ADF.ActionsCollection(null,{regionName: formRegion.options.regionName});
+        formRegion.fieldsCollection = new ADF.FieldsCollection(null,{regionName: formRegion.options.regionName});
+
+        formRegion.formView = new ADF.Forms.FormView({
             el:formRegion.$el.find('form')[0],
-            collection: new ADF.FieldsCollection(),
             regionName: formRegion.options.regionName
         });
-
-        formRegion.actionsCollection = new ADF.ActionsCollection(null,{regionName: formRegion.options.regionName});
 
         this._super();
 
@@ -32,7 +32,6 @@ ADF.FormRegion = ADF.Region.extend({
     ajaxSuccessHandler: function( xhrJson, settings ) {
 
         var formRegion = this;
-        var formView = formRegion.formView;
 
         if( xhrJson.success === true ){
 
@@ -49,18 +48,11 @@ ADF.FormRegion = ADF.Region.extend({
             if( xhrJson.data.hasOwnProperty('fields') ){
 
                 if( settings.emptyCollections === false ){
-                    var newModelIdx = settings.newModelIdx ? settings.newModelIdx : null;
-                    formView.collection.add(xhrJson.data.fields, {at: newModelIdx});
+                    var options = settings.newModelIdx ? {at: settings.newModelIdx} : {};
+                    formRegion.formView.formFields.collection.add(xhrJson.data.fields, options);
                 }else{
-                    formView.collection.reset(xhrJson.data.fields);
+                    formRegion.formView.formFields.collection.reset(xhrJson.data.fields);
                 }
-
-
-                // TODO: add select2 renderer as part of the auto-rendering of the Marionette view
-
-                // manually call render for some reason
-                // thought that Marionette handled this for us but it wasn't firing so this had to be added
-                formView.render();
 
             }
 

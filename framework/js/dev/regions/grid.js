@@ -16,7 +16,10 @@ ADF.GridRegion = ADF.Region.extend({
             gridRegion.inOverlay = false;
         }
 
-        gridRegion.$el.html(gridRegion.template({inOverlay:gridRegion.inOverlay}));
+        // TODO: make this less clunky and crappy
+        var $initLoadForm = gridRegion.$el.find('form').clone();
+
+        gridRegion.$el.html(gridRegion.template({inOverlay:gridRegion.inOverlay})).append($initLoadForm);
         gridRegion.fieldsCollection = new ADF.FieldsCollection(null,{regionName:gridRegion.options.regionName});
         gridRegion.actionsCollection = new ADF.ActionsCollection(null,{regionName: gridRegion.options.regionName});
 
@@ -30,9 +33,8 @@ ADF.GridRegion = ADF.Region.extend({
         ADF.utils.message('log','gridRegion Shown');
 
         var gridRegion = this;
-        gridRegion.gridView = new ADF.GridView({
+        gridRegion.gridView = new ADF.Grids.GridView({
             el:gridRegion.$el.find('.adf-grid-wrapper')[0],
-            collection: new ADF.RecordsCollection(null,{regionName:gridRegion.options.regionName}),
             regionName: gridRegion.options.regionName
         });
 
@@ -64,11 +66,11 @@ ADF.GridRegion = ADF.Region.extend({
 
             if( xhrJson.data.hasOwnProperty('records') ){
 
-                gridRegion.gridView.collection.reset(xhrJson.data.records);
+                gridRegion.gridView.bodyView.collection.reset(xhrJson.data.records);
 
                 // manually call render for some reason
                 // thought that Marionette handled this for us but it wasn't firing so this had to be added
-                gridRegion.gridView.render();
+                // gridRegion.gridView.render();
 
             }
 

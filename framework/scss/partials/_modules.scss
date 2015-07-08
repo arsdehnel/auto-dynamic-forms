@@ -14,12 +14,12 @@
     border: 1px solid tint( $primary_color, 70% );
     box-shadow: 2px 2px 6px tint( $primary_color, 50% );
     position: relative;
-    &.updated {
+    .updated & {
         header {
             background: $body-bg-color-updated;
         }
     }
-    &.error {
+    .error & {
         header {
             background: $body-bg-color-error;
         }
@@ -36,8 +36,14 @@
         color: white;
         z-index: 20;
         cursor: move;
+        svg {
+            width: 24px;
+            height: 24px;
+            padding-top: 3px;
+            fill: white;
+        }
     }
-    header{
+    header{ 
       	position: relative;
         display: block;
         height: 2em;
@@ -52,8 +58,10 @@
         }
         .module-details-toggle{
     		position: absolute;
-    		top: .5em;
-    		right: .5em;
+    		top: .2em;
+    		right: .2em;
+            height: 28px;
+            width: 28px;
     	  	border: 0;
     	  	background: transparent;
     	  	cursor: pointer;

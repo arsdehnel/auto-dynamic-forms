@@ -41,12 +41,24 @@
         height: 300px;
         overflow-y: hidden;
         padding-top: 2em;
+        a {
+            padding: 0 1em;
+        }
+        input.dropdown-text-filter {
+            left: .3em;
+            opacity: 1;
+            width: 17em;
+            padding: 2px;
+            font-size: .8em;
+            top: .3em;
+            z-index: $zindex-overlay + 10;
+        }
     }
     .primary-options {
         margin: 0;
         padding: 0;
         overflow-y: scroll;
-        height: 280px;
+        height: 270px;
         li {
            list-style: none;
            padding: 0;
