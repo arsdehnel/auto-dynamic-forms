@@ -14,13 +14,10 @@ ADF.Core.DropdownView = Backbone.Marionette.CompositeView.extend({
         'click    .dropdown-toggle'              : 'dropdownToggle',
         'mouseout .dropdown-menu'                : 'dropdownToggle'
     },
-    // TODO: seems like this model shouldn't be created in the view since that's a bit backwards
     initialize: function( options ) {
         ADF.utils.message('log','DropdownMenuView Initialized', options );
     },
     dropdownToggle: function( event ) {
-
-        // adf.page.trigger('dropdownToggle:before');
 
         var $target = {};
 
@@ -51,12 +48,6 @@ ADF.Core.DropdownView = Backbone.Marionette.CompositeView.extend({
             $ddMenu.addClass('hide').removeClass('show');
             this.$el.trigger('dropdownToggle:close');
         }
-
-        // $target.closest('.dropdown-wrapper').find('.dropdown-menu').toggleClass('hide');
-
-        // this.$el.trigger('dropdownToggle:after');
-
-        // adf.page.trigger('dropdownToggle:after');
 
     }
 

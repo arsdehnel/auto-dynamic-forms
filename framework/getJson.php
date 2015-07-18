@@ -8,9 +8,10 @@
     $urls         = [];
 
     // this should be just the full URL
-    $urls['dev']  = 'http://dehnel-27mc.bius.bi.corp/auto/auto-dynamic-forms/framework/json/'.$_REQUEST['devPath'];
-    $urls['zack'] = 'http://campusdev039.bius.bi.corp:7001/'.$page;
-    $urls['qa']   = 'http://'.$_REQUEST['client'].'qa.biworldwide.com/'.$page;
+    $urls['local']  = 'http://adf.local/framework/json/'.$_REQUEST['devPath'];
+    $urls['dev']    = 'http://dehnel-27mc.bius.bi.corp/auto/auto-dynamic-forms/framework/json/'.$_REQUEST['devPath'];
+    $urls['zack']   = 'http://campusdev039.bius.bi.corp:7001/'.$page;
+    $urls['qa']     = 'http://'.$_REQUEST['client'].'qa.biworldwide.com/'.$page;
 
  // echo $urls[JSON_SOURCE];
 

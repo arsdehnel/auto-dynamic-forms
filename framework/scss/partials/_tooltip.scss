@@ -19,10 +19,6 @@
     white-space: normal;
 }
 .icon-tooltip{
-    &:before{
-    	content: "\f059";
-    	display: inline-block;
-    }
     &:hover{
     	color: tint( $primary_color, 50% );
     	cursor: help;

@@ -1,11 +1,27 @@
-{{#if sortable}}
-    <a href="#" class="sort-trigger"></a>
-{{/if}}
-{{{label}}}
-{{#if tooltip}}
-    <i class="icon icon-tooltip">
-        <span class="tooltip">
-          	{{{tooltip}}}
-    	</span>
-    </i>
-{{/if}}
+<th
+    data-column-select-priority="{{fieldPriority}}"
+    data-column-name="{{name}}"
+    data-column-index="{{colIndex}}"
+    id="{{regionName}}--{{name}}"
+    class="
+        {{wrapClass}}
+        {{#if sortable}} is-sortable{{/if}}
+        {{#if tooltipText}} has-tooltip{{/if}}
+    ">
+
+    {{#if sortable}}
+        <a href="#" class="sort-trigger"></a>
+    {{/if}}
+    {{{label}}}
+    {{#if tooltipText}}
+        <span class="icon icon-tooltip">
+            <svg viewBox="0 0 32 32" class="icon">
+                <use xlink:href="#icon-info"></use>
+            </svg>
+            <span class="tooltip">
+              	{{{tooltipText}}}
+        	</span>
+        </span>
+    {{/if}}
+
+</th>

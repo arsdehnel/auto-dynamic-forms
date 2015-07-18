@@ -4,7 +4,6 @@ Marionette,
 Handlebars,
 $
 */
-// TODO: svg rendering
 Backbone.emulateHTTP = true;
 $.event.props.push('dataTransfer');
 var ADF = ADF||{};
@@ -20,6 +19,7 @@ ADF.App = Marionette.Application.extend({
   initialize: function(options) {
      ADF.utils.message('log','App Initialized', options);
   },
+  // TODO: get this working, currently having a problem that the template loads but after the initial page is rendered which is sorta useless
   importPageTemplates: function() {
     $('.adf-template').each(function(){
       var $tmplt = $(this);

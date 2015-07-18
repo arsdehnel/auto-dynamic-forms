@@ -322,7 +322,6 @@ module.exports = function(grunt) {
 
 */
     //grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
-    // TODO: had to remove sass:dist because npm won't install node-sass on my new mac
     grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
     grunt.registerTask('hbs', ['handlebars','uglify:templates']);
     grunt.registerTask('css', ['skin','sass:dist','autoprefixer']);
@@ -366,6 +365,7 @@ module.exports = function(grunt) {
     });
     // TODO: change this to uglify the main JS files and not just the HBS templates
     // TODO: figure out a way to distribute each skin
+    // TODO: make proper dev and dist builds while still allowing dev builds to go to client locations
     // this currently just distributes the 5 JS files
     grunt.registerTask('dist',['concat','uglify:dist','handlebars','uglify:templates','dist-js']);
 

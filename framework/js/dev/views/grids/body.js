@@ -7,7 +7,6 @@ $,
 _
 */
 ADF.Grids.BodyView = Marionette.CompositeView.extend({
-    // TODO: grid-row messaging
     // TODO: overlay template adjusted to handle array of data with format/delimiter from data-supl-info attribute
     // TODO: grid-level action for saving all records
 
@@ -31,7 +30,7 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
 
         this.stopListening(this.collection,'add');
         this.stopListening(this.collection,'remove');
-        this.stopListening(this.collection,'reset');                
+        this.stopListening(this.collection,'reset');
 
         this.listenTo(this.collection,'add',this.refreshFilteredRecords);
         this.listenTo(this.collection,'remove',this.refreshFilteredRecords);
@@ -148,7 +147,7 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
         this.refreshFilteredRecords();
         this.filterQueue.reset();
     },
-    
+
     sortGrid: function( e ) {
 
         e.preventDefault();
