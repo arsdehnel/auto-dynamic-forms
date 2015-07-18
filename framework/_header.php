@@ -64,7 +64,33 @@
 
                                         if( substr($item,0,1) != '.' ):
 
-                                            echo '<li class="nav-item--2"><a href="../'.$navGroup.'/'.$item.'">'.str_replace('-',' ',substr($item,0,strpos($item,'.'))).'</a></li>';
+                                            echo '<li class="nav-item--2';
+
+                                            // is it another directory?
+                                            if( $flyoutsHandle = @opendir( $menu_base . $navGroup . '/' . $item ) ):
+
+                                                echo ' has-children"><a href="#">'.$item.'</a>';
+
+                                                // start the third level
+                                                echo '<ul class="nav-level--3">';
+
+                                                while (false !== ($flyout = readdir($flyoutsHandle))):
+
+                                                    if( substr($flyout,0,1) != '.' ):
+
+                                                        echo '<li class="nav-item--2"><a href="../'.$navGroup.'/'.$item.'/'.$flyout.'">'.str_replace('-',' ',substr($flyout,0,strpos($flyout,'.'))).'</a></li>';
+
+                                                    endif;
+
+                                                endwhile;
+
+                                                echo '</ul>';
+
+                                            else:
+
+                                                echo '"><a href="../'.$navGroup.'/'.$item.'">'.str_replace('-',' ',substr($item,0,strpos($item,'.'))).'</a></li>';
+
+                                            endif;
 
                                         endif;
 
