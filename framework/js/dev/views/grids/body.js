@@ -59,31 +59,6 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
     onRender: function() {
         ADF.utils.inputHandlerRefresh();
     },
-    renderBody: function() {
-        ADF.utils.message('error','BodyView renderBody called');
-        var bodyView = this;
-        var childContainer = this.$el.find(this.childViewContainer);
-        if( childContainer.find('.updated, .added').size() > 0 ){
-            ADF.utils.message('confirm','There are new or edited records in the grid that we are going to have to refresh to complete the requested task.  Are you sure you want to proceed?');
-        }
-        childContainer.empty();
-        // bodyView.collection.each(function(recordModel) {
-        bodyView.filteredRecords.each(function(recordModel){
-
-            // this works but we end up with the wrong rendering
-            // something about the record render() not returning 'this' is causing a problem
-            // TODO: make this work so we can take more advantage of Marionette
-            // bodyView.addChild(recordModel, this.childView );
-
-            // and this works but then we are doing a bunch of stuff that it seems like Marionette should be doing for us
-            var childView = new bodyView.childView($.extend({},bodyView.childViewOptions(),{model:recordModel}));
-            childContainer.append(childView.renderAsChild());
-            childView.setElement('#'+recordModel.get('regionName') + '--' + recordModel.get('id'));
-
-        },this);
-
-        ADF.utils.inputHandlerRefresh();
-    },
     refreshFilteredRecords: function() {
         // ADF.utils.message('error','BodyView refreshFilteredRecords called');
 

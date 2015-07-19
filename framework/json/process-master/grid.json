@@ -1483,7 +1483,30 @@
             "pageDetailId": 20,
             "fieldPageDetailId": 76,
             "dataAttributes": []
+          },
+          {
+            "tooltipText": null,
+            "label": "Clone",
+            "type": "clone",
+            "wrapClass": null,
+            "actionClass": null,
+            "url": "#",
+            "pageDetailId": 20,
+            "fieldPageDetailId": 76,
+            "dataAttributes": []
+          },
+          {
+            "tooltipText": null,
+            "label": "Revert",
+            "type": "revert",
+            "wrapClass": null,
+            "actionClass": null,
+            "url": "#",
+            "pageDetailId": 20,
+            "fieldPageDetailId": 76,
+            "dataAttributes": []
           }
+
         ],
         "dataAttributes": []
       }

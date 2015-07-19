@@ -32,15 +32,11 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
             ADF.utils.prepareDebug( this.$el );
         }
     },
-    renderAsChild: function(){
-        ADF.utils.message('warn','Core.FieldView renderAsChild called');
-        return this.template(this.model.toJSON());
-    },
     valueChange: function(e) {
 
         var fieldView = this;
         var $target  = $(e.target);
-        
+
         if( $target.is(':checkbox') || $target.is(':radio') ){
             var currentValue = [];
             var $formRow = $target.closest('.form-row');
@@ -130,7 +126,7 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
                 var selectData = this.model.get('data');
                 var results = _.filter(selectData,function(item){
                     if( item.label && item.label.length > 0 ){
-                        return item.value.toLowerCase().indexOf(val.toLowerCase()) >= 0 || item.label.toLowerCase().indexOf(val.toLowerCase()) >= 0;    
+                        return item.value.toLowerCase().indexOf(val.toLowerCase()) >= 0 || item.label.toLowerCase().indexOf(val.toLowerCase()) >= 0;
                     }else{
                         return item.value.toLowerCase().indexOf(val.toLowerCase()) >= 0;
                     }
@@ -140,7 +136,7 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
                 }else{
                     _.each(results,function(result){
                         $options.append(ADF.templates.inputHelperSelectFancyRecord(result));
-                    });                    
+                    });
                 }
         }
     },
@@ -153,16 +149,16 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
         $hidden.val($selected.data('value'));
         this.model.set('currentValue',$selected.data('value'));
         $hidden.trigger('change');
-        this.$el.find('.select-fancy-options').empty();        
+        this.$el.find('.select-fancy-options').empty();
     },
     fancySelectClear: function(e) {
         e.preventDefault();
         this.model.set('currentValue','');
         var $input = this.$el.find('.select-fancy');
-        var $hidden = this.$el.find(':input:hidden');        
+        var $hidden = this.$el.find(':input:hidden');
         $input.val('');
         $hidden.val('');
-        $hidden.trigger('change');        
+        $hidden.trigger('change');
     },
     selectAllToggle: function(e) {
         e.preventDefault();
