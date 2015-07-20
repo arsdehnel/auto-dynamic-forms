@@ -3,7 +3,6 @@ ADF,
 _
 */
 ADF.FormRegion = ADF.Region.extend({
-    // TODO: handle being in a dialog
     template: ADF.templates.formRegion,
     initialize: function( options ) {
         ADF.utils.message('log','FormRegion Initialized', options);

@@ -18,6 +18,9 @@ ADF.Grids.HeadersView = Backbone.Marionette.CollectionView.extend({
         if( !this.model.get('initialRenderCompleted') ){
             var $cells = this.$el.children('th').detach();
             this.setElement(this.$el.find('tr').append($cells));
+            this.children.each(function(child){
+                child.resizeInit();
+            });
             this.model.set('initialRenderCompleted',true);
         }
     }

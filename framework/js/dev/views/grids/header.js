@@ -7,11 +7,10 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
     template: ADF.templates.gridHeaderCell,
     tagName: 'th',
     childView: ADF.Grids.FilterView,
-    // childViewOptions : function () {
-    //     return { regionName: this.regionName };
-    // },
     events: {
-        'click .sort-trigger'    : 'sortGrid'
+        'click     .sort-trigger'           : 'sortGrid',
+        'mousedown .adf-grid-resize-handle' : 'resizeStart',
+        'mouseup   .adf-grid-resize-handle' : 'resizeStop'
     },
     initialize: function( options ){
         ADF.utils.message('log','HeaderView Initialized', options);
@@ -20,6 +19,12 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
         this.model.set('colIndex',this.model.collection.indexOf(this.model));
         this.model.set('regionName',options.regionName);
         this.gridView = adf.page.getRegion(headerView.regionName).gridView;
+
+        if( this.model.get('type') !== 'ACTIONS' ){
+            this.model.set('sortable',true);
+        }else{
+            this.model.set('sortable',false);
+        }
 
         headerView.gridFilter = new ADF.Grids.FilterView({
             headerEl: headerView.$el,
@@ -30,34 +35,32 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
         });
 
     },
-    render: function() {
-        // TODO: use hbs template rather than all this silly JS
-        this.$el
-            .attr('data-column-select-priority',this.model.get('fieldPriority'))
-            .attr('data-column-name',this.model.get('name'))
-            .attr('id',this.model.get('regionName') + '--' + this.model.get('name'))
-            .attr('data-column-index',this.model.get('colIndex'))
-            .addClass(this.model.get('wrapClass'));
-        if( this.model.get('tooltip') ){
-            this.$el.addClass('has-tooltip');
-        }
-        if( this.model.get('type') !== 'ACTIONS' ){
-            this.$el.addClass('is-sortable');
-            this.model.set('sortable',true);
-        }else{
-            this.model.set('sortable',false);
-        }
+    onRender: function() {
+        this.setElement(this.$el.find('th').unwrap());
 
         if( this.gridView.bodyView.filters.where({fieldName:this.model.get('name')}).length > 0 ){
             this.$el.addClass('is-filtered');
         }
 
-        this._super();
-
         this.gridFilter.render();
-
     },
     sortGrid: function( e ){
         this.gridView.sortGrid( e );
+    },
+    resizeInit: function() {
+        this.$el.css('width',this.$el.outerWidth());
+    },
+    resizeStart: function(e) {
+        // var start = $(this);
+        this.pressed = true;
+        // var startX = e.pageX;
+        // var startWidth = $(this).width();
+        this.$el.addClass('resizing');
+    },
+    resizeStop: function(e) {
+        if( this.pressed ){
+            this.$el.removeClass('resizing');
+            this.pressed = false;
+        }
     }
 });

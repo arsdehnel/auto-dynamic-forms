@@ -5,31 +5,15 @@ adf,
 $
 */
 ADF.Region = Marionette.Region.extend({
-    // TODO: overlay region optionally can get data from caller region
-
     initialize: function(options){
         ADF.utils.message('log','Region Initialized',options);
         this.adfAjaxOnshow = ( options.adfAjaxOnshow ? options.adfAjaxOnshow : false );
     },
     show: function() {
-        // TODO: this really shouldn't be in the region object, probably part of the view that we've associated with it...
         this.$el.removeClass('hide');
 
         if( adf.debugEnabled ){
             ADF.utils.prepareDebug( this.$el );
-        }
-
-        if( this.options.adfRegionLabel ) {
-            if( this.$el.find('[data-adf-region-label]').size() > 0 ) {
-                this.$el.find('[data-adf-region-label]').html( this.options.adfRegionLabel );
-            }else{
-                // TODO: (99) make this have options as to what this should render like
-                this.$el.prepend('<legend>'+this.options.adfRegionLabel+'</legend>');
-            }
-        }
-
-        if(  this.options.adfAjaxOnshowDependentRegion ){
-            console.log('load '+this.$el.attr('data-adf-ajax-onshow-dependent-region-id')+' with data from '+this.$el.attr('data-adf-ajax-onshow-dependent-region-data-fields'));
         }
 
         // this onShowData is meant to be used just for java passing data into the ADF request
@@ -47,10 +31,6 @@ ADF.Region = Marionette.Region.extend({
         */
         var region = this;
 
-        // handle the data separately so we can extend it at an attribute level
-        // console.log('fieldscollection length',region.fieldsCollection.models.length);
-
-        // var dataArray = ADF.utils.dataSerialize( region.fieldsCollection );
         var dataArray = ADF.utils.dataSerializeNonADFData( this.$el.find(':input:hidden').serializeObject() );
         dataArray = dataArray.concat(ADF.utils.dataSerialize( region.fieldsCollection ));
 

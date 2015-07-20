@@ -29,7 +29,7 @@ ADF.Grids.GridView = Marionette.View.extend({
             el: gridView.$el.find('tbody')[0],
             collection: new ADF.RecordsCollection(null,{regionName:gridView.regionName}),
             regionName: gridView.regionName
-        });        
+        });
 
         gridView.columnSelect = new ADF.Grids.ColumnSelectView({
             el: gridView.$el.find('.adf-grid-column-select')[0],
@@ -171,6 +171,7 @@ ADF.Grids.GridView = Marionette.View.extend({
         gridView.gridActions.render();
         gridView.bodyView.render();
     },
+
     sortGrid: function( e ) {
 
         e.preventDefault();

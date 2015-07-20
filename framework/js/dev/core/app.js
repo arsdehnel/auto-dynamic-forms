@@ -4,9 +4,8 @@ Marionette,
 Handlebars,
 $
 */
-// TODO: svg rendering
 Backbone.emulateHTTP = true;
-$.event.props.push('dataTransfer');
+// $.event.props.push('dataTransfer');
 var ADF = ADF||{};
 
 // Create namespaces for the views
@@ -25,6 +24,7 @@ ADF.App = Marionette.Application.extend({
         this.debugEnabled = false;            
     }     
   },
+  // TODO: get this working, currently having a problem that the template loads but after the initial page is rendered which is sorta useless
   importPageTemplates: function() {
     $('.adf-template').each(function(){
       var $tmplt = $(this);
@@ -33,12 +33,17 @@ ADF.App = Marionette.Application.extend({
   },
   keepSessionAlive: function() {
     var interval = 1000 * 60 * 10;    // 10 minutes
-    setInterval(function(){
+    var sessionKeeper = setInterval(function(){
       $.ajax({
         url: '../home.do',
         dataType: 'html',
         complete: function( jqXHR, textStatus ){
-          ADF.utils.message('log','keepSessionAlive call completed',textStatus,jqXHR);
+          if( jqXHR.status === 404 ){
+            ADF.utils.message('log','keepSessionAlive call failed',textStatus,jqXHR);
+            clearInterval(sessionKeeper);
+          }else{
+            ADF.utils.message('log','keepSessionAlive call completed',textStatus,jqXHR);
+          }
         }
       });
     },interval);

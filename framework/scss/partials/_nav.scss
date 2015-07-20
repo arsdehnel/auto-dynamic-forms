@@ -112,10 +112,9 @@
         position: relative;
         text-align: left;
         &.has-children:after{
-            content: "\f0da";
-            right: 0;
-            top: 10px;
-            width: 20px;
+            border-width: .5em;
+            top: .25em;
+            border-color: transparent transparent transparent white;
         }
         &:hover{
             .nav-level--3{
@@ -140,7 +139,7 @@
         .nav-item--2{
             text-align: right;
             &.has-children:after{
-                content: "\f0d9";
+                border-color: transparent white transparent transparent;
                 left: 0;
                 right: auto;
             }

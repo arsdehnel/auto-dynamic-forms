@@ -14,7 +14,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
     initialize: function( options ) {
         ADF.utils.message('log','RecordView Initialized', options );
         this.region = adf.page.getRegion(options.regionName);
-        this.regionName = this.region.options.regionName;
+        this.regionName = options.regionName;
         this.model.set('regionName',this.regionName);
         this.collection = new ADF.FieldsCollection(this.region.fieldsCollection.toJSON());
         this.assignCollectionValuesFromModel(true);
@@ -66,6 +66,17 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
                 // TODO: replacing this at time of click seems really crappy and should be done in the model or view rendering but that just wasn't working when there were multiple records in a grid
                 $targetObj.attr('href',this.stringSubstitute( $targetObj.attr('href'), this.model ));
                 return true;
+            case 'clone':
+                var clonedModel = this.model.clone();
+                delete clonedModel.id;
+                console.log(clonedModel);
+                recordView.region.gridView.bodyView.collection.add(clonedModel,{at:recordView.region.gridView.bodyView.collection.indexOf(this.model)});
+                break;
+            case 'revert':
+                this._updateStatus('current');
+                this.model.set(this.model.previousAttributes());
+                this.render();
+                break;
             default:
                 ADF.utils.message('error','Unexpected record action ('+actionType+') triggered.',$targetObj);
         }
@@ -85,11 +96,6 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
             }
         }
         return returnString;
-    },    
-    showOverlayEditor: function(e) {
-        // TODO: find the actual cell that had this event and then trigger with that as the trigger object
-        e.preventDefault();
-        adf.page.getRegion('overlayEditor').show( this, $(e.target) );
     },
     inputChange: function( e ){
 
@@ -111,7 +117,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
             }else{                  // the "on" value isn't 'Y' so we just set it to null
                 value = null;
             }
-            
+
         }
         var obj = {};
         obj[changed.name] = value;
@@ -136,14 +142,14 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
                 if( fieldModel ){
                     fieldModel.set('currentValue',fieldValue);
                 }
-            },this);            
+            },this);
         }
     },
 
     _renderChildren: function(){
         // marionette has this but since it's "private" we'll call it from our own function
         // just in case they drop it or change it in the future we can rewrite this and not have to change a bunch of places
-        this._super();      
+        this._super();
     },
 
     _showMessage: function() {

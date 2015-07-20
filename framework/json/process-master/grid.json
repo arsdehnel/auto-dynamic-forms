@@ -161,7 +161,7 @@
         "name": "OBJECT_NAME",
         "type": "TEXT",
         "label": "Object Name",
-        "tooltipText": null,
+        "tooltipText": "this has a tooltip",
         "fieldClass": null,
         "wrapClass": null,
         "prefix": null,
@@ -1204,7 +1204,11 @@
         "fldMstrId": 8,
         "detailId": 10,
         "name": "JS_GRP_CD",
+<<<<<<< HEAD
         "type": "select",
+=======
+        "type": "SELECT",
+>>>>>>> eea2a006255515fca3831cdfcc3eaae2415bebc4
         "label": "JS Group",
         "tooltipText": null,
         "fieldClass": null,
@@ -1483,7 +1487,30 @@
             "pageDetailId": 20,
             "fieldPageDetailId": 76,
             "dataAttributes": []
+          },
+          {
+            "tooltipText": null,
+            "label": "Clone",
+            "type": "clone",
+            "wrapClass": null,
+            "actionClass": null,
+            "url": "#",
+            "pageDetailId": 20,
+            "fieldPageDetailId": 76,
+            "dataAttributes": []
+          },
+          {
+            "tooltipText": null,
+            "label": "Revert",
+            "type": "revert",
+            "wrapClass": null,
+            "actionClass": null,
+            "url": "#",
+            "pageDetailId": 20,
+            "fieldPageDetailId": 76,
+            "dataAttributes": []
           }
+
         ],
         "dataAttributes": []
       }
