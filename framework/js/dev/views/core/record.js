@@ -12,7 +12,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
         'click .btn'                    : 'handleAction'
     },
     initialize: function( options ) {
-        ADF.utils.message('debug','RecordView Initialized', options );
+        ADF.utils.message('log','RecordView Initialized', options );
         this.region = adf.page.getRegion(options.regionName);
         this.regionName = options.regionName;
         this.model.set('regionName',this.regionName);

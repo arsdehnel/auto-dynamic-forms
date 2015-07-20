@@ -56,3 +56,12 @@
         }
     }
 }
+.adf-grid-resize-handle {
+    position: absolute;
+    background: grey;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 8px;
+    cursor: ew-resize;
+}

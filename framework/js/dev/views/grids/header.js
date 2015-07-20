@@ -8,7 +8,9 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
     tagName: 'th',
     childView: ADF.Grids.FilterView,
     events: {
-        'click .sort-trigger'    : 'sortGrid'
+        'click     .sort-trigger'           : 'sortGrid',
+        'mousedown .adf-grid-resize-handle' : 'resizeStart',
+        'mouseup   .adf-grid-resize-handle' : 'resizeStop'
     },
     initialize: function( options ){
         ADF.utils.message('log','HeaderView Initialized', options);
@@ -44,5 +46,21 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
     },
     sortGrid: function( e ){
         this.gridView.sortGrid( e );
+    },
+    resizeInit: function() {
+        this.$el.css('width',this.$el.outerWidth());
+    },
+    resizeStart: function(e) {
+        // var start = $(this);
+        this.pressed = true;
+        // var startX = e.pageX;
+        // var startWidth = $(this).width();
+        this.$el.addClass('resizing');
+    },
+    resizeStop: function(e) {
+        if( this.pressed ){
+            this.$el.removeClass('resizing');
+            this.pressed = false;
+        }
     }
 });
