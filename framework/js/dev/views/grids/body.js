@@ -33,8 +33,8 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
         this.stopListening(this.collection,'remove');
         this.stopListening(this.collection,'reset');                
 
-        this.listenTo(this.collection,'add',this.refreshFilteredRecords);
-        this.listenTo(this.collection,'remove',this.refreshFilteredRecords);
+        // this.listenTo(this.collection,'add',this.refreshFilteredRecords);
+        // this.listenTo(this.collection,'remove',this.refreshFilteredRecords);
         this.listenTo(this.collection,'reset',this.refreshFilteredRecords);
 
         // this.listenTo(this.collection,'sort',this.refreshFilteredRecords);
@@ -57,9 +57,9 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
             return true;
         }
     },
-    onRender: function() {
-        ADF.utils.inputHandlerRefresh();
-    },
+    // onRender: function() {
+    //     ADF.utils.inputHandlerRefresh();
+    // },
     renderBody: function() {
         ADF.utils.message('error','BodyView renderBody called');
         var bodyView = this;
@@ -83,9 +83,10 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
 
         },this);
 
-        ADF.utils.inputHandlerRefresh();
+        // ADF.utils.inputHandlerRefresh();
     },
     refreshFilteredRecords: function() {
+        ADF.utils.spin(this.$el);
         // ADF.utils.message('error','BodyView refreshFilteredRecords called');
 
         // console.log('refreshFilteredRecords', this.filters.length, arguments);

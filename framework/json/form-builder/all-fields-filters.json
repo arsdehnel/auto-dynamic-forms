@@ -11,7 +11,7 @@
             "fldMstrId" : "21",
             "name" : "field_type",
             "label" : "Field Type",
-            "type" : "select2",
+            "type" : "select",
             "dataAttributes" : [
                 {
                     "name" : "adf-submit-on-change",

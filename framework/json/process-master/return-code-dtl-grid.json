@@ -99,7 +99,7 @@
         "fldMstrId": 78,
         "detailId": 87,
         "name": "LANG_TYPE",
-        "type": "SELECT2",
+        "type": "select",
         "label": "Language",
         "tooltipText": null,
         "fieldClass": null,

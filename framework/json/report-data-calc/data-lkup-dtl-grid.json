@@ -18,7 +18,7 @@
             "label" : "Relation",
             "tooltip" : "This indicates how this record relates to the master and/or what it will be used for in the calculation processes.",
             "fieldPriority" : "1",
-            "type" : "select2",
+            "type" : "select",
             "data" : [
               {
                 "value" : "VIN_DTL",
@@ -39,7 +39,7 @@
             "name" : "data_type",
             "label" : "Data Type",
             "fieldPriority" : "1",
-            "type" : "select2",
+            "type" : "select",
             "data" : [
               {
                 "value" : "CMN_DATA_SCE",

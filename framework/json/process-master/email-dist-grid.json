@@ -49,7 +49,7 @@
         "fldMstrId": 71,
         "detailId": 69,
         "name": "MSG_TYPE",
-        "type": "SELECT2",
+        "type": "select",
         "label": "Message Type",
         "tooltipText": null,
         "fieldClass": null,
@@ -266,7 +266,7 @@
         "fldMstrId": 74,
         "detailId": 77,
         "name": "RECIPIENTS",
-        "type": "SELECT2",
+        "type": "select",
         "label": "Recipients",
         "tooltipText": null,
         "fieldClass": null,
@@ -844,7 +844,7 @@
         "dataAttributes": [
           {
             "detailId": 77,
-            "name": "select2-multiple",
+            "name": "select-multiple",
             "value": "true"
           }
         ]

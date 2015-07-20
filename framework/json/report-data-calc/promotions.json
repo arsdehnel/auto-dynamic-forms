@@ -10,7 +10,7 @@
           {
             "name" : "promotion_id",
             "label" : "Promotion",
-            "type" : "select2",
+            "type" : "select",
             "data" : [
               {
                 "value" : "3117",

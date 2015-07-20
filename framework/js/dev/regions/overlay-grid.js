@@ -55,7 +55,7 @@ ADF.OverlayGridRegion = ADF.GridRegion.extend({
 
         if( this.$el.find('.changed') > 0 ){
             // TODO: make this a bit prettier
-            alert('found records that have been changed and not saved');
+            ADF.utils.message('warn','found records that have been changed and not saved');
         }
 
         this.$el.removeClass('open');

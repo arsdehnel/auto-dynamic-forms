@@ -23,7 +23,7 @@ ADF.Grids.ActionView = Backbone.Marionette.ItemView.extend({
 
             e.preventDefault();
 
-            var actionType = ADF.utils.camelize( $action.data('action-type') );
+            var actionType = ADF.utils.string.camelize( $action.data('action-type') );
 
             if( !actionView[actionType] ){
                 ADF.utils.message('error','action type not defined',actionType);

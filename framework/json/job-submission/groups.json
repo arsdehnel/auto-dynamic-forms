@@ -11,7 +11,7 @@
             "name" : "job_group",
             "label" : "Job Group",
             "fieldClass" : "submit-on-change",
-            "type" : "select2",
+            "type" : "select",
             "dataAttributes" : [
               {
                 "detailId": 108,

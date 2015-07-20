@@ -10,6 +10,7 @@
 
 // grid view broken into pieces
 @import "partials/grid/wrapper";
+@import "partials/grid/upload";
 @import "partials/grid/table";
 @import "partials/grid/filters";
 @import "partials/grid/cells";
@@ -25,6 +26,7 @@
 @import "partials/input-types/select";
 @import "partials/input-types/textarea";
 
+@import "partials/regions";
 @import "partials/documentation";
 @import "partials/buttons";
 @import "partials/content";

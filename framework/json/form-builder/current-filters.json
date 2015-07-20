@@ -9,7 +9,7 @@
         "fldMstrId": 1,
         "detailId": 26,
         "name": "APPLICATION",
-        "type": "SELECT2",
+        "type": "select",
         "label": "Application",
         "tooltipText": null,
         "fieldClass": null,

@@ -6,11 +6,10 @@ adf,
 _
 */
 ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
-    template: ADF.templates.formRow,
     events: {
-        'change'                                  : 'valueChange',
+        'change'                                  : 'fieldChange',
         'click .size-toggle'                      : 'sizeToggle',
-        'keyup .select-fancy'                     : 'fancySelectSearch',
+        'keyup .select-fancy'                     : 'fancySelectKeyup',
         'click .select-fancy-options a'           : 'fancySelectClick',
         'click .select-fancy-clear'               : 'fancySelectClear',
         'click .adf-checkbox-select-all-toggle'   : 'selectAllToggle'
@@ -28,14 +27,31 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
         }
     },
     onRender: function(){
-        if( adf.page.$el.hasClass('tsga-debug-enabled') ){
+        ADF.utils.inputHandlerRefresh( this.$el );
+        
+        if( adf.debugEnabled ){
             ADF.utils.prepareDebug( this.$el );
         }
     },
-    renderAsChild: function(){
-        ADF.utils.message('warn','Core.FieldView renderAsChild called');
-        return this.template(this.model.toJSON());
+    fieldChange: function(e){
+
+        var dataAttrs = this.model.get('dataAttributes');
+
+        this.valueChange(e);
+        this._submitOnChange(e, _.findWhere(dataAttrs,{name:'adf-submit-on-change'}));
+        this._dependentFieldLkup(e, _.findWhere(dataAttrs,{name:'adf-dependent-field-lkup-on-change'}));
+
     },
+    _submitOnChange: function( event, dataAttrObj ){
+        if( dataAttrObj && dataAttrObj.value === 'true' ){
+            adf.page.getRegion(this.options.regionName).formView.submitForm( event, this );
+        }
+    },
+    _dependentFieldLkup: function( event, dataAttrObj ){
+        if( dataAttrObj && dataAttrObj.value === 'true' ){
+            adf.page.getRegion(this.options.regionName).formView.dependentFieldLkup( event, this );
+        }
+    },    
     valueChange: function(e) {
 
         var fieldView = this;
@@ -94,7 +110,7 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
             $target.removeClass('small').addClass('large');
         }
     },
-    fancySelectSearch: function(e) {
+    fancySelectKeyup: function(e) {
 
         var keyCode = e.keyCode;
         var newHighlight;
@@ -122,8 +138,14 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
                 // console.log(highlightedOption);
                 break;
 
+            case 13:
+                e.preventDefault();
+                this.model.get('highlightedOption').click();
+                // console.log('Return pressed',e,this.model.get('highlightedOption'));
+                break;
+
             default:            // all the other keys
-                // console.log('keyup logger',e,e.keyCode);
+                console.log('keyup logger',e,e.keyCode);
                 var $options = this.$el.find('.select-fancy-options');
                 $options.empty();
                 var val = this.$el.find('.select-fancy').val();
@@ -166,17 +188,29 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
     },
     selectAllToggle: function(e) {
         e.preventDefault();
+        
         var $formRow = $(e.currentTarget).closest('.form-row');
         var $chkBxs = $formRow.find(':checkbox');
         var chkBxCnt = $chkBxs.size();
         var chkBxSlctd = $chkBxs.filter(':checked').size();
+        var crntValArray = [];
+        var delimiterObj = _.findWhere(this.model.get('dataAttributes'),{name:'input-delimiter'});
+        var delimiter = ( delimiterObj ? delimiterObj.value : '|' );
 
         if( chkBxSlctd > ( chkBxCnt / 2 ) ){
             $chkBxs.removeProp('checked');
+            this.model.dataCollection.each(function(dataModel){
+                dataModel.set('selectedInd','N');
+            });
+            this.model.set('currentValue','');
         }else{
             $chkBxs.prop('checked',true);
+            this.model.dataCollection.each(function(dataModel){
+                crntValArray.push(dataModel.get('value'));
+                dataModel.set('selectedInd','Y');
+            });
+            this.model.set('currentValue',crntValArray.join(delimiter));
         }
-
 
     }
 });

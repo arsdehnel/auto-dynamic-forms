@@ -39,8 +39,8 @@ ADF.FieldModel = Backbone.Model.extend({
             this.set('type','select-fancy');
             inputType = 'select-fancy';
         }
-        inputType = ADF.utils.camelize(inputType);
-        inputType = ADF.utils.capitalize(inputType);
+        inputType = ADF.utils.string.camelize(inputType);
+        inputType = ADF.utils.string.capitalize(inputType);
         inputType = 'inputType'+inputType;
         if( ADF.templates[inputType] ){
             this.set('inputTemplate',ADF.templates[inputType]);
@@ -72,11 +72,21 @@ ADF.FieldModel = Backbone.Model.extend({
                 case 'hidden':
                 case 'readonly':
                     break;
+                case 'actions':
+                    fieldModel.set('wrapClass',fieldModel.get('wrapClass')+' hide');
+                    break;
                 default:
                     ADF.utils.message('error','Unxpected field type for readonly override: '+fieldModel.get('type').toLowerCase());
                     break;
             }
         }        
+    },
+    _createDataAttrObj: function(){
+        var returnObj = {};
+        _.each(this.get('dataAttributes'),function(dataAttr){
+            returnObj[ADF.utils.string.camelize(dataAttr.name)] = dataAttr.value;
+        }); 
+        return returnObj;
     }
 
 });

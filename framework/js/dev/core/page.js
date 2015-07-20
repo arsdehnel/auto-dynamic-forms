@@ -20,14 +20,6 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
 
         pageView.initRegions();
 
-
-        if( ADF.utils.cookies.get('tsga-adf-debug') === 'true' ){
-            this.$el.addClass('tsga-debug-enabled');
-            this.debugEnabled = true;
-        }else{
-            this.debugEnabled = false;            
-        }
-
         this._super( options );
     },
     loadSvgDefs: function() {
@@ -42,9 +34,9 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
     },
     _buildRegion: function( regionData, id ) {
         var regionObj = {};
-        regionData.regionClass = ADF[ADF.utils.capitalize(ADF.utils.camelize(regionData.adfRegionType))+'Region'];
+        regionData.regionClass = ADF[ADF.utils.string.capitalize(ADF.utils.string.camelize(regionData.adfRegionType))+'Region'];
         regionData.selector = '#'+id;
-        regionData.regionName = ADF.utils.camelize(id);
+        regionData.regionName = ADF.utils.string.camelize(id);
 
         regionObj[regionData.regionName] = regionData;
 

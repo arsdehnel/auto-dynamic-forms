@@ -10,7 +10,7 @@
             {
                 "name" : "application",
                 "label" : "Application",
-                "type" : "select2",
+                "type" : "select",
                 "dataAttributes" : [
                     {
                         "name" : "adf-submit-on-change",

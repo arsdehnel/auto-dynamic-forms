@@ -15,7 +15,7 @@ ADF.Region = Marionette.Region.extend({
         // TODO: this really shouldn't be in the region object, probably part of the view that we've associated with it...
         this.$el.removeClass('hide');
 
-        if( adf.page.$el.hasClass('tsga-debug-enabled') ){
+        if( adf.debugEnabled ){
             ADF.utils.prepareDebug( this.$el );
         }
 
@@ -102,7 +102,7 @@ ADF.Region = Marionette.Region.extend({
 
                 }else{
 
-                    alert(textStatus+'! Probably going to need to get a TA involved.');
+                    ADF.utils.message('error',textStatus+'! Probably going to need to get a TA involved.');
                     console.log('settings',settings);
                     console.log(jqXHR);
                     region.$el.html(jqXHR.responseText);

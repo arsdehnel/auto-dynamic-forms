@@ -79,7 +79,7 @@
     position: absolute;
     top: 0;
     left: -100%;
-    opacity: 0;
+    opacity: 0;  
   }
   a, label{
     cursor: pointer;
@@ -107,6 +107,25 @@
     border-style: solid;
     border-color: transparent transparent transparent currentColor;
   }
+}
+
+@mixin pulse( $anim-name ){
+  // @keyframes $anim-name  
+  //   {
+  //   0% {background-color: $color-1;} 
+  //   25% {background-color: $color-2;}
+  //    50% {background-color: $color-3;}
+  //    75% {background-color: $color-4;}
+  //   100% {background-color: $color-5;}
+  //   }
+  @keyframes $anim-name  
+    {
+    0% { opacity: .5;} 
+    25% { opacity: .6;}
+     50% { opacity: .7;}
+     75% { opacity: .8;}
+    100% { opacity: .9;}
+    }  
 }
 
 @mixin body-bg( $base-color, $swirl-color ){

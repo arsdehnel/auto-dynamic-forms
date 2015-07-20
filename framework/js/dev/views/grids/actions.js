@@ -16,7 +16,13 @@ ADF.Grids.ActionsView = ADF.Core.DropdownView.extend({
         this.model.set('wrapClass','grid-actions');
 
     },
-    render: function() {
+    rende2r: function() {
+
+        if( this.collection.length === 0 ){
+
+        }else{
+
+        }
 
         // render the main bits
         this.$el.html(this.template(this.model.toJSON()));

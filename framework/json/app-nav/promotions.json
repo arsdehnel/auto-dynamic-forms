@@ -9,7 +9,7 @@
         "fldMstrId": 20,
         "detailId": 108,
         "name": "PROMOTION_ID",
-        "type": "SELECT2",
+        "type": "select",
         "label": "Promotion",
         "tooltipText": null,
         "fieldClass": null,

@@ -14,7 +14,7 @@
         "label" : "Process",
         "tooltip" : "This indicates which process this data type is for as we will likely have multiple processes for a given program/application that use this same table",
         "fieldPriority" : "1",
-        "type" : "select2",
+        "type" : "select",
         "data" : [
           {
             "value" : "VIN_DTL",
@@ -36,7 +36,7 @@
         "label" : "Data Source",
         "tooltip" : "This is usually a table name that indicates where this data is coming from although sometimes it may be a partial name of a table, a table name with prefix/suffix or maybe something else entirely",
         "fieldPriority" : "2",
-        "type" : "select2",
+        "type" : "select",
         "data" : [
           {
             "value" : "CMN_DATA_SCE",
@@ -57,7 +57,7 @@
         "label" : "Data Type",
         "tooltip" : "This is the data type that all these other fields are controlling or indicating how it should be calculated.",
         "fieldPriority" : "1",
-        "type" : "select2",
+        "type" : "select",
         "data" : [
           {
             "value" : "PMA_AWD_05"
@@ -78,7 +78,7 @@
         "label" : "Calculation",
         "tooltip" : "This is the name of what we're actually doing (summing, dividing, multiplying, etc.) once we have all the values and we've determined we need to do this data type for this period and whatnot.",
         "fieldPriority" : "1",
-        "type" : "select2",
+        "type" : "select",
         "data" : [
           {
             "value" : "SUM",
@@ -113,7 +113,7 @@
         "label" : "Rounding Type",
         "tooltip" : "Once the indicated calculation has been completed the resulting value (hopefully a number if you're going to round it) will be rounded as indicated by your choice here.",
         "fieldPriority" : "3",
-        "type" : "select2",
+        "type" : "select",
         "data" : [
           {
             "value" : "NORMAL",

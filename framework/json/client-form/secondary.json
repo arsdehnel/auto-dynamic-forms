@@ -11,7 +11,7 @@
             "fldMstrId" : "21",
             "name" : "page_code",
             "label" : "Page",
-            "type" : "select2",
+            "type" : "select",
             "dataAttributes" : [
                 {
                     "name" : "adf-dependent-field-lkup-on-change",

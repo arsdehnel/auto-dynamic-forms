@@ -7,7 +7,6 @@ _
 */
 ADF.Forms.FormView = Marionette.ItemView.extend({
     template: ADF.templates.form,
-    childView: ADF.FieldView,
     initialize: function( options ) {
         ADF.utils.message('log','Form.FormView Initialized', options );
         $.extend(this.options,options);
@@ -18,7 +17,7 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
             formView.$el.prepend(formView.template());            
             formView.formFields = new ADF.Forms.FieldsView({
                 el: formView.$el.find('.adf-form-fields')[0],
-                collection: new ADF.FieldsCollection(null,{regionName:formView.regionName}),
+                collection: new ADF.FieldsCollection(null,{regionName:formView.options.regionName}),
                 regionName: formView.options.regionName,
                 parentView: formView
             });
@@ -35,21 +34,17 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
         var formView = this;
         formView.formFields.render();
         formView.formActions.render();
-        ADF.utils.inputHandlerRefresh();
+        // ADF.utils.inputHandlerRefresh();
 
     },
 
-    submitForm: function(e) {
+    submitForm: function( e, contextView ) {
 
         var formView = this;
+        var contextModelDataAttrs = ( contextView && contextView.model && contextView.model._createDataAttrObj ? contextView.model._createDataAttrObj() : false );
         
         // check for any failing validations
         if( !this.$el.formValidate(ADF.config.get('validationSettings')) ){
-            return false;
-        }
-
-        // check if it's a fancy select that the user just hit return which we should stop them from submitting
-        if( e && this.$el.find(':focus').closest('.select-fancy-wrapper').size() > 0 ) {
             return false;
         }
 
@@ -71,73 +66,72 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
                 ADF.utils.message('error','Trying to load ajax but destination element could not be found on the page');
             }
         }else{
-            // do our little fancy bit to get the form data into our custom field
-            this.$el.append(ADF.templates.inputTypeAdfSerializedData({data:dataArray}));
 
-            // and then actually submit the form
-            this.$el.submit();
+            if( contextModelDataAttrs && contextModelDataAttrs.adfSubmitType && contextModelDataAttrs.adfSubmitType.toLowerCase() === 'ajax' ){
+
+                $.ajax({
+                    url: this.el.action,
+                    data: {adfSerializedData:JSON.stringify(dataArray)},
+                    dataType: 'html',
+                    complete: function( jqXhr, textStatus ){
+                        ADF.utils.message('log','Submitted via ajax',contextView);
+                    }
+                });
+
+            }else{
+
+                // do our little fancy bit to get the form data into our custom field
+                this.$el.append(ADF.templates.inputTypeAdfSerializedData({data:dataArray}));
+
+                // and then actually submit the form
+                this.$el.submit();
+
+            }
         }
 
     },
 
-    dependentFieldLkup: function(e) {
+    dependentFieldLkup: function( e, contextView ) {
 
         var formView = this;
+        var contextModelDataAttrs = contextView.model._createDataAttrObj();
         var dataArray = [];
-        var $triggerObj = $(e.target);
-        var $inputWrapper = $triggerObj.closest('.adf-input-wrapper');
-        var $parentRow = $triggerObj.closest('.form-row');
-        var triggerData = $.extend({},$parentRow.data(),$inputWrapper.data(),$triggerObj.data());
-        var target;
-        var newModelIdx;
-        var childFields = triggerData.adfDependentFieldLkupChildFields ? triggerData.adfDependentFieldLkupChildFields.split(',') : null;
         var region = adf.page[formView.options.regionName];
+        var newModelIdx;
 
         e.preventDefault();
         ADF.utils.message('log','dependentFieldLkup',e);
 
-        _.each(childFields,function( fieldName ){
-            var modelToRemove = formView.formFields.collection.filter(function( model ){
-                return model.get('name') === fieldName;
+        if( contextModelDataAttrs.adfDependentFieldLkupChildFields ){
+
+            _.each(contextModelDataAttrs.adfDependentFieldLkupChildFields.split(','),function( fieldName ){
+                var modelToRemove = formView.formFields.collection.filter(function( model ){
+                    return model.get('name') === fieldName.toLowerCase();
+                });
+                formView.formFields.collection.remove(modelToRemove);
+                // $('#'+fieldName+'-field-wrap').remove();
             });
-            formView.formFields.collection.remove(modelToRemove);
-            // $('#'+fieldName+'-field-wrap').remove();
-        });
+
+        }
+
         dataArray = ADF.utils.dataSerializeNonADFData( formView.$el.find(':input:hidden').not('.adf-form-fields :input').serializeObject() );
         dataArray = dataArray.concat(ADF.utils.dataSerialize( formView.formFields.collection ));
 
-        if( triggerData.fieldLkupTarget ){
+        if( contextModelDataAttrs.adfDependentFieldLkupTarget ){
 
-            // figure out the location of the field we're after
-            var fldMstrId = false;
-            if( triggerData.fieldLkupTarget === 'next' ){
-                fldMstrId = parseInt( $parentRow.attr('data-field-master-id'), 10 );
+            if( contextModelDataAttrs.adfDependentFieldLkupTarget.toLowerCase() === 'next' ){
+                newModelIdx = this.formFields.collection.indexOf(contextView.model);
             }else{
-                if( $('#'+triggerData.fieldLkupTarget+'-field-wrap').size() > 0 ){
-                    fldMstrId = $('#'+triggerData.fieldLkupTarget+'-field-wrap').attr('data-field-master-id');
-                }
+                ADF.utils.message('error','The option to load dependent fields into a particular location is not currently supported',contextModelDataAttrs.adfDependentFieldLkupTarget.toLowerCase());
             }
 
-            if( fldMstrId ){
-                var modelToFollow = formView.formFields.collection.find(function( model ){
-                    return model.get('fldMstrId') === fldMstrId;
-                });
-                newModelIdx = formView.formFields.collection.indexOf(modelToFollow) + 1;
-            }else{
-                newModelIdx = false;
-            }
-
-            // check for the "next" keyword that just means to put it right after the field calling the lookup
-            target = triggerData.fieldLkupTarget === 'next' ? 'next' : 'next';
-            // TODO:somehow also remove any prefix/suffix for this field upon load of the new stuff
-            // TODO:allow field to be dropped into the middle of a form rather than append to the form
-
-            // $target = $parentRow;
+        }else{
+            newModelIdx = false;
         }
 
         region.ajax({
             data: {adfSerializedData:JSON.stringify(dataArray)},
-            url: triggerData.adfDependentFieldLkupUrl,
+            url: contextModelDataAttrs.adfDependentFieldLkupUrl,
             emptyCollections:false,
             newModelIdx: newModelIdx
         });

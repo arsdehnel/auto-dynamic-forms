@@ -1,0 +1,16 @@
+.adf-grid-upload-form {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba( orange, .4 );
+    display: none;
+    .drag-target & {
+        display: block;
+        &.drag-on {
+            background: rgba( orange, .8 );
+        }
+    }    
+
+}

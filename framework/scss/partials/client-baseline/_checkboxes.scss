@@ -1,0 +1,36 @@
+.adf-region .form-row {
+    position:relative;
+    margin-bottom:15px;
+    padding: 0 20px;
+    label,
+    .form-input {
+        display: inline-block;
+        vertical-align: top; 
+    }
+    label {
+        width: 33%;        
+    }
+    .form-input {
+        width: 55%;
+    }
+    .adf-checkbox-wrapper,
+    .adf-radio-wrapper{
+        display: inline-block;
+        width: 49%;
+        margin-bottom: 5px;
+        label {
+            width: auto;
+            display: block;
+            padding-top: 0px;
+            padding-left: 18px;
+        }
+        input {
+            float: left;
+        }
+    }
+    .adf-checkbox-select-all-toggle {
+        position: absolute;
+        left: 30px;
+        top: 10px;
+    }    
+}

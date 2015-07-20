@@ -8,34 +8,35 @@ ADF.utils = {
     randomId: function() {
         return Math.floor( Math.random() * 3789.4);
     },
-    capitalize: function( string ) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    },
-    camelize: function( string ) {
-        return string.toLowerCase().replace(/[_.-](\w|$)/g, function (_,x) {
-            return x.toUpperCase();
-        });
-    },
     string: {
         underscore: function( string ) {
             return string.replace(/([A-Z])/g, function($1){return '_'+$1.toLowerCase();});
+        },
+        camelize: function( string ) {
+            return string.toLowerCase().replace(/[_.-](\w|$)/g, function (_,x) {
+                return x.toUpperCase();
+            });
+        },
+        capitalize: function( string ) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
         }
     },
     prepareDebug: function( $element ){
         var dataObj = $element.data();
-        var $debugData = $('<ul class="tsga-debug-data" />');
-        _.each(dataObj,function(dataItem, index){
-            $debugData.append('<li><strong>'+index+'</strong>: '+dataItem+'</li>');  
-        });
-        $element.append($debugData);
+        // var $debugData = $('<ul class="tsga-debug-data" />');
+        // _.each(dataObj,function(dataItem, index){
+        //     $debugData.append('<li><strong>'+index+'</strong>: '+dataItem+'</li>');  
+        // });
+        // $element.append($debugData);
+        $element.append(ADF.templates.debugData({data:dataObj}));
     },
     stringSubstitute: function( inputString, inputData ){
         var tokenArray = inputString.split('##');
         var returnString = tokenArray[0];
         for( var i = 1; i < tokenArray.length; i++ ){
             if( i % 2 === 1 ){
-                if( inputData[ADF.utils.camelize(tokenArray[i])] ){
-                    returnString += inputData[ADF.utils.camelize(tokenArray[i])];
+                if( inputData[ADF.utils.string.camelize(tokenArray[i])] ){
+                    returnString += inputData[ADF.utils.string.camelize(tokenArray[i])];
                 }
             }else{
                 returnString += tokenArray[i];
@@ -73,12 +74,16 @@ ADF.utils = {
         return object;
 
     },
-    inputHandlerRefresh: function() {
+    inputHandlerRefresh: function( $context ) {
 
-        $('.adf-datepicker').datepicker({
+        if( !$context ){
+            $context = adf.page.$el;
+        }
+
+        $('.adf-datepicker',$context).datepicker({
             dateFormat: 'mm/dd/yy'
         });
-        $('.adf-datetimepicker').datetimepicker({
+        $('.adf-datetimepicker',$context).datetimepicker({
             dateFormat: 'mm/dd/yy',
             timeFormat: 'HH:mm'
         });
@@ -225,7 +230,7 @@ ADF.utils = {
             }
 
         }else{
-            alert('unexpected level'+ADF.utils.printObject(args));
+            ADF.utils.message('error','unexpected level'+ADF.utils.printObject(args));
         }
 
     },
@@ -252,9 +257,10 @@ ADF.utils = {
                 field_code : ADF.utils.string.underscore( fieldKey ),
                 data_value : _.escape(crntVal)
             });
+
         });
 
-        if( adf.page.debugEnabled ){
+        if( adf.debugEnabled ){
             ADF.utils.message('debug','dataSerializeNonADFData array',_.map(dataArray,function(dataItem){
                 return dataItem.field_code+': '+dataItem.data_value+' (fldMstrId: '+dataItem.dyn_frm_fld_mstr_id+')';
             }));
@@ -282,9 +288,10 @@ ADF.utils = {
                 field_code : model.get('name'),
                 data_value : _.escape(crntVal)
             });
+
         });
 
-        if( adf.page.debugEnabled ){
+        if( adf.debugEnabled ){
             ADF.utils.message('debug','dataSerialize array',_.map(dataArray,function(dataItem){
                 return dataItem.field_code+': '+dataItem.data_value+' (fldMstrId: '+dataItem.dyn_frm_fld_mstr_id+')';
             }));

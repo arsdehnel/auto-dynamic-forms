@@ -1,0 +1,16 @@
+.adf-region .adf-form-actions {
+    padding-left: 290px;
+    .btn {
+        position: relative;
+        display: inline-block;
+        line-height: 2em;
+        padding: 0 1em 0 2em;
+        svg{
+            position: absolute;
+            top: .5em;
+            left: .5em;
+            height: 1em;
+            fill: currentColor;
+        }        
+    }
+}

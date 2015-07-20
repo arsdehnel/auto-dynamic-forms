@@ -18,7 +18,7 @@
             "label" : "Process",
             "tooltip" : "This is the actual name of the process in the database",
             "fieldPriority" : "1",
-            "type" : "select2"
+            "type" : "select"
           },
           {
             "name" : "read_order",

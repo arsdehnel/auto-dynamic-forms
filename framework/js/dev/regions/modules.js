@@ -101,10 +101,10 @@ ADF.ModulesRegion = ADF.Region.extend({
 
             if( xhrJson.hasOwnProperty('errors') ){
                 _.each(xhrJson.errors,function( element, index, array ){
-                    alert(element);
+                    ADF.utils.message('error',element);
                 });
             }else{
-                alert('Looks like the ajax response wasn\'t quite what was expected.  Probably need to get a TA involved to help figure it out.');
+                ADF.utils.message('error','Looks like the ajax response wasn\'t quite what was expected.  Probably need to get a TA involved to help figure it out.');
             }
 
         }

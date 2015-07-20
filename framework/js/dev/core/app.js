@@ -18,12 +18,17 @@ ADF.Modules = {};
 
 ADF.App = Marionette.Application.extend({
   initialize: function(options) {
-     ADF.utils.message('log','App Initialized', options);
+    ADF.utils.message('log','App Initialized', options);
+    if( ADF.utils.cookies.get('tsga-adf-debug') === 'true' ){
+        this.debugEnabled = true;
+    }else{
+        this.debugEnabled = false;            
+    }     
   },
   importPageTemplates: function() {
     $('.adf-template').each(function(){
       var $tmplt = $(this);
-      ADF.templates[ADF.utils.camelize($tmplt.attr('id'))] = Handlebars.compile($tmplt.html());
+      ADF.templates[ADF.utils.string.camelize($tmplt.attr('id'))] = Handlebars.compile($tmplt.html());
     });
   },
   keepSessionAlive: function() {
@@ -44,7 +49,7 @@ var adf = new ADF.App({container: 'body'});
 adf.on('before:start',function(options){
     $('.adf-template').each(function(){
       var $tmplt = $(this);
-      ADF.templates[ADF.utils.camelize($tmplt.attr('id'))] = Handlebars.compile($tmplt.html());
+      ADF.templates[ADF.utils.string.camelize($tmplt.attr('id'))] = Handlebars.compile($tmplt.html());
     });
 });
 adf.on('start', function(options){

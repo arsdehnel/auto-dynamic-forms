@@ -17,19 +17,18 @@
 </head>
 <!-- <body class="adf-app environment-qa"> -->
 <body class="adf-app">
-    <?php include('svg/defs.svg'); ?>
     <header>
         <nav id="nav-header" class="nav-header">
             <div class="site-actions">
                 <a href="#" class="log-out fa">
                     <svg viewBox="0 0 32 32" class="icon">
-                        <use xlink:href="<?php echo CLIENT_PATH;?>svg/defs.svg#icon-close"></use>
+                        <use xlink:href="#icon-close"></use>
                     </svg>
                     Log Out
                 </a>
                 <a href="#" class="refresh-menu fa">
                     <svg viewBox="0 0 32 32" class="icon">
-                        <use xlink:href="<?php echo CLIENT_PATH;?>svg/defs.svg#icon-refresh"></use>
+                        <use xlink:href="#icon-refresh"></use>
                     </svg>
                     Refresh Menu
                 </a>

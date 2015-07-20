@@ -12,7 +12,7 @@
             "name" : "page_code",
             "label" : "Page",
             "fieldClass" : "submit-on-change",
-            "type" : "select2",
+            "type" : "select",
             "data" : [
               {
                 "value" : "CLAIM_FORM",

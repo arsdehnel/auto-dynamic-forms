@@ -11,7 +11,7 @@
             "fldMstrId" : "20",
             "name" : "promotion_id",
             "label" : "Promotion",
-            "type" : "select2",
+            "type" : "select",
             "dataAttributes" : [
                 {
                     "name" : "js-trigger",
@@ -46,7 +46,7 @@
             "name" : "page_code",
             "label" : "Page",
             "fieldClass" : "submit-on-change",
-            "type" : "select2",
+            "type" : "select",
             "data" : [
               {
                 "value" : "CLAIM_FORM",

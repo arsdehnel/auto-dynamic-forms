@@ -9,48 +9,118 @@ module.exports = function(grunt) {
     var client = grunt.option('client');
     var buildTargetPath;
     var localServerPath;
-    var cdnTargetPath = '/Volumes/zonegrps-1/grp0143/apache2/prod0143m1-docroot/cdn/adf/';
+    var cdnTargetPath = '/Volumes/zonegrps-2/grp0143/apache2/prod0143m1-docroot/cdn/adf/';
     var clients = {
         'dev' : {
+            buildType       : 'admin',
             buildTargetPath : '../dev/',
             localServerPath : '../../../dev/'
         },
         'acuraadmin' : {
+            buildType       : 'admin',
             buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishacuraperformance/acuraadmin/src/webroot/v2/',
             localServerPath : '../../../acuraadmin-v2/'
         },
         'acuraadmin-static' : {
+            buildType       : 'admin',
             buildTargetPath : '/Volumes/static_content-1/acuraadmin.biworldwide.com/acuraadmin/v2/',
             localServerPath : '../../../acuraadmin-v2/'
         },
+        'gmadmin' : {
+            buildType       : 'admin',
+            buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishGM/gmadministration/src/webroot/v2/',
+            localServerPath : '../../../gmadmin-v2/'
+        },
+        'gmadmin-static' : {
+            buildType       : 'admin',
+            buildTargetPath : '/Volumes/static_content-1/gmadmin.biworldwide.com/gmadministration/v2/',
+            localServerPath : '../../../gmadmin-v2/'
+        },        
+        'mbadmin' : {
+            buildType       : 'admin',
+            buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishMercedes/mbusa2011/mbusaadmin/src/webroot/v2/',
+            localServerPath : '../../../mbadmin-v2/'
+        },
+        'mbadmin-static' : {
+            buildType       : 'admin',
+            buildTargetPath : '/Volumes/static_content-1/mercedesadmin.biworldwide.com/mbusaadmin/v2/',
+            localServerPath : '../../../mbadmin-v2/'
+        },     
+        'fcaadmin' : {
+            buildType       : 'admin',
+            buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishChrysler/fcaadmin/src/webroot/v2/',
+            localServerPath : '../../../fcaadmin-v2/'
+        },
+        'fcaadmin-static' : {
+            buildType       : 'admin',
+            buildTargetPath : '/Volumes/static_content-1/fcaadmin.biworldwide.com/fcaadmin/v2/',
+            localServerPath : '../../../fcaadmin-v2/'
+        },  
+        'hyundaiadmin' : {
+            buildType       : 'admin',
+            buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishHyundai/HyundaiAdmin/src/webroot/v2/',
+            localServerPath : '../../../hyundaiadmin-v2/'
+        },
+        'hyundaiadmin-static' : {
+            buildType       : 'admin',
+            buildTargetPath : '/Volumes/static_content-1/tmsadmin.biworldwide.com/tmsadmin/v2/',
+            localServerPath : '../../../tmsadmin-v2/'
+        },        
+        'tmsadmin' : {
+            buildType       : 'admin',
+            buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishToyotaMotorSales/tmsadmin/src/webroot/v2/',
+            localServerPath : '../../../tmsadmin-v2/'
+        },
+        'tmsadmin-static' : {
+            buildType       : 'admin',
+            buildTargetPath : '/Volumes/static_content-1/tmsadmin.biworldwide.com/tmsadmin/v2/',
+            localServerPath : '../../../tmsadmin-v2/'
+        },                         
         'apc-static' : {
-            buildTargetPath   : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/v2/',
-            jsBuildTargetPath : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/js/adf/',
-            localServerPath   : '../../../dev/'
+            buildType          : 'client',
+            buildTargetPath    : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/v2/',
+            jsBuildTargetPath  : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/js/adf/',
+            cssBuildTargetPath : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/styles/',
+            localServerPath    : '../../../dev/'
         },
         'hpc-static' : {
+            buildType       : 'client',
             buildTargetPath   : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/v2/',
             jsBuildTargetPath : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/js/adf/',
+            cssBuildTargetPath : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/styles/',
             localServerPath   : '../../../dev/'
         },
         'hps-static' : {
-            buildTargetPath   : '/Volumes/static_content-1/www.hondappc.com/ahmperfcenter/v2/',
-            jsBuildTargetPath : '/Volumes/static_content-1/www.hondappc.com/ahmperfcenter/js/adf/',
-            localServerPath   : '../../../dev/'
+            buildType          : 'client',
+            buildTargetPath    : '/Volumes/static_content-1/www.hondappc.com/ahmperfcenter/v2/',
+            jsBuildTargetPath  : '/Volumes/static_content-1/www.hondappc.com/ahmperfcenter/js/adf/',
+            cssBuildTargetPath : '/Volumes/static_content-1/www.hondappc.com/ahmperfcenter/styles/',
+            localServerPath    : '../../../dev/'
+        },
+        'icv-static' : {
+            buildType          : 'client',
+            buildTargetPath    : '/Volumes/static_content-1/icv.performnet.com/nnaicv/v2/',
+            jsBuildTargetPath  : '/Volumes/static_content-1/icv.performnet.com/nnaicv/js/adf/',
+            cssBuildTargetPath : '/Volumes/static_content-1/icv.performnet.com/nnaicv/styles/',
+            localServerPath    : '../../../dev/'
         },        
         'acnmadmin' : {
+            buildType       : 'admin',
             buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishACNM/acnmadmin/src/webroot/v2/',
             localServerPath : '../../../acnmadmin-v2/'
         },
         'acnmadmin-static' : {
+            buildType       : 'admin',
             buildTargetPath : '/Volumes/static_content-1/kbbadmin.biworldwide.com/kbbadmin/v2/',
             localServerPath : '../../../acnmadmin-v2/'
         },
         'candiadmin' : {
+            buildType       : 'admin',
             buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishNissan/candiadmin/src/webroot/v2/',
             localServerPath : '../../../candiadmin-v2/'
         },
         'candiadmin-static' : {
+            buildType       : 'admin',
             buildTargetPath : '/Volumes/static_content-1/candiadmin.biworldwide.com/candiadmin/v2/',
             localServerPath : '../../../candiadmin-v2/'
         }
@@ -174,8 +244,7 @@ module.exports = function(grunt) {
             libAdmin:  {
                 src: [
                     'js/lib/jquery-*.min.js',
-                    'js/lib/jquery-ui.js',
-                    'js/lib/spin.js'
+                    'js/lib/jquery-ui.js'
                 ],
                 dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'lib-admin.min.js',
             },
@@ -187,7 +256,8 @@ module.exports = function(grunt) {
                     'js/lib/backbone.wreqr.js',
                     'js/lib/backbone.babysitter.js',
                     'js/lib/backbone.marionette.js',
-                    'js/lib/handlebars.min.js'
+                    'js/lib/handlebars.min.js',
+                    'js/lib/spin.js'
                     // 'js/lib/select2.js',
                     // 'js/lib/chosen.js',
                 ],
@@ -230,27 +300,43 @@ module.exports = function(grunt) {
             }
         },
         sass: {
-            dist: {
+            admin: {
                 options: {
                     outputStyle: 'expanded'
                 },
                 files: {
                     'grunt-work/compiled.css': 'scss/main.scss'
                 }
-            }
+            },
+            client: {
+                options: {
+                    outputStyle: 'compressed'
+                },
+                files: {
+                    'grunt-work/compiled.css': 'scss/client.scss'
+                }
+            }            
         },
         autoprefixer: {
             options: {
                 browsers: ['last 2 version']
             },
-            dist: {
+            admin: {
                 files: [
                     {
                         src: 'grunt-work/compiled.css',
-                        dest: buildTargetPath+'css/main.css'
+                        dest: ( clientObj.cssBuildTargetPath ? clientObj.cssBuildTargetPath : clientObj.buildTargetPath+'css/' )+'main.css'
                     }
                 ]
             },
+            client: {
+                files: [
+                    {
+                        src: 'grunt-work/compiled.css',
+                        dest: ( clientObj.cssBuildTargetPath ? clientObj.cssBuildTargetPath : clientObj.buildTargetPath+'css/' )+'adf.css'
+                    }
+                ]
+            }            
         },
         watch: {
             scriptsDev: {
@@ -320,14 +406,20 @@ module.exports = function(grunt) {
 */
     //grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
     // TODO: had to remove sass:dist because npm won't install node-sass on my new mac
-    grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
     grunt.registerTask('hbs', ['handlebars','uglify:templates']);
-    grunt.registerTask('css', ['skin','sass:dist','autoprefixer']);
+    grunt.registerTask('css', function(){
+        if( clientObj.buildType === 'admin' ){
+            grunt.task.run(['skin','sass:admin','autoprefixer:admin']);
+        }else{
+            grunt.task.run(['skin','sass:client','autoprefixer:client']);
+        }
+    });
     grunt.registerTask('svg', ['svgstore','copy:svg']);
     grunt.registerTask('scripts-dev', ['concat:dev']);
     grunt.registerTask('scripts-lib', ['concat:lib']);
     grunt.registerTask('scripts-plugins', ['concat:plugins']);
     grunt.registerTask('scripts-tests', ['concat:tests']);
+    grunt.registerTask('default', ['svgstore','copy','concat','css','handlebars','uglify:templates','setPHPConstant','watch']);
 
     /*
              ___      __       _ __          __  _                __             __

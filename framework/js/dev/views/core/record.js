@@ -77,9 +77,6 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
         // var tokenModel = {};
         for( var i = 1; i < tokenArray.length; i++ ){
             if( i % 2 === 1 ){
-                // tokenModel = dataModel.get(tokenArray[i].toLowerCase());
-                // if( inputData[ADF.utils.camelize(tokenArray[i])] ){
-                // console.log(dataModel.get(tokenArray[i].toLowerCase()));
                 if( dataModel.get(tokenArray[i].toLowerCase()) ){
                     returnString += dataModel.get(tokenArray[i].toLowerCase());
                 }
@@ -214,7 +211,9 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
 
                 }
                 break;
-
+            case 'add':
+                ADF.utils.message('info','Add event triggered for a record view');
+                break;
             default:
                 ADF.utils.message('error','Unexpected event from the record view',event, model, response, options);
                 break;

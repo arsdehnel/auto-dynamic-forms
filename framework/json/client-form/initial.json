@@ -11,7 +11,7 @@
             "fldMstrId": 4,
             "name" : "promotion_id",
             "label" : "Promotion",
-            "type" : "select2",
+            "type" : "select",
             "dataAttributes" : [
                 {
                     "name" : "adf-dependent-field-lkup-on-change",
