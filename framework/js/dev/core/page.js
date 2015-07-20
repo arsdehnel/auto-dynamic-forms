@@ -1,6 +1,7 @@
 /*global
 ADF,
 Backbone,
+adf,
 $,
 _
 */
@@ -17,6 +18,10 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
         pageView.dndTargets = [];
 
         pageView.loadSvgDefs();
+
+        if( adf.debugEnabled ){
+            this.$el.addClass('tsga-debug-enabled');
+        }
 
         pageView.initRegions();
 

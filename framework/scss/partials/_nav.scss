@@ -114,6 +114,7 @@
         &.has-children:after{
             border-width: .5em;
             top: .25em;
+            right: 0;
             border-color: transparent transparent transparent white;
         }
         &:hover{

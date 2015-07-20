@@ -9,7 +9,6 @@ module.exports = function(grunt) {
     var client = grunt.option('client');
     var buildTargetPath;
     var localServerPath;
-    var cdnTargetPath = '/Volumes/zonegrps-2/grp0143/apache2/prod0143m1-docroot/cdn/adf/';
     var clients = {
         'dev' : {
             buildType       : 'admin',
@@ -134,7 +133,7 @@ module.exports = function(grunt) {
     var clientObj = clients[client];
     buildTargetPath = clients[client].buildTargetPath;
     localServerPath = clients[client].localServerPath;
-    cdnTargetPath = ( clientObj.cdnTargetPath ? clientObj.cdnTargetPath : '/Volumes/zonegrps-1/grp0143/apache2/prod0143m1-docroot/cdn/adf/' );
+    cdnTargetPath = ( clientObj.cdnTargetPath ? clientObj.cdnTargetPath : '/Volumes/zonegrps-2/grp0143/apache2/prod0143m1-docroot/cdn/adf/' );
 
     if( !buildTargetPath || !localServerPath ){
         grunt.fail.fatal('no buildTargetPath or localServerPath set');

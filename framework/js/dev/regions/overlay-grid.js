@@ -13,34 +13,28 @@ ADF.OverlayGridRegion = ADF.GridRegion.extend({
         this._super( options );
     },
 
-    show: function( triggerRecordView, $triggerObj ) {
-        ADF.utils.message('log','OverlayGridRegion Shown');
+    show: function( triggerCellView ) {
+        ADF.utils.message('info','OverlayGridRegion Shown',triggerCellView);
 
         var overlayRegion = this;
-        var sourceRegion = adf.page.getRegion(triggerRecordView.regionName);
+        var sourceRegion = adf.page.getRegion(triggerCellView.options.regionName);
         var dataArray = [];
-        var triggerBox = $triggerObj[0].getBoundingClientRect();
-        var triggerData = $triggerObj.data();
-        var triggerOffset = $triggerObj.offset();
+        var triggerBox = triggerCellView._parent.el.getBoundingClientRect();
+        var triggerData = triggerCellView.model._createDataAttrObj();
+        var triggerOffset = triggerCellView._parent.$el.offset();
         var dataFields = triggerData.adfAjaxDataFields.split(',');
 
         // TODO: check location of trigger field and possibly open up
-
+        // TODO: highlight current record
         adf.page.showBackdrop();
         this.$el.addClass('open').css({top:( triggerOffset.top + triggerBox.height ) });
         this.options.adfAjaxUrl = triggerData.adfAjaxUrl;
 
         overlayRegion.options.dataFields = new ADF.FieldsCollection( sourceRegion.fieldsCollection.filter( function( field ){
-            // console.log(field,_.indexOf( dataFields, field.get('name') ));
             return _.indexOf( dataFields, field.get('name') ) >= 0;
-        }),{recordModelDefaults: triggerRecordView.model.toJSON()});
+        }),{recordModelDefaults: triggerCellView._parent.model.toJSON()});
 
-        // console.log(dataFieldsCollection);
-
-        // dataArray = ADF.utils.dataSerialize( new Backbone.Collection( overlayRegion.options.dataFields ), triggerRecordView.model );
-        dataArray = ADF.utils.dataSerialize( overlayRegion.options.dataFields, triggerRecordView.model );
-
-        console.log(dataArray);
+        dataArray = ADF.utils.dataSerialize( overlayRegion.options.dataFields, triggerCellView._parent.model );
 
         overlayRegion.options.adfAjaxData = {adfSerializedData:JSON.stringify(dataArray)};
 

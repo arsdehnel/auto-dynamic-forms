@@ -3,11 +3,14 @@ ADF,
 Marionette,
 adf
 */
-ADF.Modules.ModuleListView = Marionette.CollectionView.extend({
+ADF.Modules.ModuleListView = Marionette.CompositeView.extend({
     childView: ADF.Modules.ModuleView,
     childViewOptions: function() {
         return { regionName: this.regionName };
     },
+    template: function(){
+        return '';
+    },    
     events: {
         'adf-module-received'           : 'moduleReceived',
         'adf-module-sent'               : 'moduleSent'

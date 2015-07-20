@@ -23,11 +23,11 @@ ADF.utils = {
     },
     prepareDebug: function( $element ){
         var dataObj = $element.data();
-        // var $debugData = $('<ul class="tsga-debug-data" />');
-        // _.each(dataObj,function(dataItem, index){
-        //     $debugData.append('<li><strong>'+index+'</strong>: '+dataItem+'</li>');  
-        // });
-        // $element.append($debugData);
+        _.each(dataObj,function(dataItem, index){
+            if (typeof dataItem === 'function' ){
+                delete dataObj[index];
+            }
+        });
         $element.append(ADF.templates.debugData({data:dataObj}));
     },
     stringSubstitute: function( inputString, inputData ){

@@ -1204,11 +1204,7 @@
         "fldMstrId": 8,
         "detailId": 10,
         "name": "JS_GRP_CD",
-<<<<<<< HEAD
         "type": "select",
-=======
-        "type": "SELECT",
->>>>>>> eea2a006255515fca3831cdfcc3eaae2415bebc4
         "label": "JS Group",
         "tooltipText": null,
         "fieldClass": null,
@@ -1522,7 +1518,7 @@
         "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_DATA_LOAD",
         "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_DATA_LOAD",
         "JS_READ_ORDER": 3,
-        "STATUS_CODE": "A",
+        "STATUS_CODE": "I",
         "DATE_CREATED": "02-03-2015 15:17:33",
         "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
         "DATE_MODIFIED": "02-09-2015 08:52:29",
@@ -1537,7 +1533,7 @@
         "PRCS_NAME": "PRC_PARTS_ITEM_LOAD",
         "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PARTS_ITEM_LOAD",
         "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_DATA_LOAD",
-        "STATUS_CODE": "A",
+        "STATUS_CODE": "I",
         "DATE_CREATED": "02-03-2015 15:17:33",
         "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
         "DATE_MODIFIED": "02-04-2015 10:41:31",

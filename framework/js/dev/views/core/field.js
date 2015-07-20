@@ -6,8 +6,10 @@ adf,
 _
 */
 ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
+    template: ADF.templates.formRow,
     events: {
         'change'                                  : 'fieldChange',
+        'click .adf-grid-overlay-value'           : 'showOverlayEditor',
         'click .size-toggle'                      : 'sizeToggle',
         'keyup .select-fancy'                     : 'fancySelectKeyup',
         'click .select-fancy-options a'           : 'fancySelectClick',
@@ -34,6 +36,10 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
         }
     },
     fieldChange: function(e){
+
+        if( this.model.get('type') === 'select-fancy' && $(e.target).is('input:visible') ){
+            return false;
+        }
 
         var dataAttrs = this.model.get('dataAttributes');
 
@@ -84,7 +90,7 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
     },
     showOverlayEditor: function(e) {
         e.preventDefault();
-        adf.page.getRegion('overlayEditor').show( $(e.target) );
+        adf.page.getRegion('overlayEditor').show( this );
     },
     getDelimiter: function() {
         var delimiterObj = _.findWhere(this.model.get('dataAttributes'),{name:'input-delimiter'});

@@ -8,8 +8,10 @@ ADF.Grids.RowView = ADF.Core.RecordView.extend({
     template: ADF.templates.gridRow,
     tagName: 'tr',
     childView: ADF.Grids.CellView,
+    childViewOptions : function () {
+        return { regionName: this.regionName };
+    },    
     events: {
-        'click .adf-grid-overlay-value'                 : 'showOverlayEditor',
         'click span[data-select-grid-rendering=true]'   : 'selectInGridToggle',
         'keyup .select-fancy'                           : 'fancySelectSearch',
         'click .select-fancy-options a'                 : 'fancySelectClick'

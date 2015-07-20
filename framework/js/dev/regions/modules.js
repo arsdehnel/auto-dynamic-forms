@@ -20,7 +20,7 @@ ADF.ModulesRegion = ADF.Region.extend({
 
         modulesRegion.fieldsCollection = new ADF.FieldsCollection(null,{regionName:modulesRegion.options.regionName});
         modulesRegion.actionsCollection = new ADF.ActionsCollection(null,{regionName: modulesRegion.options.regionName});       
-        modulesRegion.recordsCollection = new ADF.RecordsCollection(null,{regionName: modulesRegion.options.regionName});       
+        // modulesRegion.recordsCollection = new ADF.RecordsCollection(null,{regionName: modulesRegion.options.regionName});       
 
         this._super( options );
 
@@ -73,9 +73,9 @@ ADF.ModulesRegion = ADF.Region.extend({
             if( xhrJson.data.hasOwnProperty('records') ){
 
                 if( settings.emptyCollections === false ){
-                    modulesRegion.recordsCollection.add(xhrJson.data.records);
+                    modulesRegion.modulesView.moduleListView.collection.add(xhrJson.data.records);
                 }else{
-                    modulesRegion.recordsCollection.reset(xhrJson.data.records);
+                    modulesRegion.modulesView.moduleListView.collection.reset(xhrJson.data.records);
                 }
 
             }
