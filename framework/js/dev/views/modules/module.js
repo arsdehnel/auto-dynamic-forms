@@ -18,6 +18,10 @@ ADF.Modules.ModuleView = ADF.Core.RecordView.extend({
         // inherit events from the prototype but allow for custom events as well
         this.events = _.extend({},ADF.Core.RecordView.prototype.events,this.events);
 
+        this.listenTo(this.model,'change:read_order',function(){
+            console.log('probably should change some status or some shit');
+        });
+
         this._super( options );
 
     },

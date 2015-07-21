@@ -9,10 +9,15 @@
 
     ?>
     <div class="row">
-        <?php
-            // this opens the fieldset but leaves it open so the modules region can live inside
-            echo form_region( 'fieldset', 'Your Form', 'form-builder-current-filters', 'form-builder-current-fields', $urls[JSON_SOURCE]['current-filters'], true, false );
-            ?>
+        <fieldset
+            class="layout-grid-6 adf-region"
+            data-adf-region-type="form"
+            id="form-builder-current-filters"
+            data-adf-ajax-onshow="true"
+            data-adf-ajax-url="../../getJson.php?client=acuraadmin&action=common/get-fields&pageCode=PROCESS_MASTER_FILTERS&devPath=process-master/filters.json">
+            <legend>Your Form</legend>
+
+            <form action="#form-builder-current-fields" class="form-horizontal" method="post"></form>
     		<div id="form-builder-current-fields"
                 class="adf-region"
                 data-adf-region-type="modules"

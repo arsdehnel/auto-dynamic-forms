@@ -1,7 +1,8 @@
 /*global
 ADF,
 Marionette,
-adf
+adf,
+$
 */
 ADF.Modules.ModuleListView = Marionette.CompositeView.extend({
     childView: ADF.Modules.ModuleView,
@@ -10,10 +11,11 @@ ADF.Modules.ModuleListView = Marionette.CompositeView.extend({
     },
     template: function(){
         return '';
-    },    
+    },
     events: {
         'adf-module-received'           : 'moduleReceived',
-        'adf-module-sent'               : 'moduleSent'
+        'adf-module-sent'               : 'moduleSent',
+        'adf-module-removed'            : 'moduleRemoved'
     },
     initialize: function( options ) {
         ADF.utils.message('log','ModuleListView Initialized', options );
@@ -42,11 +44,13 @@ ADF.Modules.ModuleListView = Marionette.CompositeView.extend({
                 connectWith: '.dnd-wrapper[data-adf-dnd-target=true]',
                 placeholder: 'module-placeholder',
                 stop: function(event, ui) {
+                    console.log('drop',modulesView.regionName,event,ui);
                     ui.item.trigger('adf-module-drop', ui.item.index());
                 },
                 remove: function(event, ui) {
-                    console.log('remove');
-                    ui.item.trigger('adf-module-remove', ui.item.index());
+                    console.log('remove',modulesView.regionName,event,ui);
+                    // ui.item.trigger('adf-module-remove', ui.item.index());
+                    $(event.target).trigger('adf-module-removed', ui.item.index());
                 },
                 activate: function( event, ui ) {
                     modulesView.$el.addClass('dnd-active');
@@ -57,17 +61,21 @@ ADF.Modules.ModuleListView = Marionette.CompositeView.extend({
             });
 
         }
-    },       
+    },
     resetReadOrder: function(){
         this.collection.each(function(model, index){
             model.set('read_order',index*10);
         });
     },
+    moduleRemoved: function( e, index ) {
+        this.render();
+        // console.log('moduleRemoved',arguments);
+    },
     moduleReceived: function( e, model, position ) {
 
         e.stopPropagation();
 
-        ADF.utils.message('log','moduleReceived',e,model,position);
+        ADF.utils.message('debug','moduleReceived',e,model,position,this.regionName);
 
         var modulesView = this;
         var crntIdx = modulesView.collection.indexOf(model);
@@ -78,12 +86,12 @@ ADF.Modules.ModuleListView = Marionette.CompositeView.extend({
         }else{
             modulesView.collection.add(model, {at: position});
         }
+        this.render();
 
     },
     moduleSent: function( e, model, position ) {
-        var modulesView = this;
-        console.log('moduleSent');
-        modulesView.collection.remove(model);
+        ADF.utils.message('debug','moduleSent',e,model,position,this.regionName);
+        this.collection.remove(model);
     }
 
 });

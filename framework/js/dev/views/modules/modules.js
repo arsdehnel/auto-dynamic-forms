@@ -1,13 +1,9 @@
 /*global
 ADF,
 Marionette,
-adf,
-$
+adf
 */
 ADF.Modules.ModulesView = Marionette.View.extend({
-    events: {
-        'click .btn'                    : 'handleAction'
-    },
     initialize: function( options ) {
         var modulesView = this;
         ADF.utils.message('log','ModulesView Initialized', options );
@@ -21,34 +17,17 @@ ADF.Modules.ModulesView = Marionette.View.extend({
             regionName: modulesView.regionName,
             dndSource: options.dndSource,
             dndTarget: options.dndTarget
-        });  
+        });
         modulesView.moduleActionsView = new ADF.Modules.ActionsView({
             el: modulesView.$el.find('.module-actions-wrapper')[0],
             collection: modulesView.region.actionsCollection,
-            regionName: modulesView.regionName
-        });                
+            region: modulesView.region
+        });
     },
     render: function() {
         var modulesView = this;
         modulesView.moduleListView.render();
         modulesView.moduleActionsView.render();
-    },
-    handleAction: function(e) {
-        e.preventDefault();
-        var modulesView = this;
-        var $targetObj = $(e.target).closest('a');
-        var actionType = $targetObj.attr('data-action-type');
-        // TODO: experiment with making this dynamic
-        switch( actionType ){
-            case 'save':
-                modulesView.moduleListView.collection.each(function( moduleModel ){
-                    moduleModel.url = $targetObj.attr('href');
-                    moduleModel.save(null,{fieldsCollection: modulesView.region.fieldsCollection});
-                });
-                break;
-            default:
-                ADF.utils.message('error','Unexpected record action ('+actionType+') triggered.',$targetObj);
-        }
-    }    
+    }
 
 });
