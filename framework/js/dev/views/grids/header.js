@@ -28,10 +28,8 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
         }
 
         headerView.gridFilter = new ADF.Grids.FilterView({
-            headerEl: headerView.$el,
+            headerView: headerView,
             regionName: headerView.regionName,
-            fieldType: headerView.model.get('type'),
-            fieldName: headerView.model.get('name'),
             collection: new Backbone.Collection(null,{comparator: 'fieldValue'})
         });
 

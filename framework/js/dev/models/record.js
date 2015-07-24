@@ -9,6 +9,9 @@ ADF.RecordModel = Backbone.Model.extend({
         ADF.utils.message('log','RecordModel Initialized', attrs, opts);
         var recordModel = this;
 
+        this._attrsToLower(attrs);
+        this._createInitAttrs();
+
         // give the record an ID even if it is new (ie not from the database)
         if( recordModel.isNew() ){
             recordModel.set('id','a'+ADF.utils.randomId());
@@ -16,6 +19,11 @@ ADF.RecordModel = Backbone.Model.extend({
         }else{
             recordModel.set('rowClass','current');
         }
+
+    },
+
+    _attrsToLower: function( attrs ) {
+        var recordModel = this;
 
         // make sure all attributes are lowercase
         _.each(attrs,function(element, index, array){
@@ -30,8 +38,18 @@ ADF.RecordModel = Backbone.Model.extend({
                 recordModel.set(index.toLowerCase(), element );
             }
         });
+    },
 
-        // this.listenTo(this,'sync',recordModel.recordSave);
+    _createInitAttrs: function() {
+
+        var keys = [];
+        _.each( this.toJSON(), function( val, key ) {
+          if ( val ) {
+            keys.push(key);
+          }
+        });
+
+        this.initAttrs = keys;
 
     },
 

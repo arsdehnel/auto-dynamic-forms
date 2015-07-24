@@ -26,22 +26,16 @@
                 data-adf-ajax-url="../../json/form-builder/current.json">
             </div>
         </fieldset>
-        <?php
-            // this opens the fieldset but leaves it open so the modules region can live inside
-            echo form_region( 'fieldset', 'Available Fields', 'form-builder-allfields-filters', 'form-builder-all-fields', $urls[JSON_SOURCE]['all-filters'], true, false );
-            ?>
-<!--         <div class="btn-group">
-        	<a href="javascript:alert('Open modal to give parameters');" class="btn">copy from another promotion</a>
-            <a href="#" class="btn btn-add dialog-form-trigger" data-action-type="dialog-form" title="New Field Master" data-dialog-form-lkup-url="../json/common/dialog-form.json" data-dialog-form-save-url="../json/form-builder/field-save.json">
-                <svg viewBox="0 0 32 32" class="icon">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-add"></use>
-                </svg>
-                <span>
-                    New Field Master
-                </span>
-            </a>
-        </div>
- -->
+        <fieldset
+            class="layout-grid-6 adf-region"
+            data-adf-region-type="form"
+            id="form-builder-allfields-filters"
+            data-adf-ajax-onshow="true"
+            data-adf-ajax-url="../../getJson.php?client=acuraadmin&action=common/get-fields&pageCode=PROCESS_MASTER_FILTERS&devPath=process-master/filters.json">
+            <legend>Your Form</legend>
+
+            <form action="#form-builder-all-fields" class="form-horizontal" method="post"></form>
+
 
     		<div id="form-builder-all-fields"
                 class="adf-region"

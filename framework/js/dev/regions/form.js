@@ -47,8 +47,11 @@ ADF.FormRegion = ADF.Region.extend({
             if( xhrJson.data.hasOwnProperty('fields') ){
 
                 if( settings.emptyCollections === false ){
-                    var options = settings.newModelIdx ? {at: settings.newModelIdx} : {};
-                    formRegion.formView.formFields.collection.add(xhrJson.data.fields, options);
+                    if( settings.newModelIdx ){
+                        formRegion.formView.formFields.collection.add(xhrJson.data.fields.reverse(), {at: settings.newModelIdx});
+                    }else{
+                        formRegion.formView.formFields.collection.add(xhrJson.data.fields);
+                    }
                 }else{
                     formRegion.formView.formFields.collection.reset(xhrJson.data.fields);
                 }

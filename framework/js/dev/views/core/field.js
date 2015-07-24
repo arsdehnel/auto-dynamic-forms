@@ -44,8 +44,8 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
         var dataAttrs = this.model.get('dataAttributes');
 
         this.valueChange(e);
-        this._submitOnChange(e, _.findWhere(dataAttrs,{name:'adf-submit-on-change'}));
-        this._dependentFieldLkup(e, _.findWhere(dataAttrs,{name:'adf-dependent-field-lkup-on-change'}));
+        this._submitOnChange(e, _.findWhere(dataAttrs,{name:'submit-on-change'}));
+        this._dependentFieldLkup(e, _.findWhere(dataAttrs,{name:'dpndnt-field-lkup-on-change'}));
 
     },
     _submitOnChange: function( event, dataAttrObj ){

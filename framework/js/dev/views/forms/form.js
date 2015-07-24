@@ -67,7 +67,7 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
             }
         }else{
 
-            if( contextModelDataAttrs && contextModelDataAttrs.adfSubmitType && contextModelDataAttrs.adfSubmitType.toLowerCase() === 'ajax' ){
+            if( contextModelDataAttrs && contextModelDataAttrs.submitType && contextModelDataAttrs.submitType.toLowerCase() === 'ajax' ){
 
                 $.ajax({
                     url: this.el.action,
@@ -102,9 +102,9 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
         e.preventDefault();
         ADF.utils.message('log','dependentFieldLkup',e);
 
-        if( contextModelDataAttrs.adfDependentFieldLkupChildFields ){
+        if( contextModelDataAttrs.dpndntFieldLkupChildFields ){
 
-            _.each(contextModelDataAttrs.adfDependentFieldLkupChildFields.split(','),function( fieldName ){
+            _.each(contextModelDataAttrs.dpndntFieldLkupChildFields.split(','),function( fieldName ){
                 var modelToRemove = formView.formFields.collection.filter(function( model ){
                     return model.get('name') === fieldName.toLowerCase();
                 });
@@ -117,12 +117,12 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
         dataArray = ADF.utils.dataSerializeNonADFData( formView.$el.find(':input:hidden').not('.adf-form-fields :input').serializeObject() );
         dataArray = dataArray.concat(ADF.utils.dataSerialize( formView.formFields.collection ));
 
-        if( contextModelDataAttrs.adfDependentFieldLkupTarget ){
+        if( contextModelDataAttrs.dpndntFieldLkupTarget ){
 
-            if( contextModelDataAttrs.adfDependentFieldLkupTarget.toLowerCase() === 'next' ){
-                newModelIdx = this.formFields.collection.indexOf(contextView.model);
+            if( contextModelDataAttrs.dpndntFieldLkupTarget.toLowerCase() === 'next' ){
+                newModelIdx = this.formFields.collection.indexOf(contextView.model) + 1; //plus one because we need it AFTER the current one
             }else{
-                ADF.utils.message('error','The option to load dependent fields into a particular location is not currently supported',contextModelDataAttrs.adfDependentFieldLkupTarget.toLowerCase());
+                ADF.utils.message('error','The option to load dependent fields into a particular location is not currently supported',contextModelDataAttrs.dpndntFieldLkupTarget.toLowerCase());
             }
 
         }else{
@@ -131,7 +131,7 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
 
         region.ajax({
             data: {adfSerializedData:JSON.stringify(dataArray)},
-            url: contextModelDataAttrs.adfDependentFieldLkupUrl,
+            url: contextModelDataAttrs.dpndntFieldLkupUrl,
             emptyCollections:false,
             newModelIdx: newModelIdx
         });

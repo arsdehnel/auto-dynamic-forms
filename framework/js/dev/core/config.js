@@ -35,11 +35,11 @@ ADF.config = {
                 'label' : 'Info'
             },
             'debug' : {
-                'displayMethod' : 'messagesWindow',
+                'displayMethod' : 'console',
                 'label' : 'Debug'
             },
             'warn' : {
-                'displayMethod' : 'messagesWindow',
+                'displayMethod' : 'console',
                 'label' : 'Warning'
             },
             'error' : {

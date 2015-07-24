@@ -187,7 +187,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
             case 'change':
                 this._updateStatus('updated');
                 this._updateFieldCollectionValues(model.changed);
-                this._renderChildren();
+                // this._renderChildren();
                 break;
             case 'request':
                 break;

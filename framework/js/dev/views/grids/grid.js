@@ -115,9 +115,18 @@ ADF.Grids.GridView = Marionette.View.extend({
                 gridView.dragTextEl.text('');
             },
             uploadFinished: function(i, file, response, time) {
+
+                var responseFieldGroups = [];
+
                 // response is the data you got back from server in JSON format.
-                console.log(response);
                 if( response.success ){
+                    responseFieldGroups = _.partition(response.data.headers,function(header){
+                        return gridView.headersView.collection.findWhere({name:header});
+                    });
+                    // index 1 of that array gives the ones that do NOT match and should be communicated to the user that something didn't match
+                    _.each(responseFieldGroups[1],function(mismatchedField){
+                        ADF.utils.message('warn','Upload contained '+mismatchedField+' as a header which does not match a field in this grid');
+                    });
                     gridView.bodyView.collection.add(response.data.records,{at:0});
                 }else{
                     if( response.errors ){

@@ -21,14 +21,13 @@ ADF.OverlayGridRegion = ADF.GridRegion.extend({
         var dataArray = [];
         var triggerBox = triggerCellView._parent.el.getBoundingClientRect();
         var triggerData = triggerCellView.model._createDataAttrObj();
-        var triggerOffset = triggerCellView._parent.$el.offset();
-        var dataFields = triggerData.adfAjaxDataFields.split(',');
+        var dataFields = triggerData.ajaxDataFields.split(',');
 
         // TODO: check location of trigger field and possibly open up
         // TODO: highlight current record
         adf.page.showBackdrop();
-        this.$el.addClass('open').css({top:( triggerOffset.top + triggerBox.height ) });
-        this.options.adfAjaxUrl = triggerData.adfAjaxUrl;
+        this.$el.addClass('open').css({top:( triggerBox.top + triggerBox.height ) });
+        this.options.adfAjaxUrl = triggerData.ajaxUrl;
 
         overlayRegion.options.dataFields = new ADF.FieldsCollection( sourceRegion.fieldsCollection.filter( function( field ){
             return _.indexOf( dataFields, field.get('name') ) >= 0;

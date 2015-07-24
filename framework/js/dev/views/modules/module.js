@@ -25,6 +25,18 @@ ADF.Modules.ModuleView = ADF.Core.RecordView.extend({
         this._super( options );
 
     },
+    onRender: function(){
+        var moduleModel = this.model;
+        console.log(moduleModel.changedAttributes());
+        var partAttrs = _.partition(moduleModel.changedAttributes(),function(attr){
+            // console.log(_.indexOf(moduleModel.initAttrs,attr));
+            return _.indexOf(moduleModel.initAttrs,attr) >= 0;
+        });
+        console.log(partAttrs);
+        if( partAttrs[0].length > 0 ){
+            this.$el.addClass('updated');
+        }
+    },        
     toggleDetails: function(e) {
         e.preventDefault();
         this.$el.find('.icon-expand, .icon-contract, .module-details').toggleClass('hide');

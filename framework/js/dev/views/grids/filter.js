@@ -1,7 +1,6 @@
 /*global
 ADF,
 adf,
-$,
 _
 */
 // TODO: clear queued filters when this closes
@@ -25,9 +24,10 @@ ADF.Grids.FilterView = ADF.Core.DropdownView.extend({
         this.regionName = options.regionName;
         this.region = adf.page.getRegion(this.regionName);
         this.gridView = this.region.gridView;
+        this.headerView = options.headerView;
         this.gridFilterQueue = this.gridView.bodyView.filterQueue;
-        this.fieldName = options.fieldName;
-        this.fieldType = options.fieldType;
+        this.fieldName = this.headerView.model.get('name');
+        this.fieldType = this.headerView.model.get('type');
         this.filtersGenerated = false;
 
         var footerOptions = [];
@@ -73,13 +73,6 @@ ADF.Grids.FilterView = ADF.Core.DropdownView.extend({
         this.model.set('wrapClass','grid-header-filter');
         this.model.set('caretSvg','filter');
 
-        if( this.fieldType === 'TEXT' ){
-            this.includeInRender = true;
-            this.headerEl = options.headerEl;
-        }else{
-            this.includeInRender = false;
-        }
-
         // inherit events from the prototype but allow for custom events as well
         this.events = _.extend({},ADF.Core.DropdownView.prototype.events,this.events);
 
@@ -87,10 +80,11 @@ ADF.Grids.FilterView = ADF.Core.DropdownView.extend({
     render: function() {
         // var gridFilterView = this;
 
-        if( this.includeInRender ) {
-            this.headerEl.addClass('has-filter').append(this.template(this.model.toJSON()));
-            this.setElement(this.headerEl.find('.dropdown-wrapper')[0]);
+        if( this.fieldType === 'TEXT' ){
+            this.headerView.$el.addClass('has-filter').append(this.template(this.model.toJSON()));
+            this.setElement(this.headerView.$el.find('.dropdown-wrapper')[0]);
         }
+
     },
     generateFilters: function() {
 
