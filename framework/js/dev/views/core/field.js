@@ -7,14 +7,13 @@ _
 */
 ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
     template: ADF.templates.formRow,
-    events: {
+    parentEvents: {
         'change'                                  : 'fieldChange',
-        'click .adf-grid-overlay-value'           : 'showOverlayEditor',
         'click .size-toggle'                      : 'sizeToggle',
-        'keyup .select-fancy'                     : 'fancySelectKeyup',
-        'click .select-fancy-options a'           : 'fancySelectClick',
-        'click .select-fancy-clear'               : 'fancySelectClear',
         'click .adf-checkbox-select-all-toggle'   : 'selectAllToggle'
+    },
+    events: function() {
+        return this.parentEvents;
     },
     initialize: function( options ) {
         ADF.utils.message('log','Core.FieldView Initialized', options);
@@ -30,13 +29,14 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
     },
     onRender: function(){
         ADF.utils.inputHandlerRefresh( this.$el );
-        
+
         if( adf.debugEnabled ){
             ADF.utils.prepareDebug( this.$el );
         }
     },
     fieldChange: function(e){
 
+        // suppress 'change' events for the input box for select fancy inputs
         if( this.model.get('type') === 'select-fancy' && $(e.target).is('input:visible') ){
             return false;
         }
@@ -57,7 +57,7 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
         if( dataAttrObj && dataAttrObj.value === 'true' ){
             adf.page.getRegion(this.options.regionName).formView.dependentFieldLkup( event, this );
         }
-    },    
+    },
     valueChange: function(e) {
 
         var fieldView = this;
@@ -87,10 +87,7 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
         }else{
             this.model.set('currentValue',$(e.target).val());
         }
-    },
-    showOverlayEditor: function(e) {
-        e.preventDefault();
-        adf.page.getRegion('overlayEditor').show( this );
+
     },
     getDelimiter: function() {
         var delimiterObj = _.findWhere(this.model.get('dataAttributes'),{name:'input-delimiter'});
@@ -116,85 +113,9 @@ ADF.Core.FieldView = Backbone.Marionette.ItemView.extend({
             $target.removeClass('small').addClass('large');
         }
     },
-    fancySelectKeyup: function(e) {
-
-        var keyCode = e.keyCode;
-        var newHighlight;
-        switch( keyCode ){
-            case 38:                    // up arrow
-            case 40:                    // down arrow
-
-                // dont want to cancel it for every single key
-                e.preventDefault();
-
-                // remove existing highlight and traverse to the appropriate item
-                if( this.model.get('highlightedOption') ) {
-                    console.log('found highlighted option');
-                    this.model.get('highlightedOption').removeClass('highlight');
-                    newHighlight = ( keyCode === 40 ? this.model.get('highlightedOption').next() : this.model.get('highlightedOption').prev() );
-                }
-
-                // maybe the traversing failed (end of list or beginning of list) or we didn't have a highlighted one to start with
-                if( !newHighlight || newHighlight.size() === 0 ) {
-                    newHighlight = ( keyCode === 40 ? this.$el.find('.select-fancy-options').children().first() : this.$el.find('.select-fancy-options').children().last() );
-                }
-
-                // somehow we should have one determined for the new highlight now
-                this.model.set('highlightedOption',newHighlight.addClass('highlight'));
-                // console.log(highlightedOption);
-                break;
-
-            case 13:
-                e.preventDefault();
-                this.model.get('highlightedOption').click();
-                // console.log('Return pressed',e,this.model.get('highlightedOption'));
-                break;
-
-            default:            // all the other keys
-                console.log('keyup logger',e,e.keyCode);
-                var $options = this.$el.find('.select-fancy-options');
-                $options.empty();
-                var val = this.$el.find('.select-fancy').val();
-                var selectData = this.model.get('data');
-                var results = _.filter(selectData,function(item){
-                    if( item.label && item.label.length > 0 ){
-                        return item.value.toLowerCase().indexOf(val.toLowerCase()) >= 0 || item.label.toLowerCase().indexOf(val.toLowerCase()) >= 0;
-                    }else{
-                        return item.value.toLowerCase().indexOf(val.toLowerCase()) >= 0;
-                    }
-                });
-                if( results.length === 0 ){
-                    $options.append('<li>No results found</li>');
-                }else{
-                    _.each(results,function(result){
-                        $options.append(ADF.templates.inputHelperSelectFancyRecord(result));
-                    });
-                }
-        }
-    },
-    fancySelectClick: function(e) {
-        e.preventDefault();
-        var $selected = $(e.currentTarget);
-        var $input = this.$el.find('.select-fancy');
-        var $hidden = this.$el.find(':input:hidden');
-        $input.val($selected.text());
-        $hidden.val($selected.data('value'));
-        this.model.set('currentValue',$selected.data('value'));
-        $hidden.trigger('change');
-        this.$el.find('.select-fancy-options').empty();
-    },
-    fancySelectClear: function(e) {
-        e.preventDefault();
-        this.model.set('currentValue','');
-        var $input = this.$el.find('.select-fancy');
-        var $hidden = this.$el.find(':input:hidden');
-        $input.val('');
-        $hidden.val('');
-        $hidden.trigger('change');
-    },
     selectAllToggle: function(e) {
         e.preventDefault();
-        
+
         var $formRow = $(e.currentTarget).closest('.form-row');
         var $chkBxs = $formRow.find(':checkbox');
         var chkBxCnt = $chkBxs.size();

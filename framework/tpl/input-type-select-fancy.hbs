@@ -1,17 +1,18 @@
 <div class="select-fancy-wrapper">
 
-  <input 
-    type="text" 
-    class="{{fieldClass}} select-fancy"
-    id="{{name}}--display" 
-    name="{{name}}--display" 
-    value="{{fancySelectDisplayText currentValue data}}"
-    autocomplete="off"
-    {{#each dataAttributes}}
-        {{dataAttributeWrite name value 'formInput'}}
-    {{/each}}    
-    >
-  <input type="hidden" class="adf-form-input" name="{{name}}" id="{{name}}" value="{{currentValue}}">
-  <button class="select-fancy-clear">Clear</button>
-  <ul class="select-fancy-options"></ul>
+    <input
+        type="text"
+        class="{{fieldClass}} select-fancy"
+        id="{{name}}--display"
+        name="{{name}}--display"
+        value="{{fancySelectDisplayText currentValue data}}"
+        autocomplete="off"
+        {{#each dataAttributes}}
+                {{dataAttributeWrite name value 'formInput'}}
+        {{/each}}
+        >
+    <input type="hidden" class="adf-form-input" name="{{name}}" id="{{name}}" value="{{currentValue}}">
+    <button class="select-fancy-control select-fancy-clear">X</button>
+    <button class="select-fancy-control select-fancy-toggle">+</button>
+    <ul class="select-fancy-options"></ul>
 </div><!-- /.select-fancy-wrapper -->

@@ -1,25 +1,24 @@
 /*global
 ADF,
-Backbone,
-adf
+Backbone
 */
 ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
     template: ADF.templates.gridHeaderCell,
     tagName: 'th',
     childView: ADF.Grids.FilterView,
     events: {
-        'click     .sort-trigger'           : 'sortGrid',
+        'click     .sort-control'           : 'sortGrid',
         'mousedown .adf-grid-resize-handle' : 'resizeStart',
         'mouseup   .adf-grid-resize-handle' : 'resizeStop',
         'mousemove'                         : 'resiseMove'
     },
     initialize: function( options ){
         ADF.utils.message('log','HeaderView Initialized', options);
+        this.gridView = options.gridView;
         var headerView = this;
         headerView.regionName = options.regionName;
         this.model.set('colIndex',this.model.collection.indexOf(this.model));
         this.model.set('regionName',options.regionName);
-        this.gridView = adf.page.getRegion(headerView.regionName).gridView;
 
         if( this.model.get('type') !== 'ACTIONS' ){
             this.model.set('sortable',true);
@@ -44,7 +43,20 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
         this.gridFilter.render();
     },
     sortGrid: function( e ){
-        this.gridView.sortGrid( e );
+
+        ADF.utils.spin( this.gridView.$el );
+
+        // this will sort the collection and return us the direction
+        var sortDir = this.gridView.bodyView.collection.sortRecords( this.model.get('name') );
+
+        // clear indicators
+        this.gridView.headersView.clearSortClass();
+
+        // indicate on this header
+        this.$el.addClass('sorted-'+sortDir);
+
+        ADF.utils.spin( this.gridView.$el, { stop: true }  );
+
     },
     resizeInit: function() {
         this.$el.width(this.$el.width());

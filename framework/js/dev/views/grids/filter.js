@@ -70,7 +70,7 @@ ADF.Grids.FilterView = ADF.Core.DropdownView.extend({
 
         this.model.set('footerOptions',footerOptions);
         this.model.set('textFilterInput',true);
-        this.model.set('wrapClass','grid-header-filter');
+        this.model.set('wrapClass','filter-control adf-header-control');
         this.model.set('caretSvg','filter');
 
         // inherit events from the prototype but allow for custom events as well
@@ -193,8 +193,9 @@ ADF.Grids.FilterView = ADF.Core.DropdownView.extend({
     },
     applyFilters: function( e ) {
         e.preventDefault();
+        this.dropdownToggle( e );
         this.gridView.bodyView.applyFilters();
-        this.$el.find('.dropdown-menu').addClass('hide');
+        // this.$el.find('.dropdown-menu').addClass('hide');
     },
     clearFilters: function( e ) {
         e.preventDefault();

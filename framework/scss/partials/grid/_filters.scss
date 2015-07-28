@@ -1,42 +1,8 @@
 // for the header cell filters
-.grid-header-filter.dropdown-wrapper{
-    position: absolute;
-    margin: 0;
-    top: 0;
-    bottom: 0;
-    width: 2em;
-    right: 0;
-    .dropdown-label{
-        display: none;
-    }
-    .dropdown-toggle{
-        background: rgba( 255, 255, 255, .2 );
-    }
-    .dropdown-toggle-caret {
-        svg {
-            height: 12px;
-            width: 12px;
-            fill: white;
-        }
-        &::before {
-            content: none;
-        }
-    }
-    .is-filtered & {
-        .dropdown-toggle {
-            background: $is-filtered-icon-background;
-        }
-        @if $is-filtered-icon-color {
-            .dropdown-toggle-caret {
-                svg {
-                   fill: $is-filtered-icon-color;
-                }
-            }
-
-        }
-    }
+.adf-header-control.filter-control{
     .dropdown-inner .dropdown-menu{
         left: auto;
+        top: 1em;
         width: 30em;
         height: 300px;
         overflow-y: hidden;

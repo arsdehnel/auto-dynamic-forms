@@ -32,7 +32,13 @@
     .primary-options,
     .footer-options {
         position: relative;
-        z-index: $zindex-overlay;    	
+        z-index: $zindex-overlay;
+        &:empty {
+            display: none;
+        }
+    }
+    .footer-options {
+        border-top: 1px solid #666;
     }
     .dropdown-menu.show .dropdown-menu-mouse-padding{
     	display: block;

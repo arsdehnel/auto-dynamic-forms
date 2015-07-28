@@ -3,7 +3,6 @@ ADF,
 Backbone,
 Marionette,
 adf,
-$,
 _
 */
 ADF.Grids.BodyView = Marionette.CompositeView.extend({
@@ -21,10 +20,8 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
     },
     initialize: function( options ) {
         ADF.utils.message('log','Grids.BodyView Initialized', options );
-        // this.baseCollection = options.baseCollection;
         this.regionName = options.regionName;
         this.region = adf.page.getRegion(this.regionName);
-        // this.collection = new ADF.RecordsCollection(this.baseCollection.models);
         this.filters = new Backbone.Collection();
         this.filterQueue = new Backbone.Collection();
 
@@ -124,44 +121,11 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
         this.filterQueue.reset();
     },
 
-    sortGrid: function( e ) {
-
-        e.preventDefault();
-
-        var $triggerObj = $(e.currentTarget),
-            columnName = $triggerObj.closest('th').attr('data-column-name'),
-            gridSortAttribute = this.collection.sortAttribute;
-
-        // Toggle sort if the current column is sorted
-        if (columnName === gridSortAttribute) {
-            this.collection.sortDirection *= -1;
-        } else {
-            this.collection.sortDirection = 1;
-        }
-
-        // Adjust the indicators.  Reset everything to hide the indicator
-        $triggerObj.closest('thead').find('.sort-trigger').removeClass('sort-up sort-down');
-
-        // Now show the correct icon on the correct column
-        if (this.collection.sortDirection == 1) {
-            $triggerObj.addClass('sort-up');
-        } else {
-            $triggerObj.addClass('sort-down');
-        }
-
-        // Now sort the collection
-        this.collection.sortRecords(columnName);
-
-    },
-
     _updateColSelectDispOverride: function( model ) {
         console.warn(model.changed,'within bodyView');
         this.children.each(function(childView){
             console.warn(childView.collection.findWhere({name:model.get('name')}).set(model.changed));
         });
     }
-
-
-
 
 });

@@ -1,102 +1,107 @@
 {
-  "authenticated": true,
-  "success": true,
-  "message": null,
-  "methodName": null,
-  "data": {
-    "fields": [
-      {
-        "fldMstrId": 1,
-        "detailId": 1,
-        "name": "APPLICATION",
-        "type": "select",
-        "label": "Application",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 1,
-        "maxLength": 100,
-        "requiredInd": "N",
-        "fieldPriority": 1,
-        "data": [
-          {
-            "detailId": 1,
-            "groupLabel": null,
-            "value": "ADMIN_FORMS",
-            "label": "Admin Forms",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 1,
-            "groupLabel": null,
-            "value": "CMN_UTIL",
-            "label": "Common Utilities",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 1,
-            "groupLabel": null,
-            "value": "CORE",
-            "label": "Core",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 1,
-            "groupLabel": null,
-            "value": "VIN_APPL",
-            "label": "FlexCash / VIN Application",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 1,
-            "groupLabel": null,
-            "value": "OBJ",
-            "label": "Objective Programs",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 1,
-            "groupLabel": null,
-            "value": "REPORT_BUILDER",
-            "label": "Report Builder",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 1,
-            "groupLabel": null,
-            "value": "SPIN",
-            "label": "Spins",
-            "selectedInd": "N"
-          }
+    "authenticated": true,
+    "success": true,
+    "message": null,
+    "methodName": null,
+    "data": {
+        "fields": [
+            {
+                "fldMstrId": 1,
+                "detailId": 1,
+                "name": "APPLICATION",
+                "type": "select",
+                "label": "Application",
+                "tooltipText": null,
+                "fieldClass": null,
+                "wrapClass": null,
+                "prefix": null,
+                "suffix": null,
+                "currentValue": null,
+                "minLength": 1,
+                "maxLength": 100,
+                "requiredInd": "N",
+                "fieldPriority": 1,
+                "data": [
+                    {
+                        "detailId": 1,
+                        "groupLabel": null,
+                        "value": "ADMIN_FORMS",
+                        "label": "Admin Forms",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 1,
+                        "groupLabel": null,
+                        "value": "CMN_UTIL",
+                        "label": "Common Utilities",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 1,
+                        "groupLabel": null,
+                        "value": "CORE",
+                        "label": "Core",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 1,
+                        "groupLabel": null,
+                        "value": "VIN_APPL",
+                        "label": "FlexCash / VIN Application",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 1,
+                        "groupLabel": null,
+                        "value": "OBJ",
+                        "label": "Objective Programs",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 1,
+                        "groupLabel": null,
+                        "value": "REPORT_BUILDER",
+                        "label": "Report Builder",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 1,
+                        "groupLabel": null,
+                        "value": "SPIN",
+                        "label": "Spins",
+                        "selectedInd": "N"
+                    }
+                ],
+                "actions": [],
+                "dataAttributes": [
+                    {
+                        "detailId": 1,
+                        "name": "submit-on-change",
+                        "value": "true"
+                    },
+                    {
+                        "detailId": 2,
+                        "name": "select-fancy",
+                        "value": "true"
+                    }
+                ]
+            }
         ],
-        "actions": [],
-        "dataAttributes": [
-          {
-            "detailId": 1,
-            "name": "adf-submit-on-change",
-            "value": "true"
-          }
+        "records": [],
+        "actions": [
+            {
+                "tooltipText": null,
+                "label": "Lookup",
+                "type": "query",
+                "wrapClass": null,
+                "actionClass": null,
+                "url": "#",
+                "pageDetailId": 19,
+                "fieldPageDetailId": 0,
+                "dataAttributes": []
+            }
         ]
-      }
-    ],
-    "records": [],
-    "actions": [
-      {
-        "tooltipText": null,
-        "label": "Lookup",
-        "type": "query",
-        "wrapClass": null,
-        "actionClass": null,
-        "url": "#",
-        "pageDetailId": 19,
-        "fieldPageDetailId": 0,
-        "dataAttributes": []
-      }
-    ]
-  },
-  "errors": null,
-  "hasMessage": true
+    },
+    "errors": null,
+    "hasMessage": true
 }

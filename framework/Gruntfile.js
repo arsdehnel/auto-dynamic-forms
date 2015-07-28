@@ -35,7 +35,7 @@ module.exports = function(grunt) {
             buildType       : 'admin',
             buildTargetPath : '/Volumes/static_content-1/gmadmin.biworldwide.com/gmadministration/v2/',
             localServerPath : '../../../gmadmin-v2/'
-        },        
+        },
         'mbadmin' : {
             buildType       : 'admin',
             buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishMercedes/mbusa2011/mbusaadmin/src/webroot/v2/',
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
             buildType       : 'admin',
             buildTargetPath : '/Volumes/static_content-1/mercedesadmin.biworldwide.com/mbusaadmin/v2/',
             localServerPath : '../../../mbadmin-v2/'
-        },     
+        },
         'fcaadmin' : {
             buildType       : 'admin',
             buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishChrysler/fcaadmin/src/webroot/v2/',
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
             buildType       : 'admin',
             buildTargetPath : '/Volumes/static_content-1/fcaadmin.biworldwide.com/fcaadmin/v2/',
             localServerPath : '../../../fcaadmin-v2/'
-        },  
+        },
         'hyundaiadmin' : {
             buildType       : 'admin',
             buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishHyundai/HyundaiAdmin/src/webroot/v2/',
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
             buildType       : 'admin',
             buildTargetPath : '/Volumes/static_content-1/tmsadmin.biworldwide.com/tmsadmin/v2/',
             localServerPath : '../../../tmsadmin-v2/'
-        },        
+        },
         'tmsadmin' : {
             buildType       : 'admin',
             buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishToyotaMotorSales/tmsadmin/src/webroot/v2/',
@@ -75,7 +75,7 @@ module.exports = function(grunt) {
             buildType       : 'admin',
             buildTargetPath : '/Volumes/static_content-1/tmsadmin.biworldwide.com/tmsadmin/v2/',
             localServerPath : '../../../tmsadmin-v2/'
-        },                         
+        },
         'apc-static' : {
             buildType          : 'client',
             buildTargetPath    : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/v2/',
@@ -103,7 +103,7 @@ module.exports = function(grunt) {
             jsBuildTargetPath  : '/Volumes/static_content-1/icv.performnet.com/nnaicv/js/adf/',
             cssBuildTargetPath : '/Volumes/static_content-1/icv.performnet.com/nnaicv/styles/',
             localServerPath    : '../../../dev/'
-        },        
+        },
             'acnmadmin' : {
             buildType       : 'admin',
             buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishACNM/acnmadmin/src/webroot/v2/',
@@ -133,7 +133,7 @@ module.exports = function(grunt) {
     var clientObj = clients[client];
     buildTargetPath = clients[client].buildTargetPath;
     localServerPath = clients[client].localServerPath;
-    cdnTargetPath = ( clientObj.cdnTargetPath ? clientObj.cdnTargetPath : '/Volumes/zonegrps-2/grp0143/apache2/prod0143m1-docroot/cdn/adf/' );
+    var cdnTargetPath = ( clientObj.cdnTargetPath ? clientObj.cdnTargetPath : '/Volumes/zonegrps-2/grp0143/apache2/prod0143m1-docroot/cdn/adf/' );
 
     if( !buildTargetPath || !localServerPath ){
         grunt.fail.fatal('no buildTargetPath or localServerPath set');
@@ -205,6 +205,12 @@ module.exports = function(grunt) {
 
                         // core
                         'js/dev/views/core/*.js',
+
+                        // actions
+                        'js/dev/views/actions/*.js',
+
+                        // inputs
+                        'js/dev/views/inputs/*.js',
 
                         // forms
                         'js/dev/views/forms/action.js',
@@ -316,7 +322,7 @@ module.exports = function(grunt) {
                 files: {
                     'grunt-work/compiled.css': 'scss/client.scss'
                 }
-            }            
+            }
         },
         autoprefixer: {
             options: {
@@ -337,7 +343,7 @@ module.exports = function(grunt) {
                         dest: ( clientObj.cssBuildTargetPath ? clientObj.cssBuildTargetPath : clientObj.buildTargetPath+'css/' )+'adf.css'
                     }
                 ]
-            }            
+            }
         },
         watch: {
             scriptsDev: {
@@ -376,10 +382,28 @@ module.exports = function(grunt) {
             }
         },
         notify: {
-            'scripts-dev': {
+            watchJs: {
                 options: {
-                    title: 'Task Complete',  // optional
-                    message: 'SASS and Uglify finished running', //required
+                    title: 'JS Build Complete',  // optional
+                    message: 'JS build finished running', //required
+                }
+            },
+            watchCss: {
+                options: {
+                    title: 'CSS Build Complete',  // optional
+                    message: 'CSS build finished running', //required
+                }
+            },
+            watchHbs: {
+                options: {
+                    title: 'HBS Build Complete',  // optional
+                    message: 'Handlebars build finished running', //required
+                }
+            },
+            watchSvg: {
+                options: {
+                    title: 'SVG Build Complete',  // optional
+                    message: 'SVG build finished running', //required
                 }
             }
         },
@@ -406,17 +430,17 @@ module.exports = function(grunt) {
 
 */
     //grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
-    grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
-    grunt.registerTask('hbs', ['handlebars','uglify:templates']);
+    // grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
+    grunt.registerTask('hbs', ['handlebars','uglify:templates','notify:watchHbs']);
     grunt.registerTask('css', function(){
         if( clientObj.buildType === 'admin' ){
-            grunt.task.run(['skin','sass:admin','autoprefixer:admin']);
+            grunt.task.run(['skin','sass:admin','autoprefixer:admin','notify:watchCss']);
         }else{
-            grunt.task.run(['skin','sass:client','autoprefixer:client']);
+            grunt.task.run(['skin','sass:client','autoprefixer:client','notify:watchCss']);
         }
     });
-    grunt.registerTask('svg', ['svgstore','copy:svg']);
-    grunt.registerTask('scripts-dev', ['concat:dev']);
+    grunt.registerTask('svg', ['svgstore','copy:svg','notify:watchSvg']);
+    grunt.registerTask('scripts-dev', ['concat:dev','notify:watchJs']);
     grunt.registerTask('scripts-lib', ['concat:lib']);
     grunt.registerTask('scripts-plugins', ['concat:plugins']);
     grunt.registerTask('scripts-tests', ['concat:tests']);

@@ -9,7 +9,7 @@ ADF.config = {
     },
     dataAttributes: {
         // these will be "formRow" if not valued
-        'input-delimiter': { 
+        'input-delimiter': {
             location: 'formInput'
         }
     },
@@ -19,6 +19,10 @@ ADF.config = {
         fileTypes: [
             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         ]
+    },
+    svg : {
+        // cdnUrl: 'https://www.program-info.com/cdn/adf/svg/defs.svg',
+        cdnUrl: 'http://adf.local/framework/svg/defs.svg'
     },
     messages : {
         levels : {

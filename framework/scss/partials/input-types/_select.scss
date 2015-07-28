@@ -5,23 +5,25 @@
         display: block;
     }
 }
-.select-fancy-clear {
-    display: none;
-    border: 1px solid #999;
+.select-fancy-control {
+    position: absolute;
+    right: 0;
     background: #ccc;
-    border-radius: 4px;
-    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid #999;
     color: white;
     font-size: 9px;
-    cursor: pointer;
-    position: absolute;
-    top: 3px;
-    right: 3px;
     &:hover {
         border-color: #666;
         color: black;
         background:white;
     }
+}
+.select-fancy-clear {
+    top: 0;
+}
+.select-fancy-toggle {
+    bottom: 0;
 }
 .select-fancy-options {
     position: absolute;
@@ -38,9 +40,9 @@
     z-index: $zindex-select-fancy;
     &:empty {
         display: none;
-    }  
+    }
     &:first-child a {
-        border-bottom: 0;   
+        border-bottom: 0;
     }
     a {
         display: block;
@@ -48,7 +50,7 @@
         text-indent: -18px;
         border-bottom: 1px solid #ccc;
         text-decoration: none;
-        color: #555;  
+        color: #555;
     }
     .highlight,
     a:hover {

@@ -30,7 +30,7 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
     loadSvgDefs: function() {
         var adfPage = this;
         $.ajax({
-            url:'https://www.program-info.com/cdn/adf/svg/defs.svg',
+            url: ADF.config.get('svg').cdnUrl,
             dataType: 'html',
             complete: function( jqXHR, textStatus ){
                 adfPage.$el.append(jqXHR.responseText);

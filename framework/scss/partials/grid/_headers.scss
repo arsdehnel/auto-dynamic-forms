@@ -1,67 +1,166 @@
-.adf-grid {
-    thead{
-        th{
-            font-size: 1em;
-            border: solid #999;
-            border-width: 0 1px 1px 0;
-            padding: 0 .5em;
-            background: $primary_color;
-            color: white;
+table {
+    border-collapse: collapse;
+    width: 600px;
+}
+svg {
+    fill: #999;
+}
+th {
+    background: #666;
+    border: solid #fff;
+    border-width: 0 1px 1px 0;
+    padding: 8px;
+    position: relative;
+    width: 25%;
+    color: #ddd;
+    .adf-header-control {
+        position: absolute;
+        background: rgba( white, .2 );
+        height: calc( 50% - .5px );
+    }
+    .sort-control {
+        text-decoration: underline;
+        cursor: pointer;
+        font-weight: 200;
+        &:hover {
+            text-decoration: none;
+        }
+        svg {
+            height: 100%;
+        }
+    }
+    .sort-indicator {
+        position: absolute;
+        top: 1px;
+        bottom: 0;
+        left: 2px;
+        &::before,
+        &::after {
+            position: absolute;
+            content: '';
+            height: 0;
+            width: 0;
+            border-width: 8px 4px;
+            border-style: solid;
+        }
+        &::before {
+            border-color: transparent transparent #999 transparent;
+            top: -4px;
+        }
+        &::after {
+            border-color: #999 transparent transparent transparent;
+            top: 15px;
+        }
+    }
+    .filter-control {
+        bottom: 0;
+        right: 0;
+        width: 14px;
+        .dropdown-inner {
+            min-width: 14px;
+        }
+        .dropdown-toggle {
+            padding: 0;
+            float: none;
+            height: 1em;
+            width: 1em;
+        }
+        .dropdown-toggle-caret::before {
+            content: none;
+        }
+        svg {
+            width: 60%;
+            fill: white;
             position: relative;
-            line-height: 2em;
-            white-space: nowrap;
-            &.has-filter {
-                padding-right: 2.5em;
-            }
-            &.is-sortable {
-                padding-left: 2.5em;
-            }
-            .sort-trigger {
-                color: white;
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                background: rgba( 255, 255, 255, .2 );
-                width: 2em;
-                &::before,
-                &::after {
-                    content: '';
-                    display: block;
-                    position: absolute;
-                    height: 0;
-                    width: 0;
-                    border: .3em solid;
-                    left: .7em;
-                }
-                &::before {
-                    border-color: transparent transparent rgba(255,255,255,.5) transparent;
-                    top: .3em;
-                }
-                &::after {
-                    border-color: rgba(255,255,255,.5) transparent transparent transparent;
-                    top: 1.2em;
-                }
-                &.sort-up::before {
-                    border-bottom-color: white;
-                }
-                &.sort-down::after {
-                    border-top-color: white;
-                }
-            }
-            .adf-grid-header-cell-triggers{
-                position: absolute;
-                right: .5em;
-            }
+            top: -3px;
+        }
+    }
+    .resize-control {
+        top: 0;
+        right: 0;
+        width: 14px;
+        cursor: col-resize;
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            width: 1px;
+            background: #bbb;
+        }
+        &::before {
+            left: 4px;
+        }
+        &::after {
+            right: 4px;
         }
     }
 }
-.adf-grid-resize-handle {
-    position: absolute;
-    background: grey;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 8px;
-    cursor: col-resize;
-}
+// .adf-grid {
+//     thead{
+//         th{
+//             font-size: 1em;
+//             border: solid #999;
+//             border-width: 0 1px 1px 0;
+//             padding: 0 .5em;
+//             background: $primary_color;
+//             color: white;
+//             position: relative;
+//             line-height: 2em;
+//             white-space: nowrap;
+//             &.has-filter {
+//                 padding-right: 2.5em;
+//             }
+//             &.is-sortable {
+//                 padding-left: 2.5em;
+//             }
+//             .sort-trigger {
+//                 color: white;
+//                 position: absolute;
+//                 top: 0;
+//                 left: 0;
+//                 bottom: 0;
+//                 background: rgba( 255, 255, 255, .2 );
+//                 width: 2em;
+//                 &::before,
+//                 &::after {
+//                     content: '';
+//                     display: block;
+//                     position: absolute;
+//                     height: 0;
+//                     width: 0;
+//                     border: .3em solid;
+//                     left: .7em;
+//                 }
+//                 &::before {
+//                     border-color: transparent transparent rgba(255,255,255,.5) transparent;
+//                     top: .3em;
+//                 }
+//                 &::after {
+//                     border-color: rgba(255,255,255,.5) transparent transparent transparent;
+//                     top: 1.2em;
+//                 }
+//                 &.sort-up::before {
+//                     border-bottom-color: white;
+//                 }
+//                 &.sort-down::after {
+//                     border-top-color: white;
+//                 }
+//             }
+//             .adf-grid-header-cell-triggers{
+//                 position: absolute;
+//                 right: .5em;
+//             }
+//         }
+//     }
+// }
+// .adf-grid-resize-handle {
+//     position: absolute;
+//     background: grey;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     width: 8px;
+//     cursor: col-resize;
+// }

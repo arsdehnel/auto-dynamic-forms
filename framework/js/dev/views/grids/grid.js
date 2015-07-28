@@ -2,7 +2,6 @@
 ADF,
 Marionette,
 adf,
-$,
 _
 */
 ADF.Grids.GridView = Marionette.View.extend({
@@ -22,7 +21,8 @@ ADF.Grids.GridView = Marionette.View.extend({
         gridView.headersView = new ADF.Grids.HeadersView({
             el: gridView.$el.find('thead')[0],
             collection: region.fieldsCollection,
-            regionName: gridView.regionName
+            regionName: gridView.regionName,
+            gridView: gridView
         });
 
         gridView.bodyView = new ADF.Grids.BodyView({
@@ -42,6 +42,7 @@ ADF.Grids.GridView = Marionette.View.extend({
             el: gridView.$el.find('.adf-grid-actions')[0],
             model: new ADF.DropdownMenuModel({footerOptions: []}),
             collection: region.actionsCollection,
+            gridView: gridView,
             regionName: gridView.regionName
         });
 
@@ -51,15 +52,6 @@ ADF.Grids.GridView = Marionette.View.extend({
             url: '../service/excel-conversion/upload-file.action',              // upload handler, handles each file separately, can also be a function taking the file and returning a url
             paramname: 'adf_file',          // POST parameter name used on serverside to reference file, can also be a function taking the filename and returning the paramname
             withCredentials: false,          // make a cross-origin request with cookies
-            // data: {
-            //     param1: 'value1',           // send POST variables
-            //     param2: function(){
-            //         return calculated_data; // calculate data at time of upload
-            //     },
-            // },
-            // headers: {          // Send additional request headers
-            //     'header': 'value'
-            // },
             error: function(err, file) {
                 switch(err) {
                     case 'BrowserNotSupported':
@@ -81,8 +73,8 @@ ADF.Grids.GridView = Marionette.View.extend({
                         break;
                 }
             },
-            allowedfiletypes: [], //['image/jpeg','image/png','image/gif'],   // filetypes allowed by Content-Type.  Empty array means no restrictions
-            allowedfileextensions: ['.xls','.xlsx','.png'], // file extensions allowed. Empty array means no restrictions
+            allowedfiletypes: [], // Empty array means no restrictions
+            allowedfileextensions: ['.xls','.xlsx','.csv'],
             maxfiles: 25,
             maxfilesize: 20,    // max file size in MBs
             docOver: function() {
@@ -101,16 +93,7 @@ ADF.Grids.GridView = Marionette.View.extend({
                 region.$el.removeClass('drag-on');
                 gridView.dragTextEl.text('');
             },
-
-            // drop: function() {
-            //     // user drops file
-            //     alert('got it');
-            // },
             uploadStarted: function(i, file, len){
-                // a file began uploading
-                // i = index => 0, 1, 2, 3, 4 etc
-                // file is the actual file of the index
-                // len = total files user dropped
                 region.$el.removeClass('drag-target drag-on');
                 gridView.dragTextEl.text('');
             },
@@ -138,37 +121,12 @@ ADF.Grids.GridView = Marionette.View.extend({
                     }
                 }
             },
+            // TODO: use progressUpdated to provide feedback to the user that something is happening
             // progressUpdated: function(i, file, progress) {
             //     // this function is used for large files and updates intermittently
             //     // progress is the integer value of file being uploaded percentage to completion
             // },
-            // globalProgressUpdated: function(progress) {
-            //     // progress for all the files uploaded on the current instance (percentage)
-            //     // ex: $('#progress div').width(progress+"%");
-            // },
-            // speedUpdated: function(i, file, speed) {
-            //     // speed in kb/s
-            // },
-            // rename: function(name) {
-            //     // name in string format
-            //     // must return alternate name as string
-            // },
-            // beforeEach: function(file) {
-            //     // file is a file object
-            //     // return false to cancel upload
-            //     console.log(file);
-            //     return false;
-            // },
-            // beforeSend: function(file, i, done) {
-            //     // file is a file object
-            //     // i is the file index
-            //     // call done() to start the upload
-            //     done();
-            // },
-            // afterAll: function() {
-            //     // runs after all files have been uploaded or otherwise dealt with
-            // }
-        });        
+        });
 
         this._super();
 
@@ -179,38 +137,6 @@ ADF.Grids.GridView = Marionette.View.extend({
         gridView.columnSelect.render();
         gridView.gridActions.render();
         gridView.bodyView.render();
-    },
-
-    sortGrid: function( e ) {
-
-        e.preventDefault();
-
-        var $triggerObj = $(e.currentTarget),
-            columnName = $triggerObj.closest('th').attr('data-column-name'),
-            bodyCollection = this.bodyView.collection,
-            gridSortAttribute = bodyCollection.sortAttribute;
-
-        // Toggle sort if the current column is sorted
-        if (columnName === gridSortAttribute) {
-            bodyCollection.sortDirection *= -1;
-        } else {
-            bodyCollection.sortDirection = 1;
-        }
-
-        // Adjust the indicators.  Reset everything to hide the indicator
-        $triggerObj.closest('thead').find('.sort-trigger').removeClass('sort-up sort-down');
-
-        // Now show the correct icon on the correct column
-        if (bodyCollection.sortDirection == 1) {
-            $triggerObj.addClass('sort-up');
-        } else {
-            $triggerObj.addClass('sort-down');
-        }
-
-        // Now sort the collection
-        bodyCollection.sortRecords(columnName);
-
     }
-
 
 });

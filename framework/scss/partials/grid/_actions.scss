@@ -20,7 +20,28 @@
             list-style: none;
         }
     }
-    .primary-options li:last-child {
-        border-bottom: 1px solid #333;
+}
+
+.record-add-control {
+    .record-add-control-input {
+        display: none;
+        height: 2em;
+        padding-top: 6px;
+        text-align: center;
+    }
+    .icon {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: 1em;
+        width: 16px;
+    }
+    &:hover {
+        .icon {
+            bottom: 2em;
+        }
+        .record-add-control-input {
+            display: block;
+        }
     }
 }

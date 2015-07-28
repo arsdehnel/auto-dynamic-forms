@@ -1,0 +1,14 @@
+<a
+    href="{{url}}"
+    class="{{itemClass}}"
+    id="{{#if regionName}}{{regionName}}Action--{{/if}}{{id}}"
+    {{#each dataAttributes}}
+        data-{{name}}="{{value}}"
+    {{/each}}
+>{{{label}}} (<span class="record-add-control-display">{{recCount}}</span>)</a>
+<span class="record-add-control">
+    <svg viewBox="0 0 16 16" class="icon">
+        <use xlink:href="#icon-chevron-down"></use>
+    </svg>
+    <div class="record-add-control-input"><input type="range" class="record-add-control" min="1" max="20" step="1" value="{{recCount}}"></div>
+</span>

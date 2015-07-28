@@ -1,14 +1,18 @@
 .adf-grid thead{
-    .icon-tooltip{
-        position: absolute;
+    .tooltip-trigger {
         top: 0;
-        bottom: 0;
-        left: 0;
-        width: 2em;
-        background: rgba( 255, 255, 255, .1 );
+        right: 15px;
+        height: 1em;
+        cursor: help;
+        width: 15px;
+        .icon-tooltip {
+            position: absolute;
+            top: -2px;
+            right: 0;
+        }
         svg {
-            fill: currentColor;
-            height: 1em;
+            width: 80%;
+            fill: white;
         }
     }
 }

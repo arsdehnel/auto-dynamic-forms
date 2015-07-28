@@ -1,6 +1,8 @@
 <div class="{{wrapClass}} dropdown-wrapper">
     <div class="dropdown-inner">
-        <button type="button" class="dropdown-toggle dropdown-label">{{buttonLabel}}</button>
+        {{#if buttonLabel}}
+            <button type="button" class="dropdown-toggle dropdown-label">{{buttonLabel}}</button>
+        {{/if}}
         <button type="button" class="dropdown-toggle-caret dropdown-toggle">
             {{#if caretSvg}}
                 <svg viewBox="0 0 32 32" class="icon">
@@ -11,7 +13,7 @@
         <div class="dropdown-menu hide">
             <div class="dropdown-menu-mouse-padding"></div>
             <ul class="dropdown-item-group primary-options"></ul>
-            <ul class="dropdown-item-group footer-options">
+            <ul class="dropdown-item-group footer-options">{{#if footerOptions}}
                 {{#each footerOptions}}
                     <li>
                         <a
@@ -25,7 +27,7 @@
                         </a>
                     </li>
                 {{/each}}
-            </ul>
+            {{/if}}</ul>
             {{#if textFilterInput}}
                 <input type="search" class="dropdown-text-filter">
             {{/if}}
