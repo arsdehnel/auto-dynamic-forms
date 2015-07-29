@@ -19,12 +19,16 @@ ADF.GridRegion = ADF.Region.extend({
         // TODO: make this less clunky and crappy
         var $initLoadForm = gridRegion.$el.find('form').clone();
 
-        gridRegion.$el.html(gridRegion.template({inOverlay:gridRegion.inOverlay})).append($initLoadForm);
+        var templateData = {inOverlay:gridRegion.inOverlay};
+        templateData.regionLabel = ( gridRegion.$el.data('region-label') ? gridRegion.$el.data('region-label') : false );
+
+        console.log(templateData);
+
+        gridRegion.$el.html(gridRegion.template(templateData)).append($initLoadForm);
         gridRegion.fieldsCollection = new ADF.FieldsCollection(null,{regionName:gridRegion.options.regionName});
         gridRegion.actionsCollection = new ADF.ActionsCollection(null,{regionName: gridRegion.options.regionName});
 
         this._super( options );
-
 
     },
 

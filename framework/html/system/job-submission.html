@@ -8,7 +8,6 @@
 
     $urls['zack']['filters']  = '/auto/auto-dynamic-forms/framework/getJson.php?env=zack&client=acuraadmin&action=common/get-fields&pageCode=APP_NAV_FILTERS';
     $urls['zack']['grid']     = '../../json/job-submission/grid.json';
-    // $urls['zack']['grid']     = '/auto/auto-dynamic-forms/framework/getJson.php?client=acuraadmin&action=web-appl-nav/grid.action';
 
     $urls['qa']['filters']    = '/auto/auto-dynamic-forms/framework/getJson.php?env=qa&client=acuraadmin&action=common/get-fields&pageCode=APP_NAV_FILTERS';
 ?>
@@ -26,22 +25,36 @@
         <div class="adf-region"
             data-adf-region-type="grid"
             id="job-submission-grid"
-            data-adf-ajax-url="<?php echo $urls[JSON_SOURCE]['grid']; ?>"></div>
-
+            data-adf-ajax-url="<?php echo $urls[JSON_SOURCE]['grid']; ?>">
+        </div>
     </fieldset>
-    <fieldset class="layout-grid-6 hide" id="job-submission-work" data-adf-ajax-onshow-dependent-region-id="job-submission-history" data-adf-ajax-onshow-dependent-region-data-fields="prcs_mstr_id">
+    <!-- TODO: remove all the adf dependent region crap -->
+    <fieldset
+        class="adf-region layout-grid-6 hide"
+        data-adf-region-type="grid"
+        id="job-submission-edit"
+        data-adf-ajax-url="../../json/job-submission/edit.json"
+        data-region-label="Maintain Your Job">
+    </fieldset>
+    <fieldset
+        class="adf-region layout-grid-6 hide"
+        data-adf-region-type="form"
+        id="job-submission-run"
+        data-adf-ajax-url="../../json/job-submission/run.json"
+        data-region-label="Run Your Job">
+        <legend>Run Your Job</legend>
+        <form action="../../json/job-submission/submit.json">
+        </form>
     </fieldset>
 </div>
 <div class="row">
     <fieldset
-        class="layout-grid-12 hide"
-        <legend>History</legend>
-        <div
-            class="adf-region"
-            id="job-submission-history"
+        class="adf-region layout-grid-12 hide"
+            id="job-submission-hx"
             data-adf-region-type="grid"
-            data-adf-ajax-url="<?php echo $urls[JSON_SOURCE]['grid']; ?>">
-        </div>
+            data-adf-ajax-url="../../json/job-submission/history.json"
+            data-region-label="Job History">
+        <legend>History</legend>
     </fieldset>
 </div>
 <?php

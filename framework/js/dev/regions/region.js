@@ -10,19 +10,22 @@ ADF.Region = Marionette.Region.extend({
         this.adfAjaxOnshow = ( options.adfAjaxOnshow ? options.adfAjaxOnshow : false );
     },
     show: function() {
-        this.$el.removeClass('hide');
+        // this.$el.removeClass('hide');
 
         if( adf.debugEnabled ){
             ADF.utils.prepareDebug( this.$el );
         }
 
-        // this onShowData is meant to be used just for java passing data into the ADF request
-        // and should NOT be used for calls within the ADF application code
-        var onShowData = this.$el.find(':input[data-adf-onshow-data=true]').serializeObject();
+        // // this onShowData is meant to be used just for java passing data into the ADF request
+        // // and should NOT be used for calls within the ADF application code
+        // var onShowData = this.$el.find(':input[data-adf-onshow-data=true]').serializeObject();
 
         if( this.adfAjaxOnshow ){
-            this.ajax({data:onShowData});
+            this.ajax();
         }
+    },
+    hide: function() {
+        this.$el.addClass('hide');
     },
     ajax: function( options ){
 
@@ -34,10 +37,7 @@ ADF.Region = Marionette.Region.extend({
         var dataArray = ADF.utils.dataSerializeNonADFData( this.$el.find(':input:hidden').serializeObject() );
         dataArray = dataArray.concat(ADF.utils.dataSerialize( region.fieldsCollection ));
 
-        var data = $.extend({adfSerializedData:JSON.stringify(dataArray)},region.options.adfAjaxData, options.data);
-
-        // remove this so we can get all the other bits from options but don't overwrite the data we just created
-        delete options.data;
+        var data = $.extend({adfSerializedData:JSON.stringify(dataArray)},region.options.adfAjaxData);
 
         // use the combination of the above stuff
         var settings = $.extend({data:data}, options);
@@ -55,6 +55,9 @@ ADF.Region = Marionette.Region.extend({
             complete: function( jqXHR, textStatus ){
 
                 ADF.utils.spin(region.$el, { stop: true } );
+
+                // if we're showing a region we should remove any HIDE classes
+                region.$el.closest('.hide').removeClass('hide');
 
                 if( jqXHR.status === 200 ){
 

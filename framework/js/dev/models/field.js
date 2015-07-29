@@ -11,18 +11,11 @@ ADF.FieldModel = Backbone.Model.extend({
         ADF.utils.message('log','FieldModel Initialized', attrs, opts);
         this.options = $.extend({},( opts.collection ? opts.collection.options : ''),opts);
         var fieldModel = this;
-        this.set({actionsNew: []});
         this.dataCollection = new Backbone.Collection(fieldModel.get('data'));
         this.region = adf.page.getRegion(this.options.regionName);
 
         this._convertDataAttrs();
         this._readonlyOverride();
-
-        // if( this.get('fieldPriority') === 0 ){
-        //     this.set('checkedInd','Y');
-        // }else{
-        //     this.set('checkedInd','N');
-        // }
 
         if( attrs.name.toLowerCase() !== attrs.name ){
             fieldModel.set('name',attrs.name.toLowerCase());
@@ -66,7 +59,7 @@ ADF.FieldModel = Backbone.Model.extend({
                 case 'radio':
                 case 'checkboxes':
                     // console.log(fieldModel.get('type').toLowerCase(),_.map(_.where(fieldModel.get('data'),{selectedInd:'Y'}),function(model){return model.label}).join(', '),fieldModel.get('currentValue'));
-                    fieldModel.set('currentValue',_.map(_.where(fieldModel.get('data'),{selectedInd:'Y'}),function(model){return model.label}).join(', '));
+                    fieldModel.set('currentValue',_.map(_.where(fieldModel.get('data'),{selectedInd:'Y'}),function(model){return model.label;}).join(', '));
                     fieldModel.set('type','readonly');
                     break;
                 case 'hidden':
@@ -79,13 +72,13 @@ ADF.FieldModel = Backbone.Model.extend({
                     ADF.utils.message('error','Unxpected field type for readonly override: '+fieldModel.get('type').toLowerCase());
                     break;
             }
-        }        
+        }
     },
     _createDataAttrObj: function(){
         var returnObj = {};
         _.each(this.get('dataAttributes'),function(dataAttr){
             returnObj[ADF.utils.string.camelize(dataAttr.name)] = dataAttr.value;
-        }); 
+        });
         return returnObj;
     }
 

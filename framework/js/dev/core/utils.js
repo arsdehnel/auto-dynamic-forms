@@ -19,6 +19,20 @@ ADF.utils = {
         },
         capitalize: function( string ) {
             return string.charAt(0).toUpperCase() + string.slice(1);
+        },
+        substitute: function( inputString, inputData ){
+            var tokenArray = inputString.split('##');
+            var returnString = tokenArray[0];
+            for( var i = 1; i < tokenArray.length; i++ ){
+                if( i % 2 === 1 ){
+                    if( inputData[ADF.utils.string.camelize(tokenArray[i])] ){
+                        returnString += inputData[ADF.utils.string.camelize(tokenArray[i])];
+                    }
+                }else{
+                    returnString += tokenArray[i];
+                }
+            }
+            return returnString;
         }
     },
     prepareDebug: function( $element ){
@@ -29,20 +43,6 @@ ADF.utils = {
             }
         });
         $element.append(ADF.templates.debugData({data:dataObj}));
-    },
-    stringSubstitute: function( inputString, inputData ){
-        var tokenArray = inputString.split('##');
-        var returnString = tokenArray[0];
-        for( var i = 1; i < tokenArray.length; i++ ){
-            if( i % 2 === 1 ){
-                if( inputData[ADF.utils.string.camelize(tokenArray[i])] ){
-                    returnString += inputData[ADF.utils.string.camelize(tokenArray[i])];
-                }
-            }else{
-                returnString += tokenArray[i];
-            }
-        }
-        return returnString;
     },
     isObject: function( obj ) {
         return Object.prototype.toString.call( obj ) === '[object Object]';

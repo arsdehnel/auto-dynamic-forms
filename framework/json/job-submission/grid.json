@@ -1,1888 +1,1804 @@
 <?php
-	sleep(1);
+    sleep(1);
 ?>
 {
-  "authenticated": true,
-  "success": true,
-  "message": null,
-  "methodName": null,
-  "data": {
-    "fields": [
-      {
-        "fldMstrId": 4,
-        "detailId": 4,
-        "name": "PRCS_MSTR_ID",
-        "type": "READONLY",
-        "label": "ID",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 0,
-        "maxLength": 12,
-        "requiredInd": "N",
-        "fieldPriority": 9,
-        "value": null,
-        "data": [],
-        "actions": [],
-        "dataAttributes": []
-      },
-      {
-        "fldMstrId": 15,
-        "detailId": 9,
-        "name": "JS_ACCESS_CTRL_MSTR_ID",
-        "type": "select",
-        "label": "JS Access Ctrl",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 0,
-        "maxLength": 12,
-        "requiredInd": "N",
-        "fieldPriority": 1,
-        "value": null,
-        "data": [
-          {
-            "detailId": 9,
-            "groupLabel": "ABLV_EXCPN",
-            "value": "111",
-            "label": "Ability to Edit an Exception",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "ABLV_EXCPN",
-            "value": "112",
-            "label": "Ability to Maintain Comments",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "ABLV_EXCPN",
-            "value": "113",
-            "label": "Ability to Make Decisions",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "ABLV_EXCPN",
-            "value": "110",
-            "label": "Ability to Post Comment",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "307",
-            "label": "Add Flex Cash Administrator",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "340",
-            "label": "All Program by Status (Corp)",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "336",
-            "label": "All Programs by Status (Field)",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "358",
-            "label": "Allocation",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "360",
-            "label": "Allocation",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "310",
-            "label": "Allocation",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "359",
-            "label": "Allocation Report",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "352",
-            "label": "Allocation Report",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "341",
-            "label": "Allocation Report",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "295",
-            "label": "Allocation Report",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "318",
-            "label": "Award Allocation",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "347",
-            "label": "Award Allocation",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "346",
-            "label": "Award Allocation - New",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "315",
-            "label": "Award Opportunities - PDF 2",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "324",
-            "label": "AwardBound",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "316",
-            "label": "AwardBound - New",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "317",
-            "label": "AwardBound - Old",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "313",
-            "label": "Client Offer Form",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "335",
-            "label": "Client Offer Form",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "339",
-            "label": "Create New Program",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "344",
-            "label": "Dashboard",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "334",
-            "label": "Dealer Lease Payoff VIN Input",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "333",
-            "label": "Dealer Lease Payoff VIN Input",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "328",
-            "label": "Dealer Opt-In",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "297",
-            "label": "Dealer Opt-In",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "309",
-            "label": "Dealer Opt-In",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "289",
-            "label": "Dealer Opt-In",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "329",
-            "label": "Dealer Opt-In",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "299",
-            "label": "Dealer Opt-In",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "294",
-            "label": "Dealer Opt-In - New",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "337",
-            "label": "Dealer Opt-In - New",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "361",
-            "label": "Dealer Opt-In - New",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "342",
-            "label": "Final Allocation",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "362",
-            "label": "HOME",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "343",
-            "label": "Home",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "296",
-            "label": "Model Summary Report",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "306",
-            "label": "Model Summary Report - New",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "291",
-            "label": "November Certificate Report",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "305",
-            "label": "Override Allocation",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "330",
-            "label": "Play Spins",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "349",
-            "label": "Progress Report",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "356",
-            "label": "Progress Report",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "327",
-            "label": "Rules",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "321",
-            "label": "Rules",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "325",
-            "label": "Select Personnel",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "363",
-            "label": "Select Personnel",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "323",
-            "label": "Submit A Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "322",
-            "label": "Submit A Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "319",
-            "label": "Submit A Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "320",
-            "label": "Submit A Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "308",
-            "label": "Submit A Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "304",
-            "label": "Submit A Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "298",
-            "label": "Submit A Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "290",
-            "label": "Submit A Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "345",
-            "label": "Submit a Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "353",
-            "label": "Submit a Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "354",
-            "label": "Submit a Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "312",
-            "label": "Submit a Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "351",
-            "label": "Submit a Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "326",
-            "label": "Submit a Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "357",
-            "label": "Submit a Claim",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "301",
-            "label": "Submit a Claim - New",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "303",
-            "label": "Submit a Claim - New",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "293",
-            "label": "Submit a Claim - Old",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "350",
-            "label": "Submit a Claim - old",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "338",
-            "label": "Summary Report",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "355",
-            "label": "Summary Report",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "302",
-            "label": "TrekPoints - New",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "314",
-            "label": "TrekPoints - Old",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "348",
-            "label": "Truck Full of Cheer Bonus",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "292",
-            "label": "VIN Payout Report",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "332",
-            "label": "Your Results Dashboard",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "331",
-            "label": "Your Results Dashboard",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "300",
-            "label": "Zone Claim Form",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "APP_NAV_CONV",
-            "value": "311",
-            "label": "Zone Summary Report",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "CORE",
-            "value": "135",
-            "label": "AFS DP-DM-GM",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "CORE",
-            "value": "130",
-            "label": "Acura DP-DM-GM",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "CORE",
-            "value": "132",
-            "label": "Acura F&I Mgr",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "CORE",
-            "value": "121",
-            "label": "All Participants",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "CORE",
-            "value": "127",
-            "label": "BI Admin Team",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "CORE",
-            "value": "133",
-            "label": "F&I Mgr",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "CORE",
-            "value": "136",
-            "label": "HFS DP-DM-GM",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "CORE",
-            "value": "131",
-            "label": "Honda DP-DM-GM",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "CORE",
-            "value": "109",
-            "label": "NON_SR",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "CORE",
-            "value": "129",
-            "label": "Non Dlr Mgmt/SRs/F&Is",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "CORE",
-            "value": "107",
-            "label": "SR_ONLY",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "CORE",
-            "value": "108",
-            "label": "WS_SPLR",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_GRP_CONV",
-            "value": "365",
-            "label": "HPC - Tools",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_GRP_CONV",
-            "value": "364",
-            "label": "HPC_NEW - Contact Us",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "387",
-            "label": "ACURA Dealer Personnel Lookup",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "373",
-            "label": "AP-699A/AP-699 Acura FlexCash",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "379",
-            "label": "AP-745 January 2012 Acura FlexCash",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "390",
-            "label": "AP-801 August 2012 MDX New Jersey FlexCash Program",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "367",
-            "label": "AP-801 June 2012 MDX New Jersey FlexCash Program",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "368",
-            "label": "AP-A46 2014 RLX Sales Consultant SpinPlay",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "376",
-            "label": "AP-A61 2014 ILX/RDX Michigan FlexCash",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "371",
-            "label": "AP-A61A 2014 MDX Michigan FlexCash",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "370",
-            "label": "AP-A81 Military Appreciation",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "386",
-            "label": "Acura President's Challenge",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "385",
-            "label": "April TL Trade-In Spin",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "392",
-            "label": "Dealer Personnel Lookup",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "393",
-            "label": "Dealer Personnel Lookup",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "374",
-            "label": "Dealer Personnel Lookup",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "389",
-            "label": "Exception Request System",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "384",
-            "label": "Exception System",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "383",
-            "label": "HP-A66 Honda Promise  Vehicle Not Available",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "378",
-            "label": "HP-A83 2012 Honda Promise  Vehicle Not Available",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "377",
-            "label": "HP-A83 2012 Honda Promise  Vehicle On Lot",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "391",
-            "label": "HP-F51 2014 Spring Honda Sales Consultant SpinPlay",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "369",
-            "label": "HP-F51 2014 Spring Honda Sales Consultant SpinPlay",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "381",
-            "label": "HP-F52 Military Appreciation",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "372",
-            "label": "HP-G21 2014 Crosstour $3,000 FlexCash",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "382",
-            "label": "HP-G58 2014 Civic October Sales Consultant Spin",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "395",
-            "label": "Log Out",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "375",
-            "label": "No Re-Entry Logout Page",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "380",
-            "label": "Stephen's Test Spin",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "366",
-            "label": "sample",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "394",
-            "label": "test",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "MENU_ITEM_MSTR_CONV",
-            "value": "388",
-            "label": "testing",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "PGM_ADM",
-            "value": "128",
-            "label": "TSGA Access for Zone Portal / Pgm Adm tool",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "RPTNG",
-            "value": "114",
-            "label": "Corporate / Supplier User Reporting Entry Point Control",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "RPTNG",
-            "value": "117",
-            "label": "Dealer Level User Access Control",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "RPTNG",
-            "value": "116",
-            "label": "District User Reporting Entry Level Control",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "RPTNG",
-            "value": "122",
-            "label": "SR Access Controls",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "RPTNG",
-            "value": "115",
-            "label": "Zone User Reporting Entry Level Control",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "WEB_ACCESS",
-            "value": "138",
-            "label": "Allowed Users for PowerSports",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "WEB_ACCESS",
-            "value": "123",
-            "label": "Allowed Users for the APC",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "WEB_ACCESS",
-            "value": "125",
-            "label": "HPC Access Control",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "WEB_ACCESS",
-            "value": "124",
-            "label": "SMS Registration Override",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 9,
-            "groupLabel": "WEB_ACCESS",
-            "value": "137",
-            "label": "iN_OAuth",
-            "selectedInd": "N"
-          }
-        ],
-        "actions": [],
-        "dataAttributes": []
-      },
-      {
-        "fldMstrId": 76,
-        "detailId": 79,
-        "name": "RETURN_CODE_DTL",
-        "type": "GRID_OVERLAY",
-        "label": "Return Codes",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 1,
-        "maxLength": 90,
-        "requiredInd": "N",
-        "fieldPriority": 0,
-        "value": null,
-        "data": [],
-        "actions": [],
-        "dataAttributes": [
-          {
-            "detailId": 79,
-            "name": "adf-ajax-url",
-            "value": "../../json/process-master/return-code-dtl-grid.json"
-          },
-          {
-            "detailId": 79,
-            "name": "adf-ajax-data-fields",
-            "value": "prcs_mstr_id"
-          }
-        ]
-      },
-      {
-        "fldMstrId": 76,
-        "detailId": 79,
-        "name": "EMAIL_DIST",
-        "type": "GRID_OVERLAY",
-        "label": "EMAIL DIST",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 1,
-        "maxLength": 90,
-        "requiredInd": "N",
-        "fieldPriority": 0,
-        "value": null,
-        "data": [],
-        "actions": [],
-        "dataAttributes": [
-          {
-            "detailId": 79,
-            "name": "adf-ajax-url",
-            "value": "../../json/process-master/return-code-dtl-grid.json"
-          },
-          {
-            "detailId": 79,
-            "name": "adf-ajax-data-fields",
-            "value": "prcs_mstr_id"
-          }
-        ]
-      },
-      {
-        "fldMstrId": 8,
-        "detailId": 10,
-        "name": "JS_GRP_CD",
-        "type": "select",
-        "label": "JS Group",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 0,
-        "maxLength": 30,
-        "requiredInd": "Y",
-        "fieldPriority": 1,
-        "value": null,
-        "data": [
-          {
-            "detailId": 10,
-            "groupLabel": null,
-            "value": "CMN_RPTNG",
-            "label": "Common Reporting",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 10,
-            "groupLabel": null,
-            "value": "CORE",
-            "label": "Core",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 10,
-            "groupLabel": null,
-            "value": "DATA_LOAD",
-            "label": "Data Loads",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 10,
-            "groupLabel": null,
-            "value": "MIGRATE",
-            "label": "Data Migration",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 10,
-            "groupLabel": null,
-            "value": "DC",
-            "label": "Debit Card",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 10,
-            "groupLabel": null,
-            "value": "XTRACT",
-            "label": "File Extracts",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 10,
-            "groupLabel": null,
-            "value": "OBJ",
-            "label": "Objective",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 10,
-            "groupLabel": null,
-            "value": "PAX",
-            "label": "Participant",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 10,
-            "groupLabel": null,
-            "value": "SPIN",
-            "label": "SpinPlay",
-            "selectedInd": "N"
-          },
-          {
-            "detailId": 10,
-            "groupLabel": null,
-            "value": "VIN_APPL",
-            "label": "VIN Application",
-            "selectedInd": "N"
-          }
-        ],
-        "actions": [],
-        "dataAttributes": []
-      },
-      {
-        "fldMstrId": 16,
-        "detailId": 11,
-        "name": "JS_READ_ORDER",
-        "type": "NUMBER",
-        "label": "JS Read Order",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 0,
-        "maxLength": 12,
-        "requiredInd": "N",
-        "fieldPriority": 1,
-        "value": null,
-        "data": [],
-        "actions": [],
-        "dataAttributes": []
-      },
-      {
-        "fldMstrId": 9,
-        "detailId": 12,
-        "name": "STATUS_CODE",
-        "type": "SELECT",
-        "label": "Status Code",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": "A",
-        "minLength": 1,
-        "maxLength": 1,
-        "requiredInd": "Y",
-        "fieldPriority": 1,
-        "value": null,
-        "data": [
-          {
-            "detailId": 12,
-            "groupLabel": null,
-            "value": "A",
-            "label": "Active",
-            "selectedInd": "Y"
-          },
-          {
-            "detailId": 12,
-            "groupLabel": null,
-            "value": "I",
-            "label": "Inactive",
-            "selectedInd": "N"
-          }
-        ],
-        "actions": [],
-        "dataAttributes": []
-      },
-      {
-        "fldMstrId": 10,
-        "detailId": 13,
-        "name": "COMMENTS",
-        "type": "TEXTAREA",
-        "label": "Comments",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 1,
-        "maxLength": 4000,
-        "requiredInd": "N",
-        "fieldPriority": 9,
-        "value": null,
-        "data": [],
-        "actions": [],
-        "dataAttributes": []
-      },
-      {
-        "fldMstrId": 11,
-        "detailId": 14,
-        "name": "DATE_CREATED",
-        "type": "READONLY",
-        "label": "Date Created",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 1,
-        "maxLength": 1,
-        "requiredInd": "N",
-        "fieldPriority": 9,
-        "value": null,
-        "data": [],
-        "actions": [],
-        "dataAttributes": []
-      },
-      {
-        "fldMstrId": 12,
-        "detailId": 15,
-        "name": "CREATED_BY",
-        "type": "READONLY",
-        "label": "Created By",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 1,
-        "maxLength": 1,
-        "requiredInd": "N",
-        "fieldPriority": 9,
-        "value": null,
-        "data": [],
-        "actions": [],
-        "dataAttributes": []
-      },
-      {
-        "fldMstrId": 13,
-        "detailId": 16,
-        "name": "DATE_MODIFIED",
-        "type": "READONLY",
-        "label": "Date Modified",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 1,
-        "maxLength": 1,
-        "requiredInd": "N",
-        "fieldPriority": 9,
-        "value": null,
-        "data": [],
-        "actions": [],
-        "dataAttributes": []
-      },
-      {
-        "fldMstrId": 14,
-        "detailId": 17,
-        "name": "MODIFIED_BY",
-        "type": "READONLY",
-        "label": "Modified By",
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": null,
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 1,
-        "maxLength": 1,
-        "requiredInd": "N",
-        "fieldPriority": 9,
-        "value": null,
-        "data": [],
-        "actions": [],
-        "dataAttributes": []
-      },
+    "authenticated": true,
+    "success": true,
+    "message": null,
+    "methodName": null,
+    "data": {
+        "fields": [
+            {
+                "fldMstrId": 4,
+                "detailId": 4,
+                "name": "PRCS_MSTR_ID",
+                "type": "READONLY",
+                "label": "ID",
+                "tooltipText": null,
+                "fieldClass": null,
+                "wrapClass": null,
+                "prefix": null,
+                "suffix": null,
+                "currentValue": null,
+                "minLength": 0,
+                "maxLength": 12,
+                "requiredInd": "N",
+                "fieldPriority": 1,
+                "value": null,
+                "data": [],
+                "actions": [],
+                "dataAttributes": []
+            },
+            {
+                "fldMstrId": 15,
+                "detailId": 9,
+                "name": "JS_ACCESS_CTRL_MSTR_ID",
+                "type": "select",
+                "label": "JS Access Ctrl",
+                "tooltipText": null,
+                "fieldClass": null,
+                "wrapClass": null,
+                "prefix": null,
+                "suffix": null,
+                "currentValue": null,
+                "minLength": 0,
+                "maxLength": 12,
+                "requiredInd": "N",
+                "fieldPriority": 9,
+                "value": null,
+                "data": [
+                    {
+                        "detailId": 9,
+                        "groupLabel": "ABLV_EXCPN",
+                        "value": "111",
+                        "label": "Ability to Edit an Exception",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "ABLV_EXCPN",
+                        "value": "112",
+                        "label": "Ability to Maintain Comments",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "ABLV_EXCPN",
+                        "value": "113",
+                        "label": "Ability to Make Decisions",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "ABLV_EXCPN",
+                        "value": "110",
+                        "label": "Ability to Post Comment",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "307",
+                        "label": "Add Flex Cash Administrator",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "340",
+                        "label": "All Program by Status (Corp)",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "336",
+                        "label": "All Programs by Status (Field)",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "358",
+                        "label": "Allocation",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "360",
+                        "label": "Allocation",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "310",
+                        "label": "Allocation",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "359",
+                        "label": "Allocation Report",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "352",
+                        "label": "Allocation Report",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "341",
+                        "label": "Allocation Report",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "295",
+                        "label": "Allocation Report",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "318",
+                        "label": "Award Allocation",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "347",
+                        "label": "Award Allocation",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "346",
+                        "label": "Award Allocation - New",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "315",
+                        "label": "Award Opportunities - PDF 2",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "324",
+                        "label": "AwardBound",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "316",
+                        "label": "AwardBound - New",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "317",
+                        "label": "AwardBound - Old",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "313",
+                        "label": "Client Offer Form",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "335",
+                        "label": "Client Offer Form",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "339",
+                        "label": "Create New Program",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "344",
+                        "label": "Dashboard",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "334",
+                        "label": "Dealer Lease Payoff VIN Input",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "333",
+                        "label": "Dealer Lease Payoff VIN Input",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "328",
+                        "label": "Dealer Opt-In",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "297",
+                        "label": "Dealer Opt-In",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "309",
+                        "label": "Dealer Opt-In",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "289",
+                        "label": "Dealer Opt-In",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "329",
+                        "label": "Dealer Opt-In",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "299",
+                        "label": "Dealer Opt-In",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "294",
+                        "label": "Dealer Opt-In - New",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "337",
+                        "label": "Dealer Opt-In - New",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "361",
+                        "label": "Dealer Opt-In - New",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "342",
+                        "label": "Final Allocation",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "362",
+                        "label": "HOME",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "343",
+                        "label": "Home",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "296",
+                        "label": "Model Summary Report",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "306",
+                        "label": "Model Summary Report - New",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "291",
+                        "label": "November Certificate Report",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "305",
+                        "label": "Override Allocation",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "330",
+                        "label": "Play Spins",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "349",
+                        "label": "Progress Report",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "356",
+                        "label": "Progress Report",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "327",
+                        "label": "Rules",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "321",
+                        "label": "Rules",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "325",
+                        "label": "Select Personnel",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "363",
+                        "label": "Select Personnel",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "323",
+                        "label": "Submit A Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "322",
+                        "label": "Submit A Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "319",
+                        "label": "Submit A Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "320",
+                        "label": "Submit A Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "308",
+                        "label": "Submit A Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "304",
+                        "label": "Submit A Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "298",
+                        "label": "Submit A Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "290",
+                        "label": "Submit A Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "345",
+                        "label": "Submit a Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "353",
+                        "label": "Submit a Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "354",
+                        "label": "Submit a Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "312",
+                        "label": "Submit a Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "351",
+                        "label": "Submit a Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "326",
+                        "label": "Submit a Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "357",
+                        "label": "Submit a Claim",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "301",
+                        "label": "Submit a Claim - New",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "303",
+                        "label": "Submit a Claim - New",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "293",
+                        "label": "Submit a Claim - Old",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "350",
+                        "label": "Submit a Claim - old",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "338",
+                        "label": "Summary Report",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "355",
+                        "label": "Summary Report",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "302",
+                        "label": "TrekPoints - New",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "314",
+                        "label": "TrekPoints - Old",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "348",
+                        "label": "Truck Full of Cheer Bonus",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "292",
+                        "label": "VIN Payout Report",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "332",
+                        "label": "Your Results Dashboard",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "331",
+                        "label": "Your Results Dashboard",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "300",
+                        "label": "Zone Claim Form",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "APP_NAV_CONV",
+                        "value": "311",
+                        "label": "Zone Summary Report",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "CORE",
+                        "value": "135",
+                        "label": "AFS DP-DM-GM",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "CORE",
+                        "value": "130",
+                        "label": "Acura DP-DM-GM",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "CORE",
+                        "value": "132",
+                        "label": "Acura F&I Mgr",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "CORE",
+                        "value": "121",
+                        "label": "All Participants",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "CORE",
+                        "value": "127",
+                        "label": "BI Admin Team",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "CORE",
+                        "value": "133",
+                        "label": "F&I Mgr",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "CORE",
+                        "value": "136",
+                        "label": "HFS DP-DM-GM",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "CORE",
+                        "value": "131",
+                        "label": "Honda DP-DM-GM",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "CORE",
+                        "value": "109",
+                        "label": "NON_SR",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "CORE",
+                        "value": "129",
+                        "label": "Non Dlr Mgmt/SRs/F&Is",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "CORE",
+                        "value": "107",
+                        "label": "SR_ONLY",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "CORE",
+                        "value": "108",
+                        "label": "WS_SPLR",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_GRP_CONV",
+                        "value": "365",
+                        "label": "HPC - Tools",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_GRP_CONV",
+                        "value": "364",
+                        "label": "HPC_NEW - Contact Us",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "387",
+                        "label": "ACURA Dealer Personnel Lookup",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "373",
+                        "label": "AP-699A/AP-699 Acura FlexCash",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "379",
+                        "label": "AP-745 January 2012 Acura FlexCash",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "390",
+                        "label": "AP-801 August 2012 MDX New Jersey FlexCash Program",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "367",
+                        "label": "AP-801 June 2012 MDX New Jersey FlexCash Program",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "368",
+                        "label": "AP-A46 2014 RLX Sales Consultant SpinPlay",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "376",
+                        "label": "AP-A61 2014 ILX/RDX Michigan FlexCash",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "371",
+                        "label": "AP-A61A 2014 MDX Michigan FlexCash",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "370",
+                        "label": "AP-A81 Military Appreciation",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "386",
+                        "label": "Acura President's Challenge",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "385",
+                        "label": "April TL Trade-In Spin",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "392",
+                        "label": "Dealer Personnel Lookup",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "393",
+                        "label": "Dealer Personnel Lookup",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "374",
+                        "label": "Dealer Personnel Lookup",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "389",
+                        "label": "Exception Request System",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "384",
+                        "label": "Exception System",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "383",
+                        "label": "HP-A66 Honda Promise  Vehicle Not Available",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "378",
+                        "label": "HP-A83 2012 Honda Promise  Vehicle Not Available",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "377",
+                        "label": "HP-A83 2012 Honda Promise  Vehicle On Lot",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "391",
+                        "label": "HP-F51 2014 Spring Honda Sales Consultant SpinPlay",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "369",
+                        "label": "HP-F51 2014 Spring Honda Sales Consultant SpinPlay",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "381",
+                        "label": "HP-F52 Military Appreciation",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "372",
+                        "label": "HP-G21 2014 Crosstour $3,000 FlexCash",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "382",
+                        "label": "HP-G58 2014 Civic October Sales Consultant Spin",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "395",
+                        "label": "Log Out",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "375",
+                        "label": "No Re-Entry Logout Page",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "380",
+                        "label": "Stephen's Test Spin",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "366",
+                        "label": "sample",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "394",
+                        "label": "test",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "MENU_ITEM_MSTR_CONV",
+                        "value": "388",
+                        "label": "testing",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "PGM_ADM",
+                        "value": "128",
+                        "label": "TSGA Access for Zone Portal / Pgm Adm tool",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "RPTNG",
+                        "value": "114",
+                        "label": "Corporate / Supplier User Reporting Entry Point Control",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "RPTNG",
+                        "value": "117",
+                        "label": "Dealer Level User Access Control",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "RPTNG",
+                        "value": "116",
+                        "label": "District User Reporting Entry Level Control",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "RPTNG",
+                        "value": "122",
+                        "label": "SR Access Controls",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "RPTNG",
+                        "value": "115",
+                        "label": "Zone User Reporting Entry Level Control",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "WEB_ACCESS",
+                        "value": "138",
+                        "label": "Allowed Users for PowerSports",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "WEB_ACCESS",
+                        "value": "123",
+                        "label": "Allowed Users for the APC",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "WEB_ACCESS",
+                        "value": "125",
+                        "label": "HPC Access Control",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "WEB_ACCESS",
+                        "value": "124",
+                        "label": "SMS Registration Override",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 9,
+                        "groupLabel": "WEB_ACCESS",
+                        "value": "137",
+                        "label": "iN_OAuth",
+                        "selectedInd": "N"
+                    }
+                ],
+                "actions": [],
+                "dataAttributes": []
+            },
+            {
+                "fldMstrId": 8,
+                "detailId": 10,
+                "name": "JS_GRP_CD",
+                "type": "select",
+                "label": "JS Group",
+                "tooltipText": null,
+                "fieldClass": null,
+                "wrapClass": null,
+                "prefix": null,
+                "suffix": null,
+                "currentValue": null,
+                "minLength": 0,
+                "maxLength": 30,
+                "requiredInd": "Y",
+                "fieldPriority": 9,
+                "value": null,
+                "data": [
+                    {
+                        "detailId": 10,
+                        "groupLabel": null,
+                        "value": "CMN_RPTNG",
+                        "label": "Common Reporting",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 10,
+                        "groupLabel": null,
+                        "value": "CORE",
+                        "label": "Core",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 10,
+                        "groupLabel": null,
+                        "value": "DATA_LOAD",
+                        "label": "Data Loads",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 10,
+                        "groupLabel": null,
+                        "value": "MIGRATE",
+                        "label": "Data Migration",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 10,
+                        "groupLabel": null,
+                        "value": "DC",
+                        "label": "Debit Card",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 10,
+                        "groupLabel": null,
+                        "value": "XTRACT",
+                        "label": "File Extracts",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 10,
+                        "groupLabel": null,
+                        "value": "OBJ",
+                        "label": "Objective",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 10,
+                        "groupLabel": null,
+                        "value": "PAX",
+                        "label": "Participant",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 10,
+                        "groupLabel": null,
+                        "value": "SPIN",
+                        "label": "SpinPlay",
+                        "selectedInd": "N"
+                    },
+                    {
+                        "detailId": 10,
+                        "groupLabel": null,
+                        "value": "VIN_APPL",
+                        "label": "VIN Application",
+                        "selectedInd": "N"
+                    }
+                ],
+                "actions": [],
+                "dataAttributes": []
+            },
+            {
+                "fldMstrId": 16,
+                "detailId": 11,
+                "name": "JS_READ_ORDER",
+                "type": "NUMBER",
+                "label": "JS Read Order",
+                "tooltipText": null,
+                "fieldClass": null,
+                "wrapClass": null,
+                "prefix": null,
+                "suffix": null,
+                "currentValue": null,
+                "minLength": 0,
+                "maxLength": 12,
+                "requiredInd": "N",
+                "fieldPriority": 9,
+                "value": null,
+                "data": [],
+                "actions": [],
+                "dataAttributes": []
+            },
+            {
+                "fldMstrId": 9,
+                "detailId": 12,
+                "name": "STATUS_CODE",
+                "type": "SELECT",
+                "label": "Status Code",
+                "tooltipText": null,
+                "fieldClass": null,
+                "wrapClass": null,
+                "prefix": null,
+                "suffix": null,
+                "currentValue": "A",
+                "minLength": 1,
+                "maxLength": 1,
+                "requiredInd": "Y",
+                "fieldPriority": 9,
+                "value": null,
+                "data": [
+                    {
+                        "detailId": 12,
+                        "groupLabel": null,
+                        "value": "A",
+                        "label": "Active",
+                        "selectedInd": "Y"
+                    },
+                    {
+                        "detailId": 12,
+                        "groupLabel": null,
+                        "value": "I",
+                        "label": "Inactive",
+                        "selectedInd": "N"
+                    }
+                ],
+                "actions": [],
+                "dataAttributes": []
+            },
+            {
+                "fldMstrId": 10,
+                "detailId": 13,
+                "name": "COMMENTS",
+                "type": "TEXTAREA",
+                "label": "Comments",
+                "tooltipText": null,
+                "fieldClass": null,
+                "wrapClass": null,
+                "prefix": null,
+                "suffix": null,
+                "currentValue": null,
+                "minLength": 1,
+                "maxLength": 4000,
+                "requiredInd": "N",
+                "fieldPriority": 9,
+                "value": null,
+                "data": [],
+                "actions": [],
+                "dataAttributes": []
+            },
+            {
+                "fldMstrId": 11,
+                "detailId": 14,
+                "name": "DATE_CREATED",
+                "type": "READONLY",
+                "label": "Date Created",
+                "tooltipText": null,
+                "fieldClass": null,
+                "wrapClass": null,
+                "prefix": null,
+                "suffix": null,
+                "currentValue": null,
+                "minLength": 1,
+                "maxLength": 1,
+                "requiredInd": "N",
+                "fieldPriority": 9,
+                "value": null,
+                "data": [],
+                "actions": [],
+                "dataAttributes": []
+            },
+            {
+                "fldMstrId": 12,
+                "detailId": 15,
+                "name": "CREATED_BY",
+                "type": "READONLY",
+                "label": "Created By",
+                "tooltipText": null,
+                "fieldClass": null,
+                "wrapClass": null,
+                "prefix": null,
+                "suffix": null,
+                "currentValue": null,
+                "minLength": 1,
+                "maxLength": 1,
+                "requiredInd": "N",
+                "fieldPriority": 9,
+                "value": null,
+                "data": [],
+                "actions": [],
+                "dataAttributes": []
+            },
+            {
+                "fldMstrId": 13,
+                "detailId": 16,
+                "name": "DATE_MODIFIED",
+                "type": "READONLY",
+                "label": "Date Modified",
+                "tooltipText": null,
+                "fieldClass": null,
+                "wrapClass": null,
+                "prefix": null,
+                "suffix": null,
+                "currentValue": null,
+                "minLength": 1,
+                "maxLength": 1,
+                "requiredInd": "N",
+                "fieldPriority": 9,
+                "value": null,
+                "data": [],
+                "actions": [],
+                "dataAttributes": []
+            },
+            {
+                "fldMstrId": 14,
+                "detailId": 17,
+                "name": "MODIFIED_BY",
+                "type": "READONLY",
+                "label": "Modified By",
+                "tooltipText": null,
+                "fieldClass": null,
+                "wrapClass": null,
+                "prefix": null,
+                "suffix": null,
+                "currentValue": null,
+                "minLength": 1,
+                "maxLength": 1,
+                "requiredInd": "N",
+                "fieldPriority": 9,
+                "value": null,
+                "data": [],
+                "actions": [],
+                "dataAttributes": []
+            },
 {
-        "fldMstrId": 2,
-        "detailId": 24,
-        "name": "ACTIONS",
-        "type": "ACTIONS",
-        "label": null,
-        "tooltipText": null,
-        "fieldClass": null,
-        "wrapClass": "auto-admin-cell-actions",
-        "prefix": null,
-        "suffix": null,
-        "currentValue": null,
-        "minLength": 0,
-        "maxLength": 100,
-        "requiredInd": "N",
-        "fieldPriority": 1,
-        "data": [],
-        "actions": [
-          {
-            "tooltipText": null,
-            "label": "Edit",
-            "type": "load-adf-region",
-            "wrapClass": null,
-            "actionClass": null,
-            "url": "../../json/job-submission/edit.json",
-            "pageDetailId": 20,
-            "fieldPageDetailId": 24,
-            "dataAttributes" : [
-                {
-                    "detailId": 108,
-                    "name": "adf-region-type",
-                    "value": "grid"
-                },
-                {
-                    "name": "adf-region-id",
-                    "value": "job-submission-work"
-                },
-                {
-                    "name": "adf-region-label",
-                    "value": "Maintain Your Job"
-                }
-            ]
-          },
-          {
-            "tooltipText": null,
-            "label": "Run",
-            "type": "load-adf-region",
-            "wrapClass": null,
-            "actionClass": null,
-            "url": "../../json/job-submission/edit.json",
-            "pageDetailId": 20,
-            "fieldPageDetailId": 24,
-            "dataAttributes" : [
-                {
-                    "detailId": 108,
-                    "name": "adf-region-type",
-                    "value": "form"
-                },
-                {
-                    "name": "adf-region-id",
-                    "value": "job-submission-work"
-                },
-                {
-                    "name": "adf-region-label",
-                    "value": "Run Your Job"
-                },
-                {
-                    "name": "adf-ajax-onshow-dependent-region",
-                    "value": "true"
-                }
-            ]
-          }
+                "fldMstrId": 2,
+                "detailId": 24,
+                "name": "ACTIONS",
+                "type": "ACTIONS",
+                "label": null,
+                "tooltipText": null,
+                "fieldClass": null,
+                "wrapClass": "auto-admin-cell-actions",
+                "prefix": null,
+                "suffix": null,
+                "currentValue": null,
+                "minLength": 0,
+                "maxLength": 100,
+                "requiredInd": "N",
+                "fieldPriority": 1,
+                "data": [],
+                "actions": [
+                    {
+                        "tooltipText": null,
+                        "label": "Edit",
+                        "type": "submit-record-form",
+                        "wrapClass": null,
+                        "actionClass": null,
+                        "url": "#job-submission-edit",
+                        "pageDetailId": 20,
+                        "fieldPageDetailId": 24,
+                        "dataAttributes" : [
+                            {
+                                "detailId": 108,
+                                "name": "child-regions",
+                                "value": "job-submission-run,job-submission-hx"
+                            }
+                        ]
+                    },
+                    {
+                        "tooltipText": null,
+                        "label": "Run",
+                        "type": "submit-record-form",
+                        "wrapClass": null,
+                        "actionClass": null,
+                        "url": "#job-submission-run, #job-submission-hx",
+                        "pageDetailId": 20,
+                        "fieldPageDetailId": 24,
+                        "dataAttributes" : [
+                            {
+                                "detailId": 108,
+                                "name": "child-regions",
+                                "value": "job-submission-edit"
+                            }
+                        ]
+                    }
+                ],
+                "dataAttributes": []
+            }
         ],
-        "dataAttributes": []
-      }
-    ],
-    "records": [
-      {
-        "id": 5894,
-        "PRCS_MSTR_ID": 5894,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_PARTS_INVCE_DATA_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_DATA_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_DATA_LOAD",
-        "JS_READ_ORDER": 3,
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-09-2015 08:52:29",
-        "MODIFIED_BY": "PEDERSOZ",
-        "RETURN_CODE_DTL": "WRITE~MTH~~~|READ~~##CRNT_PD_CODE##~~",
-        "EMAIL_DIST": "31|47|18|19"
-      },
-      {
-        "id": 5896,
-        "PRCS_MSTR_ID": 5896,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_PARTS_ITEM_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PARTS_ITEM_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PARTS_ITEM_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5892,
-        "PRCS_MSTR_ID": 5892,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_LEASE_DATA_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_LEASE_DATA_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_LEASE_DATA_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5902,
-        "PRCS_MSTR_ID": 5902,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_SLS_SMRY_INS",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_SLS_SMRY_INS",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_SLS_SMRY_INS",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5889,
-        "PRCS_MSTR_ID": 5889,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_HPS_DLR_WORK_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_HPS_DLR_WORK_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_HPS_DLR_WORK_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5877,
-        "PRCS_MSTR_ID": 5877,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_1099_XTRACT",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_1099_XTRACT",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_1099_XTRACT",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5888,
-        "PRCS_MSTR_ID": 5888,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_HPS_DLR_DATA_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_HPS_DLR_DATA_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_HPS_DLR_DATA_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5907,
-        "PRCS_MSTR_ID": 5907,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_VIN_QUEUE_PRCS_CTRL",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_VIN_QUEUE_PRCS_CTRL",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_VIN_QUEUE_PRCS_CTRL",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5879,
-        "PRCS_MSTR_ID": 5879,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_AHFC_CNTRCT_WORK_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_AHFC_CNTRCT_WORK_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_AHFC_CNTRCT_WORK_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5885,
-        "PRCS_MSTR_ID": 5885,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_ECRM_RO_DATA_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_ECRM_RO_DATA_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_ECRM_RO_DATA_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5893,
-        "PRCS_MSTR_ID": 5893,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_LEASE_WORK_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_LEASE_WORK_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_LEASE_WORK_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5883,
-        "PRCS_MSTR_ID": 5883,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_DLR_WORK_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_DLR_WORK_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_DLR_WORK_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5887,
-        "PRCS_MSTR_ID": 5887,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_GRANT_ACCESS_REFRESH",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_GRANT_ACCESS_REFRESH",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_GRANT_ACCESS_REFRESH",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5897,
-        "PRCS_MSTR_ID": 5897,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_PAX_ADHOC_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PAX_ADHOC_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PAX_ADHOC_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5906,
-        "PRCS_MSTR_ID": 5906,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_VIN_LOAD_QUEUE_INS",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_VIN_LOAD_QUEUE_INS",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_VIN_LOAD_QUEUE_INS",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5901,
-        "PRCS_MSTR_ID": 5901,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_SIMPL_SPN_XTRCT",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_SIMPL_SPN_XTRCT",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_SIMPL_SPN_XTRCT",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5878,
-        "PRCS_MSTR_ID": 5878,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_AHFC_CNTRCT_DATA_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_AHFC_CNTRCT_DATA_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_AHFC_CNTRCT_DATA_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5890,
-        "PRCS_MSTR_ID": 5890,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_HPS_VIN_WORK_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_HPS_VIN_WORK_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_HPS_VIN_WORK_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5898,
-        "PRCS_MSTR_ID": 5898,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_PAX_DATA_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PAX_DATA_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PAX_DATA_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5899,
-        "PRCS_MSTR_ID": 5899,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_PAX_WORK_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PAX_WORK_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PAX_WORK_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5884,
-        "PRCS_MSTR_ID": 5884,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_DYN_SQL_CTRL",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_DYN_SQL_CTRL",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_DYN_SQL_CTRL",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5903,
-        "PRCS_MSTR_ID": 5903,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_SUPL_WS_ORG_INS_UPD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_SUPL_WS_ORG_INS_UPD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_SUPL_WS_ORG_INS_UPD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5900,
-        "PRCS_MSTR_ID": 5900,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_SIMPL_CLM_XTRCT",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_SIMPL_CLM_XTRCT",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_SIMPL_CLM_XTRCT",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5895,
-        "PRCS_MSTR_ID": 5895,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_PARTS_INVCE_WORK_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_WORK_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_WORK_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5908,
-        "PRCS_MSTR_ID": 5908,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_VIN_STG_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_VIN_STG_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_VIN_STG_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5881,
-        "PRCS_MSTR_ID": 5881,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_DLR_DATA_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_DLR_DATA_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_DLR_DATA_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5904,
-        "PRCS_MSTR_ID": 5904,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_VIN_CERT_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_VIN_CERT_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_VIN_CERT_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5886,
-        "PRCS_MSTR_ID": 5886,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_ECRM_WORK_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_ECRM_WORK_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_ECRM_WORK_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5905,
-        "PRCS_MSTR_ID": 5905,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_VIN_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_VIN_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_VIN_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5909,
-        "PRCS_MSTR_ID": 5909,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_VIN_SUPL_INS_UPD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_VIN_SUPL_INS_UPD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_VIN_SUPL_INS_UPD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5882,
-        "PRCS_MSTR_ID": 5882,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_DLR_PYMT_XTRACT",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_DLR_PYMT_XTRACT",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_DLR_PYMT_XTRACT",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5891,
-        "PRCS_MSTR_ID": 5891,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_INS_UPD_WSLE_ORG",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_INS_UPD_WSLE_ORG",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_INS_UPD_WSLE_ORG",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-04-2015 10:41:31",
-        "MODIFIED_BY": "DEHNEL",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      },
-      {
-        "id": 5880,
-        "PRCS_MSTR_ID": 5880,
-        "APPLICATION": "CORE",
-        "PRCS_NAME": "PRC_CPO_VIN_WORK_LOAD",
-        "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_CPO_VIN_WORK_LOAD",
-        "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_CPO_VIN_WORK_LOAD",
-        "STATUS_CODE": "A",
-        "DATE_CREATED": "02-03-2015 15:17:33",
-        "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
-        "DATE_MODIFIED": "02-20-2015 15:30:12",
-        "MODIFIED_BY": "PEDERSOZ",
-        "RETURN_CODE_DTL": "0 return codes setup",
-        "EMAIL_DIST": "0 email messages setup with 0 total recipients"
-      }
-    ],
-    "actions": []
-  },
-  "errors": null,
-  "hasMessage": true
+        "records": [
+            {
+                "id": 5894,
+                "PRCS_MSTR_ID": 5894,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_PARTS_INVCE_DATA_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_DATA_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_DATA_LOAD",
+                "JS_READ_ORDER": 3,
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-09-2015 08:52:29",
+                "MODIFIED_BY": "PEDERSOZ",
+                "RETURN_CODE_DTL": "WRITE~MTH~~~|READ~~##CRNT_PD_CODE##~~",
+                "EMAIL_DIST": "31|47|18|19"
+            },
+            {
+                "id": 5896,
+                "PRCS_MSTR_ID": 5896,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_PARTS_ITEM_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PARTS_ITEM_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PARTS_ITEM_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5892,
+                "PRCS_MSTR_ID": 5892,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_LEASE_DATA_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_LEASE_DATA_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_LEASE_DATA_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5902,
+                "PRCS_MSTR_ID": 5902,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_SLS_SMRY_INS",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_SLS_SMRY_INS",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_SLS_SMRY_INS",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5889,
+                "PRCS_MSTR_ID": 5889,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_HPS_DLR_WORK_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_HPS_DLR_WORK_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_HPS_DLR_WORK_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5877,
+                "PRCS_MSTR_ID": 5877,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_1099_XTRACT",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_1099_XTRACT",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_1099_XTRACT",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5888,
+                "PRCS_MSTR_ID": 5888,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_HPS_DLR_DATA_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_HPS_DLR_DATA_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_HPS_DLR_DATA_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5907,
+                "PRCS_MSTR_ID": 5907,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_VIN_QUEUE_PRCS_CTRL",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_VIN_QUEUE_PRCS_CTRL",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_VIN_QUEUE_PRCS_CTRL",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5879,
+                "PRCS_MSTR_ID": 5879,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_AHFC_CNTRCT_WORK_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_AHFC_CNTRCT_WORK_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_AHFC_CNTRCT_WORK_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5885,
+                "PRCS_MSTR_ID": 5885,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_ECRM_RO_DATA_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_ECRM_RO_DATA_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_ECRM_RO_DATA_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5893,
+                "PRCS_MSTR_ID": 5893,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_LEASE_WORK_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_LEASE_WORK_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_LEASE_WORK_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5883,
+                "PRCS_MSTR_ID": 5883,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_DLR_WORK_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_DLR_WORK_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_DLR_WORK_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5887,
+                "PRCS_MSTR_ID": 5887,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_GRANT_ACCESS_REFRESH",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_GRANT_ACCESS_REFRESH",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_GRANT_ACCESS_REFRESH",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5897,
+                "PRCS_MSTR_ID": 5897,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_PAX_ADHOC_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PAX_ADHOC_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PAX_ADHOC_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5906,
+                "PRCS_MSTR_ID": 5906,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_VIN_LOAD_QUEUE_INS",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_VIN_LOAD_QUEUE_INS",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_VIN_LOAD_QUEUE_INS",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5901,
+                "PRCS_MSTR_ID": 5901,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_SIMPL_SPN_XTRCT",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_SIMPL_SPN_XTRCT",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_SIMPL_SPN_XTRCT",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5878,
+                "PRCS_MSTR_ID": 5878,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_AHFC_CNTRCT_DATA_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_AHFC_CNTRCT_DATA_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_AHFC_CNTRCT_DATA_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5890,
+                "PRCS_MSTR_ID": 5890,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_HPS_VIN_WORK_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_HPS_VIN_WORK_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_HPS_VIN_WORK_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5898,
+                "PRCS_MSTR_ID": 5898,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_PAX_DATA_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PAX_DATA_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PAX_DATA_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5899,
+                "PRCS_MSTR_ID": 5899,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_PAX_WORK_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PAX_WORK_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PAX_WORK_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5884,
+                "PRCS_MSTR_ID": 5884,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_DYN_SQL_CTRL",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_DYN_SQL_CTRL",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_DYN_SQL_CTRL",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5903,
+                "PRCS_MSTR_ID": 5903,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_SUPL_WS_ORG_INS_UPD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_SUPL_WS_ORG_INS_UPD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_SUPL_WS_ORG_INS_UPD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5900,
+                "PRCS_MSTR_ID": 5900,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_SIMPL_CLM_XTRCT",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_SIMPL_CLM_XTRCT",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_SIMPL_CLM_XTRCT",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5895,
+                "PRCS_MSTR_ID": 5895,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_PARTS_INVCE_WORK_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_WORK_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_PARTS_INVCE_WORK_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5908,
+                "PRCS_MSTR_ID": 5908,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_VIN_STG_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_VIN_STG_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_VIN_STG_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5881,
+                "PRCS_MSTR_ID": 5881,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_DLR_DATA_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_DLR_DATA_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_DLR_DATA_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5904,
+                "PRCS_MSTR_ID": 5904,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_VIN_CERT_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_VIN_CERT_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_VIN_CERT_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5886,
+                "PRCS_MSTR_ID": 5886,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_ECRM_WORK_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_ECRM_WORK_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_ECRM_WORK_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5905,
+                "PRCS_MSTR_ID": 5905,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_VIN_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_VIN_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_VIN_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5909,
+                "PRCS_MSTR_ID": 5909,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_VIN_SUPL_INS_UPD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_VIN_SUPL_INS_UPD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_VIN_SUPL_INS_UPD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5882,
+                "PRCS_MSTR_ID": 5882,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_DLR_PYMT_XTRACT",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_DLR_PYMT_XTRACT",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_DLR_PYMT_XTRACT",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5891,
+                "PRCS_MSTR_ID": 5891,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_INS_UPD_WSLE_ORG",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_INS_UPD_WSLE_ORG",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_INS_UPD_WSLE_ORG",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-04-2015 10:41:31",
+                "MODIFIED_BY": "DEHNEL",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            },
+            {
+                "id": 5880,
+                "PRCS_MSTR_ID": 5880,
+                "APPLICATION": "CORE",
+                "PRCS_NAME": "PRC_CPO_VIN_WORK_LOAD",
+                "PRCS_DESC": "PKG_CMN_CORE_BATCH.PRC_CPO_VIN_WORK_LOAD",
+                "OBJECT_NAME": "PKG_CMN_CORE_BATCH.PRC_CPO_VIN_WORK_LOAD",
+                "STATUS_CODE": "A",
+                "DATE_CREATED": "02-03-2015 15:17:33",
+                "CREATED_BY": "SYSTEM_BATCH.PRCS_MSTR_INS",
+                "DATE_MODIFIED": "02-20-2015 15:30:12",
+                "MODIFIED_BY": "PEDERSOZ",
+                "RETURN_CODE_DTL": "0 return codes setup",
+                "EMAIL_DIST": "0 email messages setup with 0 total recipients"
+            }
+        ],
+        "actions": []
+    },
+    "errors": null,
+    "hasMessage": true
 }

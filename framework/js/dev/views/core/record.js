@@ -6,6 +6,7 @@ $,
 _
 */
 ADF.Core.RecordView = Marionette.CompositeView.extend({
+    // TODO: actions for a given record seem like they should be handled in their own views rather than as part of the recordview
     className: 'adf-record',
     events: {
         'change :input'                 : 'inputChange',
@@ -21,9 +22,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
         this.listenTo(this.model,'all', this.recordEvent);
     },
     assignCollectionValuesFromModel: function( initialAssignment ) {
-        // console.log('this model',this.model);
         this.collection.each(function(model){
-            // console.log(model.get('name'),this.model.get(model.get('name')));
             if( initialAssignment ){
                 model.set('regionName',this.regionName);
             }
@@ -34,7 +33,6 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
             }else{
                 // now we see if there is a "default" value in the fieldsCollection and use that (if there is)
                 if( model.get('currentValue') ){
-                    // console.log('no value provided in current model for '+model.get('name')+' so we are keeping the fieldsColleciton value of '+model.get('currentValue'));
                     this.model.set(model.get('name'),model.get('currentValue'));
                 }
             }
@@ -43,9 +41,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
     handleAction: function(e) {
         var recordView = this;
         var $targetObj = $(e.target).closest('a');
-        var targetData = $targetObj.data();
         var actionType = $targetObj.attr('data-action-type');
-        var regionObj = {};
         // TODO: experiment with making this dynamic
         switch( actionType ){
             case 'save':
@@ -53,18 +49,18 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
                 this.model.url = $targetObj.attr('href');
                 this.model.save(null,{fieldsCollection: recordView.collection});
                 break;
-            case 'load-adf-region':
-                e.preventDefault();
-                $.extend(regionObj,targetData,{adfAjaxOnshow:true,adfAjaxUrl:$targetObj.attr('href')});
-                if( !_.isUndefined( adf.page.getRegion(regionObj.regionName) ) ) {
-                    adf.page.removeRegion(regionObj.regionName);
-                }
-                adf.page.addRegions( adf.page._buildRegion(regionObj,targetData.adfRegionId) );
-                adf.page.getRegion(regionObj.regionName).show();
-                break;
+            // case 'load-adf-region':
+            //     e.preventDefault();
+            //     $.extend(regionObj,targetData,{adfAjaxOnshow:true,adfAjaxUrl:$targetObj.attr('href')});
+            //     if( !_.isUndefined( adf.page.getRegion(regionObj.regionName) ) ) {
+            //         adf.page.removeRegion(regionObj.regionName);
+            //     }
+            //     adf.page.addRegions( adf.page._buildRegion(regionObj,targetData.adfRegionId) );
+            //     adf.page.getRegion(regionObj.regionName).show();
+            //     break;
             case 'link':
                 // TODO: replacing this at time of click seems really crappy and should be done in the model or view rendering but that just wasn't working when there were multiple records in a grid
-                $targetObj.attr('href',this.stringSubstitute( $targetObj.attr('href'), this.model ));
+                $targetObj.attr('href',ADF.utils.string.substitute( $targetObj.attr('href'), this.model ));
                 return true;
             case 'clone':
                 var clonedModel = this.model.clone();
@@ -78,24 +74,61 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
                 this.render();
                 break;
             default:
-                ADF.utils.message('error','Unexpected record action ('+actionType+') triggered.',$targetObj);
+                if( this.actions[ADF.utils.string.camelize( actionType )] ){
+                    this.actions[ADF.utils.string.camelize( actionType )](this,e);
+                }else{
+                    ADF.utils.message('error','Unexpected record action ('+actionType+') triggered.',$targetObj);
+                }
         }
     },
-    stringSubstitute: function( inputString, dataModel ){
-        ADF.utils.message('error','stringSubstitute called within the record view');
-        var tokenArray = inputString.split('##');
-        var returnString = tokenArray[0];
-        // var tokenModel = {};
-        for( var i = 1; i < tokenArray.length; i++ ){
-            if( i % 2 === 1 ){
-                if( dataModel.get(tokenArray[i].toLowerCase()) ){
-                    returnString += dataModel.get(tokenArray[i].toLowerCase());
+
+    // these are the individual functions to handle each action type
+    actions: {
+
+        submitRecordForm: function(recordView,e) {
+            e.preventDefault();
+            var action = $(e.target).closest('a').attr('href');
+
+            // TODO: commonize this to share code with ADF.Forms.FormView.submitForm()
+            // var dataArray = ADF.utils.dataSerializeNonADFData( this.$el.find(':input').not('.form-input, .form-input *').serializeObject() );
+            var dataArray = ADF.utils.dataSerialize( recordView.collection );
+            var childRegions = $(e.currentTarget).data('child-regions').split(',');
+
+            if( action.substring(0,1) === '#' ){
+
+                if( $(action).size() > 0 ){
+
+                    ADF.utils.message('log','Found something to load into');
+                    $(action).each(function(){
+
+                        adf.page.getRegion(ADF.utils.string.camelize($(this).attr('id'))).ajax({
+                            data: {adfSerializedData:JSON.stringify(dataArray)},
+                            method: 'POST'
+                        });
+
+                    });
+
+                    if( childRegions && childRegions.length > 0 ){
+
+                        _.each(childRegions,function(childRegion){
+
+                            console.log(ADF.utils.string.camelize(childRegion));
+
+                            adf.page.getRegion(ADF.utils.string.camelize(childRegion)).hide();
+
+                        });
+
+                    }
+
+                }else{
+                    ADF.utils.message('error','Trying to load ajax but destination element could not be found on the page');
                 }
             }else{
-                returnString += tokenArray[i];
+
+                ADF.utils.message('error','Other submission methods not supported currently');
+
             }
         }
-        return returnString;
     },
     inputChange: function( e ){
 
@@ -154,6 +187,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
 
     _showMessage: function() {
 
+        // TODO: improve this to not be so callback-hell-ish
         var $msgDiv = this.$el.find('.adf-record-messages');
         var args = Array.prototype.slice.call(arguments);
 
