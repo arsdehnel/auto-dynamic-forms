@@ -8,6 +8,9 @@ ADF.Grids.ActionsView = ADF.Core.DropdownView.extend({
             case 'record-add':
                 viewClass = ADF.Actions.RecordAddView;
                 break;
+            case 'save-unsaved':
+                viewClass = ADF.Actions.SaveUnsavedView;
+                break;
             default:
                 viewClass = ADF.Actions.GridDefaultView;
                 break;

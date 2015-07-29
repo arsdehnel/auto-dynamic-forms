@@ -10,9 +10,8 @@ ADF.Grids.RowView = ADF.Core.RecordView.extend({
     childView: ADF.Grids.CellView,
     childViewOptions : function () {
         return { regionName: this.regionName };
-    },    
+    },
     events: {
-        'click span[data-select-grid-rendering=true]'   : 'selectInGridToggle',
         'keyup .select-fancy'                           : 'fancySelectSearch',
         'click .select-fancy-options a'                 : 'fancySelectClick'
     },
@@ -28,8 +27,9 @@ ADF.Grids.RowView = ADF.Core.RecordView.extend({
     onRender: function(){
         var $cells = this.$el.children('td');
         this.setElement(this.$el.find('tr').unwrap().append($cells));
-    },    
+    },
     fancySelectSearch: function(e) {
+        alert('crap');
         var $wrap = $(e.currentTarget).closest('.select-fancy-wrapper');
         var $hidden = $wrap.find('.adf-form-input');
         var $options = $wrap.find('.select-fancy-options');
@@ -38,7 +38,7 @@ ADF.Grids.RowView = ADF.Core.RecordView.extend({
         var selectData = this.collection.findWhere({name:$hidden.attr('name')}).get('data');
         var results = _.filter(selectData,function(item){
             if( item.label && item.label.length > 0 ){
-                return item.value.toLowerCase().indexOf(val.toLowerCase()) >= 0 || item.label.toLowerCase().indexOf(val.toLowerCase()) >= 0;    
+                return item.value.toLowerCase().indexOf(val.toLowerCase()) >= 0 || item.label.toLowerCase().indexOf(val.toLowerCase()) >= 0;
             }else{
                 return item.value.toLowerCase().indexOf(val.toLowerCase()) >= 0;
             }
@@ -48,10 +48,11 @@ ADF.Grids.RowView = ADF.Core.RecordView.extend({
         }else{
             _.each(results,function(result){
                 $options.append(ADF.templates.inputHelperSelectFancyRecord(result));
-            });                    
+            });
         }
     },
     fancySelectClick: function(e) {
+        alert('crap');
         e.preventDefault();
         var $selected = $(e.currentTarget);
         var $input = $selected.closest('td').find('.select-fancy');

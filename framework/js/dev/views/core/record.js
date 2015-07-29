@@ -19,6 +19,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
         this.collection = new ADF.FieldsCollection(this.region.fieldsCollection.toJSON());
         this.assignCollectionValuesFromModel(true);
         this.listenTo(this.model,'all', this.recordEvent);
+        this.status = 'current';
     },
     assignCollectionValuesFromModel: function( initialAssignment ) {
         // console.log('this model',this.model);
@@ -131,6 +132,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
     },
 
     _updateStatus: function( newStatus ) {
+        this.status = newStatus;
         this.$el.removeClass('updated added current error').addClass(newStatus);
     },
 

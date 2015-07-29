@@ -5,7 +5,6 @@ Backbone
 ADF.Actions.RecordAddView = Backbone.Marionette.ItemView.extend({
     template: ADF.templates.recordAddWidget,
     tagName: 'li',
-    // TODO: handle the input slider and update the UI as it slides rather than on-end
     events: {
         'click  a'     : 'addRecords',
         'input'        : 'changeRecCount'
