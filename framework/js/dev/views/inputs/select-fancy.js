@@ -4,8 +4,7 @@ Backbone,
 _,
 $
 */
-ADF.Inputs.SelectFancyView = ADF.Core.FieldView.extend({
-    template: ADF.templates.formRow,
+ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
     childEvents: {
         'input'                                   : 'input',
         'keydown'                                 : 'keydown',

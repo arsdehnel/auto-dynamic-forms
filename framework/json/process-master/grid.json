@@ -223,7 +223,7 @@
                 "minLength": 0,
                 "maxLength": 12,
                 "requiredInd": "N",
-                "fieldPriority": 1,
+                "fieldPriority": 9,
                 "value": null,
                 "data": [
                     {
@@ -1364,7 +1364,7 @@
                 "minLength": 1,
                 "maxLength": 4000,
                 "requiredInd": "N",
-                "fieldPriority": 9,
+                "fieldPriority": 1,
                 "value": null,
                 "data": [],
                 "actions": [],

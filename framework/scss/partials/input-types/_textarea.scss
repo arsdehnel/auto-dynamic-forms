@@ -1,68 +1,107 @@
-.form-row.large {
-  .textarea-wrap {
-    position: fixed;
-    top: 5%;
-    right: 5%;
-    bottom: 5%;
-    left: 5%;
-    z-index: $zindex-overlay;
-  }
-}
-
-
-.textarea-wrap-inner {
-  background: #444;
-  position: relative;
-}
-textarea {
-  width: calc( 100% - 2em );
-  height: calc( 100% - 4px );
-  margin-left: 2px;
-}
-.textarea-toggle {
-  position: absolute;
-  top: 50%;
-  height: 20px;
-  width: 20px;
-  transform: translateY( -50% );
-  svg {
-    fill: white;
-    height: 100%;
-    width: 18px;
-    padding-left: 1px;
-  }
-}
-.textarea-wrap.inline {
-  .textarea-wrap-inner {
-    height: 40px;
-    width: 200px;
-  }
-  .textarea-toggle {
-    .icon-expand {
-      display: block;
+.textarea-wrap {
+    white-space: nowrap;
+    text-align: left;
+    .adf-form-input,
+    .size-toggle {
+        display: block;
+        float: left;
     }
-    .icon-collapse {
-      display: none;
+    .size-toggle {
+        padding: 8px 2px;
+        .icon {
+            width: 1em;
+        }
+        .icon-contract {
+            display: none;
+        }
     }
-  }
+    &.expanded {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba( 0, 0, 0, .5 );
+        padding: 3em;
+        z-index: $zindex-overlay;
+        .size-toggle {
+            .icon {
+                width: 3em;
+                fill: black;
+                background: white;
+                padding: 3px;
+                position: absolute;
+                top: 2em;
+                right: 2em;
+            }
+            .icon-contract {
+                display: inline;
+            }
+            .icon-expand {
+                display: none;
+            }
+        }
+        textarea {
+            position: absolute;
+            top: 1em;
+            left: 1em;
+            width: calc( 100% - 9em );
+            height: 90%;
+        }
+    }
 }
-.textarea-wrap.overlay {
-  .textarea-wrap-inner {
-    position: fixed;
-    top: 1em;
-    right: 1em;
-    bottom: 1em;
-    left: 1em;
-    height: 90%;
-    width: 90%;
-  }
-  .textarea-toggle {
-    top: 10px;
-    .icon-expand {
-      display: none;
-    }
-    .icon-collapse {
-      display: block;
-    }
-  }
-}
+// .textarea-wrap-inner {
+//     background: #444;
+//     position: relative;
+// }
+// textarea {
+//     width: calc( 100% - 3em );
+//     height: calc( 100% - 4px );
+// }
+// .textarea-toggle {
+//     position: absolute;
+//     top: 50%;
+//     height: 20px;
+//     width: 20px;
+//     transform: translateY( -50% );
+//     svg {
+//         fill: white;
+//         height: 100%;
+//         width: 18px;
+//         padding-left: 1px;
+//     }
+// }
+// .textarea-wrap.inline {
+//     .textarea-wrap-inner {
+//         height: 40px;
+//         width: 200px;
+//     }
+//     .textarea-toggle {
+//         .icon-expand {
+//             display: block;
+//         }
+//         .icon-collapse {
+//             display: none;
+//         }
+//     }
+// }
+// .textarea-wrap.overlay {
+//     .textarea-wrap-inner {
+//         position: fixed;
+//         top: 1em;
+//         right: 1em;
+//         bottom: 1em;
+//         left: 1em;
+//         height: 90%;
+//         width: 90%;
+//     }
+//     .textarea-toggle {
+//         top: 10px;
+//         .icon-expand {
+//             display: none;
+//         }
+//         .icon-collapse {
+//             display: block;
+//         }
+//     }
+// }

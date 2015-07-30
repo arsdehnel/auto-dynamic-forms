@@ -1,20 +1,34 @@
 /*global
 ADF,
 adf,
-_,
-$
+_
 */
+// combine this and Forms.FieldsView (and maybe Core.RecordView) into one Core.InputsView
 ADF.Grids.RowView = ADF.Core.RecordView.extend({
     template: ADF.templates.gridRow,
     tagName: 'tr',
-    childView: ADF.Grids.CellView,
+    getChildView: function(model) {
+        var viewClass;
+        switch( model.get('type').toLowerCase() ){
+            case 'textarea':
+                viewClass = ADF.Inputs.TextareaView;
+                break;
+            case 'select-fancy':
+                viewClass = ADF.Inputs.SelectFancyView;
+                break;
+            default:
+                viewClass = ADF.Inputs.GridDefaultView;
+                break;
+        }
+        return viewClass;
+    },
     childViewOptions : function () {
-        return { regionName: this.regionName };
-    },    
-    events: {
-        'click span[data-select-grid-rendering=true]'   : 'selectInGridToggle',
-        'keyup .select-fancy'                           : 'fancySelectSearch',
-        'click .select-fancy-options a'                 : 'fancySelectClick'
+        return {
+            regionName: this.regionName,
+            region: this.region,
+            template: ADF.templates.gridCell,
+            tagName: 'td'
+        };
     },
     initialize: function( options ) {
         ADF.utils.message('log','GridRowView Initialized', options);
@@ -28,37 +42,5 @@ ADF.Grids.RowView = ADF.Core.RecordView.extend({
     onRender: function(){
         var $cells = this.$el.children('td');
         this.setElement(this.$el.find('tr').unwrap().append($cells));
-    },    
-    fancySelectSearch: function(e) {
-        var $wrap = $(e.currentTarget).closest('.select-fancy-wrapper');
-        var $hidden = $wrap.find('.adf-form-input');
-        var $options = $wrap.find('.select-fancy-options');
-        $options.empty();
-        var val = $wrap.find('.select-fancy').val();
-        var selectData = this.collection.findWhere({name:$hidden.attr('name')}).get('data');
-        var results = _.filter(selectData,function(item){
-            if( item.label && item.label.length > 0 ){
-                return item.value.toLowerCase().indexOf(val.toLowerCase()) >= 0 || item.label.toLowerCase().indexOf(val.toLowerCase()) >= 0;    
-            }else{
-                return item.value.toLowerCase().indexOf(val.toLowerCase()) >= 0;
-            }
-        });
-        if( results.length === 0 ){
-            $options.append('<li>No results found</li>');
-        }else{
-            _.each(results,function(result){
-                $options.append(ADF.templates.inputHelperSelectFancyRecord(result));
-            });                    
-        }
-    },
-    fancySelectClick: function(e) {
-        e.preventDefault();
-        var $selected = $(e.currentTarget);
-        var $input = $selected.closest('td').find('.select-fancy');
-        var $hidden = $selected.closest('td').find(':input:hidden');
-        $input.val($selected.text());
-        $hidden.val($selected.data('value'));
-        this.model.set('currentValue',$selected.data('value'));
-        $selected.closest('td').find('.select-fancy-options').empty();
     }
 });

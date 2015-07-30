@@ -12,13 +12,17 @@ ADF.Forms.FieldsView = Marionette.CollectionView.extend({
                 viewClass = ADF.Inputs.SelectFancyView;
                 break;
             default:
-                viewClass = ADF.Forms.FieldView;
+                viewClass = ADF.Inputs.FormDefaultView;
                 break;
         }
         return viewClass;
     },
     childViewOptions : function () {
-        return { regionName: this.options.regionName };
+        return {
+            regionName: this.options.regionName,
+            region: this.region,
+            template: ADF.templates.formRow
+        };
     },
     initialize: function( options ) {
         ADF.utils.message('log','Forms.FieldsView Initialized', options );

@@ -215,14 +215,12 @@ module.exports = function(grunt) {
                         // forms
                         'js/dev/views/forms/action.js',
                         'js/dev/views/forms/actions.js',
-                        'js/dev/views/forms/field.js',
                         'js/dev/views/forms/fields.js',
                         'js/dev/views/forms/form.js',
 
                         // grids
                         'js/dev/views/grids/action.js',
                         'js/dev/views/grids/actions.js',
-                        'js/dev/views/grids/cell.js',
                         'js/dev/views/grids/column-select-item.js',
                         'js/dev/views/grids/column-select.js',
                         'js/dev/views/grids/filter-item.js',
@@ -251,7 +249,14 @@ module.exports = function(grunt) {
             libAdmin:  {
                 src: [
                     'js/lib/jquery-*.min.js',
-                    'js/lib/jquery-ui.js'
+                    'js/lib/jquery-ui.js',
+                    'js/lib/codemirror-5.5/lib/codemirror.js',
+                    'js/lib/codemirror-5.5/addon/selection-pointer.js',
+                    'js/lib/codemirror-5.5/addon/edit/matchbrackets.js',
+                    'js/lib/codemirror-5.5/mode/xml/xml.js',
+                    'js/lib/codemirror-5.5/mode/javascript/javascript.js',
+                    'js/lib/codemirror-5.5/mode/css/css.js',
+                    'js/lib/codemirror-5.5/mode/htmlmixed/htmlmixed.js'
                 ],
                 dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'lib-admin.min.js',
             },
