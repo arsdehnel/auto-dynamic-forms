@@ -40,6 +40,8 @@ ADF.Actions.GridDefaultView = Backbone.Marionette.ItemView.extend({
 
     gridRecordAdd: function( actionObj ) {
 
+        alert('wrong grid record add called');
+
         var gridView = this.region.gridView;
         var actionData = actionObj.data();
         var defaultsObj = {};

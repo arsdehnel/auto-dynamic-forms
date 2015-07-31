@@ -1,0 +1,37 @@
+<li class="select-fancy-add-option">
+    <a href="#">Add Option?</a>
+    <form action="{{addOptionUrl}}" method="post">
+        <table class="select-fany-add-option-details">
+            <tr>
+                <th>
+                    Value
+                </th>
+                <td>
+                    <input type="text" name="value" id="value">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Label
+                </th>
+                <td>
+                    <input type="text" name="label" id="label">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Group
+                </th>
+                <td>
+                    <input type="text" name="group" id="group">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <button type="submit" class="btn btn-submit">Save</button>
+                    <button type="button" class="btn btn-cancel">Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</li>

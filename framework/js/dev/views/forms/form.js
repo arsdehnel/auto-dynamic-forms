@@ -14,7 +14,7 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
         if( formView.$el.find('.adf-form-fields').size() === 0 ){
             // prepend here because there might be some data in the form as provided by the java application that we don't want to lose
             // but we want it to be at the end of the form just in case we have a situation where that input data takes up visual space
-            formView.$el.prepend(formView.template());            
+            formView.$el.prepend(formView.template());
             formView.formFields = new ADF.Forms.FieldsView({
                 el: formView.$el.find('.adf-form-fields')[0],
                 collection: new ADF.FieldsCollection(null,{regionName:formView.options.regionName}),
@@ -27,7 +27,7 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
                 regionName: formView.options.regionName,
                 parentView: formView
             });
-        }       
+        }
     },
     render: function() {
 
@@ -42,7 +42,7 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
 
         var formView = this;
         var contextModelDataAttrs = ( contextView && contextView.model && contextView.model._createDataAttrObj ? contextView.model._createDataAttrObj() : false );
-        
+
         // check for any failing validations
         if( !this.$el.formValidate(ADF.config.get('validationSettings')) ){
             return false;
@@ -63,8 +63,11 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
                 });
 
             }else{
+
                 ADF.utils.message('error','Trying to load ajax but destination element could not be found on the page');
+
             }
+
         }else{
 
             if( contextModelDataAttrs && contextModelDataAttrs.submitType && contextModelDataAttrs.submitType.toLowerCase() === 'ajax' ){

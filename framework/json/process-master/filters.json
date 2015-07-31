@@ -83,6 +83,11 @@
                         "detailId": 2,
                         "name": "select-fancy",
                         "value": "true"
+                    },
+                    {
+                        "detailId": 3,
+                        "name": "ADD_OPTION_URL",
+                        "value": "../../json/common/add-option.json"
                     }
                 ]
             }

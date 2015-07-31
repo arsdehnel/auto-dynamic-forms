@@ -13,6 +13,9 @@
     border: 1px solid #999;
     color: white;
     font-size: 9px;
+    width: 18px;
+    height: 50%;
+    padding: 0;
     &:hover {
         border-color: #666;
         color: black;
@@ -21,9 +24,17 @@
 }
 .select-fancy-clear {
     top: 0;
+    padding: 2px 4px;
+    border-bottom: 0;
 }
 .select-fancy-toggle {
     bottom: 0;
+    .icon {
+        width: 100%;
+    }
+    .icon-chevron-up {
+        display: none;
+    }
 }
 .select-fancy-options {
     position: absolute;
@@ -55,5 +66,24 @@
     .highlight,
     a:hover {
         background: rgba( 0, 0, 0, .2 );
+    }
+    .select-fancy-add-option {
+        background: #ddd;
+        border-top: 3px double #999;
+        .select-fany-add-option-details {
+            display: none;
+            width: 90%;
+            margin: 8px auto 0;
+        }
+        &.open {
+            padding-bottom: 8px;
+            .select-fany-add-option-details {
+                display: table;
+            }
+        }
+        .btn {
+            padding: 0 1em;
+            width: 45%;
+        }
     }
 }

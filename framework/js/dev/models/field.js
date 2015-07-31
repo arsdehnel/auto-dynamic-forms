@@ -32,6 +32,15 @@ ADF.FieldModel = Backbone.Model.extend({
 
     },
 
+    getDataAttrVal: function( dataAttr ) {
+        var dataAttrObj = _.findWhere(this.get('dataAttributes'),{name:dataAttr});
+        if( dataAttrObj ){
+            return dataAttrObj.value;
+        }else{
+            return false;
+        }
+    },
+
     _setInputTypeTemplate: function() {
         // do this step-by-step for clarity and maintainability (not to mention debuggability)
         var inputType = this.get('type');
@@ -66,7 +75,7 @@ ADF.FieldModel = Backbone.Model.extend({
                 case 'radio':
                 case 'checkboxes':
                     // console.log(fieldModel.get('type').toLowerCase(),_.map(_.where(fieldModel.get('data'),{selectedInd:'Y'}),function(model){return model.label}).join(', '),fieldModel.get('currentValue'));
-                    fieldModel.set('currentValue',_.map(_.where(fieldModel.get('data'),{selectedInd:'Y'}),function(model){return model.label}).join(', '));
+                    fieldModel.set('currentValue',_.map(_.where(fieldModel.get('data'),{selectedInd:'Y'}),function(model){return model.label;}).join(', '));
                     fieldModel.set('type','readonly');
                     break;
                 case 'hidden':
@@ -79,13 +88,13 @@ ADF.FieldModel = Backbone.Model.extend({
                     ADF.utils.message('error','Unxpected field type for readonly override: '+fieldModel.get('type').toLowerCase());
                     break;
             }
-        }        
+        }
     },
     _createDataAttrObj: function(){
         var returnObj = {};
         _.each(this.get('dataAttributes'),function(dataAttr){
             returnObj[ADF.utils.string.camelize(dataAttr.name)] = dataAttr.value;
-        }); 
+        });
         return returnObj;
     }
 

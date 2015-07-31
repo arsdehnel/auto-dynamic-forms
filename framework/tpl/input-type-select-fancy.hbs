@@ -12,7 +12,18 @@
         {{/each}}
         >
     <input type="hidden" class="adf-form-input" name="{{name}}" id="{{name}}" value="{{currentValue}}">
-    <button class="select-fancy-control select-fancy-clear">X</button>
-    <button class="select-fancy-control select-fancy-toggle">+</button>
+    <button class="select-fancy-control select-fancy-clear">
+        <svg viewBox="0 0 32 32" class="icon">
+            <use xlink:href="#icon-close"></use>
+        </svg>
+    </button>
+    <button class="select-fancy-control select-fancy-toggle">
+        <svg viewBox="0 0 32 32" class="icon icon-chevron-down">
+            <use xlink:href="#icon-chevron-down"></use>
+        </svg>
+        <svg viewBox="0 0 32 32" class="icon icon-chevron-up">
+            <use xlink:href="#icon-chevron-up"></use>
+        </svg>
+    </button>
     <ul class="select-fancy-options"></ul>
 </div><!-- /.select-fancy-wrapper -->

@@ -6,17 +6,21 @@ $
 */
 ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
     childEvents: {
-        'input'                                   : 'input',
-        'keydown'                                 : 'keydown',
-        'click .select-fancy-options'             : 'click',
-        'click .select-fancy-clear'               : 'clear',
-        'click .select-fancy-toggle'              : 'toggle',
+        'input .select-fancy'                            : 'input',
+        'keydown .select-fancy'                          : 'keydown',
+        'click .select-fancy-option'                     : 'click',
+        'click .select-fancy-clear'                      : 'clear',
+        'click .select-fancy-toggle'                     : 'toggle',
+        'click .select-fancy-add-option a'               : 'addOptionOpen',
+        'click .btn-cancel'                              : 'addOptionClose',
+        'click .btn-submit'                              : 'addOptionSubmit'
     },
     events: function() {
         return _.extend({},this.parentEvents,this.childEvents);
     },
     initialize: function( options ) {
         ADF.utils.message('log','Inputs.SelectFancyView Initialized', options);
+        this.addOptionUrl = this.model.getDataAttrVal( 'add-option-url' );
         this._super();
     },
     onRender: function() {
@@ -117,7 +121,9 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
                 sFView.$options.append(ADF.templates.inputHelperSelectFancyRecord(result.toJSON()));
             });
         }
-
+        if( this.addOptionUrl ){
+            sFView.$options.append(ADF.templates.inputHelperSelectFancyAddOption({addOptionUrl:this.addOptionUrl}));
+        }
     },
     click: function(e) {
         e.preventDefault();
@@ -138,5 +144,37 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
         $input.val('');
         $hidden.val('');
         $hidden.trigger('change');
+    },
+    addOptionOpen: function(e) {
+        console.log('addOptionOpen');
+        e.preventDefault();
+        var $addOption = $(e.target).closest('li');
+        $addOption.addClass('open');
+    },
+    addOptionClose: function(e) {
+        console.log('addOptionClose');
+        e.preventDefault();
+        var $addOption = $(e.target).closest('li');
+        $addOption.removeClass('open');
+    },
+    addOptionSubmit: function(e) {
+        console.log('addOptionSubmit');
+        e.preventDefault();
+        var $addOption = $(e.target).closest('li');
+
+        var sFView = this;
+
+        var dataArray = ADF.utils.dataSerializeNonADFData( $addOption.find(':input').serializeObject() );
+
+        $.ajax({
+            url: sFView.addOptionUrl,
+            method: 'post',
+            data: {adfSerializedData:JSON.stringify(dataArray)},
+            complete: function( jqXhr, textStatus ){
+                ADF.utils.message('log','Submitted add new option via ajax');
+            }
+        });
+
     }
+
 });
