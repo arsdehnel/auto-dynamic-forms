@@ -7,10 +7,10 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
     tagName: 'th',
     childView: ADF.Grids.FilterView,
     events: {
-        'click     .sort-control'           : 'sortGrid',
-        'mousedown .adf-grid-resize-handle' : 'resizeStart',
-        'mouseup   .adf-grid-resize-handle' : 'resizeStop',
-        'mousemove'                         : 'resiseMove'
+        'click     .sort-control'             : 'sortGrid',
+        'mousedown .resize-control'           : 'resizeStart',
+        'mouseup   .resize-control'           : 'resizeStop',
+        'mousemove .resize-control.resizing'  : 'resizeMove'
     },
     initialize: function( options ){
         ADF.utils.message('log','HeaderView Initialized', options);
@@ -32,6 +32,9 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
             collection: new Backbone.Collection(null,{comparator: 'fieldValue'})
         });
 
+    },
+    ui: {
+        resize: '.resize-control'
     },
     onRender: function() {
         this.setElement(this.$el.find('th').unwrap());
@@ -62,20 +65,20 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
         this.$el.width(this.$el.width());
     },
     resizeStart: function(e) {
-        // var start = $(this);
         this.pressed = true;
         this.startX = e.pageX;
-        this.startWidth = this.$el.width();
-        this.$el.addClass('resizing');
+        this.startWidth = parseInt(this.$el.css('width'), 10);
+        this.ui.resize.addClass('resizing');
     },
-    resiseMove: function(e) {
+    resizeMove: function(e) {
         if( this.pressed ){
+            console.log('resizeMove',this.startWidth,e.pageX,this.startX);
             this.$el.width(this.startWidth+(e.pageX-this.startX));
         }
     },
     resizeStop: function(e) {
         if( this.pressed ){
-            this.$el.removeClass('resizing');
+            this.ui.resize.removeClass('resizing');
             this.pressed = false;
         }
     }
