@@ -18,18 +18,19 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
     events: function() {
         return _.extend({},this.parentEvents,this.childEvents);
     },
+    ui : {
+        options   : '.select-fancy-options',    // the options list
+        dispInput : '.select-fancy',            // the text input that stores the value to show the user
+        valInput  : '.adf-form-input'           // the hidden input that stores the actual value to be used
+    },
     initialize: function( options ) {
         ADF.utils.message('log','Inputs.SelectFancyView Initialized', options);
         this.addOptionUrl = this.model.getDataAttrVal( 'add-option-url' );
         this._super();
     },
-    onRender: function() {
-        this.$options = this.$el.find('.select-fancy-options');
-        this._super();
-    },
     input: function(e) {
         this.empty();
-        this.open( this.$el.find(':input:visible').val() );
+        this.open( this.ui.dispInput.val() );
     },
     toggle: function(e) {
         e.preventDefault();
@@ -40,7 +41,7 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
         }
     },
     empty: function() {
-        this.$options.empty();
+        this.ui.options.empty();
     },
     close: function() {
         this.empty();
@@ -115,63 +116,62 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
             results = this.model.dataCollection;
         }
         if( results.length === 0 ){
-            sFView.$options.append('<li>No results found</li>');
+            sFView.ui.options.append('<li>No results found</li>');
         }else{
             results.each(function(result){
-                sFView.$options.append(ADF.templates.inputHelperSelectFancyRecord(result.toJSON()));
+                sFView.ui.options.append(ADF.templates.inputHelperSelectFancyRecord(result.toJSON()));
             });
         }
         if( this.addOptionUrl ){
-            sFView.$options.append(ADF.templates.inputHelperSelectFancyAddOption({addOptionUrl:this.addOptionUrl}));
+            sFView.ui.options.append(ADF.templates.inputHelperSelectFancyAddOption({addOptionUrl:this.addOptionUrl}));
         }
     },
     click: function(e) {
         e.preventDefault();
         var $selected = $(e.target).closest('li');
-        var $input = this.$el.find('.select-fancy');
-        var $hidden = this.$el.find(':input:hidden');
-        $input.val($.trim($selected.text()));
-        $hidden.val($selected.data('value'));
+        this.ui.dispInput.val($.trim($selected.text()));
+        this.ui.valInput.val($selected.data('value'));
         this.model.set('currentValue',$selected.data('value'));
-        $hidden.trigger('change');
-        this.$el.find('.select-fancy-options').empty();
+        this.ui.valInput.trigger('change');
+        this.empty();
     },
     clear: function(e) {
         e.preventDefault();
         this.model.set('currentValue','');
-        var $input = this.$el.find('.select-fancy');
-        var $hidden = this.$el.find(':input:hidden');
-        $input.val('');
-        $hidden.val('');
-        $hidden.trigger('change');
+        this.ui.dispInput.val('');
+        this.ui.valInput.val('');
+        this.ui.valInput.trigger('change');
+        this.empty();
     },
     addOptionOpen: function(e) {
-        console.log('addOptionOpen');
         e.preventDefault();
         var $addOption = $(e.target).closest('li');
         $addOption.addClass('open');
     },
     addOptionClose: function(e) {
-        console.log('addOptionClose');
         e.preventDefault();
         var $addOption = $(e.target).closest('li');
         $addOption.removeClass('open');
     },
     addOptionSubmit: function(e) {
-        console.log('addOptionSubmit');
         e.preventDefault();
         var $addOption = $(e.target).closest('li');
-
         var sFView = this;
-
-        var dataArray = ADF.utils.dataSerializeNonADFData( $addOption.find(':input').serializeObject() );
+        var dataObj = $addOption.find(':input').serializeObject();
+        var dataArray = ADF.utils.dataSerializeNonADFData( dataObj );
 
         $.ajax({
             url: sFView.addOptionUrl,
             method: 'post',
             data: {adfSerializedData:JSON.stringify(dataArray)},
+            beforeSend: function() {
+                ADF.utils.spin( $addOption );
+            },
             complete: function( jqXhr, textStatus ){
                 ADF.utils.message('log','Submitted add new option via ajax');
+                ADF.utils.spin( $addOption, { stop: true } );
+                sFView.ui.options.find('.select-fancy-add-option').before(ADF.templates.inputHelperSelectFancyRecord(dataObj));
+                $addOption.removeClass('open').find(':input').val('');
             }
         });
 
