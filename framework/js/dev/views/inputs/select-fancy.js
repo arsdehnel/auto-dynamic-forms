@@ -81,7 +81,7 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
                 break;
         }
     },
-    goto: function( dir ) {
+    move: function( dir ) {
 
         var newHighlight;
 
