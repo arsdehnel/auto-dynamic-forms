@@ -17,6 +17,7 @@ ADF.Grids.ColumnSelectItemView = Backbone.Marionette.ItemView.extend({
         this.setElement(this.$el.find('li').unwrap());
     },
     columnSelect: function(e) {
+        // TODO: handle resizing the table.adf-grid manually since the resizer code now requires width be set in px
         var $input = this.$el.find(':checkbox');
         var id = this.model.get('regionName') + '--' + this.model.get('name');
         var $cells = $('#'+id+', .adf-grid td[data-header-id='+id+']');
@@ -33,7 +34,7 @@ ADF.Grids.ColumnSelectItemView = Backbone.Marionette.ItemView.extend({
                 'checkedInd':'N',
                 'colSelectDispOverride': 'N'
             });
-        }        
+        }
 
     }
 });

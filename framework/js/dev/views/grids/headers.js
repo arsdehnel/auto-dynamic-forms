@@ -21,10 +21,15 @@ ADF.Grids.HeadersView = Backbone.Marionette.CollectionView.extend({
     onRender: function(){
         if( !this.model.get('initialRenderCompleted') ){
             var $cells = this.$el.children('th').detach();
+            var cellTtlWidth = 0;
             this.setElement(this.$el.find('tr').append($cells));
             this.children.each(function(child){
                 child.resizeInit();
+                if( child.$el.is(':visible') ){
+                    cellTtlWidth += parseInt( child.width );
+                }
             });
+            this.$el.closest('.adf-grid').css('width',cellTtlWidth);
             this.model.set('initialRenderCompleted',true);
         }
     },

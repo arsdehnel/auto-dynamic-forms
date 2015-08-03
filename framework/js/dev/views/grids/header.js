@@ -62,18 +62,22 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
 
     },
     resizeInit: function() {
-        this.$el.width(this.$el.width());
+        // TODO: make this smarter so it trims down somehow to the widest content or something
+        this.width = this.$el.width();
+        this.$el.width(this.width);
     },
     resizeStart: function(e) {
         this.pressed = true;
         this.startX = e.pageX;
-        this.startWidth = parseInt(this.$el.css('width'), 10);
+        this.startCellWidth = parseInt(this.$el.css('width'), 10);
+        this.startTableWidth = parseInt(this.$el.closest('.adf-grid').css('width'), 10);
         this.ui.resize.addClass('resizing');
     },
     resizeMove: function(e) {
         if( this.pressed ){
-            console.log('resizeMove',this.startWidth,e.pageX,this.startX);
-            this.$el.width(this.startWidth+(e.pageX-this.startX));
+            // console.log('resizeMove',this.startCellWidth,this.startTableWidth,e.pageX,this.startX);
+            this.$el.width(this.startCellWidth+(e.pageX-this.startX));
+            this.$el.closest('.adf-grid').width(this.startTableWidth+(e.pageX-this.startX));
         }
     },
     resizeStop: function(e) {
