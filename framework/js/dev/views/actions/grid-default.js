@@ -36,31 +36,6 @@ ADF.Actions.GridDefaultView = Backbone.Marionette.ItemView.extend({
             // ADF.utils.message('error','Better have a TA check into this.  The action you clicked on has no type indicated so not sure what to do with it.');
         }
 
-    },
-
-    gridRecordAdd: function( actionObj ) {
-
-        alert('wrong grid record add called');
-
-        var gridView = this.region.gridView;
-        var actionData = actionObj.data();
-        var defaultsObj = {};
-
-        if( this.region.options && this.region.options.dataFields ){
-            defaultsObj = this.region.options.dataFields.createRecordObject();
-        }
-        // console.log('grid data fields',this.region.options.dataFields, defaultsObj );
-
-        ADF.utils.spin(this.region.$el);
-        actionObj.closest('.dropdown-menu').addClass('hide');
-
-        for( var i = 1; i <= actionData.recordCount; i++ ){
-            gridView.bodyView.collection.add(defaultsObj,{ at: 0 });
-        }
-
-        gridView.render();
-        ADF.utils.spin(this.region.$el, { stop: true } );
-
     }
 
 });
