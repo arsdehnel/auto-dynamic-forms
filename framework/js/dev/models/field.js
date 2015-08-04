@@ -11,18 +11,11 @@ ADF.FieldModel = Backbone.Model.extend({
         ADF.utils.message('log','FieldModel Initialized', attrs, opts);
         this.options = $.extend({},( opts.collection ? opts.collection.options : ''),opts);
         var fieldModel = this;
-        this.set({actionsNew: []});
         this.dataCollection = new Backbone.Collection(fieldModel.get('data'));
         this.region = adf.page.getRegion(this.options.regionName);
 
         this._convertDataAttrs();
         this._readonlyOverride();
-
-        // if( this.get('fieldPriority') === 0 ){
-        //     this.set('checkedInd','Y');
-        // }else{
-        //     this.set('checkedInd','N');
-        // }
 
         if( attrs.name.toLowerCase() !== attrs.name ){
             fieldModel.set('name',attrs.name.toLowerCase());

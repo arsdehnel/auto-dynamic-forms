@@ -21,8 +21,8 @@ ADF.config = {
         ]
     },
     svg : {
-        // cdnUrl: 'https://www.program-info.com/cdn/adf/svg/defs.svg',
-        cdnUrl: 'http://adf.local/framework/svg/defs.svg'
+        cdnUrl: 'https://www.program-info.com/cdn/adf/svg/defs.svg',
+        // cdnUrl: 'http://adf.local/framework/svg/defs.svg'
     },
     messages : {
         levels : {
