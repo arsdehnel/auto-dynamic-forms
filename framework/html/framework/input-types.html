@@ -1,31 +1,30 @@
 <?php
     $header_text = 'Input Types';
     include('../../_header.php');
-
 ?>
 <div class="row">
-    <fieldset class="layout-grid-6 adf-onload-ajax" data-onload-ajax-url="../json/form-builder/filters.json" data-result-type="form" data-onload-ajax-target-id="form-builder">
-        <legend>Your Form</legend>
-        <form action="../json/form-builder/current.json" class="form-horizontal adf-form" method="post" id="form-builder" data-target-id="form-builder-current" data-result-type="modules"></form>
-        <div id="form-builder-current" class="dnd-wrapper dnd-target hide" data-record-save-url="../json/form-builder/save.json" data-record-new-url="../json/form-builder/new-page-dtl.json"></div>
+    <div class="layout-grid-3"></div>
+    <fieldset
+        class="layout-grid-6 adf-region"
+        data-adf-region-type="form"
+        id="process-master-filters"
+        data-adf-ajax-onshow="true"
+        data-adf-ajax-url="../../getJson.php?client=acuraadmin&action=common/get-fields&pageCode=PROCESS_MASTER_FILTERS&devPath=process-master/filters.json">
+
+        <legend>Find Your Process Master</legend>
+        <form action="#process-master-grid" class="form-horizontal" method="post"></form>
     </fieldset>
-    <fieldset class="layout-grid-6 adf-onload-ajax" data-onload-ajax-url="../json/form-builder/all-fields-filters.json" data-result-type="form" data-onload-ajax-target-id="form-builder-fields">
-        <legend>Available Form Fields</legend>
-        <div class="btn-group">
-            <a href="javascript:alert('Open modal to give parameters');" class="btn">copy from another promotion</a>
-            <a href="#" class="btn btn-add dialog-form-trigger" data-action-type="dialog-form" title="New Field Master" data-dialog-form-lkup-url="../json/common/dialog-form.json" data-dialog-form-save-url="../json/form-builder/field-save.json">
-                <svg viewBox="0 0 32 32" class="icon">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-add"></use>
-                </svg>
-                <span>
-                    New Field Master
-                </span>
-            </a>
-        </div>
-        <form action="../json/form-builder/all-fields.json" class="form-horizontal adf-form" method="post" id="form-builder-fields" data-target-id="all-fields-listing" data-result-type="modules"></form>
-        <div id="all-fields-listing" class="hide dnd-wrapper dnd-source"></div>
-    </fieldset>
+    <div class="layout-grid-3"></div>
 </div>
+
+<div class="adf-region"
+data-adf-region-type="grid"
+id="process-master-grid"
+data-adf-ajax-onshow="true"
+data-adf-ajax-url="../../json/process-master/grid.json"
+data-adf-ajax-url="../../getJson.php?client=acuraadmin&action=common/get-fields&pageCode=PROCESS_FILE_DTL_GRID"
+data-adf-ajax-url="../getJson.php?client=acuraadmin&action=process-master/grid"></div>
+
 <?php
     include('../../_footer.php');
 ?>

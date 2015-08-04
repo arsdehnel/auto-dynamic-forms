@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     var localServerPath;
     var clients = {
         'dev' : {
-            buildType       : 'admin',
+            buildType       : 'all',
             buildTargetPath : '../dev/',
             localServerPath : '../../../dev/',
             cdnTargetPath   : '../dev/'
@@ -438,9 +438,10 @@ module.exports = function(grunt) {
     // grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
     grunt.registerTask('hbs', ['handlebars','uglify:templates','notify:watchHbs']);
     grunt.registerTask('css', function(){
-        if( clientObj.buildType === 'admin' ){
+        if( clientObj.buildType === 'all' || clientObj.buildType === 'admin' ){
             grunt.task.run(['skin','sass:admin','autoprefixer:admin','notify:watchCss']);
-        }else{
+        }
+        if( clientObj.buildType === 'all' || clientObj.buildType === 'client' ){
             grunt.task.run(['skin','sass:client','autoprefixer:client','notify:watchCss']);
         }
     });

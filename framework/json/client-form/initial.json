@@ -10,7 +10,7 @@
           {
             "fldMstrId": 4,
             "name" : "promotion_id",
-            "label" : "Promotion",
+            "label" : "Standard Dropdown",
             "type" : "select",
             "dataAttributes" : [
                 {
@@ -26,6 +26,22 @@
                     "value" : "page_code,field_type"
                 }
             ],
+            "data" : [
+              {
+                "value" : "3117",
+                "label" : "Nissan 10 Sales Growth Program"
+              },
+              {
+                "value" : "7619",
+                "label" : "Career Builders"
+              }
+            ]
+          },
+          {
+            "fldMstrId": 4,
+            "name" : "checkboxes_group",
+            "label" : "Checkboxes with grouping",
+            "type" : "checkboxes",
             "data" : [
               {
                 "value" : "3117",

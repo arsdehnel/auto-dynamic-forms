@@ -1,14 +1,28 @@
 <?php
-    $header_text = 'Client Site Sample Form';
-    include('../../_header.php');
+    include('../../constants.php');
 ?>
-<div class="row adf-region" data-adf-region-type="form" id="client-form" data-adf-ajax-onshow="true" data-adf-ajax-url="../../json/client-form/initial.json">
-    <h2>Select Your Promotion</h2>
-    <form action="../../json/client-form/result.json" class="form-horizontal" method="post">
-        <input type="text" name="something_awesome" value="123" data-adf-onshow-data="true">
-    </form>
-</div>
-
-<?php
-    include('../../_footer.php');
-?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auto Admin Forms 2.0</title>
+    <link rel="stylesheet" type="text/css" href="<?php echo CLIENT_PATH ?>css/adf.css">
+    <script src="<?php echo CLIENT_PATH ?>js/lib-admin.min.js"></script>
+    <script src="<?php echo CLIENT_PATH ?>js/lib.min.js"></script>
+</head>
+<!-- <body class="adf-app environment-qa"> -->
+<body class="adf-app">
+    <h1>Client Site Sample Form</h1>
+    <main id="main" class="content layout-grid adf-page">
+        <div class="row adf-region" data-adf-region-type="form" id="client-form" data-adf-ajax-onshow="true" data-adf-ajax-url="../../json/client-form/initial.json">
+            <h2>Select Your Promotion</h2>
+            <form action="../../json/client-form/result.json" class="form-horizontal" method="post">
+                <input type="text" name="something_awesome" value="123" data-adf-onshow-data="true">
+            </form>
+        </div>
+    </main>
+    <script src="<?php echo CLIENT_PATH ?>js/plugins.min.js"></script>
+    <script src="<?php echo CLIENT_PATH ?>js/hbsTemplates.min.js"></script>
+    <script src="<?php echo CLIENT_PATH ?>js/adf.min.js"></script>
+    <!-- <script src="//localhost:12349/livereload.js"></script> -->
+</body>
+</html>
