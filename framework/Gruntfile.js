@@ -167,13 +167,37 @@ module.exports = function(grunt) {
                 options: {
                     namespace: 'ADF.templates',
                     processName: function(buildTargetPath) {
-                        var tmpltName = buildTargetPath.replace(/^.*[\\\/]/, '').replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
-                            tmpltName = tmpltName.substr(0, tmpltName.lastIndexOf('.'));
+                        console.log('HBS template: '+buildTargetPath);
+
+                        // convert directory path into array
+                        var dirArray = buildTargetPath.split('/');
+
+                        // remove the first one (tpl)
+                        dirArray.shift();
+
+                        // remove the last one (filename)
+                        dirArray.pop();
+
+                        // for( )
+                        console.log(dirArray);
+
+                        // remove the directories
+                        var tmpltName = buildTargetPath.replace(/^.*[\\\/]/, '');
+                        console.log(tmpltName);
+
+                        // camelize
+                        tmpltName = tmpltName.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+                        console.log(tmpltName);
+
+                        // remove the file extension
+                        tmpltName = tmpltName.substr(0, tmpltName.lastIndexOf('.'));
+                        console.log(tmpltName);
+
                         return tmpltName;
                     }
                 },
                 files: {
-                    'grunt-work/hbsTemplates.js': ['tpl/*.hbs']
+                    'grunt-work/hbsTemplates.js': ['tpl/**/*.hbs']
                 }
             }
         },
