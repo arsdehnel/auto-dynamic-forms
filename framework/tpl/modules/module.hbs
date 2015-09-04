@@ -1,4 +1,4 @@
-<div class="module layout-grid-4" id="{{id}}">
+<div class="module {{recordClass}} layout-grid-4 {{#if status_code}}status-code-{{status_code}}{{/if}}" id="{{id}}">
     <header class="dnd-label">
         <span class="dnd-handle">
             <svg viewBox="0 0 32 32" class="icon">
@@ -19,5 +19,6 @@
             </span>
         </button>
     </header>
+    <div class="adf-record-messages"></div>
     <ul class="module-details hide">{{{fields}}}</ul>
 </div>

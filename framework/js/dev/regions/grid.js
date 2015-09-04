@@ -3,14 +3,14 @@ ADF,
 _
 */
 ADF.GridRegion = ADF.Region.extend({
-    template: ADF.templates.gridRegion,
+    template: ADF.templates.grids.region,
     initialize: function( options ) {
 
         ADF.utils.message('log','GridRegion Initialized', options);
 
         var gridRegion = this;
 
-        if( gridRegion.$el.hasClass('adf-grid-overlay-editor') ){
+        if( gridRegion.$el.is('.adf-grid-overlay-editor, .adf-widget-editor') ){
             gridRegion.inOverlay = true;
         }else{
             gridRegion.inOverlay = false;
@@ -21,8 +21,6 @@ ADF.GridRegion = ADF.Region.extend({
 
         var templateData = {inOverlay:gridRegion.inOverlay};
         templateData.regionLabel = ( gridRegion.$el.data('region-label') ? gridRegion.$el.data('region-label') : false );
-
-        console.log(templateData);
 
         gridRegion.$el.html(gridRegion.template(templateData)).append($initLoadForm);
         gridRegion.fieldsCollection = new ADF.FieldsCollection(null,{regionName:gridRegion.options.regionName});
@@ -72,13 +70,8 @@ ADF.GridRegion = ADF.Region.extend({
 
                 gridRegion.gridView.bodyView.collection.reset(xhrJson.data.records);
 
-                // manually call render for some reason
-                // thought that Marionette handled this for us but it wasn't firing so this had to be added
-                // gridRegion.gridView.render();
-
             }
-
-
+            
         }else{
 
             if( xhrJson.hasOwnProperty('errors') ){

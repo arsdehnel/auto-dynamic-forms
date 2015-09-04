@@ -3,18 +3,27 @@ ADF,
 adf,
 _
 */
-// combine this and Forms.FieldsView (and maybe Core.RecordView) into one Core.InputsView
+// TODO: combine this and Forms.FieldsView (and maybe Core.RecordView) into one Core.InputsView
 ADF.Grids.RowView = ADF.Core.RecordView.extend({
-    template: ADF.templates.gridRow,
+    template: ADF.templates.grids.row,
     tagName: 'tr',
     getChildView: function(model) {
         var viewClass;
-        switch( model.get('type').toLowerCase() ){
+        switch( model.get('type') ){
+            case 'actions':
+                viewClass = ADF.Inputs.GridActionsView;
+                break;
+            case 'selectFancy':
+                viewClass = ADF.Inputs.SelectFancyView;
+                break;
             case 'textarea':
                 viewClass = ADF.Inputs.TextareaView;
                 break;
-            case 'select-fancy':
-                viewClass = ADF.Inputs.SelectFancyView;
+            case 'widget':
+                viewClass = ADF.Inputs.WidgetView;
+                break;
+            case 'gridOverlay':
+                viewClass = ADF.Inputs.GridOverlayView;
                 break;
             default:
                 viewClass = ADF.Inputs.GridDefaultView;
@@ -26,7 +35,8 @@ ADF.Grids.RowView = ADF.Core.RecordView.extend({
         return {
             regionName: this.regionName,
             region: this.region,
-            template: ADF.templates.gridCell,
+            rowView: this,
+            template: ADF.templates.grids.cell,
             tagName: 'td'
         };
     },
@@ -42,5 +52,6 @@ ADF.Grids.RowView = ADF.Core.RecordView.extend({
     onRender: function(){
         var $cells = this.$el.children('td');
         this.setElement(this.$el.find('tr').unwrap().append($cells));
+        console.warn('increment rendered row counter');
     }
 });

@@ -3,7 +3,7 @@ ADF,
 Backbone
 */
 ADF.Actions.RecordAddView = Backbone.Marionette.ItemView.extend({
-    template: ADF.templates.recordAddWidget,
+    template: ADF.templates.grids.recordAddWidget,
     tagName: 'li',
     events: {
         'click  a'     : 'addRecords',
@@ -12,14 +12,19 @@ ADF.Actions.RecordAddView = Backbone.Marionette.ItemView.extend({
     initialize: function( options ){
         ADF.utils.message('log','Actions.RecordAddView Initialized', options);
         this.gridView = options.gridView;
+        this.region = options.region; 
         this.model.set('recCount',ADF.utils.userPrefs.get('recordAddCount'));
     },
-    onRender: function() {
-        this.$recCountDisp = this.$el.find('.record-add-control-display');
+    ui : {
+        recCntDisp   : '.record-add-control-display',    
     },
     addRecords: function( e ) {
 
         var defaultsObj = {};
+
+        if( this.region.options && this.region.options.dataFields ){       
+            defaultsObj = this.region.options.dataFields.createRecordObject();     
+        }
 
         e.preventDefault();
 
@@ -38,7 +43,7 @@ ADF.Actions.RecordAddView = Backbone.Marionette.ItemView.extend({
     },
     changeRecCount: function( e ) {
         this.model.set('recCount',e.target.value);
-        this.$recCountDisp.text(e.target.value);
+        this.ui.recCntDisp.text(e.target.value);
     }
 
 });

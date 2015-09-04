@@ -1,0 +1,525 @@
+{
+    "authenticated": true,
+    "data": {
+        "actions": [
+            {
+                "actionClass": "",
+                "dataAttributes": [],
+                "fieldPageDetailId": 0,
+                "label": "Save",
+                "pageDetailId": 197,
+                "tooltipText": "",
+                "type": "SUBMIT",
+                "url": "#",
+                "wrapClass": ""
+            },
+            {
+                "actionClass": "",
+                "dataAttributes": [],
+                "fieldPageDetailId": 0,
+                "label": "Back to Checklist",
+                "pageDetailId": 210,
+                "tooltipText": "",
+                "type": "SUBMIT_CUSTOM_URL",
+                "url": "pgmAdmChklst.action",
+                "wrapClass": ""
+            }
+        ],
+        "fields": [
+            {
+                "actions": [],
+                "currentValue": "06/01/2015",
+                "data": [],
+                "dataAttributes": [],
+                "detailId": 157,
+                "fieldClass": "",
+                "fieldPriority": 1,
+                "fldMstrId": 113,
+                "label": "VIN Delivered & Reported Start Date *",
+                "maxLength": 20,
+                "minLength": 0,
+                "name": "DATE_START",
+                "prefix": "",
+                "requiredInd": "Y",
+                "suffix": "",
+                "tooltipText": "These are the sale dates for eligible VINs that you have defined in your program rules",
+                "type": "DATE",
+                "value": "",
+                "wrapClass": ""
+            },
+            {
+                "actions": [],
+                "currentValue": "06/30/2015",
+                "data": [],
+                "dataAttributes": [],
+                "detailId": 158,
+                "fieldClass": "",
+                "fieldPriority": 5,
+                "fldMstrId": 114,
+                "label": "VIN Delivered & Reported End Date *",
+                "maxLength": 20,
+                "minLength": 0,
+                "name": "DATE_END",
+                "prefix": "",
+                "requiredInd": "Y",
+                "suffix": "",
+                "tooltipText": "",
+                "type": "DATE",
+                "value": "",
+                "wrapClass": ""
+            },
+            {
+                "actions": [],
+                "currentValue": "",
+                "data": [
+                    {
+                        "detailId": 161,
+                        "groupLabel": "",
+                        "label": "Fleet",
+                        "selectedInd": "Y",
+                        "value": "F"
+                    },
+                    {
+                        "detailId": 161,
+                        "groupLabel": "",
+                        "label": "Retail",
+                        "selectedInd": "Y",
+                        "value": "R"
+                    }
+                ],
+                "dataAttributes": [
+                    {
+                        "detailId": 161,
+                        "name": "INPUT_DELIMITER",
+                        "value": "^"
+                    }
+                ],
+                "detailId": 161,
+                "fieldClass": "",
+                "fieldPriority": 0,
+                "fldMstrId": 197,
+                "label": "Sales Types *",
+                "maxLength": 2,
+                "minLength": 0,
+                "name": "SALE_TYPE",
+                "prefix": "",
+                "requiredInd": "N",
+                "suffix": "",
+                "tooltipText": "These are the sales types for eligible VINs that you have defined in your program rules",
+                "type": "CHECKBOXES",
+                "value": "",
+                "wrapClass": ""
+            },
+            {
+                "actions": [],
+                "currentValue": "",
+                "data": [
+                    {
+                        "detailId": 160,
+                        "groupLabel": "",
+                        "label": "2013",
+                        "selectedInd": "N",
+                        "value": "D"
+                    },
+                    {
+                        "detailId": 160,
+                        "groupLabel": "",
+                        "label": "2014",
+                        "selectedInd": "N",
+                        "value": "E"
+                    },
+                    {
+                        "detailId": 160,
+                        "groupLabel": "",
+                        "label": "2015",
+                        "selectedInd": "Y",
+                        "value": "F"
+                    },
+                    {
+                        "detailId": 160,
+                        "groupLabel": "",
+                        "label": "2016",
+                        "selectedInd": "Y",
+                        "value": "G"
+                    }
+                ],
+                "dataAttributes": [
+                    {
+                        "detailId": 160,
+                        "name": "DPNDNT_FIELD_LKUP_URL",
+                        "value": "pgmAdmJson.action?type=childFieldLookup"
+                    },
+                    {
+                        "detailId": 160,
+                        "name": "DPNDNT_FIELD_LKUP_ON_CHANGE",
+                        "value": "true"
+                    },
+                    {
+                        "detailId": 160,
+                        "name": "DPNDNT_FIELD_LKUP_CHILD_FIELDS",
+                        "value": "mdl"
+                    },
+                    {
+                        "detailId": 160,
+                        "name": "INPUT_DELIMITER",
+                        "value": "^"
+                    }
+                ],
+                "detailId": 160,
+                "fieldClass": "",
+                "fieldPriority": 0,
+                "fldMstrId": 195,
+                "label": "Model Years *",
+                "maxLength": 30,
+                "minLength": 0,
+                "name": "MY",
+                "prefix": "Select a Model Year and available Models to select will appear below",
+                "requiredInd": "N",
+                "suffix": "",
+                "tooltipText": "These are the model years for eligible VINs that you have defined in your program rules",
+                "type": "CHECKBOXES",
+                "value": "",
+                "wrapClass": ""
+            },
+            {
+                "actions": [],
+                "currentValue": "",
+                "data": [
+                    {
+                        "detailId": 159,
+                        "groupLabel": "ILX",
+                        "label": "ILX 2.4L",
+                        "selectedInd": "N",
+                        "value": "168"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "ILX",
+                        "label": "ILX 2.4L Acura Watch",
+                        "selectedInd": "N",
+                        "value": "169"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "ILX 2.4L Premium",
+                        "selectedInd": "N",
+                        "value": "170"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "ILX 2.4L Premium & A-SPEC",
+                        "selectedInd": "N",
+                        "value": "171"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "ILX 2.4L Technology Plus",
+                        "selectedInd": "N",
+                        "value": "172"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "ILX 2.4L Technology Plus & A-SPEC",
+                        "selectedInd": "N",
+                        "value": "173"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX",
+                        "selectedInd": "N",
+                        "value": "185"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX AWD",
+                        "selectedInd": "N",
+                        "value": "290"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX AWD Acura Watch",
+                        "selectedInd": "N",
+                        "value": "293"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX AWD Advance",
+                        "selectedInd": "N",
+                        "value": "291"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX AWD Advance Entertainment",
+                        "selectedInd": "N",
+                        "value": "292"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX AWD Tech",
+                        "selectedInd": "N",
+                        "value": "294"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX AWD Tech Acura Watch",
+                        "selectedInd": "N",
+                        "value": "296"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX AWD Tech Entertainment",
+                        "selectedInd": "N",
+                        "value": "295"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX AWD Tech Entertainment Acura Watch",
+                        "selectedInd": "N",
+                        "value": "297"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX Acura Watch",
+                        "selectedInd": "N",
+                        "value": "186"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX Advance",
+                        "selectedInd": "N",
+                        "value": "180"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX Advance & Entertainment",
+                        "selectedInd": "N",
+                        "value": "181"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX Tech",
+                        "selectedInd": "N",
+                        "value": "187"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX Tech Acura Watch",
+                        "selectedInd": "N",
+                        "value": "188"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX Tech Entertainment",
+                        "selectedInd": "N",
+                        "value": "189"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "MDX Tech Entertainment Acura Watch",
+                        "selectedInd": "N",
+                        "value": "281"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RDX",
+                        "selectedInd": "N",
+                        "value": "218"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RDX AWD",
+                        "selectedInd": "N",
+                        "value": "216"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RDX AWD Acura Watch",
+                        "selectedInd": "N",
+                        "value": "275"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RDX AWD Advance",
+                        "selectedInd": "N",
+                        "value": "276"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RDX AWD Tech Acura Watch",
+                        "selectedInd": "N",
+                        "value": "298"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RDX AWD Technology",
+                        "selectedInd": "N",
+                        "value": "217"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RDX Acura Watch",
+                        "selectedInd": "N",
+                        "value": "282"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RDX Advance",
+                        "selectedInd": "N",
+                        "value": "279"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RDX Tech Acura Watch",
+                        "selectedInd": "N",
+                        "value": "280"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RDX Technology",
+                        "selectedInd": "N",
+                        "value": "219"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RLX Advance",
+                        "selectedInd": "Y",
+                        "value": "231"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RLX Sport Hybrid AWD Advance",
+                        "selectedInd": "Y",
+                        "value": "236"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RLX Sport Hybrid AWD Technology",
+                        "selectedInd": "Y",
+                        "value": "237"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "RLX Technology",
+                        "selectedInd": "Y",
+                        "value": "234"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "TLX 2.4",
+                        "selectedInd": "N",
+                        "value": "256"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "TLX 2.4 Tech",
+                        "selectedInd": "N",
+                        "value": "254"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "TLX 3.5",
+                        "selectedInd": "N",
+                        "value": "255"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "TLX 3.5 AWD Advance",
+                        "selectedInd": "N",
+                        "value": "251"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "TLX 3.5 AWD Tech",
+                        "selectedInd": "N",
+                        "value": "252"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "TLX 3.5 Advance",
+                        "selectedInd": "N",
+                        "value": "250"
+                    },
+                    {
+                        "detailId": 159,
+                        "groupLabel": "",
+                        "label": "TLX 3.5 Tech",
+                        "selectedInd": "N",
+                        "value": "253"
+                    }
+                ],
+                "dataAttributes": [
+                    {
+                        "detailId": 159,
+                        "name": "SELECT_ALL_OPTION",
+                        "value": "true"
+                    },
+                    {
+                        "detailId": 159,
+                        "name": "INPUT_DELIMITER",
+                        "value": "^"
+                    }
+                ],
+                "detailId": 159,
+                "fieldClass": "",
+                "fieldPriority": 0,
+                "fldMstrId": 194,
+                "label": "Models *",
+                "maxLength": 30,
+                "minLength": 0,
+                "name": "MDL",
+                "prefix": "",
+                "requiredInd": "N",
+                "suffix": "",
+                "tooltipText": "These are the eligible models that you have defined in your program rules",
+                "type": "CHECKBOXES",
+                "value": "",
+                "wrapClass": ""
+            }
+        ],
+        "records": []
+    },
+    "errors": [],
+    "message": "",
+    "methodName": "",
+    "success": true
+}

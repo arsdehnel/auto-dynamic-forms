@@ -11,6 +11,7 @@ ADF.ActionModel = Backbone.Model.extend({
 
         ADF.utils.message('log','ActionModel initialized', opts);
         this.set('id',this.id); // put this into the attributes so we can use it for rendering in the template to help with uniqueness
+        this.set('type',ADF.utils.string.camelize(this.get('type')));
         this._convertDataAttrs();
 
     },

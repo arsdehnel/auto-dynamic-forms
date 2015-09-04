@@ -9,21 +9,51 @@
         box-shadow: inset 0 0 8px 1px #393;
     }
 }
-
-.module{
-    border: 1px solid tint( $primary_color, 70% );
-    box-shadow: 2px 2px 6px tint( $primary_color, 50% );
+.modules-wrapper {
+    border: 1px solid #bbb;
+    background: #ddd;
+    padding: 4px 4px 10px;
+    margin-top: 3em;
     position: relative;
+    .adf-column-select {
+        position: absolute;
+        top: -2em;
+        right: 0;
+        background: #666;
+        .primary-options,
+        .footer-options {
+            padding: 0;
+            margin: 0;
+            li {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+        }        
+    }
+}
+.module{
+    border: 1px solid $grey-medium-dark;
+    box-shadow: 2px 2px 6px $grey-medium-dark;
+    position: relative;
+    background: #eee;
     .updated & {
+        background-color: rgba($body-bg-color-updated,.3);
         header {
             background: $body-bg-color-updated;
         }
     }
     .error & {
+        background-color: rgba($body-bg-color-error,.3);
         header {
             background: $body-bg-color-error;
         }
     }
+    &.status-code-I {
+        background-color: #ddd;
+        background-image: repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,.5) 35px, rgba(255,255,255,.5) 70px);
+        opacity: .5;
+    }        
     .dnd-handle{
         position: absolute;
         top: 0;
@@ -32,7 +62,7 @@
         height: 2em;
         line-height: 2em;
         text-align: center;
-        background: $primary-color;
+        background: $grey-medium-dark;
         color: white;
         z-index: 20;
         cursor: move;
@@ -48,8 +78,8 @@
         display: block;
         height: 2em;
         padding-left: 2.5em;
-        background: tint( $primary_color, 60% );
-        color: $primary_color;
+        background: $grey-medium-light;
+        color: black;
         font-weight: 700;
         text-transform: uppercase;
         p{
@@ -58,13 +88,45 @@
         }
         .module-details-toggle{
     		position: absolute;
-    		top: .2em;
-    		right: .2em;
+    		top: .1em;
+    		right: .1em;
             height: 28px;
             width: 28px;
     	  	border: 0;
     	  	background: transparent;
     	  	cursor: pointer;
+            svg {
+                width: 16px;
+                height: 16px;
+                fill: black; 
+            }
+        }
+    }
+    .module-details {
+        margin: 0;
+        padding: 10px 5px;
+        list-style: none;
+        .form-row {
+            margin: 4px 12px;
+            display: none;
+            &[data-field-priority="0"],
+            &[data-field-priority="1"],
+            &.show{
+                display: flex;
+            }
+            &[data-field-type="hidden"] {
+                display: none; 
+            }            
+            label {
+                text-align: right;
+                background: #ddd;
+                margin: 0;
+                padding: .5em;
+            }
+            &.adf-cell-actions label {
+              background: transparent;
+              margin: 0px 4px;
+            }
         }
     }
 }

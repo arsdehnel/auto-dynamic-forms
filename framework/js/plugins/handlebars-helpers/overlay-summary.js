@@ -3,6 +3,7 @@ Handlebars,
 _
 */
 Handlebars.registerHelper('overlaySummary', function(inputData, dataAttributes) {
+    // TODO: convert this to use input helper templates
     if( _.indexOf(inputData,'|') >= 0 ){
         if( dataAttributes.formatStyle ){
             switch( dataAttributes.formatStyle ){
@@ -19,6 +20,6 @@ Handlebars.registerHelper('overlaySummary', function(inputData, dataAttributes) 
     }else if( inputData ){
         return inputData;
     }else{
-        return 'No data found';
+        return 'Click for details';
     }
 });

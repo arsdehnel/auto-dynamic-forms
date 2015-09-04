@@ -15,9 +15,11 @@ ADF.RecordModel = Backbone.Model.extend({
         // give the record an ID even if it is new (ie not from the database)
         if( recordModel.isNew() ){
             recordModel.set('id','a'+ADF.utils.randomId());
-            recordModel.set('rowClass','added');
+            recordModel.status = 'added';
+            recordModel.set('recordClass','added');
         }else{
-            recordModel.set('rowClass','current');
+            recordModel.status = 'current';
+            recordModel.set('recordClass','current');
         }
 
     },
@@ -93,7 +95,7 @@ ADF.RecordModel = Backbone.Model.extend({
                 if (success) success(recordModel, resp, options);
 
                 // the following line is NOT from the original sync
-                recordModel.set('rowClass','current');
+                recordModel.set('recordClass','current');
 
                 recordModel.trigger('sync', recordModel, resp, options);
             };
@@ -105,8 +107,7 @@ ADF.RecordModel = Backbone.Model.extend({
             // now that we're in our own custom code we'll have to do our slightly odd JSON creation
             // where we create a three attribute object for each attribute
             // and put them into an array and then submit that
-            // console.log( options.fieldsCollection, this, ADF.utils.dataSerialize( options.fieldsCollection, this ) );
-            dataArray = ADF.utils.dataSerialize( options.fieldsCollection, recordModel );
+            dataArray = ADF.utils.buildADFserializedArray( options.fieldsCollection, null, recordModel );
             params.data = {adfSerializedData:JSON.stringify(dataArray)};
 
 

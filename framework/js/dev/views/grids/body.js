@@ -16,7 +16,10 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
     },
     childView: ADF.Grids.RowView,
     childViewOptions : function () {
-        return { regionName: this.regionName };
+        return { 
+            regionName: this.regionName,
+            region: this.region
+        };
     },
     initialize: function( options ) {
         ADF.utils.message('log','Grids.BodyView Initialized', options );

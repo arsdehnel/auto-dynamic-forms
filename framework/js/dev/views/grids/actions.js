@@ -4,11 +4,11 @@ ADF
 ADF.Grids.ActionsView = ADF.Core.DropdownView.extend({
     getChildView: function(model){
         var viewClass;
-        switch( model.get('type').toLowerCase() ){
-            case 'record-add':
+        switch( model.get('type') ){
+            case 'recordAdd':
                 viewClass = ADF.Actions.RecordAddView;
                 break;
-            case 'save-unsaved':
+            case 'saveUnsaved':
                 viewClass = ADF.Actions.SaveUnsavedView;
                 break;
             default:
@@ -18,15 +18,18 @@ ADF.Grids.ActionsView = ADF.Core.DropdownView.extend({
         return viewClass;
     },
     childViewOptions : function () {
-        return { gridView: this.gridView };
+        return { 
+            region: this.region,
+            gridView: this.gridView
+        };
     },
     initialize: function( options ) {
         ADF.utils.message('log','Grids.ActionsView Initialized', options );
         // this.regionName = options.regionName;
+        this.region = options.region;
         this.gridView = options.gridView;
         this.model.set('buttonLabel','Actions');
         this.model.set('wrapClass','grid-actions');
-
     },
     onRender: function() {
         if( this.collection.length === 0 ){

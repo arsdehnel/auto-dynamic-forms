@@ -23,11 +23,18 @@ ADF.Modules.ModulesView = Marionette.View.extend({
             collection: modulesView.region.actionsCollection,
             region: modulesView.region
         });
+        modulesView.columnSelect = new ADF.Core.ColumnSelectView({
+            el: modulesView.$el.find('.adf-column-select')[0],
+            model: new ADF.DropdownMenuModel({footerOptions: []}),
+            collection: this.region.fieldsCollection,
+            region: modulesView.region
+        });        
     },
     render: function() {
         var modulesView = this;
         modulesView.moduleListView.render();
         modulesView.moduleActionsView.render();
+        modulesView.columnSelect.render();
     }
 
 });

@@ -1,3 +1,6 @@
 .adf-region {
     position: relative;
+    &[data-adf-region-type=form] {
+        background: #eee;
+    }
 }

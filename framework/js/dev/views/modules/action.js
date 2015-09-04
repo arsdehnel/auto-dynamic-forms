@@ -4,9 +4,10 @@ $
 */
 ADF.Modules.ActionView = ADF.Core.ActionView.extend({
     events: {
-        'click .btn'                    : 'handleAction'
+        'click'                    : 'handleAction'
     },
     initialize: function( options ){
+        // TODO: this is being initialized multiple times (twice on initial load and 3 times on subsequent refreshes)
         ADF.utils.message('log','Modules.ActionView initialized', options );
         this.region = options.region;
         this._super();

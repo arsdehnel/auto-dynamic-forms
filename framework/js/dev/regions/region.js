@@ -8,6 +8,7 @@ ADF.Region = Marionette.Region.extend({
     initialize: function(options){
         ADF.utils.message('log','Region Initialized',options);
         this.adfAjaxOnshow = ( options.adfAjaxOnshow ? options.adfAjaxOnshow : false );
+        this.name = options.regionName;
     },
     show: function() {
         // this.$el.removeClass('hide');
@@ -34,8 +35,7 @@ ADF.Region = Marionette.Region.extend({
         */
         var region = this;
 
-        var dataArray = ADF.utils.dataSerializeNonADFData( this.$el.find(':input:hidden').serializeObject() );
-        dataArray = dataArray.concat(ADF.utils.dataSerialize( region.fieldsCollection ));
+        var dataArray = ADF.utils.buildADFserializedArray( region.fieldsCollection, this.$el.find(':input:hidden').serializeObject(), false );        
 
         var data = $.extend({adfSerializedData:JSON.stringify(dataArray)},region.options.adfAjaxData);
 

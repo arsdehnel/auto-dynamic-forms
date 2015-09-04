@@ -1,8 +1,10 @@
 <div
-    class="form-row row {{wrapClass}} {{#if prefix}}has-prefix{{/if}} {{#if suffix}}has-suffix{{/if}}"
-    id="{{#if regionName}}regionName--{{/if}}{{name}}-field-wrap"
+    class="form-row row {{wrapClass}} {{recordClass}} {{#if prefix}}has-prefix{{/if}} {{#if suffix}}has-suffix{{/if}}"
+    id="{{#if regionName}}{{regionName}}--{{/if}}{{name}}-field-wrap"
+    data-field-name="{{name}}"    
     data-field-master-id="{{fldMstrId}}"
     data-page-dtl-id="{{detailId}}"
+    data-field-type="{{type}}"
     data-field-priority="{{fieldPriority}}"
     {{#each dataAttributes}}
         {{dataAttributeWrite name value 'formRow'}}
@@ -10,7 +12,7 @@
     >
 
     <label for="{{name}}" class="layout-grid-3">
-        {{label}}
+        {{{label}}}
         {{#if tooltipText}}
             <a class="tooltip-trigger toolTipIcon" href="#"><p class="tooltip-content">{{{tooltipText}}}</p></a>
         {{/if}}

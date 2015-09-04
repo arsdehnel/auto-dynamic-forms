@@ -11,6 +11,7 @@
             padding: 0 1em;
         }
         input.dropdown-text-filter {
+            position: absolute;
             left: .3em;
             opacity: 1;
             width: 17em;
@@ -20,6 +21,13 @@
             z-index: $zindex-overlay + 10;
         }
     }
+    // .dropdown-menu-mouse-padding {
+    //     position: fixed;
+    //     top: 0;
+    //     right: 0;
+    //     bottom: 0;
+    //     left: 0;
+    // }
     .primary-options {
         margin: 0;
         padding: 0;

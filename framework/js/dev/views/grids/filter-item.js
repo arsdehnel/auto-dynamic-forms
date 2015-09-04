@@ -5,7 +5,7 @@ adf,
 $
 */
 ADF.Grids.FilterItemView = Marionette.ItemView.extend({
-    template: ADF.templates.dropdownSelectItem,
+    template: ADF.templates.dropdowns.selectItem,
     tagName: 'li',
     events: {
         'change :input'                          : 'filterSelect'
@@ -15,7 +15,7 @@ ADF.Grids.FilterItemView = Marionette.ItemView.extend({
         this.regionName = options.regionName;
         // this.setElement(this.$el.replaceWith(this.template({})));
         // this.model.set('selectedValues',options.selectedValues);
-        this.model.set('label',this.model.get('fieldValue') + ' (' + this.model.get('records').length + ' )');
+        this.model.set('label',this.model.get('fieldValue') + ' (' + this.model.get('records').length + ')');
         this.model.set('id',ADF.utils.randomId());
         this.model.set('name',this.regionName+'--'+this.model.get('fieldName')+'--'+this.model.get('fieldValue'));
         // this.model.set('currentValue',false);

@@ -4,7 +4,7 @@ _,
 $
 */
 ADF.ModulesRegion = ADF.Region.extend({
-    template: ADF.templates.modulesWrapper,
+    template: ADF.templates.modules.wrapper,
     initialize: function( options ) {
 
         ADF.utils.message('log','ModulesRegion Initialized', options);

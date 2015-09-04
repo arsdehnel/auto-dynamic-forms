@@ -7,7 +7,10 @@ $
 ADF.Modules.ModuleListView = Marionette.CompositeView.extend({
     childView: ADF.Modules.ModuleView,
     childViewOptions: function() {
-        return { regionName: this.regionName };
+        return { 
+            regionName: this.regionName,
+            region: this.region
+        };
     },
     template: function(){
         return '';
@@ -20,7 +23,8 @@ ADF.Modules.ModuleListView = Marionette.CompositeView.extend({
     initialize: function( options ) {
         ADF.utils.message('log','ModuleListView Initialized', options );
         this.regionName = options.regionName;
-        this.fieldsCollection = adf.page.getRegion(this.regionName).fieldsCollection;
+        this.region = adf.page.getRegion(this.regionName);
+        this.fieldsCollection = this.region.fieldsCollection;
         this.dndSource = options.dndSource;
         this.dndTarget = options.dndTarget;
 

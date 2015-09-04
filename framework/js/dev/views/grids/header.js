@@ -1,9 +1,10 @@
 /*global
 ADF,
-Backbone
+Backbone,
+_
 */
 ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
-    template: ADF.templates.gridHeaderCell,
+    template: ADF.templates.grids.headerCell,
     tagName: 'th',
     childView: ADF.Grids.FilterView,
     events: {
@@ -20,17 +21,21 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
         this.model.set('colIndex',this.model.collection.indexOf(this.model));
         this.model.set('regionName',options.regionName);
 
-        if( this.model.get('type') !== 'ACTIONS' ){
+        if( this.model.get('type') !== 'actions' ){
             this.model.set('sortable',true);
         }else{
             this.model.set('sortable',false);
         }
 
-        headerView.gridFilter = new ADF.Grids.FilterView({
-            headerView: headerView,
-            regionName: headerView.regionName,
-            collection: new Backbone.Collection(null,{comparator: 'fieldValue'})
-        });
+        if( _.indexOf(ADF.config.get('grids').filters.fieldTypeInclude, this.model.get('type') ) >= 0 ){
+
+            headerView.gridFilter = new ADF.Grids.FilterView({
+                headerView: headerView,
+                regionName: headerView.regionName,
+                collection: new Backbone.Collection(null,{comparator: 'fieldValue'})
+            });
+
+        }
 
     },
     onRender: function() {
@@ -40,7 +45,10 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
             this.$el.addClass('is-filtered');
         }
 
-        this.gridFilter.render();
+        if( this.gridFilter ){
+            this.gridFilter.render();
+        }
+        
     },
     sortGrid: function( e ){
 

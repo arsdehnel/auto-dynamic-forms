@@ -13,12 +13,26 @@ ADF.config = {
             location: 'formInput'
         }
     },
+    userPrefDefaults: {
+        'recordAddCount' : 1
+    },
     upload : {
         url : '../service/excel-conversion/upload-file.action',
         maxFileSize : 30000000,
         fileTypes: [
             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         ]
+    },
+    grids : {
+        filters : {
+            fieldTypeInclude : [
+                'number',
+                'text',
+                'readonly',
+                'select',
+                'selectFancy'
+            ]
+        }
     },
     svg : {
         cdnUrl: 'https://www.program-info.com/cdn/adf/svg/defs.svg',
@@ -43,7 +57,7 @@ ADF.config = {
                 'label' : 'Debug'
             },
             'warn' : {
-                'displayMethod' : 'console',
+                'displayMethod' : 'messagesWindow',
                 'label' : 'Warning'
             },
             'error' : {

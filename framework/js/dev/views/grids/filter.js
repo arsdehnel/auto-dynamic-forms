@@ -7,7 +7,6 @@ _
 // TODO: only show clear filters option when there are applied filters
 ADF.Grids.FilterView = ADF.Core.DropdownView.extend({
     childView: ADF.Grids.FilterItemView,
-    childViewContainer: '.dropdown-menu',
     // collection: new Backbone.Collection(),
     // collection: Backbone.Collection,
     model: new ADF.DropdownMenuModel(),
@@ -80,10 +79,10 @@ ADF.Grids.FilterView = ADF.Core.DropdownView.extend({
     render: function() {
         // var gridFilterView = this;
 
-        if( this.fieldType === 'TEXT' ){
+        // if( this.fieldType === 'text' ){
             this.headerView.$el.addClass('has-filter').append(this.template(this.model.toJSON()));
             this.setElement(this.headerView.$el.find('.dropdown-wrapper')[0]);
-        }
+        // }
 
     },
     generateFilters: function() {

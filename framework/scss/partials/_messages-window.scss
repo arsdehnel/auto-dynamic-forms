@@ -13,6 +13,7 @@
         font-weight: normal;
         border-style: solid;
         border-width: 1px 1px 0 0;
+        transition: font-size .8s linear;
         &:hover {
             .content {
                 position: absolute;
@@ -64,8 +65,14 @@
     }
     .message-warn {
         @include message-style( $message-warn );
+        &.init-size {
+            font-size: 8em;
+        }
     }
     .message-error {
         @include message-style( $message-error );
+        &.init-size {
+            font-size: 15em;
+        }
     }
 }

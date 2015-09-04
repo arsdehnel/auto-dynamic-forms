@@ -3,7 +3,7 @@ ADF,
 Backbone
 */
 ADF.Grids.HeadersView = Backbone.Marionette.CollectionView.extend({
-    template: ADF.templates.gridRow,
+    template: ADF.templates.grids.row,
     tagName: 'tr',
     childView: ADF.Grids.HeaderView,
     childViewOptions : function () {

@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         },
         'acuraadmin-static' : {
             buildType       : 'admin',
-            buildTargetPath : '/Volumes/static_content-1/acuraadmin.biworldwide.com/acuraadmin/v2/',
+            buildTargetPath : '/Volumes/static_content/acuraadmin.biworldwide.com/acuraadmin/v2/',
             localServerPath : '../../../acuraadmin-v2/'
         },
         'gmadmin' : {
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
         },
         'gmadmin-static' : {
             buildType       : 'admin',
-            buildTargetPath : '/Volumes/static_content-1/gmadmin.biworldwide.com/gmadministration/v2/',
+            buildTargetPath : '/Volumes/static_content/gmadmin.biworldwide.com/gmadministration/v2/',
             localServerPath : '../../../gmadmin-v2/'
         },
         'mbadmin' : {
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
         },
         'mbadmin-static' : {
             buildType       : 'admin',
-            buildTargetPath : '/Volumes/static_content-1/mercedesadmin.biworldwide.com/mbusaadmin/v2/',
+            buildTargetPath : '/Volumes/static_content/mercedesadmin.biworldwide.com/mbusaadmin/v2/',
             localServerPath : '../../../mbadmin-v2/'
         },
         'fcaadmin' : {
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
         },
         'fcaadmin-static' : {
             buildType       : 'admin',
-            buildTargetPath : '/Volumes/static_content-1/fcaadmin.biworldwide.com/fcaadmin/v2/',
+            buildTargetPath : '/Volumes/static_content/fcaadmin.biworldwide.com/fcaadmin/v2/',
             localServerPath : '../../../fcaadmin-v2/'
         },
         'hyundaiadmin' : {
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
         },
         'hyundaiadmin-static' : {
             buildType       : 'admin',
-            buildTargetPath : '/Volumes/static_content-1/tmsadmin.biworldwide.com/tmsadmin/v2/',
+            buildTargetPath : '/Volumes/static_content/tmsadmin.biworldwide.com/tmsadmin/v2/',
             localServerPath : '../../../tmsadmin-v2/'
         },
         'tmsadmin' : {
@@ -73,45 +73,52 @@ module.exports = function(grunt) {
         },
         'tmsadmin-static' : {
             buildType       : 'admin',
-            buildTargetPath : '/Volumes/static_content-1/tmsadmin.biworldwide.com/tmsadmin/v2/',
+            buildTargetPath : '/Volumes/static_content/tmsadmin.biworldwide.com/tmsadmin/v2/',
             localServerPath : '../../../tmsadmin-v2/'
         },
         'apc-static' : {
             buildType          : 'client',
-            buildTargetPath    : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/v2/',
-            jsBuildTargetPath  : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/js/adf/',
-            cssBuildTargetPath : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/styles/',
+            buildTargetPath    : '/Volumes/static_content/www.acuraperformancecenter.com/ahmperfcenter/v2/',
+            jsBuildTargetPath  : '/Volumes/static_content/www.acuraperformancecenter.com/ahmperfcenter/js/adf/',
+            cssBuildTargetPath : '/Volumes/static_content/www.acuraperformancecenter.com/ahmperfcenter/styles/',
             localServerPath    : '../../../dev/'
         },
+        'tpc-static' : {
+            buildType           : 'client',
+            buildTargetPath     : '/Volumes/static_content/www.toyotaperformancecenter.com/tmsperfcenter/v2/',
+            jsBuildTargetPath   : '/Volumes/static_content/www.toyotaperformancecenter.com/tmsperfcenter/js/adf/',
+            cssBuildTargetPath  : '/Volumes/static_content/www.toyotaperformancecenter.com/tmsperfcenter/styles/',
+            localServerPath     : '../../../dev/'
+        },        
         'hpc-static' : {
             buildType       : 'client',
-            buildTargetPath   : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/v2/',
-            jsBuildTargetPath : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/js/adf/',
-            cssBuildTargetPath : '/Volumes/static_content-1/www.acuraperformancecenter.com/ahmperfcenter/styles/',
+            buildTargetPath   : '/Volumes/static_content/www.acuraperformancecenter.com/ahmperfcenter/v2/',
+            jsBuildTargetPath : '/Volumes/static_content/www.acuraperformancecenter.com/ahmperfcenter/js/adf/',
+            cssBuildTargetPath : '/Volumes/static_content/www.acuraperformancecenter.com/ahmperfcenter/styles/',
             localServerPath   : '../../../dev/'
         },
         'hps-static' : {
             buildType          : 'client',
-            buildTargetPath    : '/Volumes/static_content-1/www.hondappc.com/ahmperfcenter/v2/',
-            jsBuildTargetPath  : '/Volumes/static_content-1/www.hondappc.com/ahmperfcenter/js/adf/',
-            cssBuildTargetPath : '/Volumes/static_content-1/www.hondappc.com/ahmperfcenter/styles/',
+            buildTargetPath    : '/Volumes/static_content/www.hondappc.com/ahmperfcenter/v2/',
+            jsBuildTargetPath  : '/Volumes/static_content/www.hondappc.com/ahmperfcenter/js/adf/',
+            cssBuildTargetPath : '/Volumes/static_content/www.hondappc.com/ahmperfcenter/styles/',
             localServerPath    : '../../../dev/'
         },
         'icv-static' : {
             buildType          : 'client',
-            buildTargetPath    : '/Volumes/static_content-1/icv.performnet.com/nnaicv/v2/',
-            jsBuildTargetPath  : '/Volumes/static_content-1/icv.performnet.com/nnaicv/js/adf/',
-            cssBuildTargetPath : '/Volumes/static_content-1/icv.performnet.com/nnaicv/styles/',
+            buildTargetPath    : '/Volumes/static_content/icv.performnet.com/nnaicv/v2/',
+            jsBuildTargetPath  : '/Volumes/static_content/icv.performnet.com/nnaicv/js/adf/',
+            cssBuildTargetPath : '/Volumes/static_content/icv.performnet.com/nnaicv/styles/',
             localServerPath    : '../../../dev/'
         },
-            'acnmadmin' : {
+        'acnmadmin' : {
             buildType       : 'admin',
             buildTargetPath : '/Users/dehnel/cvsroot/client/auto/GlassFishACNM/acnmadmin/src/webroot/v2/',
             localServerPath : '../../../acnmadmin-v2/'
         },
         'acnmadmin-static' : {
             buildType       : 'admin',
-            buildTargetPath : '/Volumes/static_content-1/kbbadmin.biworldwide.com/kbbadmin/v2/',
+            buildTargetPath : '/Volumes/static_content/kbbadmin.biworldwide.com/kbbadmin/v2/',
             localServerPath : '../../../acnmadmin-v2/'
         },
         'candiadmin' : {
@@ -121,7 +128,7 @@ module.exports = function(grunt) {
         },
         'candiadmin-static' : {
             buildType       : 'admin',
-            buildTargetPath : '/Volumes/static_content-1/candiadmin.biworldwide.com/candiadmin/v2/',
+            buildTargetPath : '/Volumes/static_content/candiadmin.biworldwide.com/candiadmin/v2/',
             localServerPath : '../../../candiadmin-v2/'
         }
     };
@@ -133,7 +140,7 @@ module.exports = function(grunt) {
     var clientObj = clients[client];
     buildTargetPath = clients[client].buildTargetPath;
     localServerPath = clients[client].localServerPath;
-    var cdnTargetPath = ( clientObj.cdnTargetPath ? clientObj.cdnTargetPath : '/Volumes/zonegrps-2/grp0143/apache2/prod0143m1-docroot/cdn/adf/' );
+    var cdnTargetPath = ( clientObj.cdnTargetPath ? clientObj.cdnTargetPath : '/Volumes/zonegrps-1/grp0143/apache2/prod0143m1-docroot/cdn/adf/' );
 
     if( !buildTargetPath || !localServerPath ){
         grunt.fail.fatal('no buildTargetPath or localServerPath set');
@@ -165,12 +172,12 @@ module.exports = function(grunt) {
         handlebars: {
             compile: {
                 options: {
-                    namespace: 'ADF.templates',
-                    processName: function(buildTargetPath) {
-                        console.log('HBS template: '+buildTargetPath);
+                    namespace: function(filename) {
+
+                        var path = 'ADF.templates';
 
                         // convert directory path into array
-                        var dirArray = buildTargetPath.split('/');
+                        var dirArray = filename.split('/');
 
                         // remove the first one (tpl)
                         dirArray.shift();
@@ -178,20 +185,21 @@ module.exports = function(grunt) {
                         // remove the last one (filename)
                         dirArray.pop();
 
-                        // for( )
-                        console.log(dirArray);
+                        for( var dirIdx in dirArray ){
+                            path += '.' + dirArray[dirIdx].replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+                        }
 
+                        return path;
+                    },
+                    processName: function(buildTargetPath) {
                         // remove the directories
                         var tmpltName = buildTargetPath.replace(/^.*[\\\/]/, '');
-                        console.log(tmpltName);
 
                         // camelize
                         tmpltName = tmpltName.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
-                        console.log(tmpltName);
 
                         // remove the file extension
                         tmpltName = tmpltName.substr(0, tmpltName.lastIndexOf('.'));
-                        console.log(tmpltName);
 
                         return tmpltName;
                     }
@@ -215,6 +223,7 @@ module.exports = function(grunt) {
                     'js/dev/regions/grid.js',
                     'js/dev/regions/modules.js',
                     'js/dev/regions/overlay-grid.js',
+                    'js/dev/regions/widget-editor.js',
                     'js/dev/regions/messages-window.js',
                     // models
                     'js/dev/models/field.js',
@@ -228,6 +237,7 @@ module.exports = function(grunt) {
                     // views
 
                         // core
+                        'js/dev/views/core/dropdown.js',
                         'js/dev/views/core/*.js',
 
                         // actions
@@ -353,9 +363,11 @@ module.exports = function(grunt) {
                 }
             }
         },
-        autoprefixer: {
+        postcss: {
             options: {
-                browsers: ['last 2 version']
+                processors: [
+                    require('autoprefixer-core')({browsers: 'last 1 version'}) // add vendor prefixes
+                ]
             },
             admin: {
                 files: [
@@ -384,7 +396,7 @@ module.exports = function(grunt) {
                 tasks: ['scripts-lib']
             },
             scriptsPlugins: {
-                files: ['js/plugins/*.js'],
+                files: ['js/plugins/*.js','js/plugins/**/*.js'],
                 tasks: ['scripts-plugins']
             },
             scss: {
@@ -392,7 +404,7 @@ module.exports = function(grunt) {
                 tasks: ['css']
             },
             hbs: {
-                files: ['tpl/*.hbs'],
+                files: ['tpl/**/*.hbs'],
                 tasks: ['hbs']
             },
             svg: {
@@ -411,28 +423,34 @@ module.exports = function(grunt) {
             }
         },
         notify: {
-            watchJs: {
+            watchJsDev: {
                 options: {
-                    title: 'JS Build Complete',  // optional
-                    message: 'JS build finished running', //required
+                    title: 'JS Dev Build Complete',  // optional
+                    message: 'JS Dev build finished running ('+client+')'
+                }
+            },
+            watchJsPlugins: {
+                options: {
+                    title: 'JS Plugins Build Complete',  // optional
+                    message: 'JS Plugins build finished running ('+client+')', //required
                 }
             },
             watchCss: {
                 options: {
                     title: 'CSS Build Complete',  // optional
-                    message: 'CSS build finished running', //required
+                    message: 'CSS build finished running ('+client+')', //required
                 }
             },
             watchHbs: {
                 options: {
                     title: 'HBS Build Complete',  // optional
-                    message: 'Handlebars build finished running', //required
+                    message: 'Handlebars build finished running ('+client+')', //required
                 }
             },
             watchSvg: {
                 options: {
                     title: 'SVG Build Complete',  // optional
-                    message: 'SVG build finished running', //required
+                    message: 'SVG build finished running ('+client+')', //required
                 }
             }
         },
@@ -458,20 +476,20 @@ module.exports = function(grunt) {
      "Y88888 "Y8888   Y88P        "Y8888P" Y88b     "Y8888888P" "Y888888 "Y888 "Y8888P888  888      "Y888"Y888888 88888P'888  888 88888P'
 
 */
-    //grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
-    // grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','autoprefixer','setPHPConstant','watch']);
+    //grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','postcss','setPHPConstant','watch']);
+    // grunt.registerTask('default', ['svgstore','copy','concat','skin','sass:dist','handlebars','uglify:templates','postcss','setPHPConstant','watch']);
     grunt.registerTask('hbs', ['handlebars','uglify:templates','notify:watchHbs']);
     grunt.registerTask('css', function(){
         if( clientObj.buildType === 'admin' ){
-            grunt.task.run(['skin','sass:admin','autoprefixer:admin','notify:watchCss']);
+            grunt.task.run(['skin','sass:admin','postcss:admin','notify:watchCss']);
         }else{
-            grunt.task.run(['skin','sass:client','autoprefixer:client','notify:watchCss']);
+            grunt.task.run(['skin','sass:client','postcss:client','notify:watchCss']);
         }
     });
     grunt.registerTask('svg', ['svgstore','copy:svg','notify:watchSvg']);
-    grunt.registerTask('scripts-dev', ['concat:dev','notify:watchJs']);
+    grunt.registerTask('scripts-dev', ['concat:dev','notify:watchJsDev']);
     grunt.registerTask('scripts-lib', ['concat:lib']);
-    grunt.registerTask('scripts-plugins', ['concat:plugins']);
+    grunt.registerTask('scripts-plugins', ['concat:handlebarsHelpers','concat:plugins','notify:watchJsPlugins']);
     grunt.registerTask('scripts-tests', ['concat:tests']);
     grunt.registerTask('default', ['svgstore','copy','concat','css','handlebars','uglify:templates','setPHPConstant','watch']);
 

@@ -40,7 +40,7 @@ ADF.App = Marionette.Application.extend({
                 url: '../home.do',
                 dataType: 'html',
                 complete: function( jqXHR, textStatus ){
-                    if( jqXHR.status === 404 ){
+                    if( jqXHR.status !== 200 ){
                         ADF.utils.message('log','keepSessionAlive call failed',textStatus,jqXHR);
                         clearInterval(sessionKeeper);
                     }else{

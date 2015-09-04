@@ -8,10 +8,55 @@
 			white-space: nowrap;
 		}
 		.dropdown-menu{
-			@include dropdown();
+            position: absolute;
 			top: 2em;
 			left: 0;
 			right: 0;
+            background: #eee;
+            box-shadow: 0 0 12px #999;
+            border: 1px solid #555;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: left;
+            z-index: $zindex-dropdown;
+            li {
+                position: relative;
+                margin: 0;
+                padding: 0;
+            }            
+            input[type=checkbox] {
+                position: absolute;
+                top: 0;
+                left: -100%;
+                opacity: 0;
+            }          
+            a, label{
+                cursor: pointer;
+                display: block;
+                padding: 0 .25em 0 .5em;
+                color: #555;
+                white-space: nowrap;
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 2em;
+                text-decoration: none;
+                &:hover{
+                    background: #555;
+                    color: white;
+                }
+            }
+            :checked + label:before{
+                content: '';
+                position: absolute;
+                height: 0;
+                width: 0;
+                top: 8px;
+                left: 1px;
+                border-width: 4px;
+                border-style: solid;
+                border-color: transparent transparent transparent currentColor;
+            }               
 		}
 		&:hover{
 			color: tint( $primary_color, 80% );
@@ -35,6 +80,11 @@
         z-index: $zindex-overlay;
         &:empty {
             display: none;
+        }
+    }
+    .primary-options {
+        a {
+            border-bottom: 1px solid #999;            
         }
     }
     .footer-options {

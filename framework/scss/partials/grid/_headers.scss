@@ -13,6 +13,13 @@ th {
     position: relative;
     width: 25%;
     color: #ddd;
+    white-space: nowrap;
+    &.is-sortable {
+        padding-left: 18px;
+    }
+    &.has-filter {
+        padding-right: 18px;
+    }
     .adf-header-control {
         position: absolute;
         background: rgba( white, .2 );
@@ -52,6 +59,12 @@ th {
             top: 15px;
         }
     }
+    .sorted-asc .sort-indicator::before {
+        border-color: transparent transparent orange transparent;
+    }
+    .sorted-desc .sort-indicator::after {
+        border-color: orange transparent transparent transparent;
+    }
     .filter-control {
         bottom: 0;
         right: 0;
@@ -76,6 +89,7 @@ th {
         }
     }
     .resize-control {
+        display: none;
         top: 0;
         right: 0;
         width: 14px;

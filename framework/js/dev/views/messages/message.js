@@ -4,7 +4,7 @@ Backbone,
 adf
 */
 ADF.Messages.MessageView = Backbone.Marionette.ItemView.extend({
-    template: ADF.templates.message,
+    template: ADF.templates.messages.message,
     events: {
         'click .message-remove'                        : 'messageRemove',
         'click .message-details'                       : 'showMessageInConsole'
@@ -13,6 +13,10 @@ ADF.Messages.MessageView = Backbone.Marionette.ItemView.extend({
         // TODO: figure out a way for this view to use the message function without causing an infinite loop
         ADF.utils.message('log','MessageView Initialized', options);
         this.messageFormat();
+    },
+    onRender: function() {
+        // TODO: make this actually work to allow the window to show as large (for warning and error) and the transition back to normal size
+        this.$el.find('.message').removeClass('init-size');
     },
     messageRemove: function(e) {
         e.preventDefault();

@@ -1,6 +1,10 @@
 .select-fancy-wrapper {
     position: relative;
-    width: 190px;
+    width: 100%;
+    input[type=text] {
+        width: calc( 100% - 17px );
+        text-overflow: ellipsis;
+    }
     &:hover .select-fancy-clear {
         display: block;
     }
@@ -33,6 +37,14 @@
         width: 100%;
     }
     .icon-chevron-up {
+        display: none;
+    }
+}
+.open .select-fancy-toggle {
+    .icon-chevron-up {
+        display: inline;
+    }
+    .icon-chevron-down {
         display: none;
     }
 }

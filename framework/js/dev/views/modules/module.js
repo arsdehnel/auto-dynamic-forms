@@ -2,10 +2,41 @@
 ADF,
 _
 */
-// TODO: have module and record views share a common prototype
 ADF.Modules.ModuleView = ADF.Core.RecordView.extend({
-    template: ADF.templates.module,
-    childView: ADF.Core.FieldView,
+    template: ADF.templates.modules.module,
+    getChildView: function(model) {
+        var viewClass;
+        switch( model.get('type') ){
+            case 'actions':
+                viewClass = ADF.Inputs.ModuleActionsView;
+                break;
+            case 'selectFancy':
+                viewClass = ADF.Inputs.SelectFancyView;
+                break;
+            case 'textarea':
+                viewClass = ADF.Inputs.TextareaView;
+                break;
+            case 'widget':
+                viewClass = ADF.Inputs.WidgetView;
+                break;
+            case 'gridOverlay':
+                viewClass = ADF.Inputs.GridOverlayView;
+                break;
+            default:
+                viewClass = ADF.Inputs.ModuleDefaultView;
+                break;
+        }
+        return viewClass;
+    },
+    childViewOptions : function () {
+        return {
+            regionName: this.regionName,
+            region: this.region,
+            moduleView: this,
+            template: ADF.templates.forms.row,
+            tagName: 'td'
+        };
+    },
     childViewContainer: '.module-details',
     events: {
         'adf-module-drop'                       : 'drop',
@@ -27,12 +58,10 @@ ADF.Modules.ModuleView = ADF.Core.RecordView.extend({
     },
     onRender: function(){
         var moduleModel = this.model;
-        console.log(moduleModel.changedAttributes());
         var partAttrs = _.partition(moduleModel.changedAttributes(),function(attr){
             // console.log(_.indexOf(moduleModel.initAttrs,attr));
             return _.indexOf(moduleModel.initAttrs,attr) >= 0;
         });
-        console.log(partAttrs);
         if( partAttrs[0].length > 0 ){
             this.$el.addClass('updated');
         }

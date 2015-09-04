@@ -3,15 +3,22 @@ ADF,
 $,
 _
 */
-ADF.Grids.ColumnSelectView = ADF.Core.DropdownView.extend({
-    childView: ADF.Grids.ColumnSelectItemView,
+ADF.Core.ColumnSelectView = ADF.Core.DropdownView.extend({
+    childView: ADF.Core.ColumnSelectItemView,
+    childViewOptions : function () {
+        return {
+            region: this.region
+        };
+    },
     events: {
-        'click  .adf-grid-column-group'                : 'columnGroupSelect'
+        'click  .adf-column-group'                : 'columnGroupSelect'
     },
     initialize: function( options ) {
         ADF.utils.message('log','ColumnSelectView Initialized', options );
 
         var footerOptions = [];
+
+        this.region = options.region;
 
         this.regionName = options.regionName;
 
@@ -23,7 +30,7 @@ ADF.Grids.ColumnSelectView = ADF.Core.DropdownView.extend({
 
         footerOptions.push({
             href : '#',
-            itemClass : 'adf-grid-column-group',
+            itemClass : 'adf-column-group',
             label : 'All Columns',
             dataAttributes : [
                 {
@@ -35,7 +42,7 @@ ADF.Grids.ColumnSelectView = ADF.Core.DropdownView.extend({
 
         footerOptions.push({
             href : '#',
-            itemClass : 'adf-grid-column-group',
+            itemClass : 'adf-column-group',
             label : 'Minimum Columns',
             dataAttributes : [
                 {
@@ -47,7 +54,7 @@ ADF.Grids.ColumnSelectView = ADF.Core.DropdownView.extend({
 
         footerOptions.push({
             href : '#',
-            itemClass : 'adf-grid-column-group',
+            itemClass : 'adf-column-group',
             label : 'Default Columns',
             dataAttributes : [
                 {
@@ -89,6 +96,7 @@ ADF.Grids.ColumnSelectView = ADF.Core.DropdownView.extend({
 
             case 'dflt':
                 var dropdownMenu = $target.closest('.dropdown-wrapper').find('.dropdown-menu');
+                // make these not dependent on the .adf-grid class
                 $('.adf-grid th, .adf-grid td').css('display', '');
                 $('.adf-grid th').each(function(){
 

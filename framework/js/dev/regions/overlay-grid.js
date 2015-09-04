@@ -21,7 +21,12 @@ ADF.OverlayGridRegion = ADF.GridRegion.extend({
         var dataArray = [];
         var triggerBox = triggerCellView._parent.el.getBoundingClientRect();
         var triggerData = triggerCellView.model._createDataAttrObj();
-        var dataFields = triggerData.ajaxDataFields.split(',');
+        if( triggerData.dataFields ){
+            var dataFields = triggerData.dataFields.toLowerCase().split(',');
+        }else{
+            ADF.utils.message.call(this,'error','This overlay field has no data fields setup and at least one is required for the overlay lookup to know what data to retrieve.');
+            return;
+        }
 
         // TODO: check location of trigger field and possibly open up
         // TODO: highlight current record
@@ -33,7 +38,7 @@ ADF.OverlayGridRegion = ADF.GridRegion.extend({
             return _.indexOf( dataFields, field.get('name') ) >= 0;
         }),{recordModelDefaults: triggerCellView._parent.model.toJSON()});
 
-        dataArray = ADF.utils.dataSerialize( overlayRegion.options.dataFields, triggerCellView._parent.model );
+        dataArray = ADF.utils.buildADFserializedArray( overlayRegion.options.dataFields, null, triggerCellView._parent.model );
 
         overlayRegion.options.adfAjaxData = {adfSerializedData:JSON.stringify(dataArray)};
 
@@ -43,8 +48,6 @@ ADF.OverlayGridRegion = ADF.GridRegion.extend({
     hide: function() {
         ADF.utils.message('log','OverlayGridRegion Hidden');
         var gridView = this.gridView;
-        // TODO: empty the region
-        // TODO: remove the ajax url
 
         if( this.$el.find('.changed') > 0 ){
             // TODO: make this a bit prettier

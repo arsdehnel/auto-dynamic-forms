@@ -20,7 +20,6 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
         this.collection = new ADF.FieldsCollection(this.region.fieldsCollection.toJSON());
         this.assignCollectionValuesFromModel(true);
         this.listenTo(this.model,'all', this.recordEvent);
-        this.status = 'current';
     },
     assignCollectionValuesFromModel: function( initialAssignment ) {
         this.collection.each(function(model){
@@ -60,8 +59,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
             //     adf.page.getRegion(regionObj.regionName).show();
             //     break;
             case 'link':
-                // TODO: replacing this at time of click seems really crappy and should be done in the model or view rendering but that just wasn't working when there were multiple records in a grid
-                $targetObj.attr('href',ADF.utils.string.substitute( $targetObj.attr('href'), this.model ));
+                // $targetObj.attr('href',ADF.utils.string.substitute( $targetObj.attr('href'), this.model.toJSON() ));
                 return true;
             case 'clone':
                 var clonedModel = this.model.clone();
@@ -91,8 +89,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
             var action = $(e.target).closest('a').attr('href');
 
             // TODO: commonize this to share code with ADF.Forms.FormView.submitForm()
-            // var dataArray = ADF.utils.dataSerializeNonADFData( this.$el.find(':input').not('.form-input, .form-input *').serializeObject() );
-            var dataArray = ADF.utils.dataSerialize( recordView.collection );
+            var dataArray = ADF.utils.buildADFserializedArray( recordView.collection, null, null );
             var childRegions = $(e.currentTarget).data('child-regions').split(',');
 
             if( action.substring(0,1) === '#' ){
@@ -165,7 +162,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
     },
 
     _updateStatus: function( newStatus ) {
-        this.status = newStatus;
+        this.model.status = newStatus;
         this.$el.removeClass('updated added current error').addClass(newStatus);
     },
 
@@ -212,7 +209,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
                 },5000);
             });
         }else{
-            ADF.utils.message(args);
+            ADF.utils.message.apply(arguments);
         }
 
     },
@@ -235,7 +232,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
                     if( response.success ){
                         this.assignCollectionValuesFromModel();
                         // this._renderChildren();
-                        this.render();
+                        // this.render();
                         this._updateStatus('current');
                     }else{
                         this._updateStatus('error');

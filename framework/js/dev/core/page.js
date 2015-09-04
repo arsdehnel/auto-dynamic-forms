@@ -52,6 +52,7 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
         // var regions = {};
         // make sure there is a messages window on the page
         this._initMessagesWindow();
+        this._initWidgetEditor();
         pageView.$el.find('.adf-region').each(function(){
             var $region = $(this);
             var regionData = $region.data();
@@ -82,20 +83,38 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
             return region[filter.attribute] === filter.value || region.options[filter.attribute] === filter.value;
         });
     },
-    showBackdrop: function() {
+    showBackdrop: function( backdropType ) {
         $('.backdrop').removeClass('hide');
+        if( backdropType === 'widget' ){
+            $('.backdrop').addClass('widget');
+        }
     },
-    hideBackdrop: function() {
-        $('.backdrop').addClass('hide');
+    hideBackdrop: function(backdropType) {
+        if( backdropType === 'widget' ){
+            $('.backdrop').removeClass('widget');
+        }else{
+            $('.backdrop').addClass('hide');
+        }
     },
     closeOverlayEditor: function(e) {
         e.preventDefault();
-        this.getRegion('overlayEditor').hide();
+        // TODO: do this through javascript rather than DOM?
+        if( $(e.target).closest('.adf-widget-editor').size() > 0 ){
+            this.getRegion('widgetEditor').hide();
+        }else{
+            this.getRegion('overlayEditor').hide();            
+        }
+    },
+    _initWidgetEditor: function() {
+        var pageView = this;
+        if( pageView.$el.find('.adf-widget-editor').size() === 0 ){
+            pageView.$el.find('main').append(ADF.templates.grids.widgetEditor());
+        }
     },
     _initMessagesWindow: function() {
         var pageView = this;
         if( pageView.$el.find('.adf-messages-window').size() === 0 ){
-            pageView.$el.append(ADF.templates.messagesWindow());
+            pageView.$el.append(ADF.templates.messages.window());
         }
     }
 

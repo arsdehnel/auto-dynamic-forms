@@ -6,7 +6,7 @@ adf,
 _
 */
 ADF.Forms.FormView = Marionette.ItemView.extend({
-    template: ADF.templates.form,
+    template: ADF.templates.forms.form,
     initialize: function( options ) {
         ADF.utils.message('log','Form.FormView Initialized', options );
         $.extend(this.options,options);
@@ -40,6 +40,8 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
 
     submitForm: function( e, contextView ) {
 
+        ADF.utils.message('log','submitForm called');
+
         var formView = this;
         var contextModelDataAttrs = ( contextView && contextView.model && contextView.model._createDataAttrObj ? contextView.model._createDataAttrObj() : false );
 
@@ -49,8 +51,7 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
         }
 
         var action = this.$el.attr('action');
-        var dataArray = ADF.utils.dataSerializeNonADFData( this.$el.find(':input').not('.form-input, .form-input *').serializeObject() );
-        dataArray = dataArray.concat(ADF.utils.dataSerialize( formView.formFields.collection ));
+        var dataArray = ADF.utils.buildADFserializedArray( formView.formFields.collection, this.$el.find(':input').not('.form-input, .form-input *').serializeObject(), false );
 
         if( action.substring(0,1) === '#' ){
 
@@ -64,7 +65,7 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
 
             }else{
 
-                ADF.utils.message('error','Trying to load ajax but destination element could not be found on the page');
+                ADF.utils.message.call(this,'error','Trying to load ajax but destination element could not be found on the page');
 
             }
 
@@ -84,7 +85,7 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
             }else{
 
                 // do our little fancy bit to get the form data into our custom field
-                this.$el.append(ADF.templates.inputTypeAdfSerializedData({data:dataArray}));
+                this.$el.append(ADF.templates.inputTypes.adfSerializedData({data:dataArray}));
 
                 // and then actually submit the form
                 this.$el.submit();
@@ -98,16 +99,15 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
 
         var formView = this;
         var contextModelDataAttrs = contextView.model._createDataAttrObj();
-        var dataArray = [];
         var region = adf.page[formView.options.regionName];
         var newModelIdx;
 
         e.preventDefault();
         ADF.utils.message('log','dependentFieldLkup',e);
 
-        if( contextModelDataAttrs.dpndntFieldLkupChildFields ){
+        if( contextModelDataAttrs.childFields ){
 
-            _.each(contextModelDataAttrs.dpndntFieldLkupChildFields.split(','),function( fieldName ){
+            _.each(contextModelDataAttrs.childFields.split(','),function( fieldName ){
                 var modelToRemove = formView.formFields.collection.filter(function( model ){
                     return model.get('name') === fieldName.toLowerCase();
                 });
@@ -117,8 +117,7 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
 
         }
 
-        dataArray = ADF.utils.dataSerializeNonADFData( formView.$el.find(':input:hidden').not('.adf-form-fields :input').serializeObject() );
-        dataArray = dataArray.concat(ADF.utils.dataSerialize( formView.formFields.collection ));
+        var dataArray = ADF.utils.buildADFserializedArray( formView.formFields.collection, formView.$el.find(':input:hidden').not('.adf-form-fields :input').serializeObject(), false );        
 
         if( contextModelDataAttrs.dpndntFieldLkupTarget ){
 
@@ -134,7 +133,7 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
 
         region.ajax({
             data: {adfSerializedData:JSON.stringify(dataArray)},
-            url: contextModelDataAttrs.dpndntFieldLkupUrl,
+            url: contextModelDataAttrs.ajaxUrl,
             emptyCollections:false,
             newModelIdx: newModelIdx
         });

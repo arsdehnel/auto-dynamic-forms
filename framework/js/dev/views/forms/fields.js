@@ -4,12 +4,15 @@ Marionette,
 $
 */
 ADF.Forms.FieldsView = Marionette.CollectionView.extend({
-    template: ADF.templates.formRegion,
+    template: ADF.templates.forms.region,
     getChildView: function(model) {
         var viewClass;
-        switch( model.get('type').toLowerCase() ){
-            case 'select-fancy':
+        switch( model.get('type') ){
+            case 'selectFancy':
                 viewClass = ADF.Inputs.SelectFancyView;
+                break;
+            case 'checkboxes':
+                viewClass = ADF.Inputs.CheckboxesView;
                 break;
             default:
                 viewClass = ADF.Inputs.FormDefaultView;
@@ -21,7 +24,7 @@ ADF.Forms.FieldsView = Marionette.CollectionView.extend({
         return {
             regionName: this.options.regionName,
             region: this.region,
-            template: ADF.templates.formRow
+            template: ADF.templates.forms.row
         };
     },
     initialize: function( options ) {

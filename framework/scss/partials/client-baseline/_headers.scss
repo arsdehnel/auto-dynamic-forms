@@ -1,0 +1,99 @@
+th {
+    padding: 8px;
+    position: relative;
+    white-space: nowrap;
+    &.is-sortable {
+        padding-left: 18px;
+    }
+    &.has-filter {
+        padding-right: 18px;
+    }
+    .adf-header-control {
+        position: absolute;
+        height: calc( 50% - .5px );
+    }
+    .sort-control {
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+            text-decoration: none;
+        }
+        svg {
+            height: 100%;
+        }
+    }
+    .sort-indicator {
+        position: absolute;
+        top: 1px;
+        bottom: 0;
+        left: 2px;
+        &::before,
+        &::after {
+            position: absolute;
+            content: '';
+            height: 0;
+            width: 0;
+            border-width: 8px 4px;
+            border-style: solid;
+        }
+        &::before {
+            border-color: transparent transparent #999 transparent;
+            top: -4px;
+        }
+        &::after {
+            border-color: #999 transparent transparent transparent;
+            top: 15px;
+        }
+    }
+    .sorted-asc .sort-indicator::before {
+        border-color: transparent transparent orange transparent;
+    }
+    .sorted-desc .sort-indicator::after {
+        border-color: orange transparent transparent transparent;
+    }
+    .filter-control {
+        bottom: 0;
+        right: 0;
+        width: 14px;
+        .dropdown-inner {
+            min-width: 14px;
+        }
+        .dropdown-toggle {
+            padding: 0;
+            float: none;
+            height: 1em;
+            width: 1em;
+        }
+        .dropdown-toggle-caret::before {
+            content: none;
+        }
+        svg {
+            width: 60%;
+            fill: white;
+            position: relative;
+            top: -3px;
+        }
+    }
+    .resize-control {
+        display: none;
+        top: 0;
+        right: 0;
+        width: 14px;
+        cursor: col-resize;
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            width: 1px;
+            background: #bbb;
+        }
+        &::before {
+            left: 4px;
+        }
+        &::after {
+            right: 4px;
+        }
+    }
+}

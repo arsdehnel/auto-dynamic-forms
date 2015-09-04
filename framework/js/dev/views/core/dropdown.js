@@ -4,7 +4,7 @@ Backbone,
 $
 */
 ADF.Core.DropdownView = Backbone.Marionette.CompositeView.extend({
-    template: ADF.templates.dropdownMenu,
+    template: ADF.templates.dropdowns.menu,
     tagName: 'li',
     childViewContainer: '.dropdown-menu .primary-options',
     childViewOptions: function() {

@@ -26,25 +26,46 @@
                 data-adf-ajax-url="../../json/form-builder/current.json">
             </div>
         </fieldset>
-        <fieldset
-            class="layout-grid-6 adf-region"
-            data-adf-region-type="form"
-            id="form-builder-allfields-filters"
-            data-adf-ajax-onshow="true"
-            data-adf-ajax-url="../../getJson.php?client=acuraadmin&action=common/get-fields&pageCode=PROCESS_MASTER_FILTERS&devPath=process-master/filters.json">
-            <legend>Your Form</legend>
-
-            <form action="#form-builder-all-fields" class="form-horizontal" method="post"></form>
-
-
-    		<div id="form-builder-all-fields"
+        <div class="layout-grid-6">
+            <fieldset
                 class="adf-region"
-                data-adf-region-type="modules"
-                data-adf-dnd-target="false"
-                data-adf-dnd-source="true"
-                data-adf-ajax-url="../../json/form-builder/all-fields.json">
-            </div>
-        </fieldset>
+                data-adf-region-type="form"
+                id="form-builder-allfields-filters"
+                data-adf-ajax-onshow="true"
+                data-adf-ajax-url="../../getJson.php?client=acuraadmin&action=common/get-fields&pageCode=PROCESS_MASTER_FILTERS&devPath=process-master/filters.json">
+                <legend>All Fields</legend>
+
+                <form action="#form-builder-all-fields" class="form-horizontal" method="post"></form>
+
+
+        		<div id="form-builder-all-fields"
+                    class="adf-region"
+                    data-adf-region-type="modules"
+                    data-adf-dnd-target="false"
+                    data-adf-dnd-source="true"
+                    data-adf-ajax-url="../../json/form-builder/all-fields.json">
+                </div>
+            </fieldset>
+            <fieldset
+                class="adf-region"
+                data-adf-region-type="form"
+                id="form-builder-allactions-filters"
+                data-adf-ajax-onshow="true"
+                data-adf-ajax-url="../../getJson.php?client=acuraadmin&action=common/get-fields&pageCode=PROCESS_MASTER_FILTERS&devPath=process-master/filters.json">
+                <legend>All Actions</legend>
+
+                <form action="#form-builder-all-actions" class="form-horizontal" method="post"></form>
+
+
+                <div id="form-builder-all-actions"
+                    class="adf-region"
+                    data-adf-region-type="modules"
+                    data-adf-dnd-target="false"
+                    data-adf-dnd-source="true"
+                    data-adf-ajax-url="../../json/form-builder/all-fields.json">
+                </div>
+            </fieldset>
+        </div>
     </div>
 <?php
     include('../../_footer.php');

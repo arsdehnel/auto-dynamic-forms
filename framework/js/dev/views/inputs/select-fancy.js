@@ -26,6 +26,16 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
     initialize: function( options ) {
         ADF.utils.message('log','Inputs.SelectFancyView Initialized', options);
         this.addOptionUrl = this.model.getDataAttrVal( 'add-option-url' );
+        this.region = options.region;
+        this._super();
+    },
+    onRender: function(){
+        // TODO: move this to a behavior common to all inputs that live in grids
+        if( this.region instanceof ADF.GridRegion ){
+            if( this.model.get('fieldPriority') !== 0  && this.$el.css('display') === 'table-cell' ){
+                ADF.utils.message('log',this.model.get('fieldName'),'should be displayed as table cell');
+            }
+        }
         this._super();
     },
     input: function(e) {
@@ -46,6 +56,7 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
     close: function() {
         this.empty();
         this.opened = false;
+        this.$el.removeClass('open');
     },
     keydown: function(e) {
 
@@ -103,6 +114,7 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
     open: function( filterText ) {
         var sFView = this;
         this.opened = true;
+        this.$el.addClass('open');
         var results = {};
         if( filterText ){
             results = new Backbone.Collection(this.model.dataCollection.filter(function(item){
@@ -119,12 +131,13 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
             sFView.ui.options.append('<li>No results found</li>');
         }else{
             results.each(function(result){
-                sFView.ui.options.append(ADF.templates.inputHelperSelectFancyRecord(result.toJSON()));
+                sFView.ui.options.append(ADF.templates.inputHelpers.selectFancyRecord(result.toJSON()));
             });
         }
         if( this.addOptionUrl ){
-            sFView.ui.options.append(ADF.templates.inputHelperSelectFancyAddOption({addOptionUrl:this.addOptionUrl}));
+            sFView.ui.options.append(ADF.templates.inputHelpers.selectFancyAddOption({addOptionUrl:this.addOptionUrl}));
         }
+        sFView.ui.dispInput.focus();
     },
     click: function(e) {
         e.preventDefault();
@@ -133,7 +146,7 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
         this.ui.valInput.val($selected.data('value'));
         this.model.set('currentValue',$selected.data('value'));
         this.ui.valInput.trigger('change');
-        this.empty();
+        this.close();
     },
     clear: function(e) {
         e.preventDefault();
@@ -141,7 +154,7 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
         this.ui.dispInput.val('');
         this.ui.valInput.val('');
         this.ui.valInput.trigger('change');
-        this.empty();
+        this.close();
     },
     addOptionOpen: function(e) {
         e.preventDefault();
@@ -158,7 +171,7 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
         var $addOption = $(e.target).closest('li');
         var sFView = this;
         var dataObj = $addOption.find(':input').serializeObject();
-        var dataArray = ADF.utils.dataSerializeNonADFData( dataObj );
+        var dataArray = ADF.utils.buildADFserializedArray( null, dataObj, null );
 
         $.ajax({
             url: sFView.addOptionUrl,
@@ -170,7 +183,7 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
             complete: function( jqXhr, textStatus ){
                 ADF.utils.message('log','Submitted add new option via ajax');
                 ADF.utils.spin( $addOption, { stop: true } );
-                sFView.ui.options.find('.select-fancy-add-option').before(ADF.templates.inputHelperSelectFancyRecord(dataObj));
+                sFView.ui.options.find('.select-fancy-add-option').before(ADF.templates.inputHelpers.selectFancyRecord(dataObj));
                 $addOption.removeClass('open').find(':input').val('');
             }
         });

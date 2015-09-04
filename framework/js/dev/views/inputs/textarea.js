@@ -18,7 +18,6 @@ ADF.Inputs.TextareaView = ADF.Core.InputView.extend({
         this._super();
     },
     onRender: function() {
-        this.setElement(this.$el.children().unwrap());
         if( this.model.get('fieldPriority') !== 0  && this.$el.css('display') === 'table-cell' ){
             ADF.utils.message('log',this.model.get('fieldName'),'should be displayed as table cell');
         }
@@ -41,6 +40,7 @@ ADF.Inputs.TextareaView = ADF.Core.InputView.extend({
             this.codemirror = CodeMirror.fromTextArea(this.$el.find('textarea')[0],options);
         }else{
             this.codemirror.toTextArea();
+            this.$el.trigger('change');
         }
     }
 });

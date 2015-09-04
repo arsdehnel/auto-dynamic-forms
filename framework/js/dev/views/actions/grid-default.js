@@ -5,7 +5,7 @@ $,
 adf
 */
 ADF.Actions.GridDefaultView = Backbone.Marionette.ItemView.extend({
-    template: ADF.templates.dropdownLink,
+    template: ADF.templates.dropdowns.link,
     tagName: 'li',
     events: {
         'click' : 'handleClick'

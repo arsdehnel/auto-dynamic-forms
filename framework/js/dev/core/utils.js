@@ -13,20 +13,36 @@ ADF.utils = {
             return string.replace(/([A-Z])/g, function($1){return '_'+$1.toLowerCase();});
         },
         camelize: function( string ) {
-            return string.toLowerCase().replace(/[_.-](\w|$)/g, function (_,x) {
+            // added this bit to handle the situation where the current string value is all uppercase
+            if( string.toUpperCase() === string ){
+                string = string.toLowerCase();
+            }
+            return string.replace(/[_.-](\w|$)/g, function (_,x) {
                 return x.toUpperCase();
             });
         },
         capitalize: function( string ) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         },
+        querystringToObj: function( string ) {
+            var oResult = {};
+            var aQueryString = string.split('&');//(location.search.substr(1)).split("&");
+            for (var i = 0; i < aQueryString.length; i++) {
+                var aTemp = aQueryString[i].split('=');
+                if (aTemp[1].length > 0) {
+                    oResult[aTemp[0]] = decodeURIComponent(aTemp[1]);
+                }
+            }
+            return oResult;
+
+        },
         substitute: function( inputString, inputData ){
             var tokenArray = inputString.split('##');
             var returnString = tokenArray[0];
             for( var i = 1; i < tokenArray.length; i++ ){
                 if( i % 2 === 1 ){
-                    if( inputData[ADF.utils.string.camelize(tokenArray[i])] ){
-                        returnString += inputData[ADF.utils.string.camelize(tokenArray[i])];
+                    if( inputData[tokenArray[i].toLowerCase()] ){
+                        returnString += inputData[tokenArray[i].toLowerCase()];
                     }
                 }else{
                     returnString += tokenArray[i];
@@ -42,7 +58,7 @@ ADF.utils = {
                 delete dataObj[index];
             }
         });
-        $element.append(ADF.templates.debugData({data:dataObj}));
+        $element.append(ADF.templates.utils.debugData({data:dataObj}));
     },
     isObject: function( obj ) {
         return Object.prototype.toString.call( obj ) === '[object Object]';
@@ -81,11 +97,16 @@ ADF.utils = {
         }
 
         $('.adf-datepicker',$context).datepicker({
-            dateFormat: 'mm/dd/yy'
+            dateFormat: 'mm/dd/yy',
+            changeYear: true,
+            yearRange: '-10:+50'
         });
+        // TODO: dynamically set the minDate to either NOW or the current value and then set the max date to 50 years from now
         $('.adf-datetimepicker',$context).datetimepicker({
             dateFormat: 'mm/dd/yy',
-            timeFormat: 'HH:mm'
+            timeFormat: 'HH:mm',
+            changeYear: true,
+            yearRange: '-10:+50'
         });
         this.selectFancy.refresh();
 
@@ -141,7 +162,7 @@ ADF.utils = {
             }else{
                 entryObj.label = '<span class="select2-option-value">'+object.id+'</span><span class="select2-option-label">'+object.text+'</span>';
             }
-            return ADF.templates.inputHelperSelect2Record( entryObj );
+            return ADF.templates.inputHelpers.select2Record( entryObj );
 
         },
         refresh: function() {
@@ -193,7 +214,12 @@ ADF.utils = {
         var args = Array.prototype.slice.call(arguments);
 
         // remove first argument
-        var level = args.shift().toLowerCase();
+        var level = ( args[0] ? args.shift().toLowerCase() : false );
+
+        // handle some process not passing in anything
+        if( !level ){
+            return;
+        }
 
         if( ADF.config.get('messages').levels[level] ){
 
@@ -218,7 +244,9 @@ ADF.utils = {
                         adf.page.getRegion('messagesWindow').show();
                     }else{
                         args.unshift('[ADF]');
-                        window.console && console[level](args);
+                        if( window.console ){
+                            console[level](args);
+                        }
                     }
                     break;
                 case 'console':
@@ -239,62 +267,71 @@ ADF.utils = {
         return JSON.stringify(obj,null,'\t').replace(/\n/g,'<br>').replace(/\t/g,'&nbsp;&nbsp;&nbsp;');
     },
 
-    // TODO: combine with ADF data serialization function
-    dataSerializeNonADFData: function( fieldsObject, dataModel ){
+    buildADFserializedArray: function( fieldsCollection, fieldsObject, recordModel ) {
 
         var dataArray = [];
         var crntVal;
 
-        _.each(fieldsObject,function( fieldVal, fieldKey ) {
-            // console.log(model,dataModel);
-            if( _.isUndefined( dataModel ) ){
-                crntVal = fieldVal;
-            }else{
-                crntVal = dataModel.get(fieldKey);
-            }
+        if( fieldsCollection ){
+            fieldsCollection.each(function( model ) {
+                // console.log(model,dataModel);
+                if( _.isUndefined( recordModel ) || _.isNull( recordModel ) || !recordModel ){
+                    crntVal = model.get('currentValue');
+                }else{
+                    crntVal = recordModel.get(model.get('name'));
+                }
 
-            dataArray.push({
-                field_code : ADF.utils.string.underscore( fieldKey ),
-                data_value : _.escape(crntVal)
+                // TODO: figure out a way to use the model here to determine if a given value should be escaped or not
+                crntVal = _.escape(crntVal);
+
+                dataArray.push({
+                    dyn_frm_fld_mstr_id : model.get('fldMstrId'),
+                    field_code : model.get('name'),
+                    data_value : crntVal
+                });
+
             });
-
-        });
-
-        if( adf.debugEnabled ){
-            ADF.utils.message('debug','dataSerializeNonADFData array',_.map(dataArray,function(dataItem){
-                return dataItem.field_code+': '+dataItem.data_value+' (fldMstrId: '+dataItem.dyn_frm_fld_mstr_id+')';
-            }));
         }
 
-        return dataArray;
+        if( fieldsObject ){
 
-    },
+            _.each(fieldsObject,function( fieldVal, fieldKey ) {
 
-    dataSerialize: function( fieldCollection, dataModel ){
+                // check to make sure this field code isn't already in the data array from the fieldsCollection portion of this
+                if( _.where(dataArray,{field_code:ADF.utils.string.underscore( fieldKey )}).length === 0 ){
 
-        var dataArray = [];
-        var crntVal;
+                    if( _.isUndefined( recordModel ) || _.isNull( recordModel ) || !recordModel ){
+                        crntVal = fieldVal;
+                    }else{
+                        crntVal = recordModel.get(fieldKey);
+                    }
 
-        fieldCollection.each(function( model ) {
-            // console.log(model,dataModel);
-            if( _.isUndefined( dataModel ) ){
-                crntVal = model.get('currentValue');
-            }else{
-                crntVal = dataModel.get(model.get('name'));
-            }
+                    dataArray.push({
+                        field_code : ADF.utils.string.underscore( fieldKey ),
+                        // data_value : _.escape(crntVal)
+                        data_value : crntVal  // removed the escape because things like URLs were getting &amp; instead of just the & that we really want
+                    });
 
-            dataArray.push({
-                dyn_frm_fld_mstr_id : model.get('fldMstrId'),
-                field_code : model.get('name'),
-                data_value : _.escape(crntVal)
-            });
+                }
 
-        });
+            });            
+        }
+
+        // var serializeOutput = _.map(dataArray,function(dataItem){
+        //     // console.log(dataItem.field_code+': '+dataItem.data_value+' (fldMstrId: '+dataItem.dyn_frm_fld_mstr_id+')')
+        //     return dataItem.field_code+': '+dataItem.data_value+' (fldMstrId: '+dataItem.dyn_frm_fld_mstr_id+')';
+        // });
 
         if( adf.debugEnabled ){
-            ADF.utils.message('debug','dataSerialize array',_.map(dataArray,function(dataItem){
-                return dataItem.field_code+': '+dataItem.data_value+' (fldMstrId: '+dataItem.dyn_frm_fld_mstr_id+')';
-            }));
+            if( dataArray.length > 0 ){        
+                console.log('Data Array:');
+                console.table(dataArray);
+            }else{
+                console.log('Data array empty');
+            }
+            // ADF.utils.message('debug','buildADFserializedArray array',_.map(dataArray,function(dataItem){
+            //     return dataItem.field_code+': '+dataItem.data_value+' (fldMstrId: '+dataItem.dyn_frm_fld_mstr_id+')';
+            // }));
         }
 
         return dataArray;
@@ -305,14 +342,14 @@ ADF.utils = {
 
         get: function( item ) {
 
-            return ( adf.userPrefs[item] ? adf.userPrefs[item] : false );
+            return ( adf.userPrefs[item] ? adf.userPrefs[item] : ADF.config.get('userPrefDefaults')[item] );
 
         },
 
         set: function( item, value ) {
 
             adf.userPrefs[item] = value;
-            console.log(adf.userPrefs);
+
             localStorage.setItem('userPreferences',JSON.stringify(adf.userPrefs));
 
         }

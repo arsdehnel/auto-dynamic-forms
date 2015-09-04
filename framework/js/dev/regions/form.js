@@ -3,7 +3,7 @@ ADF,
 _
 */
 ADF.FormRegion = ADF.Region.extend({
-    template: ADF.templates.formRegion,
+    template: ADF.templates.forms.region,
     initialize: function( options ) {
         ADF.utils.message('log','FormRegion Initialized', options);
         if( this.$el.find('form').size() === 0 ){

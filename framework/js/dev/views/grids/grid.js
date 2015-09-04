@@ -7,12 +7,12 @@ _
 ADF.Grids.GridView = Marionette.View.extend({
     className: 'adf-grid',
     tagName: 'table',
-    template: ADF.templates.gridTable,
+    template: ADF.templates.grids.table,
     initialize: function( options ) {
         ADF.utils.message('log','GridView Initialized', options );
         this.regionName = options.regionName;
         var gridView = this;
-        var region = adf.page.getRegion(gridView.regionName);
+        this.region = adf.page.getRegion(gridView.regionName);
         this.uploadFormEl = gridView.$el.siblings('.adf-grid-upload-form');
         this.dragTextEl = this.uploadFormEl.find('.adf-grid-upload-text');
 
@@ -20,7 +20,7 @@ ADF.Grids.GridView = Marionette.View.extend({
 
         gridView.headersView = new ADF.Grids.HeadersView({
             el: gridView.$el.find('thead')[0],
-            collection: region.fieldsCollection,
+            collection: this.region.fieldsCollection,
             regionName: gridView.regionName,
             gridView: gridView
         });
@@ -31,19 +31,19 @@ ADF.Grids.GridView = Marionette.View.extend({
             regionName: gridView.regionName
         });
 
-        gridView.columnSelect = new ADF.Grids.ColumnSelectView({
+        gridView.columnSelect = new ADF.Core.ColumnSelectView({
             el: gridView.$el.find('.adf-grid-column-select')[0],
             model: new ADF.DropdownMenuModel({footerOptions: []}),
-            collection: region.fieldsCollection,
-            regionName: gridView.regionName
+            collection: this.region.fieldsCollection,
+            region: gridView.region
         });
 
         gridView.gridActions = new ADF.Grids.ActionsView({
             el: gridView.$el.find('.adf-grid-actions')[0],
             model: new ADF.DropdownMenuModel({footerOptions: []}),
-            collection: region.actionsCollection,
+            collection: this.region.actionsCollection,
             gridView: gridView,
-            regionName: gridView.regionName
+            region: gridView.region
         });
 
         // this.listenTo(region.fieldsCollection,'change:checkedInd',this._updateRowsFieldsCollections);
@@ -78,11 +78,11 @@ ADF.Grids.GridView = Marionette.View.extend({
             maxfiles: 25,
             maxfilesize: 20,    // max file size in MBs
             docOver: function() {
-                region.$el.addClass('drag-target');
+                gridView.region.$el.addClass('drag-target');
                 gridView.dragTextEl.text(gridView.dragTextEl.data('drag-target-text'));
             },
             docLeave: function() {
-                region.$el.removeClass('drag-target');
+                gridView.region.$el.removeClass('drag-target');
                 gridView.dragTextEl.text('');
             },
             dragOver: function() {
@@ -90,11 +90,11 @@ ADF.Grids.GridView = Marionette.View.extend({
                 gridView.dragTextEl.text(gridView.dragTextEl.data('drag-on-text'));
             },
             dragLeave: function() {
-                region.$el.removeClass('drag-on');
+                gridView.region.$el.removeClass('drag-on');
                 gridView.dragTextEl.text('');
             },
             uploadStarted: function(i, file, len){
-                region.$el.removeClass('drag-target drag-on');
+                gridView.region.$el.removeClass('drag-target drag-on');
                 gridView.dragTextEl.text('');
             },
             uploadFinished: function(i, file, response, time) {
@@ -104,7 +104,7 @@ ADF.Grids.GridView = Marionette.View.extend({
                 // response is the data you got back from server in JSON format.
                 if( response.success ){
                     responseFieldGroups = _.partition(response.data.headers,function(header){
-                        return gridView.headersView.collection.findWhere({name:header});
+                        return gridView.headersView.collection.findWhere({name:header.toLowerCase()});
                     });
                     // index 1 of that array gives the ones that do NOT match and should be communicated to the user that something didn't match
                     _.each(responseFieldGroups[1],function(mismatchedField){
@@ -133,6 +133,7 @@ ADF.Grids.GridView = Marionette.View.extend({
     },
     render: function() {
         var gridView = this;
+        console.warn('Record counter',gridView.bodyView.collection.length);
         gridView.headersView.render();
         gridView.columnSelect.render();
         gridView.gridActions.render();
