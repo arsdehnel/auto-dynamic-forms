@@ -90,7 +90,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
 
             // TODO: commonize this to share code with ADF.Forms.FormView.submitForm()
             var dataArray = ADF.utils.buildADFserializedArray( recordView.collection, null, null );
-            var childRegions = $(e.currentTarget).data('child-regions').split(',');
+            var childRegions = $(e.currentTarget).data('child-regions') ? $(e.currentTarget).data('child-regions').split(/[\s,]+/) : false;
 
             if( action.substring(0,1) === '#' ){
 
@@ -109,8 +109,6 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
                     if( childRegions && childRegions.length > 0 ){
 
                         _.each(childRegions,function(childRegion){
-
-                            console.log(ADF.utils.string.camelize(childRegion));
 
                             adf.page.getRegion(ADF.utils.string.camelize(childRegion)).hide();
 

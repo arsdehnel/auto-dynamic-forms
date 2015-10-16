@@ -18,6 +18,10 @@ body{
         }
     }
 }
+.adf-page.loading main > .row,
+.adf-region.loading:not(.spinner) {
+    opacity: .25; 
+}
 .content{
     margin: 4px 20px;
     background: white;

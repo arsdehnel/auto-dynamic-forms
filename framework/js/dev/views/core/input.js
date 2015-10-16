@@ -41,17 +41,17 @@ ADF.Core.InputView = Backbone.Marionette.ItemView.extend({
         var dataAttrs = this.model.get('dataAttributes');
 
         this.valueChange(e);
-        this._submitOnChange(e, _.findWhere(dataAttrs,{name:'submit-on-change'}));
-        this._dependentFieldLkup(e, _.findWhere(dataAttrs,{name:'dpndnt-field-lkup-on-change'}));
+        this._submitOnChange(e, this.model.dataAttributes.submitOnChange );
+        this._dependentFieldLkup( e, this.model.dataAttributes.dpndntFieldLkupOnChange );
 
     },
-    _submitOnChange: function( event, dataAttrObj ){
-        if( dataAttrObj && dataAttrObj.value === true ){
+    _submitOnChange: function( event, dataAttrVal ){
+        if( dataAttrVal ){
             adf.page.getRegion(this.options.regionName).formView.submitForm( event, this );
         }
     },
-    _dependentFieldLkup: function( event, dataAttrObj ){
-        if( dataAttrObj && dataAttrObj.value === true ){
+    _dependentFieldLkup: function( event, dataAttrVal ){
+        if( dataAttrVal ){
             adf.page.getRegion(this.options.regionName).formView.dependentFieldLkup( event, this );
         }
     },

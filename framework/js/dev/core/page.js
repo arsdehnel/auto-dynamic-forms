@@ -20,7 +20,8 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
         pageView.loadSvgDefs();
 
         if( adf.debugEnabled ){
-            this.$el.addClass('tsga-debug-enabled');
+            // TODO: make this into a little debug pane instead of just one global debug setting
+            // this.$el.addClass('tsga-debug-enabled');
         }
 
         pageView.initRegions();

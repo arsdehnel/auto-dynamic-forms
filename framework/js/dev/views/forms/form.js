@@ -76,8 +76,10 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
                 $.ajax({
                     url: this.el.action,
                     data: {adfSerializedData:JSON.stringify(dataArray)},
+                    type: 'POST',
                     dataType: 'html',
                     complete: function( jqXhr, textStatus ){
+                        contextView.$el.trigger('formSubmitted',[jqXhr]);
                         ADF.utils.message('log','Submitted via ajax',contextView);
                     }
                 });
@@ -119,9 +121,9 @@ ADF.Forms.FormView = Marionette.ItemView.extend({
 
         var dataArray = ADF.utils.buildADFserializedArray( formView.formFields.collection, formView.$el.find(':input:hidden').not('.adf-form-fields :input').serializeObject(), false );        
 
-        if( contextModelDataAttrs.dpndntFieldLkupTarget ){
+        if( contextModelDataAttrs.dpndntFieldTarget ){
 
-            if( contextModelDataAttrs.dpndntFieldLkupTarget.toLowerCase() === 'next' ){
+            if( contextModelDataAttrs.dpndntFieldTarget.toLowerCase() === 'next' ){
                 newModelIdx = this.formFields.collection.indexOf(contextView.model) + 1; //plus one because we need it AFTER the current one
             }else{
                 ADF.utils.message('error','The option to load dependent fields into a particular location is not currently supported',contextModelDataAttrs.dpndntFieldLkupTarget.toLowerCase());

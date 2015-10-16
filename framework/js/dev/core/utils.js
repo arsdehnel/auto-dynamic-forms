@@ -252,7 +252,9 @@ ADF.utils = {
                 case 'console':
                     // since we are just logging it we add a prefix item to the logs just to try and be clear where it came from
                     args.unshift('[ADF]');
-                    console[level](args);
+                    if( window.console ){
+                        console[level](args);
+                    }
                     break;
 
             }
@@ -282,7 +284,7 @@ ADF.utils = {
                 }
 
                 // TODO: figure out a way to use the model here to determine if a given value should be escaped or not
-                crntVal = _.escape(crntVal);
+                // crntVal = _.escape(crntVal);
 
                 dataArray.push({
                     dyn_frm_fld_mstr_id : model.get('fldMstrId'),

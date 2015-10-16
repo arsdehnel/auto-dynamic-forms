@@ -11,6 +11,9 @@ ADF.Grids.ActionsView = ADF.Core.DropdownView.extend({
             case 'saveUnsaved':
                 viewClass = ADF.Actions.SaveUnsavedView;
                 break;
+            case 'linkToAdfSubmission':
+                viewClass = ADF.Actions.LinkToAdfSubmissionView;
+                break;
             default:
                 viewClass = ADF.Actions.GridDefaultView;
                 break;

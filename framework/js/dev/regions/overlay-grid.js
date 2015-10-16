@@ -20,9 +20,8 @@ ADF.OverlayGridRegion = ADF.GridRegion.extend({
         var sourceRegion = adf.page.getRegion(triggerCellView.options.regionName);
         var dataArray = [];
         var triggerBox = triggerCellView._parent.el.getBoundingClientRect();
-        var triggerData = triggerCellView.model._createDataAttrObj();
-        if( triggerData.dataFields ){
-            var dataFields = triggerData.dataFields.toLowerCase().split(',');
+        if( triggerCellView.model.dataAttributes.dataFields ){
+            var dataFields = triggerCellView.model.dataAttributes.dataFields.toLowerCase().split(',');
         }else{
             ADF.utils.message.call(this,'error','This overlay field has no data fields setup and at least one is required for the overlay lookup to know what data to retrieve.');
             return;
@@ -32,7 +31,7 @@ ADF.OverlayGridRegion = ADF.GridRegion.extend({
         // TODO: highlight current record
         adf.page.showBackdrop();
         this.$el.addClass('open').css({top:( triggerBox.top + triggerBox.height ) });
-        this.options.adfAjaxUrl = triggerData.ajaxUrl;
+        this.options.adfAjaxUrl = triggerCellView.model.dataAttributes.ajaxUrl;
 
         overlayRegion.options.dataFields = new ADF.FieldsCollection( sourceRegion.fieldsCollection.filter( function( field ){
             return _.indexOf( dataFields, field.get('name') ) >= 0;

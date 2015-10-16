@@ -44,6 +44,7 @@ ADF.Grids.RowView = ADF.Core.RecordView.extend({
         ADF.utils.message('log','GridRowView Initialized', options);
         this.regionName = options.regionName;
         this.region = adf.page.getRegion(this.regionName);
+        this.gridView = options.gridView;
 
         // inherit events from the prototype but allow for custom events as well
         this.events = _.extend({},ADF.Core.RecordView.prototype.events,this.events);
@@ -52,6 +53,7 @@ ADF.Grids.RowView = ADF.Core.RecordView.extend({
     onRender: function(){
         var $cells = this.$el.children('td');
         this.setElement(this.$el.find('tr').unwrap().append($cells));
-        console.warn('increment rendered row counter');
+        this.gridView.updateRecordCounter();
+        // ADF.utils.message('info','increment rendered row counter');
     }
 });
