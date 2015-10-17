@@ -18,13 +18,15 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
     childViewOptions : function () {
         return { 
             regionName: this.regionName,
-            region: this.region
+            region: this.region,
+            gridView: this.gridView
         };
     },
     initialize: function( options ) {
         ADF.utils.message('log','Grids.BodyView Initialized', options );
         this.regionName = options.regionName;
         this.region = adf.page.getRegion(this.regionName);
+        this.gridView = options.gridView;
         this.filters = new Backbone.Collection();
         this.filterQueue = new Backbone.Collection();
 

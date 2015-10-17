@@ -9,6 +9,32 @@ module.exports = function(grunt) {
     var client = grunt.option('client');
     var buildTargetPath;
     var localServerPath;
+    var mappedPath = function( pathBase, subdir ){
+        var path;
+        for( var i=0; i < 10; i++ ){
+            if( i === 0 ){
+                path = pathBase+'/';
+            }else{
+                path = pathBase+'-'+i+'/';
+            }
+            path += subdir;
+            if( grunt.file.isDir( path ) ){
+                break;
+            }else{
+                path = false;
+            }
+
+        }
+        return path;
+    };
+    if( !mappedPath('/Volumes/zonegrps','grp0143') ){
+        grunt.fail.fatal('zone 143 mapping not setup');
+    }
+    if( !mappedPath('/Volumes/static_content','acuraadmin.biworldwide.com') ){
+        grunt.fail.fatal('static content mapping not setup');
+    }
+//    console.log(mappedPath('/Volumes/static_content'));
+//    console.log(mappedPath('/Volumes/zonegrps','grp0143'));
     var clients = {
         'dev' : {
             buildType       : 'admin',
@@ -23,7 +49,7 @@ module.exports = function(grunt) {
         },
         'acuraadmin-static' : {
             buildType       : 'admin',
-            buildTargetPath : '/Volumes/static_content/acuraadmin.biworldwide.com/acuraadmin/v2/',
+            buildTargetPath : mappedPath('/Volumes/static_content','acuraadmin.biworldwide.com')+'/acuraadmin/v2/',
             localServerPath : '../../../acuraadmin-v2/'
         },
         'gmadmin' : {
@@ -78,9 +104,9 @@ module.exports = function(grunt) {
         },
         'apc-static' : {
             buildType          : 'client',
-            buildTargetPath    : '/Volumes/static_content/www.acuraperformancecenter.com/ahmperfcenter/v2/',
-            jsBuildTargetPath  : '/Volumes/static_content/www.acuraperformancecenter.com/ahmperfcenter/js/adf/',
-            cssBuildTargetPath : '/Volumes/static_content/www.acuraperformancecenter.com/ahmperfcenter/styles/',
+            buildTargetPath    : mappedPath('/Volumes/static_content','/www.acuraperformancecenter.com')+'/ahmperfcenter/v2/',
+            jsBuildTargetPath  : mappedPath('/Volumes/static_content','/www.acuraperformancecenter.com')+'/ahmperfcenter/js/adf/',
+            cssBuildTargetPath : mappedPath('/Volumes/static_content','/www.acuraperformancecenter.com')+'/ahmperfcenter/styles/',
             localServerPath    : '../../../dev/'
         },
         'tpc-static' : {
@@ -128,7 +154,7 @@ module.exports = function(grunt) {
         },
         'candiadmin-static' : {
             buildType       : 'admin',
-            buildTargetPath : '/Volumes/static_content/candiadmin.biworldwide.com/candiadmin/v2/',
+            buildTargetPath : mappedPath('/Volumes/static_content','candiadmin.biworldwide.com')+'/candiadmin/v2/',
             localServerPath : '../../../candiadmin-v2/'
         }
     };
@@ -140,7 +166,7 @@ module.exports = function(grunt) {
     var clientObj = clients[client];
     buildTargetPath = clients[client].buildTargetPath;
     localServerPath = clients[client].localServerPath;
-    var cdnTargetPath = ( clientObj.cdnTargetPath ? clientObj.cdnTargetPath : '/Volumes/zonegrps-1/grp0143/apache2/prod0143m1-docroot/cdn/adf/' );
+    var cdnTargetPath = ( clientObj.cdnTargetPath ? clientObj.cdnTargetPath : mappedPath('/Volumes/zonegrps','grp0143')+'/apache2/prod0143m1-docroot/cdn/adf/' );
 
     if( !buildTargetPath || !localServerPath ){
         grunt.fail.fatal('no buildTargetPath or localServerPath set');
@@ -209,7 +235,10 @@ module.exports = function(grunt) {
                 }
             }
         },
-        concat: {
+        uglify: {
+            options: {
+                sourceMap: true
+            },
             dev: {
                 src: [
                     // core
@@ -331,11 +360,87 @@ module.exports = function(grunt) {
         },
         uglify: {
             options: {
-                sourceMap: true
+                sourceMap: true,
+                beautify: true,
+                mangle: false
             },
             templates: {
                 files: [
                     {dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'hbsTemplates.min.js', src: ['grunt-work/hbsTemplates.js']}
+                ]
+            },
+            dev: {
+                files: [
+                    {
+                        dest: (clientObj.jsBuildTargetPath ? clientObj.jsBuildTargetPath : clientObj.buildTargetPath+'js/')+'adf.min.js',
+                        src: [
+                                // core
+                                'js/dev/core/config.js',
+                                'js/dev/core/utils.js',
+                                'js/dev/core/app.js',
+                                'js/dev/core/page.js',
+                                // regions
+                                'js/dev/regions/region.js',
+                                'js/dev/regions/form.js',
+                                'js/dev/regions/grid.js',
+                                'js/dev/regions/modules.js',
+                                'js/dev/regions/overlay-grid.js',
+                                'js/dev/regions/widget-editor.js',
+                                'js/dev/regions/messages-window.js',
+                                // models
+                                'js/dev/models/field.js',
+                                'js/dev/models/record.js',
+                                'js/dev/models/module.js',
+                                'js/dev/models/dropdown-menu.js',
+                                'js/dev/models/action.js',
+                                'js/dev/models/message.js',
+                                // collections
+                                'js/dev/collections/*.js',
+                                // views
+
+                                    // core
+                                    'js/dev/views/core/dropdown.js',
+                                    'js/dev/views/core/*.js',
+
+                                    // actions
+                                    'js/dev/views/actions/*.js',
+
+                                    // inputs
+                                    'js/dev/views/inputs/*.js',
+
+                                    // forms
+                                    'js/dev/views/forms/action.js',
+                                    'js/dev/views/forms/actions.js',
+                                    'js/dev/views/forms/fields.js',
+                                    'js/dev/views/forms/form.js',
+
+                                    // grids
+                                    'js/dev/views/grids/action.js',
+                                    'js/dev/views/grids/actions.js',
+                                    'js/dev/views/grids/column-select-item.js',
+                                    'js/dev/views/grids/column-select.js',
+                                    'js/dev/views/grids/filter-item.js',
+                                    'js/dev/views/grids/filter.js',
+                                    'js/dev/views/grids/header.js',
+                                    'js/dev/views/grids/headers.js',
+                                    'js/dev/views/grids/row.js',
+                                    'js/dev/views/grids/body.js',
+                                    'js/dev/views/grids/grid.js',
+
+                                    // messages
+                                    'js/dev/views/messages/message.js',
+                                    'js/dev/views/messages/window.js',
+
+                                    // modules
+                                    'js/dev/views/modules/action.js',
+                                    'js/dev/views/modules/actions.js',
+                                    'js/dev/views/modules/module.js',
+                                    'js/dev/views/modules/module-list.js',
+                                    'js/dev/views/modules/modules.js',
+
+                                'js/dev/core/common.js'
+                        ]
+                    }
                 ]
             },
             dist: {
@@ -487,11 +592,12 @@ module.exports = function(grunt) {
         }
     });
     grunt.registerTask('svg', ['svgstore','copy:svg','notify:watchSvg']);
-    grunt.registerTask('scripts-dev', ['concat:dev','notify:watchJsDev']);
-    grunt.registerTask('scripts-lib', ['concat:lib']);
-    grunt.registerTask('scripts-plugins', ['concat:handlebarsHelpers','concat:plugins','notify:watchJsPlugins']);
-    grunt.registerTask('scripts-tests', ['concat:tests']);
-    grunt.registerTask('default', ['svgstore','copy','concat','css','handlebars','uglify:templates','setPHPConstant','watch']);
+    grunt.registerTask('scripts-dev', ['uglify:dev','notify:watchJsDev']);
+    grunt.registerTask('scripts-lib', ['uglify:lib']);
+    grunt.registerTask('scripts-plugins', ['uglify:handlebarsHelpers','uglify:plugins','notify:watchJsPlugins']);
+    grunt.registerTask('scripts-tests', ['uglify:tests']);
+    //grunt.registerTask('default', ['svgstore','copy','uglify','css','handlebars','setPHPConstant','watch']);
+    grunt.registerTask('default', ['svgstore','copy','uglify','handlebars','setPHPConstant','watch']);
 
     /*
              ___      __       _ __          __  _                __             __

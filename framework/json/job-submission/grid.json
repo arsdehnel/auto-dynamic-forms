@@ -1268,8 +1268,8 @@
                         "wrapClass": null,
                         "actionClass": null,
                         "url": "#job-submission-edit",
-                        "pageDetailId": 20,
-                        "fieldPageDetailId": 24,
+                        "pageDetailId": 201,
+                        "fieldPageDetailId": 241,
                         "dataAttributes" : [
                             {
                                 "detailId": 108,

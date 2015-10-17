@@ -19,6 +19,13 @@ ADF.ActionModel = Backbone.Model.extend({
         _.each(this.get('dataAttributes'),function(element, index){
             element.name = element.name.toLowerCase().replace(/[_-]/g, '-');
         });
-    }    
+    },
+    _createDataAttrObj: function(){
+        var returnObj = {};
+        _.each(this.get('dataAttributes'),function(dataAttr){
+            returnObj[ADF.utils.string.camelize(dataAttr.name)] = dataAttr.value;
+        });
+        return returnObj;
+    }
 
 });

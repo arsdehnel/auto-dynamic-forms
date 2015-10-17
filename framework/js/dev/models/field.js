@@ -16,11 +16,17 @@ ADF.FieldModel = Backbone.Model.extend({
 
         this.set('type',ADF.utils.string.camelize(this.get('type')));
 
-        this._convertDataAttrs();
+        // this._convertDataAttrs();
         this._readonlyOverride();
+
+        this.dataAttributes = this._createDataAttrObj();
 
         if( attrs.name.toLowerCase() !== attrs.name ){
             fieldModel.set('name',attrs.name.toLowerCase());
+        }
+
+        if( this._createDataAttrObj().validationChecks ){
+            this.set('wrapClass',this.get('wrapClass')+' adf-validation-required');
         }
 
         this._setInputTypeTemplate();
@@ -49,7 +55,8 @@ ADF.FieldModel = Backbone.Model.extend({
 
     _setInputTypeTemplate: function() {
         // do this step-by-step for clarity and maintainability (not to mention debuggability)
-        if( this.get('type') === 'select' && _.where(this.get('dataAttributes'),{name:'select-fancy',value:true},this).length > 0 ){
+        // if( this.get('type') === 'select' && _.where(this.get('dataAttributes'),{name:'select-fancy',value:true},this).length > 0 ){
+        if( this.get('type') === 'select' && this.dataAttributes && this.dataAttributes.selectFancy && this.dataAttributes.selectFancy ){
             this.set('type','selectFancy');
         }
         // inputType = ADF.utils.string.camelize(inputType);
@@ -61,6 +68,7 @@ ADF.FieldModel = Backbone.Model.extend({
         }
     },
     _convertDataAttrs: function() {
+
         _.each(this.get('dataAttributes'),function(element, index){
             element.name = element.name.toLowerCase().replace(/[_-]/g, '-');
             if( element.value === 'TRUE' || element.value === 'true' ){
@@ -70,6 +78,22 @@ ADF.FieldModel = Backbone.Model.extend({
                 element.value = false;
             }
         });
+
+        // TODO: remove this when the code is done to move field-level actions into their own collection and model instances
+        // this is to convert the data attributes of field-level actions
+        if( this.get('type') === 'actions' ){
+            _.each(this.get('actions'),function(action){
+                _.each(action.dataAttributes,function(element, index){
+                    element.name = element.name.toLowerCase().replace(/[_-]/g, '-');
+                    if( element.value === 'TRUE' || element.value === 'true' ){
+                        element.value = true;
+                    }
+                    if( element.value === 'FALSE' || element.value === 'false' ){
+                        element.value = false;
+                    }
+                });  //each data attribute
+            });  //each action
+        }
     },
     _readonlyOverride: function() {
         var fieldModel = this;
@@ -104,7 +128,18 @@ ADF.FieldModel = Backbone.Model.extend({
     _createDataAttrObj: function(){
         var returnObj = {};
         _.each(this.get('dataAttributes'),function(dataAttr){
-            returnObj[ADF.utils.string.camelize(dataAttr.name)] = dataAttr.value;
+            switch( dataAttr.value ){
+                case 'TRUE':
+                case 'true':
+                    returnObj[ADF.utils.string.camelize(dataAttr.name)] = true;        
+                    break;
+                case 'FALSE':
+                case 'false':
+                    returnObj[ADF.utils.string.camelize(dataAttr.name)] = true;
+                    break;
+                default:
+                    returnObj[ADF.utils.string.camelize(dataAttr.name)] = dataAttr.value;
+            }
         });
         return returnObj;
     }
