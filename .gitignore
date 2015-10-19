@@ -3,7 +3,7 @@ node_modules
 css
 grunt-work
 client/js/*
-dev/js/*
+dev
 framework/constants.php
 .DS_Store
 npm-debug.log
