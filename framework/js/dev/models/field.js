@@ -29,7 +29,9 @@ ADF.FieldModel = Backbone.Model.extend({
             this.set('wrapClass',this.get('wrapClass')+' adf-validation-required');
         }
 
-        this._setInputTypeTemplate();
+        this._setInputType();
+
+        this._setInputTemplate();
 
     },
 
@@ -53,14 +55,20 @@ ADF.FieldModel = Backbone.Model.extend({
         }
     },
 
-    _setInputTypeTemplate: function() {
-        // do this step-by-step for clarity and maintainability (not to mention debuggability)
-        // if( this.get('type') === 'select' && _.where(this.get('dataAttributes'),{name:'select-fancy',value:true},this).length > 0 ){
-        if( this.get('type') === 'select' && this.dataAttributes && this.dataAttributes.selectFancy && this.dataAttributes.selectFancy ){
+    _setInputType: function() {
+
+        // SELECT FANCY check
+        if( this.get('type') === 'select' && this.dataAttributes && this.dataAttributes.selectFancy ){
             this.set('type','selectFancy');
         }
-        // inputType = ADF.utils.string.camelize(inputType);
-        // inputType = ADF.utils.string.capitalize(inputType);
+
+        if( ( this.get('type') === 'text' || this.get('type') === 'number' ) && this.dataAttributes && this.dataAttributes.ajaxSuggest ){
+            this.set('type','ajaxSuggest');
+        }
+
+    },
+
+    _setInputTemplate: function() {
         if( ADF.templates.inputTypes[this.get('type')] ){
             this.set('inputTemplate',ADF.templates.inputTypes[this.get('type')]);
         }else{

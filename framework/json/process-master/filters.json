@@ -9,7 +9,7 @@
                 "fldMstrId": 1,
                 "detailId": 1,
                 "name": "APPLICATION",
-                "type": "select",
+                "type": "TEXT",
                 "label": "Application",
                 "tooltipText": null,
                 "fieldClass": null,
@@ -81,7 +81,7 @@
                     },
                     {
                         "detailId": 2,
-                        "name": "select-fancy",
+                        "name": "ajax-suggest",
                         "value": "true"
                     },
                     {

@@ -247,8 +247,8 @@ module.exports = function(grunt) {
         },
         uglify: {
             options: {
-                // beautify: true,
-                // mangle: false,
+                beautify: true,
+                mangle: false,
                 sourceMap: true
             },
             templates: {

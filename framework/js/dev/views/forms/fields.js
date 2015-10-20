@@ -8,6 +8,9 @@ ADF.Forms.FieldsView = Marionette.CollectionView.extend({
     getChildView: function(model) {
         var viewClass;
         switch( model.get('type') ){
+            case 'ajaxSuggest':
+                viewClass = ADF.Inputs.AjaxSuggestView;
+                break;
             case 'selectFancy':
                 viewClass = ADF.Inputs.SelectFancyView;
                 break;

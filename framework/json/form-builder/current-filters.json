@@ -84,18 +84,8 @@
         "dataAttributes": [
           {
             "detailId": 26,
-            "name": "adf-dependent-field-lkup-on-change",
+            "name": "submit-on-change",
             "value": "true"
-          },
-          {
-            "detailId": 26,
-            "name": "adf-ajax-child-fields",
-            "value": "page_code"
-          },
-          {
-            "detailId": 26,
-            "name": "adf-dependent-field-lkup-url",
-            "value": "service/common/get-child-fields.action?pageCode=FORM_BUILDER_CURRENT_FILTERS"
           }
         ]
       }

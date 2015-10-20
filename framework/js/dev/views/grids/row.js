@@ -13,6 +13,9 @@ ADF.Grids.RowView = ADF.Core.RecordView.extend({
             case 'actions':
                 viewClass = ADF.Inputs.GridActionsView;
                 break;
+            case 'ajaxSuggest':
+                viewClass = ADF.Inputs.AjaxSuggestView;
+                break;
             case 'selectFancy':
                 viewClass = ADF.Inputs.SelectFancyView;
                 break;

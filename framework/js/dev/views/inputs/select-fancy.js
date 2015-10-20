@@ -8,9 +8,9 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
     childEvents: {
         'input .select-fancy'                            : 'input',
         'keydown .select-fancy'                          : 'keydown',
-        'click .select-fancy-option'                     : 'click',
-        'click .select-fancy-clear'                      : 'clear',
-        'click .select-fancy-toggle'                     : 'toggle',
+        'click .option'                                  : 'click',
+        'click .clear'                                   : 'clear',
+        'click .toggle'                                  : 'toggle',
         'click .select-fancy-add-option a'               : 'addOptionOpen',
         'click .btn-cancel'                              : 'addOptionClose',
         'click .btn-submit'                              : 'addOptionSubmit'

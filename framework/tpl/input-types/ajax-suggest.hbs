@@ -1,8 +1,8 @@
-<div class="select-fancy-wrapper">
+<div class="ajax-suggest-wrapper">
 
     <input
         type="text"
-        class="{{fieldClass}} select-fancy"
+        class="{{fieldClass}} ajax-suggest"
         id="{{name}}--display"
         name="{{name}}--display"
         value="{{selectFancyDisplayText currentValue data}}"
@@ -12,12 +12,7 @@
         {{/each}}
         >
     <input type="hidden" class="adf-form-input" name="{{name}}" id="{{name}}" value="{{currentValue}}">
-    <button class="select-fancy-control clear" tabindex="-1">
-        <svg viewBox="0 0 32 32" class="icon">
-            <use xlink:href="#icon-close"></use>
-        </svg>
-    </button>
-    <button class="select-fancy-control toggle" tabindex="-1">
+    <button class="ajax-suggest-control toggle" tabindex="-1">
         <svg viewBox="0 0 32 32" class="icon icon-chevron-down">
             <use xlink:href="#icon-chevron-down"></use>
         </svg>
@@ -25,5 +20,5 @@
             <use xlink:href="#icon-chevron-up"></use>
         </svg>
     </button>
-    <ul class="select-fancy-options"></ul>
-</div><!-- /.select-fancy-wrapper -->
+    <ul class="ajax-suggest-options"></ul>
+</div><!-- /.ajax-suggest-wrapper -->

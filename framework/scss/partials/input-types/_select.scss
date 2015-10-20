@@ -1,3 +1,4 @@
+.ajax-suggest-wrapper,
 .select-fancy-wrapper {
     position: relative;
     width: 100%;
@@ -5,10 +6,11 @@
         width: calc( 100% - 17px );
         text-overflow: ellipsis;
     }
-    &:hover .select-fancy-clear {
+    &:hover .clear {
         display: block;
     }
 }
+.ajax-suggest-control,
 .select-fancy-control {
     position: absolute;
     right: 0;
@@ -26,12 +28,15 @@
         background:white;
     }
 }
-.select-fancy-clear {
+.ajax-suggest-control {
+    height: 100%;
+}
+.clear {
     top: 0;
     padding: 2px 4px;
     border-bottom: 0;
 }
-.select-fancy-toggle {
+.toggle {
     bottom: 0;
     .icon {
         width: 100%;
@@ -40,7 +45,7 @@
         display: none;
     }
 }
-.open .select-fancy-toggle {
+.open .toggle {
     .icon-chevron-up {
         display: inline;
     }
@@ -48,6 +53,7 @@
         display: none;
     }
 }
+.ajax-suggest-options,
 .select-fancy-options {
     position: absolute;
     top: 100%;
