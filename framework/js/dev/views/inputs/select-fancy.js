@@ -19,9 +19,10 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
         return _.extend({},this.parentEvents,this.childEvents);
     },
     ui : {
-        options   : '.select-fancy-options',    // the options list
-        dispInput : '.select-fancy',            // the text input that stores the value to show the user
-        valInput  : '.adf-form-input'           // the hidden input that stores the actual value to be used
+        overlay   : '.select-fancy-options',
+        options   : '.select-fancy-options tbody',    // the options list
+        dispInput : '.select-fancy',                  // the text input that stores the value to show the user
+        valInput  : '.adf-form-input'                 // the hidden input that stores the actual value to be used
     },
     initialize: function( options ) {
         ADF.utils.message('log','Inputs.SelectFancyView Initialized', options);
@@ -115,6 +116,18 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
         var sFView = this;
         this.opened = true;
         this.$el.addClass('open');
+
+        if( sFView.model.dataAttributes.fieldNames && this.ui.overlay.find('thead').text() === '' ){
+            var headerRow = '<tr>';
+            _.each(sFView.model.dataAttributes.fieldNames.split('|'),function(fieldName){
+                if( fieldName.length > 0 ){
+                    headerRow += '<th>'+fieldName+'</th>';                    
+                }
+            });
+            headerRow += '</tr>';
+            sFView.ui.overlay.find('thead').append(headerRow);
+        }
+
         var results = {};
         if( filterText ){
             results = new Backbone.Collection(this.model.dataCollection.filter(function(item){
@@ -128,10 +141,10 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
             results = this.model.dataCollection;
         }
         if( results.length === 0 ){
-            sFView.ui.options.append('<li>No results found</li>');
+            sFView.ui.options.append('<tr><td>No results found</td></tr>');
         }else{
             results.each(function(result){
-                sFView.ui.options.append(ADF.templates.inputHelpers.selectFancyRecord(result.toJSON()));
+                sFView.ui.options.append(ADF.templates.inputHelpers.selectFancyRecord($.extend({},result.toJSON(),{fieldDelimiter:sFView.model.dataAttributes.fieldNames})));
             });
         }
         if( this.addOptionUrl ){
@@ -141,8 +154,12 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
     },
     click: function(e) {
         e.preventDefault();
-        var $selected = $(e.target).closest('li');
-        this.ui.dispInput.val($.trim($selected.text()));
+        var $selected = $(e.target).closest('tr');
+        if( $selected.text() === $selected.attr('data-value') ){
+            this.ui.dispInput.val($.trim($selected.text()));
+        }else{
+            this.ui.dispInput.val($.trim($selected.attr('data-value')+': '+$selected.attr('data-label')));
+        }
         this.ui.valInput.val($selected.data('value'));
         this.model.set('currentValue',$selected.data('value'));
         this.ui.valInput.trigger('change');
@@ -158,17 +175,17 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
     },
     addOptionOpen: function(e) {
         e.preventDefault();
-        var $addOption = $(e.target).closest('li');
+        var $addOption = $(e.target).closest('tr');
         $addOption.addClass('open');
     },
     addOptionClose: function(e) {
         e.preventDefault();
-        var $addOption = $(e.target).closest('li');
+        var $addOption = $(e.target).closest('tr');
         $addOption.removeClass('open');
     },
     addOptionSubmit: function(e) {
         e.preventDefault();
-        var $addOption = $(e.target).closest('li');
+        var $addOption = $(e.target).closest('tr');
         var sFView = this;
         var dataObj = $addOption.find(':input').serializeObject();
         var dataArray = ADF.utils.buildADFserializedArray( null, dataObj, null );
