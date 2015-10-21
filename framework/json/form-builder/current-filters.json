@@ -86,7 +86,13 @@
             "detailId": 26,
             "name": "submit-on-change",
             "value": "true"
+          },
+          {
+            "detailId": 26,
+            "name": "select-fancy",
+            "value": "true"
           }
+
         ]
       }
     ],

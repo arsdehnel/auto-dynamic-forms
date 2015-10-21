@@ -2,37 +2,111 @@
     sleep(1);
 ?>
 {
-    "success" : true,
-    "message" : "Data lookup successful.",
-    "errors" : [],
-    "data" : {
-        "fields" : [
+  "authenticated": true,
+  "success": true,
+  "message": null,
+  "methodName": null,
+  "data": {
+    "fields": [
+      {
+        "fldMstrId": 1,
+        "detailId": 26,
+        "name": "APPLICATION",
+        "type": "select",
+        "label": "Application",
+        "tooltipText": null,
+        "fieldClass": null,
+        "wrapClass": null,
+        "prefix": null,
+        "suffix": null,
+        "currentValue": null,
+        "minLength": 1,
+        "maxLength": 100,
+        "requiredInd": "N",
+        "fieldPriority": 1,
+        "value": null,
+        "data": [
           {
-            "fldMstrId" : "21",
-            "name" : "field_type",
-            "label" : "Field Type",
-            "type" : "select",
-            "dataAttributes" : [
-                {
-                    "name" : "adf-submit-on-change",
-                    "value" : "true"
-                }
-            ],
-            "data" : [
-              {
-                "value" : "CLAIM_FORM",
-                "label" : "Claim Form"
-              },
-              {
-                "value" : "CONF_PAGE",
-                "label" : "Confirmation Page"
-              },
-              {
-                "value" : "PDF_CERT",
-                "label" : "PDF Certificate"
-              }
-            ]
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "ADMIN_FORMS",
+            "label": "Admin Forms|Something|Else|",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "CMN_UTIL",
+            "label": "Common Utilities|Is|Wonderful|",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "CORE",
+            "label": "Core",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "VIN_APPL",
+            "label": "FlexCash / VIN Application",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "OBJ",
+            "label": "Objective Programs",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "PGM_ADM",
+            "label": "Program Administrator (aka ZIP)",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "REPORT_BUILDER",
+            "label": "Report Builder",
+            "selectedInd": "N"
+          },
+          {
+            "detailId": 26,
+            "groupLabel": null,
+            "value": "SPIN",
+            "label": "Spins",
+            "selectedInd": "N"
           }
+        ],
+        "actions": [],
+        "dataAttributes": [
+          {
+            "detailId": 26,
+            "name": "submit-on-change",
+            "value": "true"
+          },
+          {
+            "detailId": 26,
+            "name": "select-fancy",
+            "value": "true"
+          },
+          {
+            "detailId": 26,
+            "name": "field-names",
+            "value": "lkup_type|data_field|data_type|"
+          }
+
         ]
-    }
+      }
+    ],
+    "records": [],
+    "actions": []
+  },
+  "errors": null,
+  "hasMessage": true
 }
