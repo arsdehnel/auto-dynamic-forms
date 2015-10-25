@@ -5,7 +5,7 @@ $,
 adf
 */
 ADF.Actions.GridDefaultView = Backbone.Marionette.ItemView.extend({
-    template: ADF.templates.dropdowns.link,
+    template: ADF.templates.action,
     tagName: 'li',
     events: {
         'click' : 'handleClick'
@@ -13,6 +13,9 @@ ADF.Actions.GridDefaultView = Backbone.Marionette.ItemView.extend({
     initialize: function( options ){
         ADF.utils.message('log','GridActionView Initialized', options);
         this.region = adf.page.getRegion(options.regionName);
+    },
+    onRender: function() {
+        this.setElement(this.$el.children().unwrap());
     },
     handleClick: function(e){
 

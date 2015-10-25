@@ -4,10 +4,11 @@ Backbone
 */
 ADF.Actions.RecordAddView = Backbone.Marionette.ItemView.extend({
     template: ADF.templates.grids.recordAddWidget,
-    tagName: 'li',
+    tagName: 'span',
     events: {
-        'click  a'     : 'addRecords',
-        'input'        : 'changeRecCount'
+        'click .btn'      : 'addRecords',
+        'click svg'       : 'toggleInput',
+        'input'           : 'changeRecCount'
     },
     initialize: function( options ){
         ADF.utils.message('log','Actions.RecordAddView Initialized', options);
@@ -18,7 +19,14 @@ ADF.Actions.RecordAddView = Backbone.Marionette.ItemView.extend({
     ui : {
         recCntDisp   : '.record-add-control-display',    
     },
+    toggleInput: function( e ) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.$el.toggleClass('open');
+    },
     addRecords: function( e ) {
+
+        this.$el.removeClass('open');
 
         var defaultsObj = {};
 
@@ -35,7 +43,9 @@ ADF.Actions.RecordAddView = Backbone.Marionette.ItemView.extend({
             this.gridView.bodyView.collection.add(defaultsObj,{ at: 0 });
         }
 
-        this.gridView.gridActions.close();
+        // ADF.utils.spin( this.region.$el, {stop: true} );
+
+        // this.gridView.gridActions.close();
 
     },
     _setRecCount: function() {
