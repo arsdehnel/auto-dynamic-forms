@@ -49,15 +49,6 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
                 this.model.url = $targetObj.attr('href');
                 this.model.save(null,{fieldsCollection: recordView.collection});
                 break;
-            // case 'load-adf-region':
-            //     e.preventDefault();
-            //     $.extend(regionObj,targetData,{adfAjaxOnshow:true,adfAjaxUrl:$targetObj.attr('href')});
-            //     if( !_.isUndefined( adf.page.getRegion(regionObj.regionName) ) ) {
-            //         adf.page.removeRegion(regionObj.regionName);
-            //     }
-            //     adf.page.addRegions( adf.page._buildRegion(regionObj,targetData.adfRegionId) );
-            //     adf.page.getRegion(regionObj.regionName).show();
-            //     break;
             case 'link':
                 // $targetObj.attr('href',ADF.utils.string.substitute( $targetObj.attr('href'), this.model.toJSON() ));
                 return true;

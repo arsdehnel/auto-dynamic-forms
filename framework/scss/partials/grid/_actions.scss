@@ -6,9 +6,10 @@
     left: 0;
     .dropdown-wrapper{
         position: relative;
-        margin-right: 1em;
+        margin-right: calc( 1em + 1px );
         float: right;
         background: tint( $primary_color, 40% );
+        padding-bottom: 2px;
     }
     .primary-options,
     .footer-options {
@@ -21,27 +22,46 @@
         }
     }
 }
-
+.adf-grid-actions {
+    float: right;
+    background: #ddd;
+    margin-right: 10px;
+    padding: 4px 4px 3px;
+    &> * {
+        position: relative;
+        display: inline-block;
+    }
+    a {
+        color: white;
+    }
+    .btn {
+        line-height: 1.75em;
+        min-height: 1.75em;
+        border-color: white;
+        background: rgba( $primary_color, .5 );
+    }
+}
+.record-add-control-input {
+    display: none;
+    position: absolute;
+    top: 100%;
+    top: calc( 100% - 1px );
+    left: .25em;
+    right: calc( .25em - 1px );
+    background: rgba( $primary_color, .5 );
+    border: white solid;
+    border-width: 0 1px 1px;    
+    .open & {
+        display: block;
+    }
+}
+.btn.btn-addRecords {
+    padding: 0 1em;
+    &> *{
+        position: relative;
+    }
+}
 .record-add-control {
-    .record-add-control-input {
-        display: none;
-        height: 2em;
-        padding-top: 6px;
-        text-align: center;
-    }
-    .icon {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        height: 1em;
-        width: 16px;
-    }
-    &:hover {
-        .icon {
-            bottom: 2em;
-        }
-        .record-add-control-input {
-            display: block;
-        }
-    }
+    cursor: pointer;
+    display: inline-block;
 }

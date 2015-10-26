@@ -1,7 +1,8 @@
 /*global
-ADF
+ADF,
+Marionette
 */
-ADF.Grids.ActionsView = ADF.Core.DropdownView.extend({
+ADF.Grids.ActionsView = Marionette.CollectionView.extend({
     getChildView: function(model){
         var viewClass;
         switch( model.get('type') ){

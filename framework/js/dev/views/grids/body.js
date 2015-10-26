@@ -87,7 +87,6 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
         }
 
         this.region.gridView.render();
-
     },
     applyFilters: function() {
 

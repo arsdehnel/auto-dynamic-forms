@@ -12,6 +12,7 @@ ADF.ActionModel = Backbone.Model.extend({
         ADF.utils.message('log','ActionModel initialized', opts);
         this.set('id',this.id); // put this into the attributes so we can use it for rendering in the template to help with uniqueness
         this.set('type',ADF.utils.string.camelize(this.get('type')));
+        this._setIconType();
         this._convertDataAttrs();
 
     },
@@ -26,6 +27,16 @@ ADF.ActionModel = Backbone.Model.extend({
             returnObj[ADF.utils.string.camelize(dataAttr.name)] = dataAttr.value;
         });
         return returnObj;
+    },
+    _setIconType: function() {
+        switch( this.get('type') ){
+            case 'saveUnsaved':
+                this.set('iconType','save');
+                break;
+            default:
+                this.set('iconType',this.get('type'));
+                break;
+        }
     }
 
 });
