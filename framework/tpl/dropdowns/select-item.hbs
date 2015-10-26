@@ -1,4 +1,12 @@
 <li>
     <input type="checkbox" id="{{regionName}}{{idPrefix}}--{{name}}" value="{{regionName}}--{{name}}" {{optionChecked checkedInd fieldValue currentValue}}>
-    <label for="{{regionName}}{{idPrefix}}--{{name}}">{{label}}</label>
+    <label for="{{regionName}}{{idPrefix}}--{{name}}">
+        <svg viewBox="0 0 32 32" class="icon checked">
+            <use xlink:href="#icon-checkbox-checked"></use>
+        </svg>
+        <svg viewBox="0 0 32 32" class="icon unchecked">
+            <use xlink:href="#icon-checkbox-unchecked"></use>
+        </svg>    
+        {{label}}
+    </label>
 </li>

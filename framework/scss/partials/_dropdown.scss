@@ -22,8 +22,10 @@
             z-index: $zindex-dropdown;
             li {
                 position: relative;
-                margin: 0;
+                margin: 0 0 0 .25em;
                 padding: 0;
+                text-overflow: ellipsis;
+                overflow: hidden;
             }            
             input[type=checkbox] {
                 position: absolute;
@@ -32,8 +34,8 @@
                 opacity: 0;
             }          
             a, label{
-                cursor: pointer;
                 display: block;
+                cursor: pointer;
                 padding: 0 .25em 0 .5em;
                 color: #555;
                 white-space: nowrap;
@@ -46,17 +48,19 @@
                     color: white;
                 }
             }
-            :checked + label:before{
-                content: '';
-                position: absolute;
-                height: 0;
-                width: 0;
-                top: 8px;
-                left: 1px;
-                border-width: 4px;
-                border-style: solid;
-                border-color: transparent transparent transparent currentColor;
-            }               
+            .icon {
+                height: 1em;
+                width: 1em;
+                fill: currentColor;
+            }
+            .unchecked,
+            :checked ~ label .checked {
+                display: inline;
+            }
+            .checked,
+            :checked ~ label .unchecked {
+                display: none;
+            }
 		}
 		&:hover{
 			color: tint( $primary_color, 80% );

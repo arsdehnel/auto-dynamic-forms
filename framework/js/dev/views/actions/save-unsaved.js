@@ -11,7 +11,7 @@ ADF.Actions.SaveUnsavedView = ADF.Core.ActionView.extend({
         if( options.gridView ){
             this.gridView = options.gridView;
             this.recordTarget = this.gridView.bodyView;
-            this.template = ADF.templates.dropdowns.link;
+            this.template = ADF.templates.action;
         }else if( options.modulesView ){
             this.modulesView = options.modulesView;
             this.recordTarget = this.modulesView.moduleListView;
