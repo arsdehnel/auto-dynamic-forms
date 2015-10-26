@@ -2,13 +2,20 @@
 ADF,
 _
 */
-ADF.Actions.SaveUnsavedView = ADF.Actions.GridDefaultView.extend({
+ADF.Actions.SaveUnsavedView = ADF.Core.ActionView.extend({
     events: {
-        'click  a'     : 'saveUnsaved'
+        'click'     : 'saveUnsaved'
     },
     initialize: function( options ){
         ADF.utils.message('log','Actions.SaveUnsavedView Initialized', options);
-        this.gridView = options.gridView;
+        if( options.gridView ){
+            this.gridView = options.gridView;
+            this.recordTarget = this.gridView.bodyView;
+            this.template = ADF.templates.dropdowns.link;
+        }else if( options.modulesView ){
+            this.modulesView = options.modulesView;
+            this.recordTarget = this.modulesView.moduleListView;
+        }
     },
     saveUnsaved: function( e ) {
 

@@ -188,12 +188,12 @@ ADF.Grids.FilterView = ADF.Core.DropdownView.extend({
         // empty the queue so we don't apply the selected filters that haven't explicitly been applied
         this.gridFilterQueue.reset();
 
-
     },
     applyFilters: function( e ) {
         e.preventDefault();
         this.dropdownToggle( e );
         this.gridView.bodyView.applyFilters();
+        this.headerView.$el.addClass('is-filtered');
         // this.$el.find('.dropdown-menu').addClass('hide');
     },
     clearFilters: function( e ) {

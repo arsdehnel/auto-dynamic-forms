@@ -8,7 +8,10 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     var clientName = grunt.option('client');
+    var staticRoot = grunt.option('staticRoot');
     var client = require('../clients/'+clientName);
+
+    console.log(client.buildTargetPath);
 
     // var mappedPath = function( pathBase, subdir ){
     //     var path;
@@ -253,7 +256,7 @@ module.exports = function(grunt) {
             },
             templates: {
                 files: [
-                    {dest: (client.jsBuildTargetPath ? client.jsBuildTargetPath : client.buildTargetPath+'js/')+'hbsTemplates.min.js', src: ['grunt-work/hbsTemplates.js']}
+                    {dest: (client.jsBuildTargetPath ? staticRoot+client.jsBuildTargetPath : staticRoot+client.buildTargetPath+'js/')+'hbsTemplates.min.js', src: ['grunt-work/hbsTemplates.js']}
                 ]
             },            
             dev: {
@@ -324,7 +327,7 @@ module.exports = function(grunt) {
 
                     'js/dev/core/common.js'
                 ],
-                dest: (client.jsBuildTargetPath ? client.jsBuildTargetPath : client.buildTargetPath+'js/')+'adf.min.js',
+                dest: (client.jsBuildTargetPath ? staticRoot+client.jsBuildTargetPath : staticRoot+client.buildTargetPath+'js/')+'adf.min.js',
             },
             libAdmin:  {
                 src: [
@@ -338,7 +341,7 @@ module.exports = function(grunt) {
                     'js/lib/codemirror-5.5/mode/css/css.js',
                     'js/lib/codemirror-5.5/mode/htmlmixed/htmlmixed.js'
                 ],
-                dest: (client.jsBuildTargetPath ? client.jsBuildTargetPath : client.buildTargetPath+'js/')+'lib-admin.min.js',
+                dest: (client.jsBuildTargetPath ? staticRoot+client.jsBuildTargetPath : staticRoot+client.buildTargetPath+'js/')+'lib-admin.min.js',
             },
             lib: {
                 src: [
@@ -353,7 +356,7 @@ module.exports = function(grunt) {
                     // 'js/lib/select2.js',
                     // 'js/lib/chosen.js',
                 ],
-                dest: (client.jsBuildTargetPath ? client.jsBuildTargetPath : client.buildTargetPath+'js/')+'lib.min.js',
+                dest: (client.jsBuildTargetPath ? staticRoot+client.jsBuildTargetPath : staticRoot+client.buildTargetPath+'js/')+'lib.min.js',
             },
             handlebarsHelpers: {
                 src: [
@@ -366,7 +369,7 @@ module.exports = function(grunt) {
                 src: [
                     'js/plugins/*.js'
                 ],
-                dest: (client.jsBuildTargetPath ? client.jsBuildTargetPath : client.buildTargetPath+'js/')+'plugins.min.js',
+                dest: (client.jsBuildTargetPath ? staticRoot+client.jsBuildTargetPath : staticRoot+client.buildTargetPath+'js/')+'plugins.min.js',
             }
         },
         sass: {
@@ -395,7 +398,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         src: 'grunt-work/compiled.css',
-                        dest: ( client.cssBuildTargetPath ? client.cssBuildTargetPath : client.buildTargetPath+'css/' )+'main.css'
+                        dest: ( client.cssBuildTargetPath ? staticRoot+client.cssBuildTargetPath : staticRoot+client.buildTargetPath+'css/' )+'main.css'
                     }
                 ]
             },
@@ -403,7 +406,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         src: 'grunt-work/compiled.css',
-                        dest: ( client.cssBuildTargetPath ? client.cssBuildTargetPath : client.buildTargetPath+'css/' )+'adf.css'
+                        dest: ( client.cssBuildTargetPath ? staticRoot+client.cssBuildTargetPath : staticRoot+client.buildTargetPath+'css/' )+'adf.css'
                     }
                 ]
             }
