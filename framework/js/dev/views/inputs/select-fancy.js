@@ -19,8 +19,8 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
         return _.extend({},this.parentEvents,this.childEvents);
     },
     ui : {
-        overlay   : '.select-fancy-options',
-        options   : '.select-fancy-options tbody',    // the options list
+        overlay   : '.options',
+        options   : '.options tbody',    // the options list
         dispInput : '.select-fancy',                  // the text input that stores the value to show the user
         valInput  : '.adf-form-input'                 // the hidden input that stores the actual value to be used
     },
@@ -105,7 +105,7 @@ ADF.Inputs.SelectFancyView = ADF.Core.InputView.extend({
 
         // maybe the traversing failed (end of list or beginning of list) or we didn't have a highlighted one to start with
         if( !newHighlight || newHighlight.size() === 0 ) {
-            newHighlight = ( dir === 'next' ? this.$el.find('.select-fancy-options').children().first() : this.$el.find('.select-fancy-options').children().last() );
+            newHighlight = ( dir === 'next' ? this.ui.options.children().first() : this.ui.options.children().last() );
         }
 
         // somehow we should have one determined for the new highlight now

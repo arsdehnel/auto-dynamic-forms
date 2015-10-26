@@ -1,32 +1,32 @@
 tbody{
     // HOVER
-        tr:hover td{
+        tr:hover > td{
             box-shadow: inset 0 0 40px 80px rgba( #000000, .1 ) !important;   //hate it but for this use it maybe seems okay?
         }
 
     // current UI status (not database record status)
-        .current:nth-child(odd) td{
+        .current:nth-child(odd) > td{
           background: #e5e5e5;
         }
-        .current:nth-child(even) td{
+        .current:nth-child(even) > td{
           background: #f7f7f7;
         }
-        .added:nth-child(odd) td{
+        .added:nth-child(odd) > td{
             background: $body-bg-color-added;
         }
-        .added:nth-child(even) td{
+        .added:nth-child(even) > td{
             background: $body-bg-color-added;
         }
-        .updated:nth-child(odd) td{
+        .updated:nth-child(odd) > td{
             background: $body-bg-color-updated;
         }
-        .updated:nth-child(even) td{
+        .updated:nth-child(even) > td{
             background: $body-bg-color-updated;
         }
-        .error:nth-child(odd) td{
+        .error:nth-child(odd) > td{
             background: $body-bg-color-error;
         }
-        .error:nth-child(even) td{
+        .error:nth-child(even) > td{
             background: $body-bg-color-error;
         }
 

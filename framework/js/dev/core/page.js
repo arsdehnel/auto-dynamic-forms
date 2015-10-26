@@ -56,13 +56,17 @@ ADF.PageLayoutView = Backbone.Marionette.LayoutView.extend({
         this._initWidgetEditor();
         pageView.$el.find('.adf-region').each(function(){
             var $region = $(this);
-            var regionData = $region.data();
+            if( $region.attr('id') ){
+                var regionData = $region.data();
 
-            // skip regions that maybe are malformed or missing the region type
-            if( regionData.adfRegionType ){
+                // skip regions that maybe are malformed or missing the region type
+                if( regionData.adfRegionType ){
 
-                pageView.addRegions(pageView._buildRegion( regionData, $region.attr('id') ));
+                    pageView.addRegions(pageView._buildRegion( regionData, $region.attr('id') ));
 
+                }
+            }else{
+                ADF.utils.message('error','Region has no ID attribute');
             }
         });
         // TODO: remove this bullshit
