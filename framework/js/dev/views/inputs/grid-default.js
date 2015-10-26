@@ -16,7 +16,7 @@ ADF.Inputs.GridDefaultView = ADF.Core.InputView.extend({
     },
     onRender: function(){
         if( this.model.get('fieldPriority') !== 0  && this.$el.css('display') === 'table-cell' ){
-            ADF.utils.message('log',this.model.get('fieldName'),'should be displayed as table cell');
+            ADF.utils.message('info',this.model.get('fieldName'),'should be displayed as table cell');
         }
         this._super();
     }

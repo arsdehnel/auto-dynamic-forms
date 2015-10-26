@@ -45,6 +45,14 @@ ADF.Grids.HeaderView = Backbone.Marionette.CompositeView.extend({
             this.$el.addClass('is-filtered');
         }
 
+        // console.log(this.model.get('fieldPriority'),this.$el,this.$el.css('display'));
+
+        // if( this.model.get('fieldPriority') !== 0  && this.$el.css('display') === 'table-cell' ){
+        //     ADF.utils.message('info',this.model.get('fieldName'),'should be displayed as table cell');
+        // }        
+
+        // if this header has a filter then render it but some might not
+        // because only certain types of fields really work to be filtered
         if( this.gridFilter ){
             this.gridFilter.render();
         }

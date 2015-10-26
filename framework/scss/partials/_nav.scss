@@ -1,7 +1,12 @@
 .nav-header{
-    position: relative;
-    background: rgba( 255, 255, 255, .9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-bottom: 1px solid $primary_color;
     text-align: center;
+    z-index: $zindex-nav-container;
 
     /* RESET */
     ul,

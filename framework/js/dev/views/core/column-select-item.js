@@ -18,6 +18,8 @@ ADF.Core.ColumnSelectItemView = Backbone.Marionette.ItemView.extend({
 
         // have to set this so that the HBS rendering has it
         this.model.set('regionName',this.region.name);
+
+        this.listenTo(this.model,'change:checkedInd',this.render);
     },
     onRender: function() {
         this.setElement(this.$el.find('li').unwrap());
@@ -43,7 +45,6 @@ ADF.Core.ColumnSelectItemView = Backbone.Marionette.ItemView.extend({
                 'checkedInd':'N',
                 'colSelectDispOverride': 'N'
             });
-        }        
-
+        }
     }
 });
