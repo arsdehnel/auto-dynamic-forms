@@ -34,11 +34,6 @@ ADF.Grids.ActionsView = Marionette.CollectionView.extend({
         this.gridView = options.gridView;
         this.model.set('buttonLabel','Actions');
         this.model.set('wrapClass','grid-actions');
-    },
-    onRender: function() {
-        if( this.collection.length === 0 ){
-            this.close();
-        }
     }
 
 });

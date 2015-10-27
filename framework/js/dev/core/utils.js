@@ -37,7 +37,7 @@ ADF.utils = {
 
         },
         substitute: function( inputString, inputData ){
-            var tokenArray = inputString.split('##');
+            var tokenArray = ( inputString ? inputString.split('##') : [] );
             var returnString = tokenArray[0];
             for( var i = 1; i < tokenArray.length; i++ ){
                 if( i % 2 === 1 ){
@@ -50,6 +50,9 @@ ADF.utils = {
             }
             return returnString;
         }
+    },
+    emToPx: function( context, emValue ){
+        return emValue * parseFloat( getComputedStyle( context || document.documentElement ).fontSize );
     },
     prepareDebug: function( $element ){
         var dataObj = $element.data();

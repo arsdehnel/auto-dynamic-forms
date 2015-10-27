@@ -11,33 +11,6 @@ module.exports = function(grunt) {
     var staticRoot = grunt.option('staticRoot');
     var client = require('../clients/'+clientName);
 
-    console.log(client.buildTargetPath);
-
-    // var mappedPath = function( pathBase, subdir ){
-    //     var path;
-    //     for( var i=0; i < 10; i++ ){
-    //         if( i === 0 ){
-    //             path = pathBase+'/';
-    //         }else{
-    //             path = pathBase+'-'+i+'/';
-    //         }
-    //         path += subdir;
-    //         if( grunt.file.isDir( path ) ){
-    //             break;
-    //         }else{
-    //             path = false;
-    //         }
-
-    //     }
-    //     return path;
-    // };
-    // if( !mappedPath('/Volumes/zonegrps','grp0143') ){
-    //     grunt.fail.fatal('zone 143 mapping not setup');
-    // }
-    // if( !mappedPath('/Volumes/static_content','acuraadmin.biworldwide.com') ){
-    //     grunt.fail.fatal('static content mapping not setup');
-    // }
-
     // var clients = {
     //     'acuraadmin' : {
     //         buildType       : 'admin',
@@ -160,8 +133,8 @@ module.exports = function(grunt) {
         grunt.fail.fatal('no client set');
     }
 
-    if( !client.buildTargetPath || !client.localServerPath ){
-        grunt.fail.fatal('no buildTargetPath or localServerPath set');
+    if( !client.buildTargetPath  ){
+        grunt.fail.fatal('no buildTargetPath set');
     }
 
     // Project configuration.

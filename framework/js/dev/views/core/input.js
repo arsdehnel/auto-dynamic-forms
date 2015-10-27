@@ -60,7 +60,7 @@ ADF.Core.InputView = Backbone.Marionette.ItemView.extend({
         var fieldView = this;
         var $target  = $(e.target);
 
-        if( $target.is(':checkbox') || $target.is(':radio') ){
+        if( fieldView.model.dataCollection && ( $target.is(':checkbox') || $target.is(':radio') ) ){
             var currentValue = [];
             var $formRow = $target.closest('.form-row');
             var $delimiterEl = $formRow.find('*[data-input-delimiter]');

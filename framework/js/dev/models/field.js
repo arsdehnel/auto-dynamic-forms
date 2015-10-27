@@ -11,7 +11,10 @@ ADF.FieldModel = Backbone.Model.extend({
         ADF.utils.message('log','FieldModel Initialized', attrs, opts);
         this.options = $.extend({},( opts.collection ? opts.collection.options : ''),opts);
         var fieldModel = this;
-        this.dataCollection = new Backbone.Collection(fieldModel.get('data'));
+        if( fieldModel.get('data') && fieldModel.get('data').length > 0 ){
+            // console.log(fieldModel.get('data').length);
+            this.dataCollection = new Backbone.Collection(fieldModel.get('data'));
+        }
         this.region = adf.page.getRegion(this.options.regionName);
 
         this.set('type',ADF.utils.string.camelize(this.get('type')));
@@ -62,7 +65,7 @@ ADF.FieldModel = Backbone.Model.extend({
             this.set('type','selectFancy');
         }
 
-        if( ( this.get('type') === 'text' || this.get('type') === 'number' ) && this.dataAttributes && this.dataAttributes.ajaxSuggest ){
+        if( ( this.get('type') === 'text' || this.get('type') === 'number' ) && ( ( this.dataAttributes && this.dataAttributes.ajaxSuggest ) || ( this.dataCollection && this.dataCollection.length > 0 ) ) ){
             this.set('type','ajaxSuggest');
         }
 

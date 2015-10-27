@@ -19,11 +19,11 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
         this.regionName = options.regionName;
         this.model.set('regionName',this.regionName);
         this.collection = new ADF.FieldsCollection(this.region.fieldsCollection.toJSON());
-        this.assignCollectionValuesFromModel(true);
+        this.assignCollectionValuesFromModel(true, false);
         this.listenTo(this.model,'all', this.recordEvent);
         this.modelHistory = [];
     },
-    assignCollectionValuesFromModel: function( initialAssignment ) {
+    assignCollectionValuesFromModel: function( initialAssignment, force ) {
         this.collection.each(function(model){
             if( initialAssignment ){
                 model.set('regionName',this.regionName);
@@ -54,17 +54,24 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
             case 'link':
                 return true;
             case 'clone':
+                e.preventDefault();
                 var clonedModel = this.model.clone();
-                // console.log(clonedModel);
-                // delete clonedModel.id;
-                // delete clonedModel.attributes.id;
-                console.log(clonedModel);
                 recordView.region.gridView.bodyView.collection.add(clonedModel,{at:recordView.region.gridView.bodyView.collection.indexOf(this.model)});
                 break;
             case 'revert':
+                e.preventDefault();
                 this._updateStatus('current');
                 this.model.set(this.model.previousAttributes());
-                this.render();
+                this.render();                
+                // if( this.modelHistory && this.modelHistory.length > 0 ){
+                //     // console.log(this.modelHistory,JSON.stringify(this.modelHistory.pop()));
+                //     this._updateStatus('updated');
+                //     this.model.clear({silent:true}).set(this.modelHistory.pop());
+                //     // this.assignCollectionValuesFromModel( false, true );     
+                //     // this.children.each(function(childView){childView.render()});
+                // }else{
+                //     this._showMessage('error','No more history exists for this record');
+                // }
                 break;
             default:
                 if( this.actions[ADF.utils.string.camelize( actionType )] ){
@@ -224,7 +231,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
                     ADF.utils.message('log','Record sync completed successfully',model,response,options);
 
                     if( response.success ){
-                        this.assignCollectionValuesFromModel();
+                        this.assignCollectionValuesFromModel( false, false );
                         // this._renderChildren();
                         // this.render();
                         this._updateStatus('current');

@@ -10,7 +10,7 @@
     position: relative;
     line-height: 2em;
     min-height: 2em;
-    @include button( black );
+    @include button( #444 );
     svg{
         position: absolute;
         top: .5em;

@@ -22,8 +22,15 @@ ADF.Actions.SaveUnsavedView = ADF.Core.ActionView.extend({
         e.preventDefault();
 
         var url;
+        var recordParent;
 
-        this.gridView.bodyView.children.each(function(childView){
+        if( this.gridView ){
+            recordParent = this.gridView.bodyView;
+        }else{
+            recordParent = this.modulesView.moduleListView;
+        }
+
+        recordParent.children.each(function(childView){
             if( childView.model.status !== 'current' && childView.model.status !== 'added' ){
                 // TODO: seems like this would be cleaner if the save URL was set in the model or the actions were more easily retrievable or something
                 url = _.findWhere(childView.collection.findWhere({type:'actions'}).get('actions'),{type:'save'}).url;

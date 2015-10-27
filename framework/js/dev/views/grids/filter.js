@@ -76,13 +76,17 @@ ADF.Grids.FilterView = ADF.Core.DropdownView.extend({
         this.events = _.extend({},ADF.Core.DropdownView.prototype.events,this.events);
 
     },
+    ui : {
+        menu           : '.dropdown-menu', 
+        primaryOptions : '.dropdown-menu .primary-options'
+    },
     render: function() {
-        // var gridFilterView = this;
 
-        // if( this.fieldType === 'text' ){
-            this.headerView.$el.addClass('has-filter').append(this.template(this.model.toJSON()));
-            this.setElement(this.headerView.$el.find('.dropdown-wrapper')[0]);
-        // }
+        this.headerView.$el.addClass('has-filter').append(this.template(this.model.toJSON()));
+        this.setElement(this.headerView.$el.find('.dropdown-wrapper')[0]);
+
+        // since we have our own render function we have to explicitly call this
+        this.bindUIElements();
 
     },
     generateFilters: function() {
@@ -114,13 +118,14 @@ ADF.Grids.FilterView = ADF.Core.DropdownView.extend({
         var existingFilter = {};
         var crntFilterModel;
 
-        // TODO: add type-ahead-style search (or something)
         // TODO: make this spinner work with the parent code that removes the hide class
-        ADF.utils.spin(this.$el.find('.dropdown-menu .primary-options'));
+        ADF.utils.spin(this.ui.primaryOptions);
 
         if( !this.filtersGenerated ){
             this.generateFilters();
         }
+
+        this._positionListWindow();
 
         if( this.children.length !== this.collection.length ){
 
@@ -156,21 +161,21 @@ ADF.Grids.FilterView = ADF.Core.DropdownView.extend({
                 // add a childview for re-rendering later
                 child = this.addChild(model,this.childView);
 
-                this.$el.find('.dropdown-menu .primary-options').append(child.renderAsChild());
-                child.setElement(this.$el.find('.dropdown-menu .primary-options li').last()[0]);
+                this.ui.primaryOptions.append(child.renderAsChild());
+                child.setElement(this.ui.primaryOptions.children().last()[0]);
             },this);
 
         }else{
 
-            this.$el.find('.dropdown-menu .primary-options').empty();
+            this.ui.primaryOptions.empty();
             this.children.each(function(filterItemView){
-                this.$el.find('.dropdown-menu .primary-options').append(filterItemView.renderAsChild());
-                filterItemView.setElement(this.$el.find('.dropdown-menu .primary-options li').last()[0]);
+                this.ui.primaryOptions.append(filterItemView.renderAsChild());
+                filterItemView.setElement(this.ui.primaryOptions.children().last()[0]);
             },this);
 
         }
 
-        ADF.utils.spin(this.$el.find('.dropdown-menu .primary-options'), {stop:true});
+        ADF.utils.spin(this.ui.primaryOptions, {stop:true});
 
         this.$el.find('.dropdown-text-filter').focus();
         this.textFilterRefresh();
@@ -217,6 +222,15 @@ ADF.Grids.FilterView = ADF.Core.DropdownView.extend({
         }else{
             this.children.each(function(child){
                 child.$el.removeClass('hide');
+            });
+        }
+    },
+    _positionListWindow: function() {
+        var listWindowWidth = ADF.utils.emToPx( this.$el.parent()[0], this.$el.outerWidth());
+        if( listWindowWidth > this.$el.parent().offset().left ){
+            this.ui.menu.css({
+                left: 0,
+                right: 'auto'
             });
         }
     }

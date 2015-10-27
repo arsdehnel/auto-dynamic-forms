@@ -24,7 +24,7 @@
 }
 .adf-grid-actions {
     float: right;
-    background: #ddd;
+    background: rgba( $primary_color, .5 );
     margin-right: 10px;
     padding: 4px 4px 3px;
     &> * {
@@ -32,28 +32,29 @@
         display: inline-block;
     }
     a {
-        color: white;
+        color: #444;
     }
     .btn {
         line-height: 1.75em;
         min-height: 1.75em;
         border-color: white;
-        background: rgba( $primary_color, .5 );
+        background: #ddd;
     }
 }
 .record-add-control-input {
     display: none;
     position: absolute;
-    top: 100%;
     top: calc( 100% - 1px );
     left: .25em;
-    right: calc( .25em - 1px );
-    background: rgba( $primary_color, .5 );
+    right: .25em;
+    font-size: 12px;
+    background: #ddd;
     border: white solid;
     border-width: 0 1px 1px;    
-    .open & {
-        display: block;
-    }
+
+}
+.adf-grid-actions .open .record-add-control-input {
+    display: block;
 }
 .btn.btn-addRecords {
     padding: 0 1em;

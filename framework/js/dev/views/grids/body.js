@@ -6,9 +6,6 @@ adf,
 _
 */
 ADF.Grids.BodyView = Marionette.CompositeView.extend({
-    // TODO: overlay template adjusted to handle array of data with format/delimiter from data-supl-info attribute
-    // TODO: grid-level action for saving all records
-
     className: 'adf-grid',
     tagName: 'tbody',
     template: function(){
@@ -45,13 +42,18 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
 
     },
     filter: function (childModel, index, collection) {
+        var currentValue;
         if( this.filters.length > 0 ){
             var filterMatch = true;
             this.filters.each(function(filterModel){
-                if( _.indexOf(filterModel.get('filterValues'),childModel.get(filterModel.get('fieldName'))) < 0 ){
+
+                var currentValue = childModel.get(filterModel.get('fieldName'));
+
+                if( currentValue && _.indexOf(filterModel.get('filterValues'),currentValue.toString()) < 0 ){
                     filterMatch = false;
-                    return;
+                    return;                    
                 }
+
             },this);
             return filterMatch;
         }else{
@@ -60,6 +62,7 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
     },
     onRender: function() {
         ADF.utils.inputHandlerRefresh();
+        this.$el.find(':input:visible').last().on('blur',function(){console.log('crap')});
     },
     refreshFilteredRecords: function() {
         ADF.utils.spin(this.$el);
@@ -125,10 +128,10 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
     },
 
     _updateColSelectDispOverride: function( model ) {
-        console.warn(model.changed,'within bodyView');
-        this.children.each(function(childView){
-            console.warn(childView.collection.findWhere({name:model.get('name')}).set(model.changed));
-        });
+        // console.warn(model.changed,'within bodyView');
+        // this.children.each(function(childView){
+        //     console.warn(childView.collection.findWhere({name:model.get('name')}).set(model.changed));
+        // });
     }
 
 });

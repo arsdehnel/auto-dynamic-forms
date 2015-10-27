@@ -53,9 +53,13 @@
                 width: 1em;
                 fill: currentColor;
             }
+            .icon.unchecked {
+                fill: #999;
+            }
             .unchecked,
             :checked ~ label .checked {
                 display: inline;
+                margin-right: .5em;
             }
             .checked,
             :checked ~ label .unchecked {
