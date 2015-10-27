@@ -50,11 +50,12 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
                 this.model.save(null,{fieldsCollection: recordView.collection});
                 break;
             case 'link':
-                // $targetObj.attr('href',ADF.utils.string.substitute( $targetObj.attr('href'), this.model.toJSON() ));
                 return true;
             case 'clone':
                 var clonedModel = this.model.clone();
-                delete clonedModel.id;
+                // console.log(clonedModel);
+                // delete clonedModel.id;
+                // delete clonedModel.attributes.id;
                 console.log(clonedModel);
                 recordView.region.gridView.bodyView.collection.add(clonedModel,{at:recordView.region.gridView.bodyView.collection.indexOf(this.model)});
                 break;

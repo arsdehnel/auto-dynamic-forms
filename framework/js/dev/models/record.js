@@ -42,6 +42,21 @@ ADF.RecordModel = Backbone.Model.extend({
         });
     },
 
+    clone: function() {
+        var newModel = this._super();
+        var oldId = newModel.id;
+        delete newModel.id;
+        _.each(newModel.attributes,function(value,attribute){
+            if( value === oldId ){
+                delete newModel.attributes[attribute];
+                // console.log('remove '+attribute);
+            }
+            // console.log(value,attribute);
+        });
+        // delete newModel.attributes.id;
+        return newModel;
+    },
+
     _createInitAttrs: function() {
 
         var keys = [];
