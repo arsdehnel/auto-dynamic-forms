@@ -49,21 +49,13 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
                 this.model.url = $targetObj.attr('href');
                 this.model.save(null,{fieldsCollection: recordView.collection});
                 break;
-            // case 'load-adf-region':
-            //     e.preventDefault();
-            //     $.extend(regionObj,targetData,{adfAjaxOnshow:true,adfAjaxUrl:$targetObj.attr('href')});
-            //     if( !_.isUndefined( adf.page.getRegion(regionObj.regionName) ) ) {
-            //         adf.page.removeRegion(regionObj.regionName);
-            //     }
-            //     adf.page.addRegions( adf.page._buildRegion(regionObj,targetData.adfRegionId) );
-            //     adf.page.getRegion(regionObj.regionName).show();
-            //     break;
             case 'link':
-                // $targetObj.attr('href',ADF.utils.string.substitute( $targetObj.attr('href'), this.model.toJSON() ));
                 return true;
             case 'clone':
                 var clonedModel = this.model.clone();
-                delete clonedModel.id;
+                // console.log(clonedModel);
+                // delete clonedModel.id;
+                // delete clonedModel.attributes.id;
                 console.log(clonedModel);
                 recordView.region.gridView.bodyView.collection.add(clonedModel,{at:recordView.region.gridView.bodyView.collection.indexOf(this.model)});
                 break;
