@@ -1,5 +1,6 @@
 /*global
 ADF,
+Backbone,
 Marionette,
 adf,
 $,
@@ -20,6 +21,7 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
         this.collection = new ADF.FieldsCollection(this.region.fieldsCollection.toJSON());
         this.assignCollectionValuesFromModel(true);
         this.listenTo(this.model,'all', this.recordEvent);
+        this.modelHistory = [];
     },
     assignCollectionValuesFromModel: function( initialAssignment ) {
         this.collection.each(function(model){
@@ -136,6 +138,8 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
 
         var changed = e.currentTarget;
         var value = $(e.currentTarget).val();
+
+        this.modelHistory.push(this.model.toJSON());
 
         // since checkboxes always return their value attribute for the .val() function we have to handle them a little different to possibly explicitly set their value to null
         if( $(e.currentTarget).is(':checkbox') && !$(e.currentTarget).is(':checked') ){
