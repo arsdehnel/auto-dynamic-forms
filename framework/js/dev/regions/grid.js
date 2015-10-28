@@ -16,6 +16,8 @@ ADF.GridRegion = ADF.Region.extend({
             gridRegion.inOverlay = false;
         }
 
+        this.autoSave = gridRegion.$el.data('adf-auto-save') || false;
+
         // TODO: make this less clunky and crappy
         var $initLoadForm = gridRegion.$el.find('form').clone();
 
