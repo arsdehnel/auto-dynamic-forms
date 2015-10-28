@@ -1,6 +1,5 @@
 /*global
 ADF,
-Backbone,
 Marionette,
 adf,
 $,
@@ -46,11 +45,6 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
         var actionType = $targetObj.attr('data-action-type');
         // TODO: experiment with making this dynamic
         switch( actionType ){
-            case 'save':
-                e.preventDefault();
-                this.model.url = $targetObj.attr('href');
-                this.model.save(null,{fieldsCollection: recordView.collection});
-                break;
             case 'link':
                 return true;
             case 'clone':
@@ -84,6 +78,16 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
 
     // these are the individual functions to handle each action type
     actions: {
+
+        save: function(recordView,e) {
+            if( e ) {
+                e.preventDefault();
+                recordView.model.url = $(e.target).closest('a').attr('href');
+            }else{
+                recordView.model.url = recordView.$el.find('[data-action-type=save]').first().attr('href');
+            }
+            recordView.model.save(null,{fieldsCollection: recordView.collection});           
+        },
 
         submitRecordForm: function(recordView,e) {
             e.preventDefault();
@@ -159,6 +163,10 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
         ADF.utils.message('log','Record input change',obj,this.model);
 
         this._updateStatus('updated');
+
+        if( this.region.autoSave ){
+            this.actions.save(this,false);
+        }
 
     },
 
