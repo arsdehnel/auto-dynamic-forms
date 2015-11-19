@@ -19,17 +19,19 @@ ADF.FieldModel = Backbone.Model.extend({
 
         this.set('type',ADF.utils.string.camelize(this.get('type')));
 
-        // this._convertDataAttrs();
         this._readonlyOverride();
 
+        // this puts the data attributes for usage elsehwere in the ADF framework JavaScript code
         this.dataAttributes = this._createDataAttrObj();
+        // while this converts the database-preferred uppercased/underscore delimited setup to lowercase/hyphen-delimited attributes
+        this._convertDataAttrsForHbsUsage();
 
         if( attrs.name.toLowerCase() !== attrs.name ){
             fieldModel.set('name',attrs.name.toLowerCase());
         }
 
         if( this._createDataAttrObj().validationChecks ){
-            this.set('wrapClass',this.get('wrapClass')+' adf-validation-required');
+            this._addWrapClass('adf-validation-required');
         }
 
         this._setInputType();
@@ -38,8 +40,11 @@ ADF.FieldModel = Backbone.Model.extend({
 
     },
 
+    _addWrapClass: function( wrapClassToAdd ){
+        this.set('wrapClass',( this.get('wrapClass') || '' )+' '+wrapClassToAdd);        
+    },
+
     _updateCrntValFromDataCollection: function() {
-        // TODO: should dataAttributes be "converted" on initialization to live on the model itself (not as attribute) and be a BB collection?
         var delimiterObj = _.findWhere(this.get('dataAttributes'),{name:'input-delimiter'});
         var delimiter = ( delimiterObj ? delimiterObj.value : '|' );
 
@@ -78,7 +83,7 @@ ADF.FieldModel = Backbone.Model.extend({
             ADF.utils.message('error','unexpected template requested: '+this.get('type'),this);
         }
     },
-    _convertDataAttrs: function() {
+    _convertDataAttrsForHbsUsage: function() {
 
         _.each(this.get('dataAttributes'),function(element, index){
             element.name = element.name.toLowerCase().replace(/[_-]/g, '-');
@@ -114,6 +119,7 @@ ADF.FieldModel = Backbone.Model.extend({
                 case 'textarea':
                 case 'date':
                 case 'number':
+                case 'checkbox':
                     fieldModel.set('type','readonly');
                     break;
                 case 'select':
@@ -126,7 +132,7 @@ ADF.FieldModel = Backbone.Model.extend({
                     break;
                 case 'hidden':
                 case 'readonly':
-                    break;
+                    break;s
                 case 'actions':
                     fieldModel.set('wrapClass',fieldModel.get('wrapClass')+' hide');
                     break;

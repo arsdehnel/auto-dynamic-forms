@@ -13,7 +13,11 @@ ADF.Modules.ModulesView = Marionette.View.extend({
 
         modulesView.moduleListView = new ADF.Modules.ModuleListView({
             el: modulesView.$el.find('.module-list-wrapper')[0],
-            collection: new ADF.RecordsCollection(null,{regionName:modulesView.regionName}),
+            collection: new ADF.RecordsCollection(null,{
+                regionName: modulesView.regionName,
+                region: modulesView.region,
+                sortAttribute: 'read_order'
+            }),
             regionName: modulesView.regionName,
             modulesView: modulesView,
             dndSource: options.dndSource,

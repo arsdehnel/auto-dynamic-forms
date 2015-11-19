@@ -12,6 +12,7 @@ ADF.Core.ActionView = Backbone.Marionette.ItemView.extend({
     },    
     initialize: function( options ){
         ADF.utils.message('log','Core.ActionView initialized', options );
+        this.region = options && options.region;
     },
     onRender: function(){
         this.setElement(this.$el.children().unwrap());

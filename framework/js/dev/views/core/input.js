@@ -43,6 +43,7 @@ ADF.Core.InputView = Backbone.Marionette.ItemView.extend({
         this.valueChange(e);
         this._submitOnChange(e, this.model.dataAttributes.submitOnChange );
         this._dependentFieldLkup( e, this.model.dataAttributes.dpndntFieldLkupOnChange );
+        this._customEvents(e,this.model.dataAttributes.onChangeEventTrigger )
 
     },
     _submitOnChange: function( event, dataAttrVal ){
@@ -53,6 +54,11 @@ ADF.Core.InputView = Backbone.Marionette.ItemView.extend({
     _dependentFieldLkup: function( event, dataAttrVal ){
         if( dataAttrVal ){
             adf.page.getRegion(this.options.regionName).formView.dependentFieldLkup( event, this );
+        }
+    },
+    _customEvents: function( event, dataAttrVal ) {
+        if( dataAttrVal ){
+            this.$el.trigger(ADF.utils.string.camelize(dataAttrVal),event);
         }
     },
     valueChange: function(e) {

@@ -11,6 +11,7 @@ ADF.RecordsCollection = Backbone.Collection.extend({
 
     initialize: function( models, options ){
         ADF.utils.message('log','RecordsCollection Initialized', models, options);
+        this.sortAttribute = options.sortAttribute;
     },
 
     sortRecords: function (columnName) {

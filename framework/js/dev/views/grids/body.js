@@ -62,7 +62,9 @@ ADF.Grids.BodyView = Marionette.CompositeView.extend({
     },
     onRender: function() {
         ADF.utils.inputHandlerRefresh();
-        this.$el.find(':input:visible').last().on('blur',function(){console.log('crap')});
+        this.$el.find(':input:visible').last().on('blur',function(){
+            ADF.utils.message('info','last input blurred');
+        });
     },
     refreshFilteredRecords: function() {
         ADF.utils.spin(this.$el);

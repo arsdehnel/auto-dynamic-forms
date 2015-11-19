@@ -12,6 +12,28 @@ ADF.utils = {
         underscore: function( string ) {
             return string.replace(/([A-Z])/g, function($1){return '_'+$1.toLowerCase();});
         },
+        escape: function( string ) {
+            // copied the below from the underscore library itself and remove the &, < and > escaping from the escape map
+            var escapeMap = {
+                '"': '&quot;',
+                "'": '&#x27;',
+                '`': '&#x60;'
+            };
+            var createEscaper = function(map) {
+                var escaper = function(match) {
+                  return map[match];
+                };
+                // Regexe   s for identifying a key that needs to be escaped
+                var source = '(?:' + _.keys(map).join('|') + ')';
+                var testRegexp = RegExp(source);
+                var replaceRegexp = RegExp(source, 'g');
+                return function(string) {
+                  string = string == null ? '' : '' + string;
+                  return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
+                };
+            };
+            return createEscaper(escapeMap)(string);// _.escape(string);
+        },
         camelize: function( string ) {
             // added this bit to handle the situation where the current string value is all uppercase
             if( string.toUpperCase() === string ){
@@ -236,7 +258,7 @@ ADF.utils = {
                 case 'messagesWindow':
                     // TODO: handle errors somehow before the adf and adf.page are defined
                     // since we might have an error before the page loads up we'll do this for a bit to see if we can get into the messages window
-                    if( adf.page && adf.page.getRegion('messagesWindow') ){
+                    if( adf && adf.page && adf.page.getRegion('messagesWindow') ){
                         adf.page.getRegion('messagesWindow').messagesWindowView.collection.add([
                             {
                                 level: level,
@@ -288,6 +310,8 @@ ADF.utils = {
 
                 // TODO: figure out a way to use the model here to determine if a given value should be escaped or not
                 // crntVal = _.escape(crntVal);
+                // adding a custom escape function because we need to escape single quotes but the _.escape() function also escapes things like &, < and > into their html entities which we don't want
+                crntVal = ADF.utils.string.escape( crntVal );
 
                 dataArray.push({
                     dyn_frm_fld_mstr_id : model.get('fldMstrId'),
@@ -313,8 +337,8 @@ ADF.utils = {
 
                     dataArray.push({
                         field_code : ADF.utils.string.underscore( fieldKey ),
-                        // data_value : _.escape(crntVal)
-                        data_value : crntVal  // removed the escape because things like URLs were getting &amp; instead of just the & that we really want
+                        // adding a custom escape function because we need to escape single quotes but the _.escape() function also escapes things like &, < and > into their html entities which we don't want
+                        data_value : ADF.utils.string.escape(crntVal)
                     });
 
                 }

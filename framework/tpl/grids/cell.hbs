@@ -4,6 +4,9 @@
     data-header-id="{{regionName}}--{{name}}" 
     data-field-master-id="{{fldMstrId}}"
     data-page-dtl-id="{{detailId}}"    
+    {{#each dataAttributes}}
+        {{dataAttributeWrite name value 'wrapper'}}
+    {{/each}}    
     class="{{wrapClass}}">
     {{{inputField}}}
 </td>

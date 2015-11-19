@@ -10,7 +10,7 @@ ADF.config = {
     dataAttributes: {
         // these will be "formRow" if not valued
         'input-delimiter': {
-            location: 'formInput'
+            location: 'input'
         }
     },
     userPrefDefaults: {

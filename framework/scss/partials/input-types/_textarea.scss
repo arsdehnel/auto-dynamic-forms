@@ -20,14 +20,14 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba( white, .5 );
+        background: rgba( black, .8 );
         padding: 3em;
-        z-index: $zindex-overlay;
+        z-index: $zindex-top-level-overlay;
         .size-toggle {
             position: absolute;
             top: 0;
             right: 0;
-            z-index: $zindex-textarea-size-toggle;
+            z-index: ( $zindex-top-level-overlay + 10 );
             .icon {
                 width: 3em;
                 fill: black;

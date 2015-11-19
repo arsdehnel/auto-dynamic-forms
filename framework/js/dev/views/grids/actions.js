@@ -6,14 +6,17 @@ ADF.Grids.ActionsView = Marionette.CollectionView.extend({
     getChildView: function(model){
         var viewClass;
         switch( model.get('type') ){
+            case 'custom':
+                viewClass = ADF.Actions.CustomView;
+                break;
+            case 'linkToAdfSubmission':
+                viewClass = ADF.Actions.LinkToAdfSubmissionView;
+                break;
             case 'recordAdd':
                 viewClass = ADF.Actions.RecordAddView;
                 break;
             case 'saveUnsaved':
                 viewClass = ADF.Actions.SaveUnsavedView;
-                break;
-            case 'linkToAdfSubmission':
-                viewClass = ADF.Actions.LinkToAdfSubmissionView;
                 break;
             default:
                 viewClass = ADF.Actions.GridDefaultView;

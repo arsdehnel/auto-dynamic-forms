@@ -30,8 +30,7 @@ ADF.Inputs.TextareaView = ADF.Core.InputView.extend({
         // TODO: add lib/util/formatting to the admin build and then a button to trigger it on the UI
         var options = {
             mode: 'text/html',
-            theme: 'paraiso-dark',
-            lineNumbers: true,
+            theme: '3024-day',
             htmlMode: true,
             matchBrackets: true
         };
@@ -39,8 +38,10 @@ ADF.Inputs.TextareaView = ADF.Core.InputView.extend({
         if( this.$wrap.hasClass('expanded') ){
             this.codemirror = CodeMirror.fromTextArea(this.$el.find('textarea')[0],options);
         }else{
+            this.$el.find('textarea').val(this.codemirror.getValue()).trigger('change');
+            // console.log();
             this.codemirror.toTextArea();
-            this.$el.trigger('change');
+            // this.$el.find('textarea').trigger('input');
         }
     }
 });

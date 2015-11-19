@@ -20,17 +20,22 @@ ADF.Modules = {};
 ADF.App = Marionette.Application.extend({
     initialize: function(options) {
         ADF.utils.message('log','App Initialized', options);
+        this._importPageTemplates();
         if( ADF.utils.cookies.get('tsga-adf-debug') === 'true' ){
             this.debugEnabled = true;
         }else{
             this.debugEnabled = false;
         }
     },
-    // TODO: get this working, currently having a problem that the template loads but after the initial page is rendered which is sorta useless
-    importPageTemplates: function() {
+    _importPageTemplates: function() {
         $('.adf-template').each(function(){
             var $tmplt = $(this);
-            ADF.templates[ADF.utils.string.camelize($tmplt.attr('id'))] = Handlebars.compile($tmplt.html());
+            var tmpltName = $tmplt.attr('id').split('--');
+            if( tmpltName.length === 2 ){
+                ADF.templates[ADF.utils.string.camelize(tmpltName[0])][ADF.utils.string.camelize(tmpltName[1])] = Handlebars.compile($tmplt.html());
+            }else{
+                ADF.utils.message('warn','Invalid custom ADF template found',tmpltName);
+            }
         });
     },
     keepSessionAlive: function() {
@@ -54,10 +59,6 @@ ADF.App = Marionette.Application.extend({
 
 var adf = new ADF.App({container: 'body'});
 adf.on('before:start',function(options){
-    $('.adf-template').each(function(){
-        var $tmplt = $(this);
-        ADF.templates[ADF.utils.string.camelize($tmplt.attr('id'))] = Handlebars.compile($tmplt.html());
-    });
     adf.userPrefs = ( localStorage.getItem('userPreferences') ? JSON.parse(localStorage.getItem('userPreferences')) : {} );
 });
 adf.on('start', function(options){

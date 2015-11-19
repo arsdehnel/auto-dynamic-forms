@@ -44,42 +44,43 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
         var $targetObj = $(e.target).closest('a');
         var actionType = $targetObj.attr('data-action-type');
         // TODO: experiment with making this dynamic
-        switch( actionType ){
-            case 'link':
-                return true;
-            case 'clone':
-                e.preventDefault();
-                var clonedModel = this.model.clone();
-                recordView.region.gridView.bodyView.collection.add(clonedModel,{at:recordView.region.gridView.bodyView.collection.indexOf(this.model)});
-                break;
-            case 'revert':
-                e.preventDefault();
-                this._updateStatus('current');
-                this.model.set(this.model.previousAttributes());
-                this.render();                
-                // if( this.modelHistory && this.modelHistory.length > 0 ){
-                //     // console.log(this.modelHistory,JSON.stringify(this.modelHistory.pop()));
-                //     this._updateStatus('updated');
-                //     this.model.clear({silent:true}).set(this.modelHistory.pop());
-                //     // this.assignCollectionValuesFromModel( false, true );     
-                //     // this.children.each(function(childView){childView.render()});
-                // }else{
-                //     this._showMessage('error','No more history exists for this record');
-                // }
-                break;
-            default:
-                if( this.actions[ADF.utils.string.camelize( actionType )] ){
-                    this.actions[ADF.utils.string.camelize( actionType )](this,e);
-                }else{
-                    ADF.utils.message('error','Unexpected record action ('+actionType+') triggered.',$targetObj);
-                }
+        if( this.actions[ADF.utils.string.camelize( actionType )] ){
+            this.actions[ADF.utils.string.camelize( actionType )](this,e);
+        }else{
+            ADF.utils.message('error','Unexpected record action ('+actionType+') triggered.',$targetObj);
         }
     },
 
     // these are the individual functions to handle each action type
     actions: {
 
-        save: function(recordView,e) {
+        link: function( recordView, e ) {
+            return true;
+        },
+
+        clone: function( recordView, e ) {
+            e.preventDefault();
+            var clonedModel = this.model.clone();
+            recordView.region.gridView.bodyView.collection.add(clonedModel,{at:recordView.region.gridView.bodyView.collection.indexOf(this.model)});
+        },
+
+        revert: function( recordView, e ) {
+            e.preventDefault();
+            this._updateStatus('current');
+            this.model.set(this.model.previousAttributes());
+            this.render();                
+            // if( this.modelHistory && this.modelHistory.length > 0 ){
+            //     // console.log(this.modelHistory,JSON.stringify(this.modelHistory.pop()));
+            //     this._updateStatus('updated');
+            //     this.model.clear({silent:true}).set(this.modelHistory.pop());
+            //     // this.assignCollectionValuesFromModel( false, true );     
+            //     // this.children.each(function(childView){childView.render()});
+            // }else{
+            //     this._showMessage('error','No more history exists for this record');
+            // }
+        },
+
+        save: function( recordView,e ) {
             if( e ) {
                 e.preventDefault();
                 recordView.model.url = $(e.target).closest('a').attr('href');
@@ -89,7 +90,14 @@ ADF.Core.RecordView = Marionette.CompositeView.extend({
             recordView.model.save(null,{fieldsCollection: recordView.collection});           
         },
 
-        submitRecordForm: function(recordView,e) {
+        submitCustomUrl: function( recordView, e ) {
+            e.preventDefault();
+            var $triggerObj = $(e.target).closest('.btn');
+            recordView.model.url = $triggerObj.attr('href');
+            recordView.model.save(null,{fieldsCollection: recordView.collection});           
+        },
+
+        submitRecordForm: function( recordView,e ) {
             e.preventDefault();
             var action = $(e.target).closest('a').attr('href');
 

@@ -27,7 +27,11 @@ ADF.Grids.GridView = Marionette.View.extend({
 
         gridView.bodyView = new ADF.Grids.BodyView({
             el: gridView.$el.find('tbody')[0],
-            collection: new ADF.RecordsCollection(null,{regionName:gridView.regionName}),
+            collection: new ADF.RecordsCollection(null,{
+                regionName: gridView.regionName,
+                region: gridView.region,
+                sortAttribute: gridView.region.$el.attr('data-record-sort-attribute')
+            }),            
             regionName: gridView.regionName,
             gridView: gridView
         });
@@ -143,6 +147,7 @@ ADF.Grids.GridView = Marionette.View.extend({
         gridView.columnSelect.render();
         gridView.gridActions.render();
         gridView.bodyView.render();
+        gridView.$el.trigger('adfGridLoaded');
     },
     updateRecordCounter: function( reset ){
         if( reset ){

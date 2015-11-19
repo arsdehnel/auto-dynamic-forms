@@ -5,7 +5,7 @@ Handlebars
 Handlebars.registerHelper('dataAttributeWrite', function(dataAttrName, dataAttrValue, locationCode) {
 
     // the default
-    var configLocation = 'formRow';
+    var configLocation = 'wrapper';
 
     if( ADF.config.get('dataAttributes')[dataAttrName] && ADF.config.get('dataAttributes')[dataAttrName].location ){
         configLocation = ADF.config.get('dataAttributes')[dataAttrName].location;
