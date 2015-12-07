@@ -101,11 +101,13 @@ ADF.Core.InputView = Backbone.Marionette.ItemView.extend({
         var delimiter = this.getDelimiter();
 
         // var selectedOptions = _.where(this.model.get('data'),{selectedInd:'Y'});
-        var selectedOptions = this.model.dataCollection.where({selectedInd:'Y'});
-        selectedOptions = _.map(selectedOptions,function(optionModel){
-            return optionModel.get('value');
-        });
-        this.model.set('currentValue',selectedOptions.join(delimiter));
+        if( this.model.dataCollection ){
+            var selectedOptions = this.model.dataCollection.where({selectedInd:'Y'});
+            selectedOptions = _.map(selectedOptions,function(optionModel){
+                return optionModel.get('value');
+            });
+            this.model.set('currentValue',selectedOptions.join(delimiter));            
+        }
     }
     
 });

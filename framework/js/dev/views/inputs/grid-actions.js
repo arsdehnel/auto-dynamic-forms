@@ -26,7 +26,7 @@ ADF.Inputs.GridActionsView = ADF.Core.InputView.extend({
         // TODO: move this to the model or commonize it or something?
         _.each(this.model.get('actions'),function(action,index){
             if( action.dataAttributes ){
-                action.actionDisplayFilter = _.findWhere(action.dataAttributes,{name:'ACTION_DISPLAY_FILTER'});
+                action.actionDisplayFilter = _.findWhere(action.dataAttributes,{name:'action-display-filter'});
                 action.actionDisplayFilter = action.actionDisplayFilter ? ADF.utils.string.querystringToObj( action.actionDisplayFilter.value ) : false;
                 // console.log(action.actionDisplayFilter, ADF.utils.string.querystringToObj( action.actionDisplayFilter.value ), this.rowView.collection.findWhere({name:'excpn_status_desc'}).get('currentValue'));
             }
